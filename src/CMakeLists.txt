@@ -1,7 +1,8 @@
-add_definitions(-Wextra -Wall -std=c++11)
+add_definitions(-Wextra -Wall -std=c++1y)
 
 aux_source_directory(. dot_sources)
 aux_source_directory(api api_sources)
+aux_source_directory(event event_sources)
 aux_source_directory(interface interface_sources)
 aux_source_directory(lua_api lua_api_sources)
 
@@ -10,6 +11,7 @@ include_directories(.)
 set(sources
     ${dot_sources}
     ${api_sources}
+    ${event_sources}
     ${interface_sources}
     ${lua_api_sources}
 )

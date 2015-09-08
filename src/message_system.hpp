@@ -12,6 +12,7 @@
     MS_SUBSYSTEM(general), \
     MS_SUBSYSTEM(api), \
     MS_SUBSYSTEM(interface), \
+    MS_SUBSYSTEM(event), \
     MS_SUBSYSTEM(lua)
 
 /* Log message types. Fatal is a special type that must always be present. */
