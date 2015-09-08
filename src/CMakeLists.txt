@@ -16,4 +16,4 @@ set(sources
 
 add_executable(pineseed ${sources})
 
-target_link_libraries(pineseed m SDL SDL_gfx)
+target_link_libraries(pineseed m SDL SDL_gfx SDL_image)

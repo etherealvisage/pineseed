@@ -5,6 +5,8 @@
 
 #include "viewport.hpp"
 
+#include <SDL/SDL.h>
+
 namespace interface {
 
 class sprite {

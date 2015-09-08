@@ -11,6 +11,7 @@ namespace interface {
 void sprite::paint(viewport *viewport) {
     if(m_current_frame == no_frame) return;
 
+
     double x = m_x, y = m_y;
     viewport->transform(x, y);
     auto torender = rotozoomSurfaceXY(get_current_surface(), m_rotation,

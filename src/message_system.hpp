@@ -50,10 +50,10 @@ public:
 };
 
 #define MSG(msg) \
-    MSG3(GENERAL, LOG, msg)
+    MSG3(general, log, msg)
 
 #define MSG2(type, msg) \
-    MSG3(GENERAL, type, msg)
+    MSG3(general, type, msg)
 
 #define MSG3(sys, type, msg) \
     ::message_system::message( ::message_system::sys, \

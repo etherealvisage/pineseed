@@ -20,7 +20,7 @@ void video::set_video_mode(int width, int height, int bpp) {
 
 void video::clear_screen() {
     auto screen = SDL_GetVideoSurface();
-    SDL_FillRect(screen, nullptr, SDL_MapRGB(screen->format, 0, 0, 0));
+    SDL_FillRect(screen, nullptr, SDL_MapRGB(screen->format, 0, 0, 32));
 }
 
 void video::update_screen() {
