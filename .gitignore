@@ -1,0 +1,5 @@
+.vimrc
+.ycm_extra_conf.*
+/build
+/pineseed
+*.swp
