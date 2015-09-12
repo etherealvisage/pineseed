@@ -26,7 +26,7 @@ public:
     }
 
     template<typename ...T>
-    void invoke_all(std::string name, std::tuple<T...> params) {
+    void invoke_all(std::string name, std::tuple<T...> &params) {
         auto it = m_listeners.find(name);
         while(it != m_listeners.end() && it->first == name) {
             auto f = std::experimental::any_cast<std::function<void (T...)>>(

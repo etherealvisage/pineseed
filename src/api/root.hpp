@@ -2,6 +2,7 @@
 #define API_ROOT_HPP
 
 #include "interface.hpp"
+#include "lua.hpp"
 
 namespace api {
 

@@ -10,6 +10,9 @@ redep:
 clean:
 	$(MAKE) -C build clean
 
+.PHONY: prepare
+	./prepare.sh
+
 .PHONY: distclean
 distclean:
 	$(MAKE) -C build clean

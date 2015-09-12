@@ -4,6 +4,7 @@
 #include "interface/sprite.hpp"
 #include "interface/input.hpp"
 #include "api/root.hpp"
+#include "event/context_registry.hpp"
 
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
@@ -40,13 +41,15 @@ int main() {
     event.register_listener(SDL_QUIT,
         std::bind(set_quit, std::placeholders::_1));
 
+    event::context_registry context_registry;
+
     while(!quit) {
         video->clear_screen();
 
         sprite->paint(&vp);
 
         video->update_screen();
-
+        context_registry.fire_queued();
         event.poll_events();
     }
 
