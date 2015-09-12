@@ -15,7 +15,21 @@ void set_quit(SDL_Event *event) {
     quit = true;
 }
 
+void test_listener(int i) {
+    std::cout << "test_listener(" << i << ")\n";
+}
+
+
 int main() {
+    event::proxy_context<> con;
+
+    con.add_listener("test", std::function<void (int)>(test_listener));
+    con.queue("test", std::make_tuple(42));
+    con.queue("test", std::make_tuple(42));
+    con.fire_queued();
+
+    return 0;
+#if 0
     interface::base interface_base;
 
     interface_base.setup();
@@ -55,4 +69,5 @@ int main() {
 
     interface_base.teardown();
     return 0;
+#endif
 }

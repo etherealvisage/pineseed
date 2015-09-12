@@ -4,7 +4,7 @@
 
 namespace event {
 
-void context_registry::push_context(context *context) {
+void context_registry::push_context(base_context *context) {
     m_contexts.push_back(context);
 }
 
@@ -15,7 +15,7 @@ void context_registry::pop_context() {
     else m_contexts.pop_back();
 }
 
-context *context_registry::get_top_context() {
+base_context *context_registry::get_top_context() {
     if(m_contexts.empty()) {
         MSG3(event, error, "No top context!");
         return nullptr;

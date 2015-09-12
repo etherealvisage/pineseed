@@ -9,12 +9,12 @@ namespace event {
 
 class context_registry {
 private:
-    std::vector<context *> m_contexts;
+    std::vector<base_context *> m_contexts;
 public:
-    void push_context(context *context);
+    void push_context(base_context *context);
     void pop_context();
     
-    context *get_top_context();
+    base_context *get_top_context();
 
     void fire_queued();
 };

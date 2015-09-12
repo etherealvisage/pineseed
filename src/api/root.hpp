@@ -8,6 +8,7 @@ namespace api {
 
 class root {
 private:
+    lua_wrapper m_wrapper;
     interface m_interface;
 public:
     root();

@@ -17,7 +17,8 @@ public:
     lua_wrapper();
     ~lua_wrapper();
 
-    void add_api_function(std::string name, const wrapped_function_t &function);
+    void add_api_function(std::string name,
+        const wrapped_function_t &function);
 private:
     void get_table(std::string name);
     void set_global(std::string name);
