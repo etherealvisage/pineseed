@@ -4,7 +4,6 @@
 #include "interface/sprite.hpp"
 #include "interface/input.hpp"
 #include "api/root.hpp"
-#include "api/lua_events.hpp"
 #include "event/context_registry.hpp"
 
 #include <SDL/SDL.h>
@@ -21,17 +20,6 @@ void test_listener(int i) {
 }
 
 int main() {
-    //event::proxy_context<test_proxy<test_arg_visitor>> con;
-    api::root root;
-    api::lua_event_context con(api::lua_event_proxy(root.get_wrapper()));
-
-    con.add_listener("test", std::function<void (int)>(test_listener));
-    con.queue("test", std::make_tuple(42));
-    con.queue("test", std::make_tuple(42));
-    con.fire_queued();
-
-    return 0;
-#if 0
     interface::base interface_base;
 
     interface_base.setup();
@@ -71,5 +59,4 @@ int main() {
 
     interface_base.teardown();
     return 0;
-#endif
 }

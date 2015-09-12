@@ -12,7 +12,6 @@
 
 namespace event {
 
-
 class base_context {
 public:
     virtual ~base_context() {}
