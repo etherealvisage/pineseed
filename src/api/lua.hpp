@@ -4,7 +4,11 @@
 #include <functional>
 #include <string>
 
-class lua_State;
+extern "C" {
+#include "lua.h"
+#include "lualib.h"
+#include "lauxlib.h"
+} // extern "C"
 
 namespace api {
 
@@ -16,6 +20,8 @@ private:
 public:
     lua_wrapper();
     ~lua_wrapper();
+
+    lua_State *get_state() { return m_state; }
 
     void add_api_function(std::string name,
         const wrapped_function_t &function);

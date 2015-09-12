@@ -6,12 +6,6 @@
 
 #include "message_system.hpp"
 
-extern "C" {
-#include "lua.h"
-#include "lualib.h"
-#include "lauxlib.h"
-} // extern "C"
-
 namespace api {
 
 lua_wrapper::lua_wrapper() {
@@ -27,6 +21,8 @@ lua_wrapper::lua_wrapper() {
     lua_pushcfunction(m_state, gc_function);
     lua_setfield(m_state, -2, "__gc");
     lua_pop(m_state, 1);
+
+    luaL_dofile(m_state, "test.lua");
 }
 
 lua_wrapper::~lua_wrapper() {

@@ -14,6 +14,8 @@ public:
     root();
     ~root();
 
+    lua_wrapper *get_wrapper() { return &m_wrapper; }
+
     interface *get_interface() { return &m_interface; }
     const interface *get_interface() const { return &m_interface; }
     // const game *get_game() etc.

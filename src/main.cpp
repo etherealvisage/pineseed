@@ -4,6 +4,7 @@
 #include "interface/sprite.hpp"
 #include "interface/input.hpp"
 #include "api/root.hpp"
+#include "api/lua_events.hpp"
 #include "event/context_registry.hpp"
 
 #include <SDL/SDL.h>
@@ -19,48 +20,10 @@ void test_listener(int i) {
     std::cout << "test_listener(" << i << ")\n";
 }
 
-template<typename visitor, int v, typename P, class ...Ts>
-class proxy_helper {
-public:
-    static void proxy(visitor &vis, std::string, const P &) {
-        vis.done();
-        std::cout << "Last parameter!" << std::endl;
-    }
-};
-
-template<typename visitor, int v, typename P, class T, class ...Ts>
-class proxy_helper<visitor, v, P, T, Ts...> {
-public:
-    static void proxy(visitor &vis, std::string name, const P &params) {
-        vis.parameter(std::get<v>(params));
-        proxy_helper<visitor, v+1, P, Ts...>::proxy(vis, name, params);
-    }
-};
-
-class test_arg_visitor {
-public:
-    template<typename T>
-    void parameter(const T &arg) {
-        std::cout << __PRETTY_FUNCTION__ << " : value is " << arg << std::endl;
-    }
-
-    void done() {
-        std::cout << "Done!" << std::endl;
-    }
-};
-
-class test_proxy {
-public:
-    template<typename ...T>
-    void proxy(std::string name, const std::tuple<T...> &params) {
-        test_arg_visitor vis;
-        proxy_helper<test_arg_visitor, 0, decltype(params), T...>::proxy(vis, name, params);
-    }
-};
-
-
 int main() {
-    event::proxy_context<test_proxy> con;
+    //event::proxy_context<test_proxy<test_arg_visitor>> con;
+    api::root root;
+    api::lua_event_context con(api::lua_event_proxy(root.get_wrapper()));
 
     con.add_listener("test", std::function<void (int)>(test_listener));
     con.queue("test", std::make_tuple(42));
