@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+
+<kriti>
+
+<textures>
+    <texture name="ubuntu">
+        <mipmap level="0">ubuntu.png</mipmap>
+    </texture>
+</textures>
+
+<materials>
+    <material name="simple">
+        <vertex-shader>simple</vertex-shader>
+        <fragment-shader>simple</fragment-shader>
+    </material>
+
+    <material name="ubuntu">
+        <vertex-shader>simple</vertex-shader>
+        <fragment-shader>textured</fragment-shader>
+
+        <uniform name="u_tex" type="string">ubuntu</uniform>
+    </material>
+</materials>
+
+<fonts>
+    <font name="ubuntu">
+        <material>ubuntu</material>
+        <description>ubuntu</description>
+        <texture width="512" height="512" />
+    </font>
+</fonts>
+
+<guis>
+</guis>
+
+</kriti>

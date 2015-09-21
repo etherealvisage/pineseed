@@ -1,6 +1,9 @@
+/core
 .vimrc
 .ycm_extra_conf.*
 /build
 /pineseed
 *.swp
 /libs
+/kriti
+/libkriti.a
