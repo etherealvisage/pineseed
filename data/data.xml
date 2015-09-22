@@ -3,6 +3,10 @@
 <kriti>
 
 <textures>
+    <texture name="cursor">
+        <mipmap level="0">cursor.png</mipmap>
+    </texture>
+
     <texture name="ubuntu">
         <mipmap level="0">ubuntu.png</mipmap>
     </texture>
@@ -19,6 +23,18 @@
         <fragment-shader>textured</fragment-shader>
 
         <uniform name="u_tex" type="string">ubuntu</uniform>
+    </material>
+
+    <material name="gui_panel">
+        <vertex-shader>simple</vertex-shader>
+        <fragment-shader>gui_panel</fragment-shader>
+    </material>
+
+    <material name="gui_cursor">
+        <vertex-shader>simple</vertex-shader>
+        <fragment-shader>textured</fragment-shader>
+
+        <uniform name="u_tex" type="string">cursor</uniform>
     </material>
 </materials>
 

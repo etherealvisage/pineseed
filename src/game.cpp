@@ -13,6 +13,10 @@
 #include "kriti/math/ViewGenerator.h"
 
 #include "kriti/gui/TextRenderer.h"
+#include "kriti/gui/Panel.h"
+#include "kriti/gui/PackedLayout.h"
+#include "kriti/gui/MouseCursor.h"
+#include "kriti/gui/MouseInteractor.h"
 
 #include "kriti/ResourceRegistry.h"
 
@@ -31,7 +35,17 @@ boost::shared_ptr<Kriti::Scene::Camera> camera;
 
 boost::shared_ptr<Kriti::GUI::Font> font;
 
+boost::shared_ptr<Kriti::GUI::OutlineRegistry> outlineRegistry;
+boost::shared_ptr<Kriti::GUI::MouseInteractor> mouseInteractor;
+boost::shared_ptr<Kriti::GUI::MouseCursor> mouseCursor;
+boost::shared_ptr<Kriti::GUI::Panel> panel;
+
 void frame_handler() {
+    panel->update(outlineRegistry, Kriti::Math::Vector(), Kriti::Math::Vector(0.5, 0.5), Kriti::Math::Vector(1.0, 1.0));
+    panel->fill(stage->renderables());
+
+    mouseInteractor->updateMouseActivation(outlineRegistry);
+
     pipeline->render();
     Kriti::Interface::Video::instance()->swapBuffers();
 }
@@ -51,9 +65,9 @@ void gameEntryPoint() {
 
     Kriti::Render::RenderableFactory rf;
     std::vector<Kriti::Math::Vector> v, n;
-    v.push_back(Kriti::Math::Vector(0.0, 0.0, 1.0));
-    v.push_back(Kriti::Math::Vector(-1.0, 1.0, 1.0));
-    v.push_back(Kriti::Math::Vector(1.0, 1.0, 1.0));
+    v.push_back(Kriti::Math::Vector(0.0, 0.0, 5.0));
+    v.push_back(Kriti::Math::Vector(-1.0, 1.0, 5.0));
+    v.push_back(Kriti::Math::Vector(1.0, 1.0, 5.0));
     n.push_back(Kriti::Math::Vector(0.0, 0.0, -1.0));
     n.push_back(Kriti::Math::Vector(0.0, 0.0, -1.0));
     n.push_back(Kriti::Math::Vector(0.0, 0.0, -1.0));
@@ -77,7 +91,14 @@ void gameEntryPoint() {
     auto gcon = boost::make_shared<Kriti::State::Context>();
 
     gcon->addListener("key_down", boost::function<void (SDL_Keycode)>(pop));
+    gcon->addListener("mouse_moved", boost::function<void (int, int)>([](int x, int y){ mouseInteractor->updateMouseCoordinates(x, y); }));
     gcon->addListener("new_frame", boost::function<void ()>(frame_handler));
+
+    /* GUI stuff! */
+    outlineRegistry = boost::make_shared<Kriti::GUI::OutlineRegistry>();
+    mouseInteractor = boost::make_shared<Kriti::GUI::MouseInteractor>();
+    mouseCursor = boost::make_shared<Kriti::GUI::MouseCursor>();
+    panel = boost::make_shared<Kriti::GUI::Panel>(Kriti::Math::Vector(0.1, 0.1), Kriti::Math::Vector(1.0, 1.0), boost::make_shared<Kriti::GUI::PackedLayout>(Kriti::Math::Vector(1.0, 1.0)));
 
     auto cr = Kriti::Interface::ContextRegistry::instance();
 
