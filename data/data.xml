@@ -30,6 +30,11 @@
         <fragment-shader>gui_panel</fragment-shader>
     </material>
 
+    <material name="gui_button">
+        <vertex-shader>simple</vertex-shader>
+        <fragment-shader>gui_button</fragment-shader>
+    </material>
+
     <material name="gui_cursor">
         <vertex-shader>simple</vertex-shader>
         <fragment-shader>textured</fragment-shader>
