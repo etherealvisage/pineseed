@@ -41,10 +41,10 @@ boost::shared_ptr<Kriti::GUI::MouseCursor> mouseCursor;
 boost::shared_ptr<Kriti::GUI::Panel> panel;
 
 void frame_handler() {
+    mouseInteractor->updateMouseActivation(outlineRegistry);
+
     panel->update(outlineRegistry, Kriti::Math::Vector(), Kriti::Math::Vector(0.5, 0.5), Kriti::Math::Vector(1.0, 1.0));
     panel->fill(stage->renderables());
-
-    mouseInteractor->updateMouseActivation(outlineRegistry);
 
     pipeline->render();
     Kriti::Interface::Video::instance()->swapBuffers();
@@ -60,13 +60,14 @@ void gameEntryPoint() {
 
     camera = boost::make_shared<Kriti::Scene::Camera>();
     camera->setProjection(Kriti::Math::ViewGenerator().orthogonal(
-        Kriti::Interface::Video::instance()->aspectRatio(), 1.0, 0.01, 10.0));
+        0.0, Kriti::Interface::Video::instance()->aspectRatio(), 1.0, 0.0,
+        -10.0, 10.0));
     stage->addUniformHook(camera);
 
     Kriti::Render::RenderableFactory rf;
     std::vector<Kriti::Math::Vector> v, n;
     v.push_back(Kriti::Math::Vector(0.0, 0.0, 5.0));
-    v.push_back(Kriti::Math::Vector(-1.0, 1.0, 5.0));
+    v.push_back(Kriti::Math::Vector(0.0, 1.0, 5.0));
     v.push_back(Kriti::Math::Vector(1.0, 1.0, 5.0));
     n.push_back(Kriti::Math::Vector(0.0, 0.0, -1.0));
     n.push_back(Kriti::Math::Vector(0.0, 0.0, -1.0));
@@ -76,7 +77,7 @@ void gameEntryPoint() {
     t.push_back(1);
     t.push_back(2);
     tri = rf.fromTriangleGeometry(v, n, t, "simple");
-    stage->renderables()->add(tri);
+    //stage->renderables()->add(tri);
 
     font = Kriti::ResourceRegistry::get<Kriti::GUI::Font>("ubuntu");
 
@@ -84,14 +85,15 @@ void gameEntryPoint() {
 
     text = tr->render(font, "Testing!", Kriti::Math::Vector(0.2, 0.2));
 
-    text->location() += Kriti::Math::Vector(0.0, -0.1);
+    text->location() += Kriti::Math::Vector(0.0, 0.1);
 
     stage->renderables()->add(text);
 
     auto gcon = boost::make_shared<Kriti::State::Context>();
 
     gcon->addListener("key_down", boost::function<void (SDL_Keycode)>(pop));
-    gcon->addListener("mouse_moved", boost::function<void (int, int)>([](int x, int y){ mouseInteractor->updateMouseCoordinates(x, y); }));
+    gcon->addListener("mouse_moved", boost::function<void (double, double)>([](double x, double y){ mouseInteractor->updateMouseCoordinates(x, y); }));
+    gcon->addListener("mouse_moved", boost::function<void (double, double)>([](double x, double y){ mouseCursor->updateMouseCoordinates(x, y); }));
     gcon->addListener("new_frame", boost::function<void ()>(frame_handler));
 
     /* GUI stuff! */
@@ -99,6 +101,7 @@ void gameEntryPoint() {
     mouseInteractor = boost::make_shared<Kriti::GUI::MouseInteractor>();
     mouseCursor = boost::make_shared<Kriti::GUI::MouseCursor>();
     panel = boost::make_shared<Kriti::GUI::Panel>(Kriti::Math::Vector(0.1, 0.1), Kriti::Math::Vector(1.0, 1.0), boost::make_shared<Kriti::GUI::PackedLayout>(Kriti::Math::Vector(1.0, 1.0)));
+    stage->renderables()->add(mouseCursor->renderable());
 
     auto cr = Kriti::Interface::ContextRegistry::instance();
 
