@@ -20,7 +20,7 @@
 
     <material name="ubuntu">
         <vertex-shader>simple</vertex-shader>
-        <fragment-shader>textured</fragment-shader>
+        <fragment-shader>gui_textured</fragment-shader>
 
         <uniform name="u_tex" type="string">ubuntu</uniform>
     </material>

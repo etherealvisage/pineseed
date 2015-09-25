@@ -13,7 +13,16 @@ uniform int time;
 uniform float gui_xdpcm, gui_ydpcm;
 uniform float button_activation, button_click;
 
+uniform vec3 gui_clip_start;
+uniform vec3 gui_clip_end;
+
 void main() {
+    if(v_position.x > gui_clip_end.x || v_position.x < gui_clip_start.x
+        || v_position.y > gui_clip_end.y || v_position.y < gui_clip_start.y) {
+
+        discard;
+    }
+
     const float border_width = 0.3f;
     float xd = (min(v_tex.x, 1.0f-v_tex.x) * gui_xdpcm);
     float yd = (min(v_tex.y, 1.0f-v_tex.y) * gui_ydpcm);

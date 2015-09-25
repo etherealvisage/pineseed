@@ -18,6 +18,7 @@
 #include "kriti/gui/PackedLayout.h"
 #include "kriti/gui/MouseCursor.h"
 #include "kriti/gui/MouseInteractor.h"
+#include "kriti/gui/ScrollArea.h"
 
 #include "kriti/ResourceRegistry.h"
 
@@ -39,14 +40,21 @@ boost::shared_ptr<Kriti::GUI::Font> font;
 boost::shared_ptr<Kriti::GUI::OutlineRegistry> outlineRegistry;
 boost::shared_ptr<Kriti::GUI::MouseInteractor> mouseInteractor;
 boost::shared_ptr<Kriti::GUI::MouseCursor> mouseCursor;
+boost::shared_ptr<Kriti::GUI::ScrollArea> scroll;
 boost::shared_ptr<Kriti::GUI::Panel> panel;
 boost::shared_ptr<Kriti::GUI::Button> button, button2;
 
 void frame_handler() {
     mouseInteractor->updateMouseActivation(outlineRegistry);
 
-    panel->update(outlineRegistry, Kriti::Math::Vector(), Kriti::Math::Vector(0.5, 0.5), Kriti::Math::Vector(1.0, 1.0));
-    panel->fill(stage->renderables());
+    /*panel->update(outlineRegistry, Kriti::Math::Vector(),
+        Kriti::Math::Vector(0.5, 0.5), Kriti::Math::Vector(1.0, 1.0));
+    panel->fill(stage->renderables());*/
+    scroll->update(outlineRegistry, Kriti::Math::Vector(0.0, 0.0),
+        Kriti::Math::Vector(0.5, 0.5), Kriti::Math::Vector(1.0, 1.0));
+    scroll->fill(stage->renderables());
+
+    scroll->scrollOffset() -= Kriti::Math::Vector(0.0, 0.0001, 0.0);
 
     pipeline->render();
     Kriti::Interface::Video::instance()->swapBuffers();
@@ -112,6 +120,8 @@ void gameEntryPoint() {
     button2->setClickEvent(qevent);
     gcon->addListener("button_clicked", boost::function<void ()>(boost::bind(pop, SDLK_ESCAPE)));
     gcon->addListener("button_clicked", boost::function<void ()>([](){ Message3(Game, Debug, "Button clicked!"); }));
+
+    scroll = boost::make_shared<Kriti::GUI::ScrollArea>(Kriti::Math::Vector(), Kriti::Math::Vector(1.0, 1.0), panel, Kriti::Math::Vector(1.0, 1.0));
 
     auto cr = Kriti::Interface::ContextRegistry::instance();
 
