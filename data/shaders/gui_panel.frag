@@ -10,7 +10,7 @@ in vec2 v_tex;
 out vec4 fragColour;
 
 uniform int time;
-uniform float gui_xdpcm, gui_ydpcm;
+uniform float gui_xdpi, gui_ydpi;
 uniform float panel_activation;
 
 uniform vec3 gui_clip_start;
@@ -23,11 +23,11 @@ void main() {
         discard;
     }
 
-    const float border_width = 0.3f;
-    float xp = v_tex.x * gui_xdpcm;
-    float yp = v_tex.y * gui_ydpcm;
-    float xdist = min(xp, gui_xdpcm-xp);
-    float ydist = min(yp, gui_ydpcm-yp);
+    const float border_width = 0.10f;
+    float xp = v_tex.x * gui_xdpi;
+    float yp = v_tex.y * gui_ydpi;
+    float xdist = min(xp, gui_xdpi-xp);
+    float ydist = min(yp, gui_ydpi-yp);
     float md = min(xdist, ydist);
     if(md < border_width) {
         fragColour = mix(

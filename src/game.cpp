@@ -22,13 +22,7 @@
 
 #include "kriti/ResourceRegistry.h"
 
-void pop(SDL_Keycode key) {
-    if(key == SDLK_ESCAPE) {
-        auto cr = Kriti::Interface::ContextRegistry::instance();
-
-        cr->pop();
-    }
-}
+#include "game/UI.h"
 
 boost::shared_ptr<Kriti::Render::Stage> stage;
 boost::shared_ptr<Kriti::Render::Pipeline> pipeline;
@@ -44,20 +38,35 @@ boost::shared_ptr<Kriti::GUI::ScrollArea> scroll;
 boost::shared_ptr<Kriti::GUI::Panel> panel;
 boost::shared_ptr<Kriti::GUI::Button> button, button2;
 
+Pineseed::Game::UI *ui;
+
 void frame_handler() {
     mouseInteractor->updateMouseActivation(outlineRegistry);
 
     /*panel->update(outlineRegistry, Kriti::Math::Vector(),
         Kriti::Math::Vector(0.5, 0.5), Kriti::Math::Vector(1.0, 1.0));
     panel->fill(stage->renderables());*/
-    scroll->update(outlineRegistry, Kriti::Math::Vector(0.0, 0.0),
+    /*scroll->update(outlineRegistry, Kriti::Math::Vector(0.0, 0.0),
         Kriti::Math::Vector(0.5, 0.5), Kriti::Math::Vector(1.0, 1.0));
     scroll->fill(stage->renderables());
 
-    scroll->scrollOffset() -= Kriti::Math::Vector(0.0, 0.0001, 0.0);
+    scroll->scrollOffset() -= Kriti::Math::Vector(0.0, 0.0001, 0.0);*/
+
+    ui->update(outlineRegistry);
 
     pipeline->render();
     Kriti::Interface::Video::instance()->swapBuffers();
+}
+
+void pop(SDL_Keycode key) {
+    if(key == SDLK_ESCAPE) {
+        auto cr = Kriti::Interface::ContextRegistry::instance();
+
+        cr->pop();
+    }
+    else if(key == SDLK_SPACE) {
+        ui->addText("Another entry!");
+    }
 }
 
 void gameEntryPoint() {
@@ -122,6 +131,15 @@ void gameEntryPoint() {
     gcon->addListener("button_clicked", boost::function<void ()>([](){ Message3(Game, Debug, "Button clicked!"); }));
 
     scroll = boost::make_shared<Kriti::GUI::ScrollArea>(Kriti::Math::Vector(), Kriti::Math::Vector(1.0, 1.0), panel, Kriti::Math::Vector(1.0, 1.0));
+
+    ui = new Pineseed::Game::UI();
+    stage->renderables()->add(ui->renderables());
+    ui->addText("This is a test! #1");
+    ui->addText("This is a test! #2");
+    ui->addText("This is a test! #3");
+
+
+
 
     auto cr = Kriti::Interface::ContextRegistry::instance();
 

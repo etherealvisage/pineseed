@@ -10,7 +10,7 @@ in vec2 v_tex;
 out vec4 fragColour;
 
 uniform int time;
-uniform float gui_xdpcm, gui_ydpcm;
+uniform float gui_xdpi, gui_ydpi;
 uniform float button_activation, button_click;
 
 uniform vec3 gui_clip_start;
@@ -24,8 +24,8 @@ void main() {
     }
 
     const float border_width = 0.3f;
-    float xd = (min(v_tex.x, 1.0f-v_tex.x) * gui_xdpcm);
-    float yd = (min(v_tex.y, 1.0f-v_tex.y) * gui_ydpcm);
+    float xd = (min(v_tex.x, 1.0f-v_tex.x) * gui_xdpi);
+    float yd = (min(v_tex.y, 1.0f-v_tex.y) * gui_ydpi);
 
     float md = min(xd, yd);
     if(md < border_width) {
