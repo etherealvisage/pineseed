@@ -18,5 +18,5 @@ are discussing.
 
 ### Contact
 
-Programming, artwork, and sound: @etherealvisage
-Game design, story: @alastair-JL
+* Programming, artwork, and sound: @etherealvisage <ethereal@ethv.net>
+* Game design, story: @alastair-JL
