@@ -23,7 +23,7 @@ void main() {
         discard;
     }
 
-    const float border_width = 0.3f;
+    const float border_width = 0.1f;
     float xd = (min(v_tex.x, 1.0f-v_tex.x) * gui_xdpi);
     float yd = (min(v_tex.y, 1.0f-v_tex.y) * gui_ydpi);
 

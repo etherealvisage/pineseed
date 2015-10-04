@@ -6,10 +6,6 @@
     <texture name="cursor">
         <mipmap level="0">cursor.png</mipmap>
     </texture>
-
-    <texture name="ubuntu">
-        <mipmap level="0">ubuntu.png</mipmap>
-    </texture>
 </textures>
 
 <materials>
@@ -18,11 +14,10 @@
         <fragment-shader>simple</fragment-shader>
     </material>
 
-    <material name="ubuntu">
+    <material name="gui_text">
         <vertex-shader>simple</vertex-shader>
-        <fragment-shader>gui_textured</fragment-shader>
-
-        <uniform name="u_tex" type="string">ubuntu</uniform>
+        <!--<fragment-shader>gui_textured</fragment-shader>-->
+        <fragment-shader>simple</fragment-shader>
     </material>
 
     <material name="gui_panel">

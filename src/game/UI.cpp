@@ -35,8 +35,8 @@ void UI::update(boost::shared_ptr<Kriti::GUI::OutlineRegistry> registry) {
 }
 
 void UI::addText(std::string text) {
-    auto font = ResourceRegistry::get<GUI::Font>("ubuntu");
-    auto label = boost::make_shared<GUI::Label>(Math::Vector(0,.1), Math::Vector(1,0), font, text);
+    auto font = ResourceRegistry::get<GUI::Font>("Ubuntu-B.ttf");
+    auto label = boost::make_shared<GUI::Label>(Math::Vector(0,.1), Math::Vector(1,0), font->getInstance(12), text);
 
     m_labels.push_back(label);
     m_labelPanel->layout()->addItem(label);
