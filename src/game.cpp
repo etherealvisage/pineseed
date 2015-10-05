@@ -37,22 +37,27 @@ boost::shared_ptr<Kriti::GUI::MouseCursor> mouseCursor;
 boost::shared_ptr<Kriti::GUI::ScrollArea> scroll;
 boost::shared_ptr<Kriti::GUI::Panel> panel;
 boost::shared_ptr<Kriti::GUI::Button> button, button2;
+boost::shared_ptr<Kriti::GUI::Label> label;
 
 Pineseed::Game::UI *ui;
 
 void frame_handler() {
-    mouseInteractor->updateMouseActivation(outlineRegistry);
+    //mouseInteractor->updateMouseActivation(outlineRegistry);
 
     /*panel->update(outlineRegistry, Kriti::Math::Vector(),
         Kriti::Math::Vector(0.5, 0.5), Kriti::Math::Vector(1.0, 1.0));
     panel->fill(stage->renderables());*/
-    scroll->update(outlineRegistry, Kriti::Math::Vector(0.0, 0.0),
+    /*scroll->update(outlineRegistry, Kriti::Math::Vector(0.0, 0.0),
         Kriti::Math::Vector(0.5, 0.5), Kriti::Math::Vector(1.0, 1.0));
     scroll->fill(stage->renderables());
 
-    scroll->scrollOffset() -= Kriti::Math::Vector(0.0, 0.001, 0.0);
+    scroll->scrollOffset() -= Kriti::Math::Vector(0.0, 0.001, 0.0);*/
 
     //ui->update(outlineRegistry);
+
+    label->fill(stage->renderables());
+    label->update(outlineRegistry, Kriti::Math::Vector(),
+        Kriti::Math::Vector(0.5, 0.5), Kriti::Math::Vector(1.0, 1.0));
 
     pipeline->render();
     Kriti::Interface::Video::instance()->swapBuffers();
@@ -83,7 +88,7 @@ void gameEntryPoint() {
         -10.0, 10.0));
     stage->addUniformHook(camera);
 
-    /*Kriti::Render::RenderableFactory rf;
+    Kriti::Render::RenderableFactory rf;
     std::vector<Kriti::Math::Vector> v, n;
     v.push_back(Kriti::Math::Vector(0.0, 0.0, 5.0));
     v.push_back(Kriti::Math::Vector(0.0, 1.0, 5.0));
@@ -96,23 +101,23 @@ void gameEntryPoint() {
     t.push_back(1);
     t.push_back(2);
     tri = rf.fromTriangleGeometry(v, n, t, "simple");
-    stage->renderables()->add(tri);*/
+    //stage->renderables()->add(tri);
 
     font = Kriti::ResourceRegistry::get<Kriti::GUI::Font>("Ubuntu-B.ttf");
 
-    auto tr = boost::make_shared<Kriti::GUI::TextRenderer>();
+    /*auto tr = boost::make_shared<Kriti::GUI::TextRenderer>();
     text = tr->renderString(font->getInstance(12), "Testing!",
-        Kriti::Math::Vector(0.2, 0.2));
-    text->location() += Kriti::Math::Vector(0.0, 0.1);
-    stage->renderables()->add(text);
+        Kriti::Math::Vector(1.0, 1.0));
+    text->location() += Kriti::Math::Vector(0.3, 0.3);
+    stage->renderables()->add(text);*/
 
     auto gcon = boost::make_shared<Kriti::State::Context>();
 
     gcon->addListener("key_down", boost::function<void (SDL_Keycode)>(pop));
-    gcon->addListener("mouse_moved", boost::function<void (double, double)>([](double x, double y){ mouseInteractor->updateMouseCoordinates(x, y); }));
-    gcon->addListener("mouse_moved", boost::function<void (double, double)>([](double x, double y){ mouseCursor->updateMouseCoordinates(x, y); }));
-    gcon->addListener("mouse_down", boost::function<void (int)>([](int b){ mouseInteractor->updateMouseButton(b, true); }));
-    gcon->addListener("mouse_up", boost::function<void (int)>([](int b){ mouseInteractor->updateMouseButton(b, false); }));
+    //gcon->addListener("mouse_moved", boost::function<void (double, double)>([](double x, double y){ mouseInteractor->updateMouseCoordinates(x, y); }));
+    //gcon->addListener("mouse_moved", boost::function<void (double, double)>([](double x, double y){ mouseCursor->updateMouseCoordinates(x, y); }));
+    //gcon->addListener("mouse_down", boost::function<void (int)>([](int b){ mouseInteractor->updateMouseButton(b, true); }));
+    //gcon->addListener("mouse_up", boost::function<void (int)>([](int b){ mouseInteractor->updateMouseButton(b, false); }));
     gcon->addListener("new_frame", boost::function<void ()>(frame_handler));
 
     /* GUI stuff! */
@@ -122,9 +127,9 @@ void gameEntryPoint() {
     panel = boost::make_shared<Kriti::GUI::Panel>(
         Kriti::Math::Vector(0.1, 0.1), Kriti::Math::Vector(1.0, 1.0),
         boost::make_shared<Kriti::GUI::PackedLayout>(Kriti::Math::Vector(1.0, 1.0)));
-    button = boost::make_shared<Kriti::GUI::Button>(Kriti::Math::Vector(0.1, 0.1), Kriti::Math::Vector(1.0, 1.0), font->getInstance(12), "Toggle visible");
+    button = boost::make_shared<Kriti::GUI::Button>(Kriti::Math::Vector(0.1, 0.1), Kriti::Math::Vector(1.0, 1.0), font->getInstance(36), "Toggle visible");
     panel->layout()->addItem(button);
-    button2 = boost::make_shared<Kriti::GUI::Button>(Kriti::Math::Vector(0.1, 0.1), Kriti::Math::Vector(1.0, 1.0), font->getInstance(12), "Quit");
+    button2 = boost::make_shared<Kriti::GUI::Button>(Kriti::Math::Vector(0.1, 0.1), Kriti::Math::Vector(1.0, 1.0), font->getInstance(36), "Quit");
     panel->layout()->addItem(button2);
     stage->renderables()->add(mouseCursor->renderable());
 
@@ -134,6 +139,9 @@ void gameEntryPoint() {
     gcon->addListener("button_clicked", boost::function<void ()>([](){ Message3(Game, Debug, "Button clicked!"); }));
 
     scroll = boost::make_shared<Kriti::GUI::ScrollArea>(Kriti::Math::Vector(), Kriti::Math::Vector(1.0, 1.0), panel, Kriti::Math::Vector(1.0, 1.0));
+
+    //label = boost::make_shared<Kriti::GUI::Label>(Kriti::Math::Vector(), Kriti::Math::Vector(1.0, 1.0), font->getInstance(36), "Testing!");
+    label = boost::make_shared<Kriti::GUI::Label>(Kriti::Math::Vector(), Kriti::Math::Vector(1.0, 1.0), font->getInstance(36), "Testing!");
 
     /*ui = new Pineseed::Game::UI();
     stage->renderables()->add(ui->renderables());

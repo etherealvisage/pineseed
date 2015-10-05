@@ -16,8 +16,8 @@
 
     <material name="gui_text">
         <vertex-shader>simple</vertex-shader>
-        <!--<fragment-shader>gui_textured</fragment-shader>-->
-        <fragment-shader>simple</fragment-shader>
+        <fragment-shader>gui_textured</fragment-shader>
+        <!--<fragment-shader>simple</fragment-shader>-->
     </material>
 
     <material name="gui_panel">
