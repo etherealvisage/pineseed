@@ -141,7 +141,7 @@ void gameEntryPoint() {
     scroll = boost::make_shared<Kriti::GUI::ScrollArea>(Kriti::Math::Vector(), Kriti::Math::Vector(1.0, 1.0), panel, Kriti::Math::Vector(1.0, 1.0));
 
     //label = boost::make_shared<Kriti::GUI::Label>(Kriti::Math::Vector(), Kriti::Math::Vector(1.0, 1.0), font->getInstance(36), "Testing!");
-    label = boost::make_shared<Kriti::GUI::Label>(Kriti::Math::Vector(), Kriti::Math::Vector(1.0, 1.0), font->getInstance(36), "Testing!");
+    label = boost::make_shared<Kriti::GUI::Label>(Kriti::Math::Vector(), Kriti::Math::Vector(1.0, 1.0), font->getInstance(8), "Testing!");
 
     /*ui = new Pineseed::Game::UI();
     stage->renderables()->add(ui->renderables());
