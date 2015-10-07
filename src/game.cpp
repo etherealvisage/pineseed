@@ -39,7 +39,7 @@ boost::shared_ptr<Kriti::GUI::Panel> panel;
 boost::shared_ptr<Kriti::GUI::Button> button, button2;
 boost::shared_ptr<Kriti::GUI::Label> label;
 
-Pineseed::Game::UI *ui;
+boost::shared_ptr<Pineseed::Game::UI> ui;
 
 void frame_handler() {
     //mouseInteractor->updateMouseActivation(outlineRegistry);
@@ -53,11 +53,11 @@ void frame_handler() {
 
     scroll->scrollOffset() -= Kriti::Math::Vector(0.0, 0.001, 0.0);*/
 
-    //ui->update(outlineRegistry);
+    ui->update(outlineRegistry);
 
-    label->fill(stage->renderables());
+    /*label->fill(stage->renderables());
     label->update(outlineRegistry, Kriti::Math::Vector(),
-        Kriti::Math::Vector(0.5, 0.5), Kriti::Math::Vector(1.0, 1.0));
+        Kriti::Math::Vector(0.5, 0.5), Kriti::Math::Vector(1.0, 1.0));*/
 
     pipeline->render();
     Kriti::Interface::Video::instance()->swapBuffers();
@@ -70,7 +70,7 @@ void pop(SDL_Keycode key) {
         cr->pop();
     }
     else if(key == SDLK_SPACE) {
-        ui->addText("Another entry!");
+        ui->addJournalText("Another entry!");
     }
 }
 
@@ -143,11 +143,11 @@ void gameEntryPoint() {
     //label = boost::make_shared<Kriti::GUI::Label>(Kriti::Math::Vector(), Kriti::Math::Vector(1.0, 1.0), font->getInstance(36), "Testing!");
     label = boost::make_shared<Kriti::GUI::Label>(Kriti::Math::Vector(), Kriti::Math::Vector(1.0, 1.0), font->getInstance(8), "Testing!");
 
-    /*ui = new Pineseed::Game::UI();
+    ui = boost::make_shared<Pineseed::Game::UI>();
     stage->renderables()->add(ui->renderables());
-    ui->addText("This is a test! #1");
-    ui->addText("This is a test! #2");
-    ui->addText("This is a test! #3");*/
+    ui->addJournalText("This is a test! #1");
+    ui->addJournalText("This is a test! #2");
+    ui->addJournalText("This is a test! #3");
 
     auto cr = Kriti::Interface::ContextRegistry::instance();
 
