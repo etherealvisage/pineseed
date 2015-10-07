@@ -6,6 +6,10 @@ all:
 redep:
 	mkdir -p build/ ; cd build/ ; cmake .. ; cd ..
 
+.PHONY: codeblocks
+codeblocks:
+	mkdir -p build/ ; cd build ; cmake .. -G "CodeBlocks - Unix Makefiles" ; cd ..
+
 .PHONY: clean
 clean:
 	$(MAKE) -C build clean
