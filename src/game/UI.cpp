@@ -31,14 +31,14 @@ UI::UI() {
 }
 
 void UI::update(boost::shared_ptr<Kriti::GUI::OutlineRegistry> registry) {
-    m_scroll->fill(m_container);
-    m_labelPanel->fill(m_container);
-
     Math::Vector pos(0.8, 0.0);
     Math::Vector size(0.4, 1.0);
     m_scroll->scrollSize() = m_labelPanel->minSize();
     m_scroll->scrollSize().setX(size.x());
     m_scroll->update(registry, pos, size, Math::Vector(1,1));
+
+    m_scroll->fill(m_container);
+    m_labelPanel->fill(m_container);
 }
 
 void UI::addJournalText(std::string text) {
