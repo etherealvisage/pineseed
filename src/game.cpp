@@ -42,16 +42,16 @@ boost::shared_ptr<Kriti::GUI::Label> label;
 boost::shared_ptr<Pineseed::Game::UI> ui;
 
 void frame_handler() {
-    //mouseInteractor->updateMouseActivation(outlineRegistry);
+    mouseInteractor->updateMouseActivation(outlineRegistry);
 
     /*panel->update(outlineRegistry, Kriti::Math::Vector(),
         Kriti::Math::Vector(0.5, 0.5), Kriti::Math::Vector(1.0, 1.0));
     panel->fill(stage->renderables());*/
-    /*scroll->update(outlineRegistry, Kriti::Math::Vector(0.0, 0.0),
+    scroll->update(outlineRegistry, Kriti::Math::Vector(0.0, 0.0),
         Kriti::Math::Vector(0.5, 0.5), Kriti::Math::Vector(1.0, 1.0));
     scroll->fill(stage->renderables());
 
-    scroll->scrollOffset() -= Kriti::Math::Vector(0.0, 0.001, 0.0);*/
+    scroll->scrollOffset() -= Kriti::Math::Vector(0.0, 0.001, 0.0);
 
     ui->update(outlineRegistry);
 
@@ -114,10 +114,10 @@ void gameEntryPoint() {
     auto gcon = boost::make_shared<Kriti::State::Context>();
 
     gcon->addListener("key_down", boost::function<void (SDL_Keycode)>(pop));
-    //gcon->addListener("mouse_moved", boost::function<void (double, double)>([](double x, double y){ mouseInteractor->updateMouseCoordinates(x, y); }));
-    //gcon->addListener("mouse_moved", boost::function<void (double, double)>([](double x, double y){ mouseCursor->updateMouseCoordinates(x, y); }));
-    //gcon->addListener("mouse_down", boost::function<void (int)>([](int b){ mouseInteractor->updateMouseButton(b, true); }));
-    //gcon->addListener("mouse_up", boost::function<void (int)>([](int b){ mouseInteractor->updateMouseButton(b, false); }));
+    gcon->addListener("mouse_moved", boost::function<void (double, double)>([](double x, double y){ mouseInteractor->updateMouseCoordinates(x, y); }));
+    gcon->addListener("mouse_moved", boost::function<void (double, double)>([](double x, double y){ mouseCursor->updateMouseCoordinates(x, y); }));
+    gcon->addListener("mouse_down", boost::function<void (int)>([](int b){ mouseInteractor->updateMouseButton(b, true); }));
+    gcon->addListener("mouse_up", boost::function<void (int)>([](int b){ mouseInteractor->updateMouseButton(b, false); }));
     gcon->addListener("new_frame", boost::function<void ()>(frame_handler));
 
     /* GUI stuff! */

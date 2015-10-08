@@ -30,7 +30,12 @@ For example, something like this should work for setting up kriti:
     $ cd ../pineseed
     $ ln -s ../kriti
 
-Alternatively, you could use an existing version of kriti, dist or non-dist.
+Alternatively, you could use an existing precompiled version of kriti. To grab
+the precompiled version for x86_64:
+
+    $ wget http://ethv.net/projects/static/kriti-dist.tar.gz
+    $ tar xf kriti-dist.tar.gz
+    $ ln -s kriti-dist kriti
 
 To compile pineseed:
 
@@ -40,8 +45,6 @@ To compile pineseed:
 The command `make redep` will regenerate the buildsystem; you can also use
 `make codeblocks` to create/regenerate a Code::Blocks IDE project file in
 `build/`.
-
-### 
 
 ### Contact
 
