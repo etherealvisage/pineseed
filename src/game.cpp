@@ -1,5 +1,7 @@
 #include <iostream>
 
+#include <boost/shared_ptr.hpp>
+
 #include <SDL.h>
 
 #include "kriti/MessageSystem.h"
@@ -131,15 +133,13 @@ void gameEntryPoint() {
         auto convOneRootResponse = boost::make_shared<Conv::Node>();
         convOneRoot->addLink(Conv::Node::Link(convOneRootResponse,
             "Hi there. My name's not known yet."));
-        convOneRootResponse->addAction(boost::make_shared<Conv::SpeechAction>(nullptr,
-            "Good to know!"));
+        convOneRootResponse->addAction(boost::make_shared<Conv::SpeechAction>(
+            nullptr, "Good to know!"));
 
         conversation->begin(convRoot);
     }
 
     auto cr = Kriti::Interface::ContextRegistry::instance();
-
     cr->push(gcon);
-
     cr->run();
 }
