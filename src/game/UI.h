@@ -16,11 +16,11 @@ namespace Game {
 
 class UI : public boost::enable_shared_from_this<UI> {
 private:
-    static UI *s_singleton;
+    static boost::shared_ptr<UI> s_singleton;
 public:
-    static UI *instance() {
+    static boost::shared_ptr<UI> instance() {
         if(!s_singleton) {
-            Message3(Game, Fatal, "No UI instance created!");
+            s_singleton = boost::shared_ptr<UI>(new UI());
         }
         return s_singleton;
     }
@@ -31,6 +31,7 @@ private:
     boost::shared_ptr<Kriti::Render::RenderableContainer> m_container;
 
     boost::shared_ptr<Kriti::GUI::ScrollArea> m_scroll;
+    boost::shared_ptr<Kriti::GUI::Panel> m_scrollPanel;
     boost::shared_ptr<Kriti::GUI::Panel> m_labelPanel;
     std::vector<boost::shared_ptr<Kriti::GUI::Label>> m_labels;
     boost::shared_ptr<Kriti::GUI::Panel> m_optionPanel;

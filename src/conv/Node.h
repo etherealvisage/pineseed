@@ -33,6 +33,7 @@ private:
 public:
     void addAction(boost::shared_ptr<Action> action)
         { m_actions.push_back(action); }
+    void triggerActions();
 
     void addLink(Link link) { m_links.push_back(link); }
     std::vector<Link> &links() { return m_links; }

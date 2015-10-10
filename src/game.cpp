@@ -23,6 +23,12 @@
 #include "kriti/ResourceRegistry.h"
 
 #include "game/UI.h"
+#include "game/Conversation.h"
+
+#include "conv/Node.h"
+#include "conv/SpeechAction.h"
+
+using namespace Pineseed;
 
 boost::shared_ptr<Kriti::Render::Stage> stage;
 boost::shared_ptr<Kriti::Render::Pipeline> pipeline;
@@ -35,29 +41,14 @@ boost::shared_ptr<Kriti::GUI::OutlineRegistry> outlineRegistry;
 boost::shared_ptr<Kriti::GUI::MouseInteractor> mouseInteractor;
 boost::shared_ptr<Kriti::GUI::MouseCursor> mouseCursor;
 boost::shared_ptr<Kriti::GUI::ScrollArea> scroll;
-boost::shared_ptr<Kriti::GUI::Panel> panel;
-boost::shared_ptr<Kriti::GUI::Button> button, button2;
-boost::shared_ptr<Kriti::GUI::Label> label;
 
-boost::shared_ptr<Pineseed::Game::UI> ui;
+boost::shared_ptr<Game::UI> ui;
+boost::shared_ptr<Game::Conversation> conversation;
 
 void frame_handler() {
     mouseInteractor->updateMouseActivation(outlineRegistry);
 
-    /*panel->update(outlineRegistry, Kriti::Math::Vector(),
-        Kriti::Math::Vector(0.5, 0.5), Kriti::Math::Vector(1.0, 1.0));
-    panel->fill(stage->renderables());*/
-    scroll->update(outlineRegistry, Kriti::Math::Vector(0.0, 0.0),
-        Kriti::Math::Vector(0.5, 0.5), Kriti::Math::Vector(1.0, 1.0));
-    scroll->fill(stage->renderables());
-
-    scroll->scrollOffset() -= Kriti::Math::Vector(0.0, 0.001, 0.0);
-
     ui->update(outlineRegistry);
-
-    /*label->fill(stage->renderables());
-    label->update(outlineRegistry, Kriti::Math::Vector(),
-        Kriti::Math::Vector(0.5, 0.5), Kriti::Math::Vector(1.0, 1.0));*/
 
     pipeline->render();
     Kriti::Interface::Video::instance()->swapBuffers();
@@ -72,9 +63,23 @@ void pop(SDL_Keycode key) {
     else if(key == SDLK_SPACE) {
         ui->addJournalText("Another entry!");
     }
+    else if(key == SDLK_1) {
+        conversation->takeOption(0);
+    }
+    else if(key == SDLK_2) {
+        conversation->takeOption(1);
+    }
+    else if(key == SDLK_3) {
+        conversation->takeOption(2);
+    }
+    else if(key == SDLK_4) {
+        conversation->takeOption(3);
+    }
 }
 
 void gameEntryPoint() {
+    ui = Game::UI::instance();
+
     Message3(Game, Debug, "Game entry point reached.");
 
     stage = boost::make_shared<Kriti::Render::Stage>(1, 800, 600, "");
@@ -88,28 +93,7 @@ void gameEntryPoint() {
         -10.0, 10.0));
     stage->addUniformHook(camera);
 
-    Kriti::Render::RenderableFactory rf;
-    std::vector<Kriti::Math::Vector> v, n;
-    v.push_back(Kriti::Math::Vector(0.0, 0.0, 5.0));
-    v.push_back(Kriti::Math::Vector(0.0, 1.0, 5.0));
-    v.push_back(Kriti::Math::Vector(1.0, 1.0, 5.0));
-    n.push_back(Kriti::Math::Vector(0.0, 0.0, -1.0));
-    n.push_back(Kriti::Math::Vector(0.0, 0.0, -1.0));
-    n.push_back(Kriti::Math::Vector(0.0, 0.0, -1.0));
-    std::vector<unsigned int> t;
-    t.push_back(0);
-    t.push_back(1);
-    t.push_back(2);
-    tri = rf.fromTriangleGeometry(v, n, t, "simple");
-    //stage->renderables()->add(tri);
-
     font = Kriti::ResourceRegistry::get<Kriti::GUI::Font>("Ubuntu-B.ttf");
-
-    /*auto tr = boost::make_shared<Kriti::GUI::TextRenderer>();
-    text = tr->renderString(font->getInstance(12), "Testing!",
-        Kriti::Math::Vector(1.0, 1.0));
-    text->location() += Kriti::Math::Vector(0.3, 0.3);
-    stage->renderables()->add(text);*/
 
     auto gcon = boost::make_shared<Kriti::State::Context>();
 
@@ -124,30 +108,34 @@ void gameEntryPoint() {
     outlineRegistry = boost::make_shared<Kriti::GUI::OutlineRegistry>();
     mouseInteractor = boost::make_shared<Kriti::GUI::MouseInteractor>();
     mouseCursor = boost::make_shared<Kriti::GUI::MouseCursor>();
-    panel = boost::make_shared<Kriti::GUI::Panel>(
-        Kriti::Math::Vector(0.1, 0.1), Kriti::Math::Vector(1.0, 1.0),
-        boost::make_shared<Kriti::GUI::PackedLayout>(Kriti::Math::Vector(1.0, 1.0)));
-    button = boost::make_shared<Kriti::GUI::Button>(Kriti::Math::Vector(0.1, 0.1), Kriti::Math::Vector(1.0, 1.0), font->getInstance(36), "Toggle visible");
-    panel->layout()->addItem(button);
-    button2 = boost::make_shared<Kriti::GUI::Button>(Kriti::Math::Vector(0.1, 0.1), Kriti::Math::Vector(1.0, 1.0), font->getInstance(36), "Quit");
-    panel->layout()->addItem(button2);
     stage->renderables()->add(mouseCursor->renderable());
 
-    auto qevent = gcon->addEvent<>("button_clicked");
-    button2->setClickEvent(qevent);
-    gcon->addListener("button_clicked", boost::function<void ()>(boost::bind(pop, SDLK_ESCAPE)));
-    gcon->addListener("button_clicked", boost::function<void ()>([](){ Message3(Game, Debug, "Button clicked!"); }));
-
-    scroll = boost::make_shared<Kriti::GUI::ScrollArea>(Kriti::Math::Vector(), Kriti::Math::Vector(1.0, 1.0), panel, Kriti::Math::Vector(1.0, 1.0));
-
-    //label = boost::make_shared<Kriti::GUI::Label>(Kriti::Math::Vector(), Kriti::Math::Vector(1.0, 1.0), font->getInstance(36), "Testing!");
-    label = boost::make_shared<Kriti::GUI::Label>(Kriti::Math::Vector(), Kriti::Math::Vector(1.0, 1.0), font->getInstance(8), "Testing!");
-
-    ui = boost::make_shared<Pineseed::Game::UI>();
     stage->renderables()->add(ui->renderables());
     ui->addJournalText("This is a test! #1");
     ui->addJournalText("This is a test! #2");
     ui->addJournalText("This is a test! #3");
+
+    conversation = boost::make_shared<Game::Conversation>();
+
+    {
+        auto convRoot = boost::make_shared<Conv::Node>();
+
+        convRoot->addAction(boost::make_shared<Conv::SpeechAction>(nullptr,
+            "Which conversation to test?"));
+
+        auto convOneRoot = boost::make_shared<Conv::Node>();
+        convRoot->addLink(Conv::Node::Link(convOneRoot, "Conversation #1"));
+        convOneRoot->addAction(boost::make_shared<Conv::SpeechAction>(nullptr,
+            "Hello there, stranger."));
+
+        auto convOneRootResponse = boost::make_shared<Conv::Node>();
+        convOneRoot->addLink(Conv::Node::Link(convOneRootResponse,
+            "Hi there. My name's not known yet."));
+        convOneRootResponse->addAction(boost::make_shared<Conv::SpeechAction>(nullptr,
+            "Good to know!"));
+
+        conversation->begin(convRoot);
+    }
 
     auto cr = Kriti::Interface::ContextRegistry::instance();
 
