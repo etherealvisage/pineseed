@@ -1,12 +1,18 @@
+#include <QGraphicsScene>
+#include <QGraphicsSceneContextMenuEvent>
+#include <QGraphicsView>
+#include <QMenu>
 #include <QPainter>
 
 #include "Node.h"
 #include "moc_Node.cpp"
 
+#include "Link.h"
+
 Node::Node() {
     m_size = QSizeF(150, 200);
 
-    setFlags(ItemIsMovable | ItemIsSelectable);
+    setFlags(ItemIsSelectable);
 }
 
 QRectF Node::boundingRect() const {
@@ -24,6 +30,16 @@ void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *style,
     painter->drawRect(QRectF(QPointF(0,0), m_size));
 }
 
-void Node::contextMenuEvent(QGraphicsSceneContextMenuEvent *event) {
-    qDebug("Context menu time!");
+void Node::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
+    if(event->buttons() & Qt::LeftButton) {
+        QPointF last = mapFromScene(event->lastScenePos());
+        QPointF now = mapFromScene(event->scenePos());
+        QPointF delta = now-last;
+
+        setPos(pos() + delta);
+
+        for(auto view : scene()->views()) {
+            view->repaint();
+        }
+    }
 }
