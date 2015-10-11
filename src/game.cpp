@@ -21,6 +21,7 @@
 #include "kriti/gui/MouseCursor.h"
 #include "kriti/gui/MouseInteractor.h"
 #include "kriti/gui/ScrollArea.h"
+#include "kriti/gui/OutlineRegistry.h"
 
 #include "kriti/ResourceRegistry.h"
 
@@ -113,9 +114,6 @@ void gameEntryPoint() {
     stage->renderables()->add(mouseCursor->renderable());
 
     stage->renderables()->add(ui->renderables());
-    ui->addJournalText("This is a test! #1");
-    ui->addJournalText("This is a test! #2");
-    ui->addJournalText("This is a test! #3");
 
     conversation = boost::make_shared<Game::Conversation>();
 

@@ -3,6 +3,7 @@
 .ycm_extra_conf.*
 /build
 /pineseed
+/pineseed_editor
 *.swp
 /libs
 /kriti
