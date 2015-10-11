@@ -1,4 +1,5 @@
 #include <QAction>
+#include <QInputDialog>
 #include <QMouseEvent>
 #include <QMenu>
 
@@ -36,23 +37,36 @@ void ConversationView::mousePressEvent(QMouseEvent *event) {
 
 void ConversationView::contextMenuEvent(QContextMenuEvent *event) {
     auto item = itemAt(event->pos());
+    m_origin = item;
     if(item) {
-        m_origin = item;
+        if(dynamic_cast<Node *>(item)) {
+            QMenu menu;
 
-        QMenu menu;
+            QAction *linkAction = new QAction(tr("Add &Link"), &menu);
+            menu.addAction(linkAction);
+            connect(linkAction, SIGNAL(triggered(bool)), this, SLOT(addLink()));
 
-        QAction *linkAction = new QAction(tr("Add &Link"), &menu);
-        menu.addAction(linkAction);
-        connect(linkAction, SIGNAL(triggered(bool)), this, SLOT(addLink()));
+            menu.exec(mapToGlobal(event->pos()));
+        }
+        else if(dynamic_cast<Link *>(item)) {
+            QMenu menu;
 
-        menu.exec(mapToGlobal(event->pos()));
+            QAction *contextChangeLabel = new QAction(tr("&Change label"), this);
+            connect(contextChangeLabel, SIGNAL(triggered(bool)), this,
+                SLOT(changeLinkLabel()));
+            menu.addAction(contextChangeLabel);
+            QAction *contextRemoveLink = new QAction(tr("&Remove link"), this);
+            menu.addAction(contextRemoveLink);
+
+            menu.exec(mapToGlobal(event->pos()));
+        }
     }
     else {
-        m_origin = item;
         QMenu menu;
 
         QAction *contextAddNode = new QAction(tr("&Add node"), this);
-        connect(contextAddNode, SIGNAL(triggered(bool)), this, SLOT(addNode()));
+        connect(contextAddNode, SIGNAL(triggered(bool)), this,
+            SLOT(addNode()));
         menu.addAction(contextAddNode);
 
         menu.exec(mapToGlobal(event->pos()));
@@ -70,8 +84,6 @@ void ConversationView::enterSelectMode() {
 }
 
 void ConversationView::addNode() {
-    qDebug("Adding node...");
-
     Node *node = new Node();
     scene()->addItem(node);
 
@@ -96,4 +108,14 @@ void ConversationView::establishLink(QGraphicsItem *item) {
     Link *link = new Link(origin, target);
 
     scene()->addItem(link);
+}
+
+void ConversationView::changeLinkLabel() {
+    Link *link = dynamic_cast<Link *>(m_origin);
+    bool ok = true;
+    QString newLabel = QInputDialog::getText(this, tr("Link label"),
+        tr("Enter new label name:"), QLineEdit::Normal, link->label(), &ok);
+    if(ok) {
+        link->setLabel(newLabel);
+    }
 }

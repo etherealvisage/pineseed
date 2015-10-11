@@ -8,6 +8,7 @@
 
 Link::Link(Node *from, Node *to) : m_from(from), m_to(to) {
     setZValue(-1.0);
+    m_label = "Label";
 }
 
 QRectF Link::boundingRect() const {
@@ -52,4 +53,9 @@ void Link::paint(QPainter *painter, const QStyleOptionGraphicsItem *style,
 
     painter->setPen(QPen(QBrush(Qt::darkGreen), 3.0));
     painter->drawLine(toPoints[minPair[0]], fromPoints[minPair[1]]);
+
+    QPointF lineCentre = (toPoints[minPair[0]] + fromPoints[minPair[1]])/2.0;
+
+    painter->setPen(QPen(QBrush(Qt::red), 1.0));
+    painter->drawText(lineCentre, m_label);
 }

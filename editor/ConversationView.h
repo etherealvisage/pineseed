@@ -24,6 +24,7 @@ private slots:
     void addNode();
     void addLink();
     void establishLink(QGraphicsItem *item);
+    void changeLinkLabel();
 };
 
 #endif
