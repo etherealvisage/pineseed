@@ -12,6 +12,9 @@ private:
 public:
     Link(Node *from, Node *to);
 
+    Node *from() const { return m_from; }
+    Node *to() const { return m_to; }
+
     QString label() const { return m_label; }
     void setLabel(QString label) { m_label = label; }
 

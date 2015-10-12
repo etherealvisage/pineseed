@@ -30,6 +30,18 @@ void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *style,
     painter->drawRect(QRectF(QPointF(0,0), m_size));
 }
 
+void Node::removeLink(Link *link) {
+    int in = m_links.indexOf(link);
+    if(in != -1) m_links.remove(in);
+}
+
+bool Node::hasLink(Node *to) {
+    for(int i = 0; i < m_links.size(); i ++) {
+        if(m_links[i]->to() == to) return true;
+    }
+    return false;
+}
+
 void Node::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
     if(event->buttons() & Qt::LeftButton) {
         QPointF last = mapFromScene(event->lastScenePos());

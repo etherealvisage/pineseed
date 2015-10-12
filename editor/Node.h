@@ -17,6 +17,8 @@ public:
         const QStyleOptionGraphicsItem *style, QWidget *widget);
 
     void addLink(Link *link) { m_links.push_back(link); }
+    void removeLink(Link *link);
+    bool hasLink(Node *to);
 protected:
     virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
 };

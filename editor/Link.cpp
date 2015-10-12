@@ -54,8 +54,20 @@ void Link::paint(QPainter *painter, const QStyleOptionGraphicsItem *style,
     painter->setPen(QPen(QBrush(Qt::darkGreen), 3.0));
     painter->drawLine(toPoints[minPair[0]], fromPoints[minPair[1]]);
 
-    QPointF lineCentre = (toPoints[minPair[0]] + fromPoints[minPair[1]])/2.0;
+    painter->setPen(QPen(QBrush(Qt::darkGreen), 20.0));
+    painter->drawPoint(fromPoints[minPair[1]]);
 
+    QPointF lineCentre = (toPoints[minPair[0]] + fromPoints[minPair[1]])/2.0;
+    QFontMetricsF fm(painter->font());
+    QRectF tbr = fm.boundingRect(m_label);
+
+    tbr.setTopLeft(tbr.topLeft() - QPointF(4,2));
+    tbr.setBottomRight(tbr.bottomRight() + QPointF(4,2));
+
+    painter->setPen(Qt::lightGray);
+    painter->setBrush(QBrush(Qt::lightGray, Qt::SolidPattern));
+    painter->drawRect(QRectF(tbr.topLeft() + lineCentre - tbr.topRight()/2,
+        tbr.size()));
     painter->setPen(QPen(QBrush(Qt::red), 1.0));
-    painter->drawText(lineCentre, m_label);
+    painter->drawText(lineCentre - tbr.topRight()/2, m_label);
 }

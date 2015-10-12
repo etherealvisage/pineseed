@@ -9,7 +9,9 @@
 #include "Node.h"
 #include "Link.h"
 
-ConversationView::ConversationView() : QGraphicsView(new QGraphicsScene()) {
+ConversationView::ConversationView() : QGraphicsView(new QGraphicsScene()),
+    m_viewMode(DragMode) {
+
     setMouseTracking(true);
 
     setSceneRect(0, 0, 1, 1);
@@ -17,22 +19,9 @@ ConversationView::ConversationView() : QGraphicsView(new QGraphicsScene()) {
     Node *node = new Node();
     scene()->addItem(node);
 
-    m_selectMode = false;
-
     setViewportUpdateMode(FullViewportUpdate);
-}
 
-void ConversationView::mousePressEvent(QMouseEvent *event) {
-    auto item = itemAt(event->pos());
-    if(event->button() == Qt::LeftButton && m_selectMode) {
-        m_selectMode = false;
-        setCursor(Qt::ArrowCursor);
-
-        if(item) emit(selected(item));
-    }
-    else {
-        QGraphicsView::mousePressEvent(event);
-    }
+    enterDragMode();
 }
 
 void ConversationView::contextMenuEvent(QContextMenuEvent *event) {
@@ -56,6 +45,8 @@ void ConversationView::contextMenuEvent(QContextMenuEvent *event) {
                 SLOT(changeLinkLabel()));
             menu.addAction(contextChangeLabel);
             QAction *contextRemoveLink = new QAction(tr("&Remove link"), this);
+            connect(contextRemoveLink, SIGNAL(triggered(bool)), this,
+                SLOT(removeLink()));
             menu.addAction(contextRemoveLink);
 
             menu.exec(mapToGlobal(event->pos()));
@@ -73,13 +64,43 @@ void ConversationView::contextMenuEvent(QContextMenuEvent *event) {
     }
 }
 
+void ConversationView::mouseDoubleClickEvent(QMouseEvent *event) {
+    auto item = itemAt(event->pos());
+    if(!item || m_viewMode != DragMode) return;
+
+    if(dynamic_cast<Link *>(item)) {
+        m_origin = item;
+        changeLinkLabel();
+    }
+
+    QGraphicsView::mouseDoubleClickEvent(event);
+}
+
+void ConversationView::mousePressEvent(QMouseEvent *event) {
+    auto item = itemAt(event->pos());
+    if(event->button() == Qt::LeftButton && m_viewMode == SelectMode) {
+        enterDragMode();
+
+        if(item) emit(selected(item));
+    }
+    else {
+        QGraphicsView::mousePressEvent(event);
+    }
+}
+
+
 void ConversationView::mouseMoveEvent(QMouseEvent *event) {
     QGraphicsView::mouseMoveEvent(event);
     m_lastMousePos = event->globalPos();
 }
 
+void ConversationView::enterDragMode() {
+    m_viewMode = DragMode;
+    setCursor(Qt::OpenHandCursor);
+}
+
 void ConversationView::enterSelectMode() {
-    m_selectMode = true;
+    m_viewMode = SelectMode;
     setCursor(Qt::CrossCursor);
 }
 
@@ -105,6 +126,9 @@ void ConversationView::establishLink(QGraphicsItem *item) {
 
     if(!origin || !target) return;
 
+    if(origin == target) return; // no self-links!
+    if(origin->hasLink(target)) return; // no duplicate links!
+
     Link *link = new Link(origin, target);
 
     scene()->addItem(link);
@@ -115,7 +139,14 @@ void ConversationView::changeLinkLabel() {
     bool ok = true;
     QString newLabel = QInputDialog::getText(this, tr("Link label"),
         tr("Enter new label name:"), QLineEdit::Normal, link->label(), &ok);
-    if(ok) {
+    if(ok && newLabel.length() > 0) {
         link->setLabel(newLabel);
     }
+}
+
+void ConversationView::removeLink() {
+    Link *link = dynamic_cast<Link *>(m_origin);
+    link->from()->removeLink(link);
+    link->to()->removeLink(link);
+    scene()->removeItem(link);
 }
