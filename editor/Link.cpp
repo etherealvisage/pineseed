@@ -27,6 +27,40 @@ QRectF Link::boundingRect() const {
 void Link::paint(QPainter *painter, const QStyleOptionGraphicsItem *style,
     QWidget *widget) {
 
+    QPointF fromPoint, toPoint;
+
+    calculateBestLine(fromPoint, toPoint);
+
+    painter->setPen(QPen(QBrush(Qt::darkGreen), 3.0));
+    painter->drawLine(toPoint, fromPoint);
+
+    painter->setPen(QPen(QBrush(Qt::darkGreen), 20.0));
+    painter->drawPoint(fromPoint);
+
+    painter->setPen(Qt::lightGray);
+    painter->setBrush(QBrush(Qt::lightGray, Qt::SolidPattern));
+    auto lbr = labelBoundingRect();
+    painter->drawRect(lbr);
+    painter->setPen(QPen(QBrush(Qt::red), 1.0));
+    QFontMetricsF fm((QFont()));
+    painter->drawText(lbr.center() - QPointF(fm.width(m_label)/2,-4), m_label);
+}
+
+QRectF Link::labelBoundingRect() const {
+    QPointF fromPoint, toPoint;
+    calculateBestLine(fromPoint, toPoint);
+    QPointF lineCentre = (toPoint + fromPoint)/2.0;
+    QFontMetricsF fm((QFont()));
+    QRectF tbr = fm.boundingRect(m_label);
+
+    tbr.setTopLeft(tbr.topLeft() - QPointF(4,2));
+    tbr.setBottomRight(tbr.bottomRight() + QPointF(4,2));
+
+    return QRectF(tbr.topLeft() + lineCentre - tbr.topRight()/2,
+        tbr.size());
+}
+
+void Link::calculateBestLine(QPointF &from, QPointF &to) const {
     QPointF fromCentre = m_from->boundingRect().center() + m_from->pos();
     QPointF toCentre = m_to->boundingRect().center() + m_to->pos();
     QPointF fromX(m_from->boundingRect().width()/2,0);
@@ -51,23 +85,6 @@ void Link::paint(QPainter *painter, const QStyleOptionGraphicsItem *style,
         }
     }
 
-    painter->setPen(QPen(QBrush(Qt::darkGreen), 3.0));
-    painter->drawLine(toPoints[minPair[0]], fromPoints[minPair[1]]);
-
-    painter->setPen(QPen(QBrush(Qt::darkGreen), 20.0));
-    painter->drawPoint(fromPoints[minPair[1]]);
-
-    QPointF lineCentre = (toPoints[minPair[0]] + fromPoints[minPair[1]])/2.0;
-    QFontMetricsF fm(painter->font());
-    QRectF tbr = fm.boundingRect(m_label);
-
-    tbr.setTopLeft(tbr.topLeft() - QPointF(4,2));
-    tbr.setBottomRight(tbr.bottomRight() + QPointF(4,2));
-
-    painter->setPen(Qt::lightGray);
-    painter->setBrush(QBrush(Qt::lightGray, Qt::SolidPattern));
-    painter->drawRect(QRectF(tbr.topLeft() + lineCentre - tbr.topRight()/2,
-        tbr.size()));
-    painter->setPen(QPen(QBrush(Qt::red), 1.0));
-    painter->drawText(lineCentre - tbr.topRight()/2, m_label);
+    to = toPoints[minPair[0]];
+    from = fromPoints[minPair[1]];
 }

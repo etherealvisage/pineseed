@@ -21,6 +21,9 @@ public:
     virtual QRectF boundingRect() const;
     virtual void paint(QPainter *painter,
         const QStyleOptionGraphicsItem *style, QWidget *widget);
+    QRectF labelBoundingRect() const;
+private:
+    void calculateBestLine(QPointF &from, QPointF &to) const;
 };
 
 #endif
