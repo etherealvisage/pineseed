@@ -41,8 +41,12 @@ void ConversationView::contextMenuEvent(QContextMenuEvent *event) {
             menu.addAction(linkAction);
             connect(linkAction, SIGNAL(triggered(bool)), this, SLOT(addLink()));
 
+            QAction *removeAction = new QAction(tr("Remove &Node"), &menu);
+            menu.addAction(removeAction);
+            connect(removeAction, SIGNAL(triggered(bool)), this, SLOT(removeNode()));
+
             menu.exec(mapToGlobal(event->pos()));
-            found = true;
+            return;
         }
         auto link = dynamic_cast<Link *>(item);
         if(link && link->labelBoundingRect().contains(
@@ -60,7 +64,7 @@ void ConversationView::contextMenuEvent(QContextMenuEvent *event) {
             menu.addAction(contextRemoveLink);
 
             menu.exec(mapToGlobal(event->pos()));
-            found = true;
+            return;
         }
     }
     if(!found) {
@@ -148,6 +152,12 @@ void ConversationView::editNode() {
     node->edit(this);
 }
 
+void ConversationView::removeNode() {
+    auto node = dynamic_cast<Node *>(m_origin);
+    delete node;
+    m_origin = nullptr;
+}
+
 void ConversationView::addLink() {
     enterSelectMode();
     connect(this, SIGNAL(selected(QGraphicsItem*)), this,
@@ -167,6 +177,7 @@ void ConversationView::establishLink(QGraphicsItem *item) {
 
     Link *link = new Link(origin, target);
     origin->addLink(link);
+    target->addLink(link);
 
     scene()->addItem(link);
 }

@@ -23,6 +23,15 @@ Node::Node() {
     setFlags(ItemIsSelectable);
 }
 
+Node::~Node() {
+    while(m_links.size()) {
+        auto link = m_links.back();
+        link->from()->removeLink(link);
+        link->to()->removeLink(link);
+        delete link;
+    }
+}
+
 QRectF Node::boundingRect() const {
     return QRectF(QPointF(0, 0), m_size);
 }

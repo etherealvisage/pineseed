@@ -1,4 +1,4 @@
-add_definitions(-Wall -Wextra -std=c++11)
+add_definitions(-Wall -Wextra -std=c++11 -g)
 
 find_package(Qt5Widgets REQUIRED)
 

@@ -16,6 +16,7 @@ private:
     QVector<Action *> m_actions;
 public:
     Node();
+    ~Node();
 
     QVector<Action *> &actions() { return m_actions; }
 

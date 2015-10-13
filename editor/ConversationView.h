@@ -29,6 +29,7 @@ signals:
 private slots:
     void addNode();
     void editNode();
+    void removeNode();
     void addLink();
     void establishLink(QGraphicsItem *item);
     void changeLinkLabel();
