@@ -28,6 +28,7 @@ signals:
     void selected(QGraphicsItem *item);
 private slots:
     void addNode();
+    void editNode();
     void addLink();
     void establishLink(QGraphicsItem *item);
     void changeLinkLabel();

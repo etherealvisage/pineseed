@@ -33,6 +33,10 @@ void ConversationView::contextMenuEvent(QContextMenuEvent *event) {
         if(node) {
             QMenu menu;
 
+            QAction *editAction = new QAction(tr("&Edit"), &menu);
+            menu.addAction(editAction);
+            connect(editAction, SIGNAL(triggered(bool)), this, SLOT(editNode()));
+
             QAction *linkAction = new QAction(tr("Add &Link"), &menu);
             menu.addAction(linkAction);
             connect(linkAction, SIGNAL(triggered(bool)), this, SLOT(addLink()));
@@ -79,6 +83,10 @@ void ConversationView::mouseDoubleClickEvent(QMouseEvent *event) {
     if(link && link->labelBoundingRect().contains(mapToScene(event->pos()))) {
         m_origin = item;
         changeLinkLabel();
+    }
+    auto node = dynamic_cast<Node *>(item);
+    if(node) {
+        node->edit(this);
     }
 
     QGraphicsView::mouseDoubleClickEvent(event);
@@ -135,6 +143,11 @@ void ConversationView::addNode() {
     node->setPos(mapToScene(mapFromGlobal(m_lastMousePos)));
 }
 
+void ConversationView::editNode() {
+    auto node = dynamic_cast<Node *>(m_origin);
+    node->edit(this);
+}
+
 void ConversationView::addLink() {
     enterSelectMode();
     connect(this, SIGNAL(selected(QGraphicsItem*)), this,
@@ -153,6 +166,7 @@ void ConversationView::establishLink(QGraphicsItem *item) {
     if(origin->hasLink(target)) return; // no duplicate links!
 
     Link *link = new Link(origin, target);
+    origin->addLink(link);
 
     scene()->addItem(link);
 }
