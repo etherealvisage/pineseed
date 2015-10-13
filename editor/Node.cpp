@@ -70,16 +70,19 @@ void Node::edit(QWidget *parent) {
     dialog.setLayout(&grid);
 
     QLabel labelLabel(tr("Label:"));
-    grid.addWidget(&labelLabel, 0, 0);
+    grid.addWidget(&labelLabel, grid.rowCount(), 0);
     QLineEdit labelText(m_label);
-    grid.addWidget(&labelText, 0, 1);
+    grid.addWidget(&labelText, grid.rowCount()-1, 1, 1, 2);
 
     QLabel actionsLabel(tr("Actions:"));
-    grid.addWidget(&actionsLabel, 1, 0);
+    grid.addWidget(&actionsLabel, grid.rowCount(), 0);
     QListWidget actionsList;
-    grid.addWidget(&actionsList, 1, 1);
+    grid.addWidget(&actionsList, grid.rowCount()-1, 1, 1, 2);
     actionsList.setDragDropMode(QAbstractItemView::DragDrop);
     actionsList.setDefaultDropAction(Qt::MoveAction);
+
+    connect(&actionsList, SIGNAL(itemDoubleClicked(QListWidgetItem*)),
+        this, SLOT(editActionProxy(QListWidgetItem*)));
 
     for(auto action : m_actions) {
         auto i = new QListWidgetItem(action->description(), &actionsList);
@@ -87,10 +90,18 @@ void Node::edit(QWidget *parent) {
             qVariantFromValue(reinterpret_cast<quint64>(action)));
     }
 
+    QPushButton addActionButton(tr("&Add action"));
+    grid.addWidget(&addActionButton, grid.rowCount(), 1);
+    connect(&addActionButton, SIGNAL(clicked(bool)), this, SLOT(addAction()));
+    QPushButton removeActionButton(tr("&Remove action"));
+    grid.addWidget(&removeActionButton, grid.rowCount()-1, 2);
+    connect(&removeActionButton, SIGNAL(clicked(bool)), this,
+        SLOT(removeAction()));
+
     QLabel linksLabel(tr("Links:"));
-    grid.addWidget(&linksLabel, 2, 0);
+    grid.addWidget(&linksLabel, grid.rowCount(), 0);
     QListWidget linksList;
-    grid.addWidget(&linksList, 2, 1);
+    grid.addWidget(&linksList, grid.rowCount()-1, 1, 1, 2);
     linksList.setDragDropMode(QAbstractItemView::DragDrop);
     linksList.setDefaultDropAction(Qt::MoveAction);
 
@@ -102,7 +113,7 @@ void Node::edit(QWidget *parent) {
 
     QPushButton okButton(QString("&Done"));
     okButton.setDefault(true);
-    grid.addWidget(&okButton, 3, 0, 1, 2, Qt::AlignHCenter);
+    grid.addWidget(&okButton, grid.rowCount(), 0, 1, 3, Qt::AlignHCenter);
     connect(&okButton, SIGNAL(clicked(bool)), &dialog, SLOT(accept()));
 
     dialog.exec();
@@ -124,6 +135,17 @@ void Node::edit(QWidget *parent) {
     }
 }
 
-void Node::editActionProxy(QListWidgetItem *item) {
+void Node::addAction() {
+    Action::createAction(nullptr);
+}
+
+void Node::removeAction() {
     
+}
+
+void Node::editActionProxy(QListWidgetItem *item) {
+    auto action =
+        reinterpret_cast<Action *>(item->data(Qt::UserRole).value<quint64>());
+    
+    action->edit(item->listWidget());
 }

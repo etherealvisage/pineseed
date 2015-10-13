@@ -25,8 +25,8 @@ void Action::edit(QWidget *parent) {
 
     QPushButton okButton(QString("&Done"));
     okButton.setDefault(true);
-
     grid.addWidget(&okButton, 0, 0);
+    QObject::connect(&okButton, SIGNAL(clicked(bool)), &dialog, SLOT(accept()));
 
     dialog.exec();
 }

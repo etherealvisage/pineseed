@@ -31,6 +31,8 @@ public:
 protected:
     virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
 private slots:
+    void addAction();
+    void removeAction();
     void editActionProxy(QListWidgetItem *item);
 };
 
