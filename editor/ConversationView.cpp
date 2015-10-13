@@ -16,9 +16,6 @@ ConversationView::ConversationView() : QGraphicsView(new QGraphicsScene()),
 
     setSceneRect(-10000, -10000, 20000, 20000);
 
-    Node *node = new Node();
-    scene()->addItem(node);
-
     setViewportUpdateMode(FullViewportUpdate);
 
     enterDragMode();
@@ -189,6 +186,7 @@ void ConversationView::changeLinkLabel() {
         tr("Enter new label name:"), QLineEdit::Normal, link->label(), &ok);
     if(ok && newLabel.length() > 0) {
         link->setLabel(newLabel);
+        viewport()->update();
     }
 }
 
