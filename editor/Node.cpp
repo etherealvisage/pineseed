@@ -81,8 +81,12 @@ void Node::edit(QWidget *parent) {
     actionsList.setDragDropMode(QAbstractItemView::DragDrop);
     actionsList.setDefaultDropAction(Qt::MoveAction);
 
-    connect(&actionsList, SIGNAL(itemDoubleClicked(QListWidgetItem*)),
-        this, SLOT(editActionProxy(QListWidgetItem*)));
+    connect(&actionsList, &QListWidget::itemDoubleClicked,
+        [=](QListWidgetItem *item) {
+            auto action = reinterpret_cast<Action *>(
+                item->data(Qt::UserRole).value<quint64>());
+            action->edit(parent);
+        });
 
     for(auto action : m_actions) {
         auto i = new QListWidgetItem(action->description(), &actionsList);
@@ -92,11 +96,23 @@ void Node::edit(QWidget *parent) {
 
     QPushButton addActionButton(tr("&Add action"));
     grid.addWidget(&addActionButton, grid.rowCount(), 1);
-    connect(&addActionButton, SIGNAL(clicked(bool)), this, SLOT(addAction()));
+    connect(&addActionButton, &QPushButton::clicked,
+        [=,&actionsList](){
+            auto action = Action::createAction(parent);
+            if(!action) return;
+            auto i = new QListWidgetItem(action->description(), &actionsList);
+            i->setData(Qt::UserRole,
+                qVariantFromValue(reinterpret_cast<quint64>(action)));
+        });
     QPushButton removeActionButton(tr("&Remove action"));
     grid.addWidget(&removeActionButton, grid.rowCount()-1, 2);
-    connect(&removeActionButton, SIGNAL(clicked(bool)), this,
-        SLOT(removeAction()));
+    connect(&removeActionButton, &QPushButton::clicked,
+        [=,&actionsList](){
+            auto i = actionsList.currentItem();
+            auto action = reinterpret_cast<Action *>(i->data(Qt::UserRole).value<quint64>());
+            delete action;
+            delete i;
+        });
 
     QLabel linksLabel(tr("Links:"));
     grid.addWidget(&linksLabel, grid.rowCount(), 0);
@@ -134,7 +150,7 @@ void Node::edit(QWidget *parent) {
             reinterpret_cast<Action *>(i->data(Qt::UserRole).value<quint64>()));
     }
 }
-
+/*
 void Node::addAction() {
     Action::createAction(nullptr);
 }
@@ -147,5 +163,4 @@ void Node::editActionProxy(QListWidgetItem *item) {
     auto action =
         reinterpret_cast<Action *>(item->data(Qt::UserRole).value<quint64>());
     
-    action->edit(item->listWidget());
-}
+}*/
