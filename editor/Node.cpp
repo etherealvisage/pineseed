@@ -1,4 +1,5 @@
 #include <QDialog>
+#include <QFont>
 #include <QGraphicsScene>
 #include <QGraphicsSceneContextMenuEvent>
 #include <QGraphicsView>
@@ -33,8 +34,14 @@ void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *style,
     b.setColor(QColor::fromRgb(240, 240, 240));
     b.setStyle(Qt::SolidPattern);
     painter->setBrush(b);
-    painter->setBackgroundMode(Qt::OpaqueMode);
     painter->drawRect(QRectF(QPointF(0,0), m_size));
+
+    QFontMetricsF fm((QFont()));
+
+    qreal width = fm.width(m_label);
+    painter->setPen(Qt::black);
+    painter->setBrush(Qt::NoBrush);
+    painter->drawText(boundingRect().center() - QPointF(width/2,0), m_label);
 }
 
 void Node::removeLink(Link *link) {
@@ -150,17 +157,3 @@ void Node::edit(QWidget *parent) {
             reinterpret_cast<Action *>(i->data(Qt::UserRole).value<quint64>()));
     }
 }
-/*
-void Node::addAction() {
-    Action::createAction(nullptr);
-}
-
-void Node::removeAction() {
-    
-}
-
-void Node::editActionProxy(QListWidgetItem *item) {
-    auto action =
-        reinterpret_cast<Action *>(item->data(Qt::UserRole).value<quint64>());
-    
-}*/
