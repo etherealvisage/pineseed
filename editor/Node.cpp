@@ -165,4 +165,7 @@ void Node::edit(QWidget *parent) {
         m_actions.push_back(
             reinterpret_cast<Action *>(i->data(Qt::UserRole).value<quint64>()));
     }
+
+    // NOTE: dangerous...
+    dynamic_cast<QGraphicsView *>(parent)->viewport()->update();
 }
