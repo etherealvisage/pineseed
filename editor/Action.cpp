@@ -1,4 +1,5 @@
 #include <QDialog>
+#include <QGraphicsView>
 #include <QGridLayout>
 #include <QPushButton>
 #include <QString>
@@ -8,16 +9,17 @@
 #include "Action.h"
 
 Action *Action::createAction(QWidget *parent) {
-    Action *a = new Action();
-    a->edit(parent);
-    return a;
+    //Action *a = new Action();
+    //a->edit(parent);
+    //return a;
+    return nullptr;
 }
 
 QString Action::description() const {
     return "Action";
 }
 
-void Action::edit(QWidget *parent) {
+void Action::edit(QGraphicsView *parent) {
     QDialog dialog(parent);
 
     QGridLayout grid;

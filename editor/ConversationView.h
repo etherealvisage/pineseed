@@ -26,14 +26,6 @@ private:
     void enterSelectMode();
 signals:
     void selected(QGraphicsItem *item);
-private slots:
-    void addNode();
-    void editNode();
-    void removeNode();
-    void addLink();
-    void establishLink(QGraphicsItem *item);
-    void changeLinkLabel();
-    void removeLink();
 };
 
 #endif

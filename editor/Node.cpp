@@ -33,6 +33,7 @@ Node::~Node() {
 }
 
 QRectF Node::boundingRect() const {
+    QPointF lr(0,0);
     return QRectF(QPointF(0, 0), m_size);
 }
 
@@ -79,7 +80,7 @@ void Node::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
     }
 }
 
-void Node::edit(QWidget *parent) {
+void Node::edit(QGraphicsView *parent) {
     QDialog dialog(parent);
 
     QGridLayout grid;

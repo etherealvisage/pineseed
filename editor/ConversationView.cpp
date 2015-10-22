@@ -64,7 +64,7 @@ void ConversationView::contextMenuEvent(QContextMenuEvent *event) {
             return;
         }
     }
-    if(!found) {
+    /*if(!found) {
         QMenu menu;
 
         QAction *contextAddNode = new QAction(tr("&Add node"), this);
@@ -73,7 +73,7 @@ void ConversationView::contextMenuEvent(QContextMenuEvent *event) {
         menu.addAction(contextAddNode);
 
         menu.exec(mapToGlobal(event->pos()));
-    }
+    }*/
 }
 
 void ConversationView::mouseDoubleClickEvent(QMouseEvent *event) {
@@ -83,7 +83,7 @@ void ConversationView::mouseDoubleClickEvent(QMouseEvent *event) {
     auto link = dynamic_cast<Link *>(item);
     if(link && link->labelBoundingRect().contains(mapToScene(event->pos()))) {
         m_origin = item;
-        changeLinkLabel();
+        //changeLinkLabel();
     }
     auto node = dynamic_cast<Node *>(item);
     if(node) {
@@ -100,7 +100,6 @@ void ConversationView::mousePressEvent(QMouseEvent *event) {
         && (!link || link->labelBoundingRect().contains(
             mapToScene(event->pos())))) {
 
-        qDebug("selected");
         emit(selected(item));
         enterDragMode();
     }
@@ -137,11 +136,12 @@ void ConversationView::enterSelectMode() {
     setDragMode(ScrollHandDrag);
 }
 
+#if 0
 void ConversationView::addNode() {
-    Node *node = new Node();
-    scene()->addItem(node);
+    //Node *node = new Node();
+    //scene()->addItem(node);
 
-    node->setPos(mapToScene(mapFromGlobal(m_lastMousePos)));
+    //node->setPos(mapToScene(mapFromGlobal(m_lastMousePos)));
 }
 
 void ConversationView::editNode() {
@@ -172,11 +172,11 @@ void ConversationView::establishLink(QGraphicsItem *item) {
     if(origin == target) return; // no self-links!
     if(origin->hasLink(target)) return; // no duplicate links!
 
-    Link *link = new Link(origin, target);
-    origin->addLink(link);
-    target->addLink(link);
+    //Link *link = new Link(origin, target);
+    //origin->addLink(link);
+    //target->addLink(link);
 
-    scene()->addItem(link);
+    //scene()->addItem(link);
 }
 
 void ConversationView::changeLinkLabel() {
@@ -196,3 +196,4 @@ void ConversationView::removeLink() {
     link->to()->removeLink(link);
     scene()->removeItem(link);
 }
+#endif

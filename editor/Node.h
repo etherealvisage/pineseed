@@ -3,12 +3,13 @@
 
 #include <QGraphicsObject>
 
+#include "ConversationObject.h"
+
 class Link;
 class Action;
 
-class QListWidgetItem;
 
-class Node : public QGraphicsObject { Q_OBJECT
+class Node : public ConversationObject { Q_OBJECT
 private:
     QSizeF m_size;
     QString m_label;
@@ -16,7 +17,7 @@ private:
     QVector<Action *> m_actions;
 public:
     Node();
-    ~Node();
+    virtual ~Node();
 
     QVector<Action *> &actions() { return m_actions; }
 
@@ -24,11 +25,12 @@ public:
     virtual void paint(QPainter *painter,
         const QStyleOptionGraphicsItem *style, QWidget *widget);
 
+    QVector<Link *> &links() { return m_links; }
     void addLink(Link *link) { m_links.push_back(link); }
     void removeLink(Link *link);
     bool hasLink(Node *to);
 
-    void edit(QWidget *parent);
+    virtual void edit(QGraphicsView *parent);
 protected:
     virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
 };

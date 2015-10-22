@@ -3,9 +3,11 @@
 
 #include <QString>
 
+#include "ConversationObject.h"
+
 class QWidget;
 
-class Action {
+class Action : public ConversationObject {
 public:
     enum ActionType {
         SpeechAction,
@@ -20,7 +22,7 @@ public:
 
     QString description() const;
 
-    void edit(QWidget *parent);
+    virtual void edit(QGraphicsView *view);
 };
 
 #endif

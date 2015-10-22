@@ -3,9 +3,11 @@
 
 #include <QGraphicsObject>
 
+#include "ConversationObject.h"
+
 class Node;
 
-class Link : public QGraphicsObject { Q_OBJECT
+class Link : public ConversationObject { Q_OBJECT
 private:
     Node *m_from, *m_to;
     QString m_label;
