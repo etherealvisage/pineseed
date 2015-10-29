@@ -23,6 +23,7 @@ public:
         const QStyleOptionGraphicsItem *style, QWidget *widget);
 
     virtual void edit(QFormLayout *layout);
+    virtual bool isSelection(QPointF point);
 protected:
     virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
 private slots:

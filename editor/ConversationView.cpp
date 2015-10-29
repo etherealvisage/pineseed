@@ -2,6 +2,7 @@
 #include <QInputDialog>
 #include <QMouseEvent>
 #include <QMenu>
+#include <QScrollBar>
 
 #include "ConversationView.h"
 #include "moc_ConversationView.cpp"
@@ -22,12 +23,13 @@ ConversationView::ConversationView() : QGraphicsView(new QGraphicsScene()),
 }
 
 void ConversationView::mousePressEvent(QMouseEvent *event) {
-    auto item = itemAt(event->pos());
-    if(item && event->button() == Qt::LeftButton && m_viewMode == SelectMode) {
-        auto obj = dynamic_cast<ConversationObject *>(item);
-        if(obj) emit(selected(obj));
+    auto obj = objectAt(event->pos());
+    if(obj) {
+        if(event->button() == Qt::LeftButton && m_viewMode == SelectMode) {
+            emit(selected(obj));
+        }
     }
-    else if(!item && event->button() == Qt::LeftButton && m_viewMode == InsertMode) {
+    else if(event->button() == Qt::LeftButton && m_viewMode == InsertMode) {
         emit(clicked(mapToScene(event->pos())));
     }
     else {
@@ -35,13 +37,11 @@ void ConversationView::mousePressEvent(QMouseEvent *event) {
     }
 }
 
-
 void ConversationView::mouseMoveEvent(QMouseEvent *event) {
     QGraphicsView::mouseMoveEvent(event);
-    m_lastMousePos = event->globalPos();
 
-    auto item = itemAt(event->pos());
-    if(m_viewMode == SelectMode && dynamic_cast<Node *>(item)) {
+    auto item = objectAt(event->pos());
+    if(m_viewMode == SelectMode && item) {
         setCursor(Qt::CrossCursor);
         setDragMode(NoDrag);
     }
@@ -130,3 +130,17 @@ void ConversationView::removeLink() {
     scene()->removeItem(link);
 }
 #endif
+
+ConversationObject *ConversationView::objectAt(QPoint uViewportPos) {
+    auto items = this->items(uViewportPos);
+    for(auto item : items) {
+        auto obj = dynamic_cast<ConversationObject *>(item);
+        if(!obj) break;
+
+        auto pos = mapToScene(viewport()->mapFromParent(uViewportPos));
+        
+        if(!obj->isSelection(obj->mapFromScene(pos))) continue;
+        return obj;
+    }
+    return nullptr;
+}

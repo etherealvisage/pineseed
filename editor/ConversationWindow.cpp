@@ -110,7 +110,11 @@ void ConversationWindow::modeChange(int to) {
 
 void ConversationWindow::selectObject(ConversationObject *object) {
     while(m_editarea->layout()->count() > 0) {
-        delete m_editarea->layout()->takeAt(0);
+        auto item = m_editarea->layout()->takeAt(0);
+        if(item->widget()) item->widget()->deleteLater();
+        if(item->layout()) delete item->layout();
+
+        delete item;
     }
     object->edit(dynamic_cast<QFormLayout *>(m_editarea->layout()));
     m_selectLast = object;
@@ -133,12 +137,14 @@ void ConversationWindow::insertContext(QPointF where) {
 
 void ConversationWindow::makeLink(ConversationObject *object) {
     Node *target = dynamic_cast<Node *>(object);
-    if(!target) return;
+    // not allowed to have self-links for now
+    if(!target || target == m_selectLast) return; 
 
     modeChange(SelectMode);
 
     Link *link = new Link(dynamic_cast<Node *>(m_selectLast), target);
     connect(link, SIGNAL(changed()), m_cview->viewport(), SLOT(update()));
+    m_cview->scene()->addItem(link);
 }
 
 void ConversationWindow::deleteObject(ConversationObject *object) {

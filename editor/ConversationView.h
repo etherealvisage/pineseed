@@ -14,7 +14,6 @@ private:
     } m_viewMode;
 private:
     QGraphicsItem *m_origin;
-    QPoint m_lastMousePos;
 public:
     ConversationView();
 protected:
@@ -27,6 +26,8 @@ public:
 signals:
     void clicked(QPointF pos);
     void selected(ConversationObject *item);
+private:
+    ConversationObject *objectAt(QPoint uViewportPos);
 };
 
 #endif

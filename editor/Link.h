@@ -8,6 +8,7 @@ class Node;
 class Link : public ConversationObject { Q_OBJECT
 private:
     Node *m_from, *m_to;
+    QString m_label;
 public:
     Link(Node *from, Node *to);
     virtual ~Link();
@@ -17,8 +18,8 @@ public:
         const QStyleOptionGraphicsItem *style, QWidget *widget);
 
     virtual void edit(QFormLayout *layout);
+    virtual bool isSelection(QPointF point);
 private slots:
-    void labelUpdated(const QString &newLabel);
 };
 
 #endif

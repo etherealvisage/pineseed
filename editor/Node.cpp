@@ -18,7 +18,7 @@
 Node::Node() {
     m_size = QSizeF(150, 100);
 
-    setFlags(ItemIsSelectable);
+    setFlags(ItemIsSelectable | ItemIsMovable);
 }
 
 Node::~Node() {
@@ -26,8 +26,9 @@ Node::~Node() {
 }
 
 QRectF Node::boundingRect() const {
-    QPointF lr(0,0);
-    return QRectF(QPointF(0, 0), m_size);
+    // accommodate borders
+    const qreal border = 1.0;
+    return QRectF(QPointF(0,0), m_size + QSizeF(border*2, border*2));
 }
 
 void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *style,
@@ -136,4 +137,8 @@ void Node::edit(QFormLayout *layout) {
     // NOTE: dangerous...
     dynamic_cast<QGraphicsView *>(parent)->viewport()->update();
 #endif
+}
+
+bool Node::isSelection(QPointF point) {
+    return boundingRect().contains(point);
 }

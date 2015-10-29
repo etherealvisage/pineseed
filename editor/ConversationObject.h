@@ -11,6 +11,7 @@ public:
     virtual ~ConversationObject() {}
 
     virtual void edit(QFormLayout *layout) = 0;
+    virtual bool isSelection(QPointF point) = 0;
 signals:
     void changed();
 };
