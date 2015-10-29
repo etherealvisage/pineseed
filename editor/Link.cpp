@@ -12,8 +12,7 @@
 #include "moc_Link.cpp"
 #include "Node.h"
 
-Link::Link(Node *from, Node *to) : m_from(from), m_to(to) {
-    m_label = "Label";
+Link::Link(Node *from, Node *to) : m_from(from), m_to(to), m_label("Label") {
     m_from->links().push_back(this);
     m_to->links().push_back(this);
 }
@@ -25,8 +24,8 @@ Link::~Link() {
 
 QRectF Link::boundingRect() const {
     QRectF result, from = m_from->boundingRect(), to = m_to->boundingRect();
-    from.setTopLeft(m_from->pos());
-    to.setTopLeft(m_to->pos());
+    from.moveTopLeft(m_from->pos());
+    to.moveTopLeft(m_to->pos());
     result.setLeft(qMin(from.left(), to.left()));
     result.setTop(qMin(from.top(), to.top()));
     result.setRight(qMax(from.right(), to.right()));
@@ -71,6 +70,11 @@ void Link::edit(QFormLayout *layout) {
 }
 
 bool Link::isSelection(QPointF point) {
+    /*qDebug(
+        "Asking if point (%f, %f) is within rectangle of x:[%f,%f] y:[%f,%f]",
+        point.x(), point.y(),
+        labelBoundingRect().left(), labelBoundingRect().right(),
+        labelBoundingRect().top(), labelBoundingRect().bottom());*/
     return labelBoundingRect().contains(point);
 }
 

@@ -6,6 +6,8 @@
 #include <QSplitter>
 #include <QPushButton>
 #include <QFormLayout>
+#include <QShortcut>
+#include <QKeySequence>
 
 #include "ConversationWindow.h"
 #include "moc_ConversationWindow.cpp"
@@ -28,17 +30,27 @@ ConversationWindow::ConversationWindow() {
     connect(m_modeMapper, SIGNAL(mapped(int)), this, SLOT(modeChange(int)));
     QHBoxLayout *editbarLayout = new QHBoxLayout();
 
+    QShortcut *selectModeShortcut = new QShortcut(QKeySequence("Alt+`"), this);
+    connect(selectModeShortcut, &QShortcut::activated,
+        [=](){ modeChange(SelectMode); });
+
     QPushButton *newNodeButton = new QPushButton(tr("Node"));
     connect(newNodeButton, SIGNAL(clicked(bool)), m_modeMapper, SLOT(map()));
     m_modeMapper->setMapping(newNodeButton, NewNodeMode);
     editbarLayout->addWidget(newNodeButton);
     m_toolButtons.push_back(newNodeButton);
+    QShortcut *newNodeShortcut = new QShortcut(QKeySequence("Alt+1"), this);
+    connect(newNodeShortcut, SIGNAL(activated()),
+        newNodeButton, SLOT(click()));
 
     QPushButton *newLinkButton = new QPushButton(tr("Link"));
     connect(newLinkButton, SIGNAL(clicked(bool)), m_modeMapper, SLOT(map()));
     m_modeMapper->setMapping(newLinkButton, NewLinkMode);
     editbarLayout->addWidget(newLinkButton);
     m_toolButtons.push_back(newLinkButton);
+    QShortcut *newLinkShortcut = new QShortcut(QKeySequence("Alt+2"), this);
+    connect(newLinkShortcut, SIGNAL(activated()),
+        newLinkButton, SLOT(click()));
 
     QPushButton *newContextButton = new QPushButton(tr("Context"));
     connect(newContextButton, SIGNAL(clicked(bool)), m_modeMapper,
@@ -46,12 +58,17 @@ ConversationWindow::ConversationWindow() {
     m_modeMapper->setMapping(newContextButton, NewContextMode);
     editbarLayout->addWidget(newContextButton);
     m_toolButtons.push_back(newContextButton);
+    QShortcut *newContextShortcut = new QShortcut(QKeySequence("Alt+3"), this);
+    connect(newContextShortcut, SIGNAL(activated()),
+        newContextButton, SLOT(click()));
 
     QPushButton *deleteButton = new QPushButton(tr("Delete"));
     connect(deleteButton, SIGNAL(clicked(bool)), m_modeMapper, SLOT(map()));
     m_modeMapper->setMapping(deleteButton, DeleteMode);
     editbarLayout->addWidget(deleteButton);
     m_toolButtons.push_back(deleteButton);
+    QShortcut *deleteShortcut = new QShortcut(QKeySequence("Alt+4"), this);
+    connect(deleteShortcut, SIGNAL(activated()), deleteButton, SLOT(click()));
 
     editLayout->addLayout(editbarLayout);
 
