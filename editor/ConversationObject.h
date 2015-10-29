@@ -4,13 +4,15 @@
 #include <QGraphicsObject>
 
 class QGraphicsView;
+class QFormLayout;
 
-class ConversationObject : public QGraphicsObject {
+class ConversationObject : public QGraphicsObject { Q_OBJECT
 public:
     virtual ~ConversationObject() {}
 
-    virtual void contextMenu(QGraphicsView *view, QPoint pos) = 0;
-    virtual void edit(QGraphicsView *view) = 0;
+    virtual void edit(QFormLayout *layout) = 0;
+signals:
+    void changed();
 };
 
 #endif

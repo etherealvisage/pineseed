@@ -5,9 +5,9 @@
 
 #include "ConversationView.h"
 #include "moc_ConversationView.cpp"
+#include "ConversationWindow.h" // for Mode
 
 #include "Node.h"
-#include "Link.h"
 
 ConversationView::ConversationView() : QGraphicsView(new QGraphicsScene()),
     m_viewMode(DragMode) {
@@ -21,87 +21,14 @@ ConversationView::ConversationView() : QGraphicsView(new QGraphicsScene()),
     enterDragMode();
 }
 
-void ConversationView::contextMenuEvent(QContextMenuEvent *event) {
-    auto item = itemAt(event->pos());
-    m_origin = item;
-    bool found = false;
-    if(item) {
-        auto node = dynamic_cast<Node *>(item);
-        if(node) {
-            QMenu menu;
-
-            QAction *editAction = new QAction(tr("&Edit"), &menu);
-            menu.addAction(editAction);
-            connect(editAction, SIGNAL(triggered(bool)), this, SLOT(editNode()));
-
-            QAction *linkAction = new QAction(tr("Add &Link"), &menu);
-            menu.addAction(linkAction);
-            connect(linkAction, SIGNAL(triggered(bool)), this, SLOT(addLink()));
-
-            QAction *removeAction = new QAction(tr("Remove &Node"), &menu);
-            menu.addAction(removeAction);
-            connect(removeAction, SIGNAL(triggered(bool)), this, SLOT(removeNode()));
-
-            menu.exec(mapToGlobal(event->pos()));
-            return;
-        }
-        auto link = dynamic_cast<Link *>(item);
-        if(link && link->labelBoundingRect().contains(
-            mapToScene(event->pos()))) {
-
-            QMenu menu;
-
-            QAction *contextChangeLabel = new QAction(tr("&Change label"), this);
-            connect(contextChangeLabel, SIGNAL(triggered(bool)), this,
-                SLOT(changeLinkLabel()));
-            menu.addAction(contextChangeLabel);
-            QAction *contextRemoveLink = new QAction(tr("&Remove link"), this);
-            connect(contextRemoveLink, SIGNAL(triggered(bool)), this,
-                SLOT(removeLink()));
-            menu.addAction(contextRemoveLink);
-
-            menu.exec(mapToGlobal(event->pos()));
-            return;
-        }
-    }
-    /*if(!found) {
-        QMenu menu;
-
-        QAction *contextAddNode = new QAction(tr("&Add node"), this);
-        connect(contextAddNode, SIGNAL(triggered(bool)), this,
-            SLOT(addNode()));
-        menu.addAction(contextAddNode);
-
-        menu.exec(mapToGlobal(event->pos()));
-    }*/
-}
-
-void ConversationView::mouseDoubleClickEvent(QMouseEvent *event) {
-    auto item = itemAt(event->pos());
-    if(!item || m_viewMode != DragMode) return;
-
-    auto link = dynamic_cast<Link *>(item);
-    if(link && link->labelBoundingRect().contains(mapToScene(event->pos()))) {
-        m_origin = item;
-        //changeLinkLabel();
-    }
-    auto node = dynamic_cast<Node *>(item);
-    if(node) {
-        node->edit(this);
-    }
-
-    QGraphicsView::mouseDoubleClickEvent(event);
-}
-
 void ConversationView::mousePressEvent(QMouseEvent *event) {
     auto item = itemAt(event->pos());
-    auto link = dynamic_cast<Link *>(item);
-    if(item && event->button() == Qt::LeftButton && m_viewMode == SelectMode
-        && (!link || link->labelBoundingRect().contains(
-            mapToScene(event->pos())))) {
-
-        emit(selected(item));
-        enterDragMode();
+    if(item && event->button() == Qt::LeftButton && m_viewMode == SelectMode) {
+        auto obj = dynamic_cast<ConversationObject *>(item);
+        if(obj) emit(selected(obj));
+    }
+    else if(!item && event->button() == Qt::LeftButton && m_viewMode == InsertMode) {
+        emit(clicked(mapToScene(event->pos())));
     }
     else {
         QGraphicsView::mousePressEvent(event);
@@ -132,6 +59,12 @@ void ConversationView::enterDragMode() {
 
 void ConversationView::enterSelectMode() {
     m_viewMode = SelectMode;
+    setCursor(Qt::CrossCursor);
+    setDragMode(ScrollHandDrag);
+}
+
+void ConversationView::enterInsertMode() {
+    m_viewMode = InsertMode;
     setCursor(Qt::CrossCursor);
     setDragMode(ScrollHandDrag);
 }

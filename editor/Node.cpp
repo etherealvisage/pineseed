@@ -10,12 +10,10 @@
 #include <QMenu>
 #include <QPainter>
 #include <QPushButton>
+#include <QFormLayout>
 
 #include "Node.h"
 #include "moc_Node.cpp"
-
-#include "Action.h"
-#include "Link.h"
 
 Node::Node() {
     m_size = QSizeF(150, 100);
@@ -24,12 +22,7 @@ Node::Node() {
 }
 
 Node::~Node() {
-    while(m_links.size()) {
-        auto link = m_links.back();
-        link->from()->removeLink(link);
-        link->to()->removeLink(link);
-        delete link;
-    }
+    
 }
 
 QRectF Node::boundingRect() const {
@@ -54,18 +47,6 @@ void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *style,
     painter->drawText(boundingRect().center() - QPointF(width/2,0), m_label);
 }
 
-void Node::removeLink(Link *link) {
-    int in = m_links.indexOf(link);
-    if(in != -1) m_links.remove(in);
-}
-
-bool Node::hasLink(Node *to) {
-    for(int i = 0; i < m_links.size(); i ++) {
-        if(m_links[i]->to() == to) return true;
-    }
-    return false;
-}
-
 void Node::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
     if(event->buttons() & Qt::LeftButton) {
         QPointF last = mapFromScene(event->lastScenePos());
@@ -80,8 +61,13 @@ void Node::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
     }
 }
 
-void Node::edit(QGraphicsView *parent) {
-    QDialog dialog(parent);
+void Node::edit(QFormLayout *layout) {
+    QLineEdit *labelEdit = new QLineEdit(m_label);
+    layout->addRow(tr("Label:"), labelEdit);
+    connect(labelEdit, &QLineEdit::textChanged,
+        [=](const QString &label){ m_label = label; emit changed(); });
+#if 0
+    QDialog dialog(widget);
 
     QGridLayout grid;
     dialog.setLayout(&grid);
@@ -131,19 +117,6 @@ void Node::edit(QGraphicsView *parent) {
             delete i;
         });
 
-    QLabel linksLabel(tr("Links:"));
-    grid.addWidget(&linksLabel, grid.rowCount(), 0);
-    QListWidget linksList;
-    grid.addWidget(&linksList, grid.rowCount()-1, 1, 1, 2);
-    linksList.setDragDropMode(QAbstractItemView::DragDrop);
-    linksList.setDefaultDropAction(Qt::MoveAction);
-
-    for(auto link : m_links) {
-        auto i = new QListWidgetItem(link->label(), &linksList);
-        i->setData(Qt::UserRole,
-            qVariantFromValue(reinterpret_cast<quint64>(link)));
-    }
-
     QPushButton okButton(QString("&Done"));
     okButton.setDefault(true);
     grid.addWidget(&okButton, grid.rowCount(), 0, 1, 3, Qt::AlignHCenter);
@@ -152,13 +125,6 @@ void Node::edit(QGraphicsView *parent) {
     dialog.exec();
 
     m_label = labelText.text();
-
-    m_links.clear();
-    for(int r = 0; r < linksList.count(); r ++) {
-        auto i = linksList.item(r);
-        m_links.push_back(
-            reinterpret_cast<Link *>(i->data(Qt::UserRole).value<quint64>()));
-    }
 
     m_actions.clear();
     for(int r = 0; r < actionsList.count(); r ++) {
@@ -169,4 +135,5 @@ void Node::edit(QGraphicsView *parent) {
 
     // NOTE: dangerous...
     dynamic_cast<QGraphicsView *>(parent)->viewport()->update();
+#endif
 }
