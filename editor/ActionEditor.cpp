@@ -60,11 +60,6 @@ ActionEditor::ActionEditor(QStandardItemModel *model) : m_model(model) {
     m_currentStack->addWidget(new QLabel("error!"));
 
     changeTo(nullptr);
-#if 0
-    actionLayout->addWidget(actionTypeWidget);
-    QStackedWidget *actionEditWidget = new QStackedWidget();
-    actionLayout->addWidget(actionEditWidget);
-#endif
 }
 
 void ActionEditor::addAction() {
@@ -76,15 +71,21 @@ void ActionEditor::addAction() {
     QStandardItem *item = new QStandardItem(QString(""));
     parent->appendRow(item);
 
-    item->setEditable(true);
+    item->setEditable(false);
 
     item->setData(TypeData, Empty);
 
     updateActionTitle(item);
+    changeTo(item);
 }
 
 void ActionEditor::removeAction() {
-    
+    auto tr = m_current;
+    changeTo(nullptr);
+    if(tr) {
+        if(tr->parent()) tr->parent()->removeRow(tr->row());
+        else m_model->removeRow(tr->row());
+    }
 }
 
 void ActionEditor::currentChanged(const QModelIndex &now,
