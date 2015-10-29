@@ -50,10 +50,7 @@ void Link::paint(QPainter *painter,
     painter->drawLine(arrow1.translated(line23));
     painter->drawLine(arrow2.translated(line23));
 
-    QFontMetricsF fm((QFont()));
-    QRectF tbr = fm.boundingRect(m_label);
-    QPointF lineCentre = (line.p1()+line.p2())/2;
-    tbr.moveCenter(lineCentre);
+    auto tbr = labelBoundingRect();
 
     painter->setPen(Qt::lightGray);
     painter->setBrush(QBrush(Qt::lightGray, Qt::SolidPattern));
@@ -71,12 +68,17 @@ void Link::edit(QFormLayout *layout) {
 }
 
 bool Link::isSelection(QPointF point) {
+    return labelBoundingRect().contains(point);
+}
+
+QRectF Link::labelBoundingRect() const {
     QPointF centre = ((m_from->pos() + m_from->boundingRect().center())
         + (m_to->pos() + m_to->boundingRect().center())) / 2.0;
 
     QFontMetricsF fm((QFont()));
     QRectF tbr = fm.boundingRect(m_label);
+    if(m_label == "") tbr.setSize(QSizeF(10,10));
     tbr.moveCenter(centre);
 
-    return tbr.contains(point);
+    return tbr;
 }

@@ -116,19 +116,18 @@ void ConversationWindow::selectObject(ConversationObject *object) {
 
         delete item;
     }
-    object->edit(dynamic_cast<QFormLayout *>(m_editarea->layout()));
+    if(object) object->edit(dynamic_cast<QFormLayout *>(m_editarea->layout()));
     m_selectLast = object;
 }
 
 void ConversationWindow::insertNode(QPointF where) {
     Node *node = new Node();
-    node->setPos(where); // TODO: centre at location instead?
+    node->setPos(where - node->boundingRect().center());
     m_cview->scene()->addItem(node);
 
     connect(node, SIGNAL(changed()), m_cview->viewport(), SLOT(update()));
-
+    selectObject(node);
     modeChange(SelectMode);
-    m_selectLast = nullptr;
 }
 
 void ConversationWindow::insertContext(QPointF where) {
@@ -140,16 +139,17 @@ void ConversationWindow::makeLink(ConversationObject *object) {
     // not allowed to have self-links for now
     if(!target || target == m_selectLast) return; 
 
-    modeChange(SelectMode);
-
     Link *link = new Link(dynamic_cast<Node *>(m_selectLast), target);
     connect(link, SIGNAL(changed()), m_cview->viewport(), SLOT(update()));
     m_cview->scene()->addItem(link);
+
+    selectObject(link);
+    modeChange(SelectMode);
 }
 
 void ConversationWindow::deleteObject(ConversationObject *object) {
     object->deleteLater();
 
     modeChange(SelectMode);
-    m_selectLast = nullptr;
+    selectObject(nullptr);
 }

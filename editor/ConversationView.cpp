@@ -38,8 +38,6 @@ void ConversationView::mousePressEvent(QMouseEvent *event) {
 }
 
 void ConversationView::mouseMoveEvent(QMouseEvent *event) {
-    QGraphicsView::mouseMoveEvent(event);
-
     auto item = objectAt(event->pos());
     if(m_viewMode == SelectMode && item) {
         setCursor(Qt::CrossCursor);
@@ -49,6 +47,7 @@ void ConversationView::mouseMoveEvent(QMouseEvent *event) {
         setCursor(Qt::OpenHandCursor);
         setDragMode(ScrollHandDrag);
     }
+    QGraphicsView::mouseMoveEvent(event);
 }
 
 void ConversationView::enterDragMode() {

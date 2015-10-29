@@ -19,6 +19,8 @@ public:
 
     virtual void edit(QFormLayout *layout);
     virtual bool isSelection(QPointF point);
+private:
+    QRectF labelBoundingRect() const;
 private slots:
 };
 
