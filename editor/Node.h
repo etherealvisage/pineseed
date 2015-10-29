@@ -5,20 +5,24 @@
 
 #include "ConversationObject.h"
 
+class QTreeView;
+class QStandardItem;
+class QStandardItemModel;
+
 class Action;
 class Link;
 
 class Node : public ConversationObject { Q_OBJECT
+public:
 private:
     QSizeF m_size;
     QString m_label;
-    //QVector<Action *> m_actions;
     QVector<Link *> m_links;
+    QStandardItemModel *m_actionModel;
 public:
     Node();
     virtual ~Node();
 
-    //QVector<Action *> &actions() { return m_actions; }
     QVector<Link *> &links() { return m_links; }
     const QVector<Link *> &links() const { return m_links; }
 
@@ -30,7 +34,7 @@ public:
     virtual bool isSelection(QPointF point);
 protected:
     virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-private slots:
+private:
 };
 
 #endif
