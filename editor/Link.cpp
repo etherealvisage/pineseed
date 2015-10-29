@@ -14,10 +14,13 @@
 
 Link::Link(Node *from, Node *to) : m_from(from), m_to(to) {
     m_label = "Label";
+    m_from->links().push_back(this);
+    m_to->links().push_back(this);
 }
 
 Link::~Link() {
-    
+    m_from->links().removeAll(this);
+    m_to->links().removeAll(this);
 }
 
 QRectF Link::boundingRect() const {

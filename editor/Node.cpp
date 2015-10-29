@@ -15,6 +15,8 @@
 #include "Node.h"
 #include "moc_Node.cpp"
 
+#include "Link.h"
+
 Node::Node() {
     m_size = QSizeF(150, 100);
 
@@ -22,7 +24,7 @@ Node::Node() {
 }
 
 Node::~Node() {
-    
+    for(auto link : m_links) delete link;
 }
 
 QRectF Node::boundingRect() const {
