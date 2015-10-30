@@ -20,6 +20,7 @@
 #include "Node.h"
 #include "Link.h"
 #include "ActionEditor.h" // for ItemData definitions
+#include "ConversationSimulation.h"
 
 ConversationWindow::ConversationWindow() {
     m_split = new QSplitter();
@@ -27,6 +28,9 @@ ConversationWindow::ConversationWindow() {
     m_split->addWidget(m_edit);
     m_cview = new ConversationView();
     m_split->addWidget(m_cview);
+    m_sim = new ConversationSimulation();
+    m_split->addWidget(m_sim);
+    modeChange(SelectMode); // enter select mode by default
 
     setWidget(m_split);
 
@@ -75,6 +79,15 @@ ConversationWindow::ConversationWindow() {
     m_toolButtons.push_back(deleteButton);
     QShortcut *deleteShortcut = new QShortcut(QKeySequence("Alt+4"), this);
     connect(deleteShortcut, SIGNAL(activated()), deleteButton, SLOT(click()));
+
+    QPushButton *simulateButton = new QPushButton(tr("Simulate"));
+    connect(simulateButton, SIGNAL(clicked(bool)), m_modeMapper, SLOT(map()));
+    m_modeMapper->setMapping(simulateButton, SimulateMode);
+    editbarLayout->addWidget(simulateButton);
+    m_toolButtons.push_back(simulateButton);
+    QShortcut *simulateShortcut = new QShortcut(QKeySequence("Alt+5"), this);
+    connect(simulateShortcut, SIGNAL(activated()), simulateButton,
+        SLOT(click()));
 
     editLayout->addLayout(editbarLayout);
 
@@ -201,6 +214,11 @@ void ConversationWindow::modeChange(int to) {
         connect(m_cview, SIGNAL(selected(ConversationObject *)),
             this, SLOT(deleteObject(ConversationObject *)));
         break;
+    case SimulateMode:
+        m_cview->enterSelectMode();
+        connect(m_cview, SIGNAL(selected(ConversationObject *)),
+            this, SLOT(beginSimulation(ConversationObject *)));
+        break;
     default:
         qFatal("Unexpected mode change value");
         break;
@@ -253,4 +271,13 @@ void ConversationWindow::deleteObject(ConversationObject *object) {
 
     modeChange(SelectMode);
     selectObject(nullptr);
+}
+
+void ConversationWindow::beginSimulation(ConversationObject *object) {
+    Node *node = dynamic_cast<Node *>(object);
+    if(!node) return;
+
+    m_sim->beginFrom(node);
+    modeChange(SelectMode);
+    selectObject(object);
 }

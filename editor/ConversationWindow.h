@@ -12,6 +12,8 @@ class QPushButton;
 class QSplitter;
 class QXmlStreamWriter;
 
+class ConversationSimulation;
+
 class ConversationWindow : public QMdiSubWindow { Q_OBJECT
 private:
     enum Mode {
@@ -19,7 +21,8 @@ private:
         NewNodeMode,
         NewLinkMode,
         NewContextMode,
-        DeleteMode
+        DeleteMode,
+        SimulateMode
     };
 private:
     QSplitter *m_split;
@@ -27,6 +30,7 @@ private:
     QWidget *m_editbar;
     QWidget *m_editarea;
     ConversationView *m_cview;
+    ConversationSimulation *m_sim;
     QSignalMapper *m_modeMapper;
     QList<QPushButton *> m_toolButtons;
 
@@ -46,6 +50,7 @@ private slots:
     void insertContext(QPointF where);
     void makeLink(ConversationObject *object);
     void deleteObject(ConversationObject *object);
+    void beginSimulation(ConversationObject *object);
 };
 
 #endif
