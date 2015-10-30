@@ -136,7 +136,6 @@ void ConversationWindow::load() {
 
     QMap<int, ConversationObject *> objs;
     auto nodes = objects.childNodes();
-    qDebug("number of items: %i", nodes.length());
     for(int i = 0; i < nodes.length(); i ++) {
         auto element = nodes.at(i).toElement();
 

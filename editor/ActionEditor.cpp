@@ -90,6 +90,7 @@ void ActionEditor::addAction() {
     parent->appendRow(item);
 
     item->setEditable(false);
+    item->setDropEnabled(false);
 
     item->setData(TypeData, Empty);
 
