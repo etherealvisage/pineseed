@@ -16,6 +16,7 @@
 #include <QStackedWidget>
 #include <QComboBox>
 #include <QXmlStreamWriter>
+#include <QDomElement>
 
 #include "Node.h"
 #include "moc_Node.cpp"
@@ -92,20 +93,27 @@ void Node::serialize(QXmlStreamWriter &xml,
     xml.writeEndElement();
 }
 
-void Node::deserialize(QXmlStreamReader &xml,
-    const QMap<int, ConversationObject *> &items) {
+void Node::deserialize(QDomElement &xml,
+    const QMap<int, ConversationObject *> &objs) {
 
-    m_size = QSizeF(xml.attributes().value("width").toDouble(),
-        xml.attributes().value("height").toDouble());
-    setPos(QPointF(xml.attributes().value("x").toDouble(),
-        xml.attributes().value("y").toDouble()));
+    m_label = xml.attribute("label");
+    m_size = QSizeF(xml.attribute("width").toDouble(),
+        xml.attribute("height").toDouble());
+    setPos(QPointF(xml.attribute("x").toDouble(),
+        xml.attribute("y").toDouble()));
+    prepareGeometryChange();
 
-    m_label = xml.attributes().value("label").toString();
+    // if there are no children, we're done here.
+    if(!xml.hasChildNodes()) return;
 
-    QStandardItem *action;
-    xml.readNext();
-    while((action = actionDeserializeHelper(xml, items))) {
-        m_actionModel->invisibleRootItem()->appendRow(action);
+    auto nodes = xml.childNodes();
+    for(int i = 0; i < nodes.length(); i ++) {
+        auto node = nodes.at(i);
+        if(!node.isElement()) continue;
+        auto element = node.toElement();
+        if(element.tagName() != "action") continue;
+        m_actionModel->invisibleRootItem()->appendRow(
+            actionDeserializeHelper(element, objs));
     }
 }
 
@@ -140,39 +148,24 @@ void Node::actionSerializeHelper(QXmlStreamWriter &xml,
     xml.writeEndElement();
 }
 
-QStandardItem *Node::actionDeserializeHelper(QXmlStreamReader &xml, 
-    const QMap<int, ConversationObject *> &items) {
+QStandardItem *Node::actionDeserializeHelper(QDomElement &xml, 
+        const QMap<int, ConversationObject *> &objs) {
 
-    qDebug("actionDeserializeHelper called!");
-    if(xml.isStartElement() && xml.name() != "action") return nullptr;
-    qDebug("actionDeserializeHelper called, actual action found!");
+    auto action = new QStandardItem();
 
-    // assumes that the <action> begin token has been read
-
-    auto action = new QStandardItem;
-
-    action->setData(xml.attributes().value("type").toInt(),
-        ActionEditor::TypeData);
-    action->setData(xml.attributes().value("speech").toString(),
-        ActionEditor::SpeechData);
+    action->setData(xml.attribute("type").toInt(), ActionEditor::TypeData);
+    action->setData(xml.attribute("speech"), ActionEditor::SpeechData);
     ActionEditor::updateActionTitle(action);
 
-    qDebug("Parsing next...");
-    while(true) {
-        auto t = xml.readNext();
-        qDebug("Read next token.");
-        if(t == QXmlStreamReader::StartElement) {
-            qDebug("Start element! Recursing...");
-            auto i = actionDeserializeHelper(xml, items);
-            action->appendRow(i);
-        }
-        else if(t == QXmlStreamReader::EndElement) {
-            qDebug("End element.");
-            break;
-        }
-    }
+    auto nodes = xml.childNodes();
+    for(int i = 0; i < nodes.size(); i ++) {
+        auto node = nodes.at(i);
+        if(!node.isElement()) continue;
+        auto element = node.toElement();
+        if(element.tagName() != "action") continue;
 
-    qDebug("Finishing!");
+        action->appendRow(actionDeserializeHelper(element, objs));
+    }
 
     return action;
 }

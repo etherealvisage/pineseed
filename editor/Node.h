@@ -39,15 +39,15 @@ public:
 
     virtual void serialize(QXmlStreamWriter &xml,
         const QMap<ConversationObject *, int> &itemID);
-    virtual void deserialize(QXmlStreamReader &xml,
-        const QMap<int, ConversationObject *> &items);
+    virtual void deserialize(QDomElement &xml,
+        const QMap<int, ConversationObject *> &objs);
 protected:
     virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
 private:
     void actionSerializeHelper(QXmlStreamWriter &xml, 
         const QMap<ConversationObject *, int> &itemID, QStandardItem *action);
-    QStandardItem *actionDeserializeHelper(QXmlStreamReader &xml, 
-        const QMap<int, ConversationObject *> &items);
+    QStandardItem *actionDeserializeHelper(QDomElement &xml, 
+        const QMap<int, ConversationObject *> &objs);
 };
 
 #endif

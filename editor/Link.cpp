@@ -8,6 +8,7 @@
 #include <QPen>
 #include <QBrush>
 #include <QXmlStreamWriter>
+#include <QDomElement>
 
 #include "Link.h"
 #include "moc_Link.cpp"
@@ -92,18 +93,17 @@ void Link::serialize(QXmlStreamWriter &xml,
     xml.writeEndElement();
 }
 
-void Link::deserialize(QXmlStreamReader &xml,
-    const QMap<int, ConversationObject *> &items) {
+void Link::deserialize(QDomElement &xml,
+    const QMap<int, ConversationObject *> &objs) {
 
-    m_label = xml.attributes().value("label").toString();
-    m_from = dynamic_cast<Node *>(
-        items[xml.attributes().value("from").toInt()]);
-    m_to = dynamic_cast<Node *>(items[xml.attributes().value("to").toInt()]);
+    m_label = xml.attribute("label");
+    m_from = dynamic_cast<Node *>(objs[xml.attribute("from").toInt()]);
+    m_to = dynamic_cast<Node *>(objs[xml.attribute("to").toInt()]);
 
     m_from->links().push_back(this);
     m_to->links().push_back(this);
 
-    xml.readNext(); // skip over endelement
+    prepareGeometryChange();
 }
 
 QRectF Link::labelBoundingRect() const {

@@ -12,7 +12,6 @@
 #include <QFile>
 #include <QXmlStreamWriter>
 #include <QStandardItemModel>
-#include <QXmlStreamReader>
 #include <QDomDocument>
 
 #include "ConversationWindow.h"
@@ -125,79 +124,43 @@ void ConversationWindow::load() {
     QFile file(filename);
     if(!file.open(QIODevice::ReadOnly)) return;
     
-    QMap<int, ConversationObject *> items;
-    {
-        QXmlStreamReader xml(&file);
-        auto t = xml.readNext();
-        if(t != QXmlStreamReader::StartDocument) {
-            qDebug("Expected start of document!");
-            return;
-        }
-        t = xml.readNext();
-        if(t != QXmlStreamReader::StartElement || xml.name() != "objects") {
-            qDebug("Expected <objects>!");
-            return;
-        }
+    QDomDocument doc;
+    doc.setContent(&file);
 
-        while(!xml.atEnd()) {
-            t = xml.readNext();
-            // end on </objects> encounter
-            if(t == QXmlStreamReader::EndElement) break;
-            else if(t != QXmlStreamReader::StartElement) {
-                qDebug("Expected begin of object!");
-                return;
-            }
-            int id = xml.attributes().value("id").toInt();
-            if(xml.name() == "node") {
-                qDebug("Adding new Node with id %i", id);
-                items[id] = new Node();
-            }
-            else if(xml.name() == "link") {
-                qDebug("Adding new Link with id %i", id);
-                items[id] = new Link(nullptr, nullptr);
-            }
-            xml.skipCurrentElement();
+    auto objectss = doc.elementsByTagName("objects");
+    if(objectss.size() != 1) {
+        qDebug("Expecting exactly one <objects>");
+        return;
+    }
+    auto objects = objectss.at(0);
+
+    QMap<int, ConversationObject *> objs;
+    auto nodes = objects.childNodes();
+    qDebug("number of items: %i", nodes.length());
+    for(int i = 0; i < nodes.length(); i ++) {
+        auto element = nodes.at(i).toElement();
+
+        auto name = element.tagName();
+        auto id = element.attribute("id").toInt();
+
+        if(name == "node") {
+            objs[id] = new Node();
+        }
+        else if(name == "link") {
+            objs[id] = new Link(nullptr, nullptr);
+        }
+        else {
+            qDebug("Unknown object type %s", name.toLocal8Bit().constData());
         }
     }
 
-    file.seek(0);
+    for(int i = 0; i < nodes.length(); i ++) {
+        auto element = nodes.at(i).toElement();
 
-    {
-        QXmlStreamReader xml(&file);
-        auto t = xml.readNext();
-        if(t != QXmlStreamReader::StartDocument) {
-            qDebug("Expected start of document!");
-            return;
-        }
-        t = xml.readNext();
-        if(t != QXmlStreamReader::StartElement || xml.name() != "objects") {
-            qDebug("Expected <objects>!");
-            return;
-        }
-
-        while(!xml.atEnd()) {
-            t = xml.readNext();
-            // end on </objects> encounter
-            if(t == QXmlStreamReader::EndElement) {
-                break;
-            }
-            else if(t != QXmlStreamReader::StartElement) {
-                qDebug("Expected begin of object!");
-                return;
-            }
-            int id = xml.attributes().value("id").toInt();
-            if(xml.name() == "node") {
-                dynamic_cast<Node *>(items[id])->deserialize(xml, items);
-            }
-            else if(xml.name() == "link") {
-                dynamic_cast<Link *>(items[id])->deserialize(xml, items);
-            }
-            m_cview->scene()->addItem(items[id]);
-        }
-    }
-
-    for(auto i : items) {
-        //i->geomet
+        auto id = element.attribute("id").toInt();
+        
+        objs[id]->deserialize(element, objs);
+        m_cview->scene()->addItem(objs[id]);
     }
 }
 
