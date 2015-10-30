@@ -19,6 +19,7 @@ Link::Link(Node *from, Node *to) : m_from(from), m_to(to), m_label("Label") {
     if(to) m_to->links().push_back(this);
 
     this->setZValue(-1);
+    m_selected = false;
 }
 
 Link::~Link() {
