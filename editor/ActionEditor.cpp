@@ -6,6 +6,7 @@
 #include <QStackedWidget>
 #include <QLineEdit>
 #include <QLabel>
+#include <QTextEdit>
 
 #include "ActionEditor.h"
 #include "moc_ActionEditor.cpp"
@@ -46,11 +47,12 @@ ActionEditor::ActionEditor(QStandardItemModel *model) : m_model(model) {
 
     m_currentStack->addWidget(new QLabel("Please select a type"));
 
-    m_currentSpeech = new QLineEdit();
+    m_currentSpeech = new QTextEdit();
+    m_currentSpeech->setAcceptRichText(false);
     m_currentStack->addWidget(m_currentSpeech);
-    connect(m_currentSpeech, &QLineEdit::textChanged,
-        [=](const QString &speech)
-            { if(m_current) m_current->setData(speech, SpeechData); });
+    connect(m_currentSpeech, &QTextEdit::textChanged, [=]()
+        { if(m_current) m_current->setData(m_currentSpeech->toPlainText(),
+            SpeechData); });
 
     m_currentStack->addWidget(new QLabel("Emote"));
     m_currentStack->addWidget(new QLabel("Sequence"));
@@ -111,9 +113,18 @@ void ActionEditor::updateActionTitle(QStandardItem *item) {
     case Empty:
         title = "[empty]";
         break;
-    case Speech:
-        title = "[speech]";
+    case Speech: {
+        QString speech = item->data(SpeechData).toString();
+        int ind = speech.indexOf('\n');
+        qDebug("ind: %d", ind);
+        if(ind != -1) speech.truncate(ind);
+        if(speech.length() > 30) {
+            speech.truncate(30);
+            speech += "...";
+        }
+        title = "[speech] " + speech;
         break;
+    }
     case Emote:
         title = "[emote]";
         break;

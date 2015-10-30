@@ -10,6 +10,7 @@ class QModelIndex;
 class QComboBox;
 class QLineEdit;
 class QStackedWidget;
+class QTextEdit;
 
 class ActionEditor : public QWidget { Q_OBJECT
 public:
@@ -31,7 +32,7 @@ private:
     QTreeView *m_actionView;
     QComboBox *m_currentType;
     QStackedWidget *m_currentStack;
-    QLineEdit *m_currentSpeech;
+    QTextEdit *m_currentSpeech;
     QStandardItem *m_current;
 public:
     ActionEditor(QStandardItemModel *model);
