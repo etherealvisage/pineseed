@@ -15,6 +15,9 @@ class ConversationObject : public QGraphicsObject { Q_OBJECT
 public:
     virtual ~ConversationObject() {}
 
+    virtual void select() {}
+    virtual void deselect() {}
+
     virtual void edit(QFormLayout *layout) = 0;
     virtual bool isSelection(QPointF point) = 0;
 

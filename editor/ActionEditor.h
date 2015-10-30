@@ -21,10 +21,12 @@ public:
         Sequence,
         Concurrent,
         Conditional,
-        Jump
+        Jump,
+        EndConversation
     };
     enum ItemData {
         TypeData = 0x100,
+        SpeakerData,
         SpeechData
     };
 private:
@@ -32,6 +34,7 @@ private:
     QTreeView *m_actionView;
     QComboBox *m_currentType;
     QStackedWidget *m_currentStack;
+    QLineEdit *m_currentSpeaker;
     QTextEdit *m_currentSpeech;
     QStandardItem *m_current;
 public:

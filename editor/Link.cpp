@@ -17,6 +17,8 @@
 Link::Link(Node *from, Node *to) : m_from(from), m_to(to), m_label("Label") {
     if(from) m_from->links().push_back(this);
     if(to) m_to->links().push_back(this);
+
+    this->setZValue(-1);
 }
 
 Link::~Link() {
@@ -38,7 +40,8 @@ QRectF Link::boundingRect() const {
 void Link::paint(QPainter *painter,
     const QStyleOptionGraphicsItem *style, QWidget *widget) {
 
-    painter->setPen(QPen(QBrush(Qt::darkGreen), 3.0));
+    if(m_selected) painter->setPen(QPen(QBrush(Qt::green), 3.0));
+    else painter->setPen(QPen(QBrush(Qt::darkGreen), 3.0));
 
     QLineF line(m_from->pos() + m_from->boundingRect().center(),
         m_to->pos() + m_to->boundingRect().center());
@@ -57,7 +60,8 @@ void Link::paint(QPainter *painter,
     auto tbr = labelBoundingRect();
 
     painter->setPen(Qt::lightGray);
-    painter->setBrush(QBrush(Qt::lightGray, Qt::SolidPattern));
+    if(m_selected) painter->setBrush(QBrush(Qt::yellow, Qt::SolidPattern));
+    else painter->setBrush(QBrush(Qt::lightGray, Qt::SolidPattern));
     painter->drawRect(tbr);
 
     painter->setPen(QPen(QBrush(Qt::red), 3.0));

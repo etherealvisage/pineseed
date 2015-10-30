@@ -9,9 +9,13 @@ class Link : public ConversationObject { Q_OBJECT
 private:
     Node *m_from, *m_to;
     QString m_label;
+    bool m_selected;
 public:
     Link(Node *from, Node *to);
     virtual ~Link();
+
+    virtual void select() { m_selected = true; update(); }
+    virtual void deselect() { m_selected = false; update(); }
 
     Node *from() const { return m_from; }
     Node *to() const { return m_to; }

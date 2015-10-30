@@ -38,6 +38,7 @@ ActionEditor::ActionEditor(QStandardItemModel *model) : m_model(model) {
     m_currentType->addItem(tr("Concurrent"));
     m_currentType->addItem(tr("Conditional"));
     m_currentType->addItem(tr("Jump"));
+    m_currentType->addItem(tr("End conversation"));
     layout->addWidget(m_currentType);
 
     m_currentStack = new QStackedWidget();
@@ -47,18 +48,36 @@ ActionEditor::ActionEditor(QStandardItemModel *model) : m_model(model) {
 
     m_currentStack->addWidget(new QLabel("Please select a type"));
 
+    QVBoxLayout *speechLayout = new QVBoxLayout();
+    m_currentSpeaker = new QLineEdit();
+    connect(m_currentSpeaker, &QLineEdit::textChanged, 
+        [=](const QString &speaker) {
+            if(m_current) {
+                m_current->setData(speaker, SpeakerData);
+                updateActionTitle(m_current);
+            }});
+    speechLayout->addWidget(m_currentSpeaker);
+
     m_currentSpeech = new QTextEdit();
     m_currentSpeech->setAcceptRichText(false);
-    m_currentStack->addWidget(m_currentSpeech);
-    connect(m_currentSpeech, &QTextEdit::textChanged, [=]()
-        { if(m_current) m_current->setData(m_currentSpeech->toPlainText(),
-            SpeechData); });
+    connect(m_currentSpeech, &QTextEdit::textChanged, 
+        [=]() {
+            if(m_current) {
+                m_current->setData(m_currentSpeech->toPlainText(), SpeechData);
+                updateActionTitle(m_current);
+            }
+        });
+    speechLayout->addWidget(m_currentSpeech);
+    QWidget *speechWidget = new QWidget();
+    speechWidget->setLayout(speechLayout);
+    m_currentStack->addWidget(speechWidget);
 
     m_currentStack->addWidget(new QLabel("Emote"));
     m_currentStack->addWidget(new QLabel("Sequence"));
     m_currentStack->addWidget(new QLabel("Concurrent"));
     m_currentStack->addWidget(new QLabel("Conditional"));
     m_currentStack->addWidget(new QLabel("Jump"));
+    m_currentStack->addWidget(new QLabel("End conversation"));
     m_currentStack->addWidget(new QLabel("error!"));
 
     changeTo(nullptr);
@@ -66,9 +85,6 @@ ActionEditor::ActionEditor(QStandardItemModel *model) : m_model(model) {
 
 void ActionEditor::addAction() {
     QStandardItem *parent = m_model->invisibleRootItem();
-    //if(view->selectionModel()->hasSelection()) {
-        //view->selectionModel()->selection().front().indexes().
-    //}
 
     QStandardItem *item = new QStandardItem(QString(""));
     parent->appendRow(item);
@@ -114,15 +130,15 @@ void ActionEditor::updateActionTitle(QStandardItem *item) {
         title = "[empty]";
         break;
     case Speech: {
+        QString speaker = item->data(SpeakerData).toString();
         QString speech = item->data(SpeechData).toString();
         int ind = speech.indexOf('\n');
-        qDebug("ind: %d", ind);
         if(ind != -1) speech.truncate(ind);
         if(speech.length() > 30) {
             speech.truncate(30);
             speech += "...";
         }
-        title = "[speech] " + speech;
+        title = "[speech] " + speaker + ": " + speech;
         break;
     }
     case Emote:
@@ -140,6 +156,9 @@ void ActionEditor::updateActionTitle(QStandardItem *item) {
     case Jump:
         title = "[jump]";
         break;
+    case EndConversation:
+        title = "[end]";
+        break;
     }
     item->setData(title, Qt::DisplayRole);
 }
@@ -156,6 +175,8 @@ void ActionEditor::changeTo(QStandardItem *item) {
 
         m_currentStack->setEnabled(true);
         m_currentStack->setCurrentIndex(item->data(TypeData).toInt());
+
+        m_currentSpeaker->setText(item->data(SpeakerData).toString());
 
         m_currentSpeech->setText(item->data(SpeechData).toString());
     }

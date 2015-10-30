@@ -28,6 +28,7 @@ void ConversationView::mousePressEvent(QMouseEvent *event) {
         if(event->button() == Qt::LeftButton && m_viewMode == SelectMode) {
             emit(selected(obj));
         }
+        QGraphicsView::mousePressEvent(event);
     }
     else if(event->button() == Qt::LeftButton && m_viewMode == InsertMode) {
         emit(clicked(mapToScene(event->pos())));

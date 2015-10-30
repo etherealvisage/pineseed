@@ -27,7 +27,7 @@ ConversationWindow::ConversationWindow() {
     m_split->addWidget(m_edit);
     m_cview = new ConversationView();
     m_split->addWidget(m_cview);
-    
+
     setWidget(m_split);
 
     QVBoxLayout *editLayout = new QVBoxLayout();
@@ -217,7 +217,9 @@ void ConversationWindow::selectObject(ConversationObject *object) {
         delete item;
     }
     if(object) object->edit(dynamic_cast<QFormLayout *>(m_editarea->layout()));
+    if(m_selectLast) m_selectLast->deselect();
     m_selectLast = object;
+    if(m_selectLast) m_selectLast->select();
 }
 
 void ConversationWindow::insertNode(QPointF where) {

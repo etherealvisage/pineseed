@@ -19,9 +19,13 @@ private:
     QString m_label;
     QVector<Link *> m_links;
     QStandardItemModel *m_actionModel;
+    bool m_selected;
 public:
     Node();
     virtual ~Node();
+
+    virtual void select() { m_selected = true; update(); }
+    virtual void deselect() { m_selected = false; update(); }
 
     const QString &label() const { return m_label; }
 
