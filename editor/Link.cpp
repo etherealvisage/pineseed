@@ -20,8 +20,8 @@ Link::Link(Node *from, Node *to) : m_from(from), m_to(to), m_label("Label") {
 }
 
 Link::~Link() {
-    m_from->links().removeAll(this);
-    m_to->links().removeAll(this);
+    m_from->links().remove(m_from->links().indexOf(this));
+    m_to->links().remove(m_to->links().indexOf(this));
 }
 
 QRectF Link::boundingRect() const {
