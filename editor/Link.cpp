@@ -7,14 +7,15 @@
 #include <QPainter>
 #include <QPen>
 #include <QBrush>
+#include <QXmlStreamWriter>
 
 #include "Link.h"
 #include "moc_Link.cpp"
 #include "Node.h"
 
 Link::Link(Node *from, Node *to) : m_from(from), m_to(to), m_label("Label") {
-    m_from->links().push_back(this);
-    m_to->links().push_back(this);
+    if(from) m_from->links().push_back(this);
+    if(to) m_to->links().push_back(this);
 }
 
 Link::~Link() {
@@ -76,6 +77,33 @@ bool Link::isSelection(QPointF point) {
         labelBoundingRect().left(), labelBoundingRect().right(),
         labelBoundingRect().top(), labelBoundingRect().bottom());*/
     return labelBoundingRect().contains(point);
+}
+
+void Link::serialize(QXmlStreamWriter &xml,
+    const QMap<ConversationObject *, int> &itemID) {
+
+    xml.writeStartElement("link");
+
+    xml.writeAttribute("id", QString().setNum(itemID[this]));
+    xml.writeAttribute("label", m_label);
+    xml.writeAttribute("from", QString().setNum(itemID[m_from]));
+    xml.writeAttribute("to", QString().setNum(itemID[m_to]));
+
+    xml.writeEndElement();
+}
+
+void Link::deserialize(QXmlStreamReader &xml,
+    const QMap<int, ConversationObject *> &items) {
+
+    m_label = xml.attributes().value("label").toString();
+    m_from = dynamic_cast<Node *>(
+        items[xml.attributes().value("from").toInt()]);
+    m_to = dynamic_cast<Node *>(items[xml.attributes().value("to").toInt()]);
+
+    m_from->links().push_back(this);
+    m_to->links().push_back(this);
+
+    xml.readNext(); // skip over endelement
 }
 
 QRectF Link::labelBoundingRect() const {

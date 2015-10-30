@@ -40,8 +40,9 @@ private slots:
     void removeAction();
     void currentChanged(const QModelIndex &now, const QModelIndex &before);
     void changeType(int to);
+public:
+    static void updateActionTitle(QStandardItem *item);
 private:
-    void updateActionTitle(QStandardItem *item);
     void changeTo(QStandardItem *item);
 };
 

@@ -15,6 +15,7 @@
 #include <QTreeView>
 #include <QStackedWidget>
 #include <QComboBox>
+#include <QXmlStreamWriter>
 
 #include "Node.h"
 #include "moc_Node.cpp"
@@ -72,6 +73,42 @@ bool Node::isSelection(QPointF point) {
     return boundingRect().contains(point);
 }
 
+void Node::serialize(QXmlStreamWriter &xml,
+    const QMap<ConversationObject *, int> &itemID) {
+
+    xml.writeStartElement("node");
+
+    xml.writeAttribute("id", QString().setNum(itemID[this]));
+    xml.writeAttribute("width", QString().setNum(m_size.width()));
+    xml.writeAttribute("height", QString().setNum(m_size.height()));
+    xml.writeAttribute("x", QString().setNum(pos().x()));
+    xml.writeAttribute("y", QString().setNum(pos().y()));
+    xml.writeAttribute("label", m_label);
+
+    auto root = m_actionModel->invisibleRootItem();
+    for(int i = 0; i < root->rowCount(); i ++)
+        actionSerializeHelper(xml, itemID, root->child(i));
+
+    xml.writeEndElement();
+}
+
+void Node::deserialize(QXmlStreamReader &xml,
+    const QMap<int, ConversationObject *> &items) {
+
+    m_size = QSizeF(xml.attributes().value("width").toDouble(),
+        xml.attributes().value("height").toDouble());
+    setPos(QPointF(xml.attributes().value("x").toDouble(),
+        xml.attributes().value("y").toDouble()));
+
+    m_label = xml.attributes().value("label").toString();
+
+    QStandardItem *action;
+    xml.readNext();
+    while((action = actionDeserializeHelper(xml, items))) {
+        m_actionModel->invisibleRootItem()->appendRow(action);
+    }
+}
+
 void Node::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
     if(event->buttons() & Qt::LeftButton) {
         QPointF last = mapFromScene(event->lastScenePos());
@@ -86,3 +123,56 @@ void Node::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
     }
 }
 
+void Node::actionSerializeHelper(QXmlStreamWriter &xml, 
+    const QMap<ConversationObject *, int> &itemID, QStandardItem *action) {
+
+    xml.writeStartElement("action");
+
+    xml.writeAttribute("type",
+        action->data(ActionEditor::TypeData).toString());
+    xml.writeAttribute("speech",
+        action->data(ActionEditor::SpeechData).toString());
+
+    for(int i = 0; i < action->rowCount(); i ++) {
+        actionSerializeHelper(xml, itemID, action->child(i));
+    }
+
+    xml.writeEndElement();
+}
+
+QStandardItem *Node::actionDeserializeHelper(QXmlStreamReader &xml, 
+    const QMap<int, ConversationObject *> &items) {
+
+    qDebug("actionDeserializeHelper called!");
+    if(xml.isStartElement() && xml.name() != "action") return nullptr;
+    qDebug("actionDeserializeHelper called, actual action found!");
+
+    // assumes that the <action> begin token has been read
+
+    auto action = new QStandardItem;
+
+    action->setData(xml.attributes().value("type").toInt(),
+        ActionEditor::TypeData);
+    action->setData(xml.attributes().value("speech").toString(),
+        ActionEditor::SpeechData);
+    ActionEditor::updateActionTitle(action);
+
+    qDebug("Parsing next...");
+    while(true) {
+        auto t = xml.readNext();
+        qDebug("Read next token.");
+        if(t == QXmlStreamReader::StartElement) {
+            qDebug("Start element! Recursing...");
+            auto i = actionDeserializeHelper(xml, items);
+            action->appendRow(i);
+        }
+        else if(t == QXmlStreamReader::EndElement) {
+            qDebug("End element.");
+            break;
+        }
+    }
+
+    qDebug("Finishing!");
+
+    return action;
+}

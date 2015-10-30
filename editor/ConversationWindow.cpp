@@ -8,12 +8,19 @@
 #include <QFormLayout>
 #include <QShortcut>
 #include <QKeySequence>
+#include <QFileDialog>
+#include <QFile>
+#include <QXmlStreamWriter>
+#include <QStandardItemModel>
+#include <QXmlStreamReader>
+#include <QDomDocument>
 
 #include "ConversationWindow.h"
 #include "moc_ConversationWindow.cpp"
 
 #include "Node.h"
 #include "Link.h"
+#include "ActionEditor.h" // for ItemData definitions
 
 ConversationWindow::ConversationWindow() {
     m_split = new QSplitter();
@@ -79,6 +86,119 @@ ConversationWindow::ConversationWindow() {
     m_edit->setLayout(editLayout);
 
     m_selectLast = nullptr;
+}
+
+void ConversationWindow::save() {
+    QString filename = QFileDialog::getSaveFileName(this,
+        tr("Save conversation"));
+    QFile file(filename);
+    if(!file.open(QIODevice::Truncate | QIODevice::WriteOnly)) return;
+
+    QXmlStreamWriter xml(&file);
+    xml.writeStartDocument();
+
+    auto items = m_cview->scene()->items();
+    QMap<ConversationObject *, int> itemID;
+
+    for(auto item : items) {
+        auto obj = dynamic_cast<ConversationObject *>(item);
+        if(!obj) continue;
+        itemID[obj] = itemID.size();
+    }
+
+    xml.writeStartElement("objects");
+    for(auto item : items) {
+        auto obj = dynamic_cast<ConversationObject *>(item);
+        if(!obj) continue;
+
+        obj->serialize(xml, itemID);
+    }
+    xml.writeEndElement(); // objects
+
+    xml.writeEndDocument();
+}
+
+void ConversationWindow::load() {
+    //m_cview->scene()->clear();
+    QString filename = QFileDialog::getOpenFileName(this,
+        tr("Open conversation"));
+    QFile file(filename);
+    if(!file.open(QIODevice::ReadOnly)) return;
+    
+    QMap<int, ConversationObject *> items;
+    {
+        QXmlStreamReader xml(&file);
+        auto t = xml.readNext();
+        if(t != QXmlStreamReader::StartDocument) {
+            qDebug("Expected start of document!");
+            return;
+        }
+        t = xml.readNext();
+        if(t != QXmlStreamReader::StartElement || xml.name() != "objects") {
+            qDebug("Expected <objects>!");
+            return;
+        }
+
+        while(!xml.atEnd()) {
+            t = xml.readNext();
+            // end on </objects> encounter
+            if(t == QXmlStreamReader::EndElement) break;
+            else if(t != QXmlStreamReader::StartElement) {
+                qDebug("Expected begin of object!");
+                return;
+            }
+            int id = xml.attributes().value("id").toInt();
+            if(xml.name() == "node") {
+                qDebug("Adding new Node with id %i", id);
+                items[id] = new Node();
+            }
+            else if(xml.name() == "link") {
+                qDebug("Adding new Link with id %i", id);
+                items[id] = new Link(nullptr, nullptr);
+            }
+            xml.skipCurrentElement();
+        }
+    }
+
+    file.seek(0);
+
+    {
+        QXmlStreamReader xml(&file);
+        auto t = xml.readNext();
+        if(t != QXmlStreamReader::StartDocument) {
+            qDebug("Expected start of document!");
+            return;
+        }
+        t = xml.readNext();
+        if(t != QXmlStreamReader::StartElement || xml.name() != "objects") {
+            qDebug("Expected <objects>!");
+            return;
+        }
+
+        while(!xml.atEnd()) {
+            t = xml.readNext();
+            // end on </objects> encounter
+            if(t == QXmlStreamReader::EndElement) {
+                break;
+            }
+            else if(t != QXmlStreamReader::StartElement) {
+                qDebug("Expected begin of object!");
+                return;
+            }
+            int id = xml.attributes().value("id").toInt();
+            if(xml.name() == "node") {
+                dynamic_cast<Node *>(items[id])->deserialize(xml, items);
+            }
+            else if(xml.name() == "link") {
+                dynamic_cast<Link *>(items[id])->deserialize(xml, items);
+            }
+            m_cview->scene()->addItem(items[id]);
+        }
+    }
+
+    for(auto i : items) {
+        //i->geomet
+    }
 }
 
 void ConversationWindow::modeChange(int to) {

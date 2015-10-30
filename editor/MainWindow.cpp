@@ -11,6 +11,8 @@ MainWindow::MainWindow() {
 
     auto file = menuBar()->addMenu(tr("&File"));
     file->addAction(tr("&New"), this, SLOT(newConversationWindow()));
+    file->addAction(tr("&Save"), this, SLOT(saveConversation()));
+    file->addAction(tr("&Load"), this, SLOT(loadConversation()));
     file->addAction(tr("E&xit"), this, SLOT(close()));
 
     m_mdi = new QMdiArea();
@@ -25,4 +27,20 @@ void MainWindow::newConversationWindow() {
     cw->setAttribute(Qt::WA_DeleteOnClose);
 
     cw->show();
+}
+
+void MainWindow::saveConversation() {
+    auto cw = dynamic_cast<ConversationWindow *>(m_mdi->activeSubWindow());
+    if(!cw) return;
+
+    cw->save();
+}
+
+void MainWindow::loadConversation() {
+    newConversationWindow();
+
+    auto cw = dynamic_cast<ConversationWindow *>(m_mdi->activeSubWindow());
+    if(!cw) return;
+
+    cw->load();
 }

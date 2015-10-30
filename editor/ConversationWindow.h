@@ -10,6 +10,7 @@
 
 class QPushButton;
 class QSplitter;
+class QXmlStreamWriter;
 
 class ConversationWindow : public QMdiSubWindow { Q_OBJECT
 private:
@@ -34,6 +35,9 @@ private:
     ConversationObject *m_selectLast;
 public:
     ConversationWindow();
+
+    void save();
+    void load();
 private slots:
     void modeChange(int to);
 
