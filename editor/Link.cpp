@@ -67,16 +67,12 @@ void Link::paint(QPainter *painter,
 void Link::edit(QFormLayout *layout) {
     QLineEdit *edit = new QLineEdit(m_label);
     layout->addRow(tr("Label:"), edit);
+    edit->setFocus();
     connect(edit, &QLineEdit::textChanged,
         [=](const QString &label){ m_label = label; emit changed(); });
 }
 
 bool Link::isSelection(QPointF point) {
-    /*qDebug(
-        "Asking if point (%f, %f) is within rectangle of x:[%f,%f] y:[%f,%f]",
-        point.x(), point.y(),
-        labelBoundingRect().left(), labelBoundingRect().right(),
-        labelBoundingRect().top(), labelBoundingRect().bottom());*/
     return labelBoundingRect().contains(point);
 }
 
