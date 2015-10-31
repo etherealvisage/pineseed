@@ -5,8 +5,9 @@
 #include <QSignalMapper>
 #include <QList>
 
-#include "ConversationView.h"
+#include "ConversationData.h"
 #include "ConversationObject.h"
+#include "ConversationView.h"
 
 class QPushButton;
 class QSplitter;
@@ -21,14 +22,15 @@ private:
         NewNodeMode,
         NewLinkMode,
         NewContextMode,
-        DeleteMode,
-        SimulateMode
+        DeleteMode
     };
 private:
+    ConversationData *m_data;
     QSplitter *m_split;
     QWidget *m_edit;
     QWidget *m_editbar;
     QWidget *m_editarea;
+    QPushButton *m_simbutton;
     ConversationView *m_cview;
     ConversationSimulation *m_sim;
     QSignalMapper *m_modeMapper;
@@ -50,7 +52,7 @@ private slots:
     void insertContext(QPointF where);
     void makeLink(ConversationObject *object);
     void deleteObject(ConversationObject *object);
-    void beginSimulation(ConversationObject *object);
+    void beginSimulation();
 };
 
 #endif

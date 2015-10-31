@@ -14,18 +14,21 @@ class QLineEdit;
 class QStackedWidget;
 class QTextEdit;
 
+class ConversationData;
+
 class ActionEditor : public QWidget { Q_OBJECT
 public:
 private:
+    ConversationData *m_data;
     QStandardItemModel *m_model;
     QTreeView *m_actionView;
     QComboBox *m_currentType;
     QStackedWidget *m_currentStack;
-    QLineEdit *m_currentSpeaker;
+    QComboBox *m_currentSpeaker;
     QTextEdit *m_currentSpeech;
     QStandardItem *m_current;
 public:
-    ActionEditor(QStandardItemModel *model);
+    ActionEditor(ConversationData *data, QStandardItemModel *model);
 private slots:
     void addAction();
     void removeAction();

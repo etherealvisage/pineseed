@@ -23,6 +23,8 @@
 #include "ConversationSimulation.h"
 
 ConversationWindow::ConversationWindow() {
+    m_data = new ConversationData();
+
     m_split = new QSplitter();
     m_edit = new QWidget();
     m_split->addWidget(m_edit);
@@ -80,20 +82,22 @@ ConversationWindow::ConversationWindow() {
     QShortcut *deleteShortcut = new QShortcut(QKeySequence("Alt+4"), this);
     connect(deleteShortcut, SIGNAL(activated()), deleteButton, SLOT(click()));
 
-    QPushButton *simulateButton = new QPushButton(tr("Simulate"));
-    connect(simulateButton, SIGNAL(clicked(bool)), m_modeMapper, SLOT(map()));
-    m_modeMapper->setMapping(simulateButton, SimulateMode);
-    editbarLayout->addWidget(simulateButton);
-    m_toolButtons.push_back(simulateButton);
-    QShortcut *simulateShortcut = new QShortcut(QKeySequence("Alt+5"), this);
-    connect(simulateShortcut, SIGNAL(activated()), simulateButton,
-        SLOT(click()));
-
     editLayout->addLayout(editbarLayout);
 
     m_editarea = new QWidget();
     m_editarea->setLayout(new QFormLayout());
     editLayout->addWidget(m_editarea);
+
+    m_simbutton = new QPushButton(tr("Simulate"));
+    m_simbutton->setEnabled(false);
+    connect(m_simbutton, SIGNAL(clicked(bool)),
+        this, SLOT(beginSimulation()));
+    editLayout->addStretch(1);
+    editLayout->addWidget(m_simbutton);
+
+    QPushButton *dataButton = new QPushButton(tr("Conversation data"));
+    connect(dataButton, &QPushButton::clicked, [=](){ m_data->edit(this); });
+    editLayout->addWidget(dataButton);
 
     m_edit->setLayout(editLayout);
 
@@ -111,6 +115,7 @@ void ConversationWindow::save() {
     QXmlStreamWriter xml(&file);
     xml.setAutoFormatting(true);
     xml.writeStartDocument();
+    xml.writeStartElement("conversation");
 
     auto items = m_cview->scene()->items();
     QMap<ConversationObject *, int> itemID;
@@ -130,6 +135,9 @@ void ConversationWindow::save() {
     }
     xml.writeEndElement(); // objects
 
+    m_data->serialize(xml);
+
+    xml.writeEndElement(); // </conversation>
     xml.writeEndDocument();
 }
 
@@ -143,6 +151,7 @@ void ConversationWindow::load() {
     
     QDomDocument doc;
     doc.setContent(&file);
+    m_data->deserialize(doc);
 
     auto objectss = doc.elementsByTagName("objects");
     if(objectss.size() != 1) {
@@ -218,11 +227,6 @@ void ConversationWindow::modeChange(int to) {
         connect(m_cview, SIGNAL(selected(ConversationObject *)),
             this, SLOT(deleteObject(ConversationObject *)));
         break;
-    case SimulateMode:
-        m_cview->enterSelectMode();
-        connect(m_cview, SIGNAL(selected(ConversationObject *)),
-            this, SLOT(beginSimulation(ConversationObject *)));
-        break;
     default:
         qFatal("Unexpected mode change value");
         break;
@@ -237,10 +241,17 @@ void ConversationWindow::selectObject(ConversationObject *object) {
 
         delete item;
     }
-    if(object) object->edit(dynamic_cast<QFormLayout *>(m_editarea->layout()));
+    if(object) {
+        object->edit(m_data,
+            dynamic_cast<QFormLayout *>(m_editarea->layout()));
+    }
     if(m_selectLast) m_selectLast->deselect();
     m_selectLast = object;
     if(m_selectLast) m_selectLast->select();
+
+    Node *node = dynamic_cast<Node *>(m_selectLast);
+    if(node) m_simbutton->setEnabled(true);
+    else m_simbutton->setEnabled(false);
 }
 
 void ConversationWindow::insertNode(QPointF where) {
@@ -277,11 +288,9 @@ void ConversationWindow::deleteObject(ConversationObject *object) {
     selectObject(nullptr);
 }
 
-void ConversationWindow::beginSimulation(ConversationObject *object) {
-    Node *node = dynamic_cast<Node *>(object);
+void ConversationWindow::beginSimulation() {
+    Node *node = dynamic_cast<Node *>(m_selectLast);
     if(!node) return;
 
     m_sim->beginFrom(node);
-    modeChange(SelectMode);
-    selectObject(object);
 }

@@ -14,7 +14,7 @@
 ConversationSimulation::ConversationSimulation() {
     QVBoxLayout *layout = new QVBoxLayout();
     m_history = new QListWidget();
-    m_history->setWrapping(true);
+    //m_history->setWrapping(true);
     m_history->setWordWrap(true);
     layout->addWidget(m_history);
     m_options = new QComboBox();
@@ -38,6 +38,18 @@ void ConversationSimulation::progress(const QString &by) {
 
 void ConversationSimulation::process(Node *node) {
     m_current = node;
+    if(!node) {
+        m_options->clear();
+        m_optionsMap.clear();
+
+        QListWidgetItem *item = new QListWidgetItem();
+        item->setText("[Finished]");
+        item->setTextAlignment(Qt::AlignHCenter);
+        item->setBackgroundColor(qRgb(255, 224, 224));
+        m_history->addItem(item);
+
+        return;
+    }
 
     // perform actions
     QStandardItem *root = node->actionModel()->invisibleRootItem();
@@ -47,6 +59,7 @@ void ConversationSimulation::process(Node *node) {
 
     // collate options
     m_options->clear();
+    m_optionsMap.clear();
     auto links = node->links();
     for(auto link : links) {
         if(link->from() != node) continue;
@@ -88,7 +101,7 @@ bool ConversationSimulation::process(QStandardItem *action) {
     case Action::Jump:
         break;
     case Action::EndConversation:
-        m_current = nullptr;
+        process((Node *)nullptr);
         return true;
     }
 

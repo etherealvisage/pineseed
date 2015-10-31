@@ -12,8 +12,11 @@
 #include "moc_ActionEditor.cpp"
 
 #include "Action.h"
+#include "ConversationData.h"
 
-ActionEditor::ActionEditor(QStandardItemModel *model) : m_model(model) {
+ActionEditor::ActionEditor(ConversationData *data, QStandardItemModel *model)
+    : m_data(data), m_model(model) {
+
     QVBoxLayout *layout = new QVBoxLayout();
     setLayout(layout);
 
@@ -51,8 +54,10 @@ ActionEditor::ActionEditor(QStandardItemModel *model) : m_model(model) {
     m_currentStack->addWidget(new QLabel("Please select a type"));
 
     QVBoxLayout *speechLayout = new QVBoxLayout();
-    m_currentSpeaker = new QLineEdit();
-    connect(m_currentSpeaker, &QLineEdit::textChanged, 
+    m_currentSpeaker = new QComboBox();
+    connect(m_currentSpeaker,
+        static_cast<void (QComboBox::*)(const QString &)>(
+            &QComboBox::activated),
         [=](const QString &speaker) {
             if(m_current) {
                 m_current->setData(speaker, Action::SpeakerData);
@@ -127,6 +132,12 @@ void ActionEditor::changeType(int to) {
 }
 
 void ActionEditor::changeTo(QStandardItem *item) {
+    // refresh current speaker options
+    m_currentSpeaker->clear();
+    for(auto sp : m_data->characterNames()) {
+        m_currentSpeaker->addItem(sp);
+    }
+
     m_current = item;
     if(!item) {
         m_currentType->setEnabled(false);
@@ -140,7 +151,8 @@ void ActionEditor::changeTo(QStandardItem *item) {
         m_currentStack->setEnabled(true);
         m_currentStack->setCurrentIndex(type);
 
-        m_currentSpeaker->setText(item->data(Action::SpeakerData).toString());
+        m_currentSpeaker->setCurrentText(
+            item->data(Action::SpeakerData).toString());
         m_currentSpeech->setText(item->data(Action::SpeechData).toString());
     }
 }

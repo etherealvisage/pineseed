@@ -51,6 +51,8 @@ void Action::serialize(QXmlStreamWriter &xml,
 
     xml.writeAttribute("type",
         action->data(Action::TypeData).toString());
+    xml.writeAttribute("speaker",
+        action->data(Action::SpeakerData).toString());
     xml.writeAttribute("speech",
         action->data(Action::SpeechData).toString());
 
@@ -67,6 +69,7 @@ QStandardItem *Action::deserialize(QDomElement &xml,
     auto action = new QStandardItem();
 
     action->setData(xml.attribute("type").toInt(), Action::TypeData);
+    action->setData(xml.attribute("speaker"), Action::SpeakerData);
     action->setData(xml.attribute("speech"), Action::SpeechData);
     Action::updateTitle(action);
 
