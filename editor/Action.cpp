@@ -82,7 +82,7 @@ QStandardItem *Action::deserialize(QDomElement &xml,
     action->setData(xml.attribute("speech"), Action::SpeechData);
     int jtid = xml.attribute("jump-target").toInt();
     if(jtid != 0) {
-        action->setData(qVariantFromValue((void *) objs[jtid]),
+        action->setData(qVariantFromValue((void *)objs[jtid]),
             Action::JumpTargetData);
     }
     Action::updateTitle(action);

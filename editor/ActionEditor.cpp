@@ -117,9 +117,9 @@ ActionEditor::ActionEditor(ConversationDataInterface *interface,
                     }),
                     std::function<void (ConversationObject *)>(
                     [=](ConversationObject *object) {
-                        qDebug("Setting object!");
                         m_current->setData(qVariantFromValue((void *)object),
                             Action::JumpTargetData);
+                        Action::updateTitle(m_current);
                     }));
             });
         jumpLayout->addWidget(changeJumpTarget);
