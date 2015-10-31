@@ -10,6 +10,7 @@ class QXmlStreamWriter;
 class QDomElement;
 
 class ConversationData;
+class ConversationDataInterface;
 
 class ConversationObject : public QGraphicsObject { Q_OBJECT
 public:
@@ -18,7 +19,8 @@ public:
     virtual void select() {}
     virtual void deselect() {}
 
-    virtual void edit(ConversationData *data, QFormLayout *layout) = 0;
+    virtual void edit(ConversationDataInterface *interface,
+        ConversationData *data, QFormLayout *layout) = 0;
     virtual bool isSelection(QPointF point) = 0;
 
     virtual void serialize(QXmlStreamWriter &xml,

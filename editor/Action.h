@@ -23,7 +23,8 @@ public:
     enum ItemData {
         TypeData = 0x100,
         SpeakerData,
-        SpeechData
+        SpeechData,
+        JumpTargetData
     };
 public:
     static void updateTitle(QStandardItem *item);

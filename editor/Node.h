@@ -38,7 +38,8 @@ public:
     virtual void paint(QPainter *painter,
         const QStyleOptionGraphicsItem *style, QWidget *widget);
 
-    virtual void edit(ConversationData *data, QFormLayout *layout);
+    virtual void edit(ConversationDataInterface *interface,
+        ConversationData *data, QFormLayout *layout);
     virtual bool isSelection(QPointF point);
 
     virtual void serialize(QXmlStreamWriter &xml,

@@ -21,6 +21,7 @@
 #include "Link.h"
 #include "ActionEditor.h" // for ItemData definitions
 #include "ConversationSimulation.h"
+#include "ConversationDataInterface.h"
 
 ConversationWindow::ConversationWindow() {
     m_data = new ConversationData();
@@ -102,6 +103,26 @@ ConversationWindow::ConversationWindow() {
     m_edit->setLayout(editLayout);
 
     m_selectLast = nullptr;
+
+    class InternalInterface : public ConversationDataInterface {
+    private:
+        ConversationWindow *m_window;
+    public:
+        InternalInterface(ConversationWindow *window) : m_window(window) {}
+
+        virtual void selectObject(
+            std::function<bool (ConversationObject *)> filter,
+            std::function<void (ConversationObject *)> callback) {
+
+            m_window->m_selectOneFilter = filter;
+            m_window->m_selectOneCallback = callback;
+
+            m_window->modeChange(SelectOneMode);
+        }
+        
+    };
+
+    m_dataInterface = new InternalInterface(this);
 }
 
 void ConversationWindow::save() {
@@ -123,7 +144,7 @@ void ConversationWindow::save() {
     for(auto item : items) {
         auto obj = dynamic_cast<ConversationObject *>(item);
         if(!obj) continue;
-        itemID[obj] = itemID.size();
+        itemID[obj] = itemID.size()+1; // make sure ID 0 not in use
     }
 
     xml.writeStartElement("objects");
@@ -197,7 +218,10 @@ void ConversationWindow::modeChange(int to) {
         this, 0);
 
     for(auto b : m_toolButtons) if(!b->isEnabled()) b->setEnabled(true);
-    if(mode != SelectMode) m_toolButtons[to-1]->setEnabled(false);
+    if(mode > SelectMode && mode < SelectOneMode) {
+        m_toolButtons[to-1]->setEnabled(false);
+    }
+
     switch(mode) {
     case SelectMode:
         m_cview->enterSelectMode();
@@ -227,6 +251,11 @@ void ConversationWindow::modeChange(int to) {
         connect(m_cview, SIGNAL(selected(ConversationObject *)),
             this, SLOT(deleteObject(ConversationObject *)));
         break;
+    case SelectOneMode:
+        m_cview->enterSelectMode();
+        connect(m_cview, SIGNAL(selected(ConversationObject *)),
+            this, SLOT(selectOne(ConversationObject *)));
+        break;
     default:
         qFatal("Unexpected mode change value");
         break;
@@ -242,7 +271,7 @@ void ConversationWindow::selectObject(ConversationObject *object) {
         delete item;
     }
     if(object) {
-        object->edit(m_data,
+        object->edit(m_dataInterface, m_data,
             dynamic_cast<QFormLayout *>(m_editarea->layout()));
     }
     if(m_selectLast) m_selectLast->deselect();
@@ -286,6 +315,14 @@ void ConversationWindow::deleteObject(ConversationObject *object) {
 
     modeChange(SelectMode);
     selectObject(nullptr);
+}
+
+void ConversationWindow::selectOne(ConversationObject *object) {
+    if(!m_selectOneFilter(object)) return;
+
+    m_selectOneCallback(object);
+    
+    modeChange(SelectMode);
 }
 
 void ConversationWindow::beginSimulation() {

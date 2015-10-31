@@ -13,12 +13,17 @@
 
 #include "Action.h"
 #include "ConversationData.h"
+#include "ConversationDataInterface.h"
+#include "Node.h"
 
-ActionEditor::ActionEditor(ConversationData *data, QStandardItemModel *model)
-    : m_data(data), m_model(model) {
+ActionEditor::ActionEditor(ConversationDataInterface *interface,
+    ConversationData *data, QStandardItemModel *model)
+    : m_dataInterface(interface), m_data(data), m_model(model) {
 
     QVBoxLayout *layout = new QVBoxLayout();
     setLayout(layout);
+
+    // TODO: go over each item in model and call updateTitle().
 
     m_actionView = new QTreeView();
     m_actionView->setModel(m_model);
@@ -51,41 +56,84 @@ ActionEditor::ActionEditor(ConversationData *data, QStandardItemModel *model)
     connect(m_currentType, SIGNAL(activated(int)),
         this, SLOT(changeType(int)));
 
-    m_currentStack->addWidget(new QLabel("Please select a type"));
+    { // Empty
+        m_currentStack->addWidget(new QLabel("Please select a type"));
+    }
 
-    QVBoxLayout *speechLayout = new QVBoxLayout();
-    m_currentSpeaker = new QComboBox();
-    connect(m_currentSpeaker,
-        static_cast<void (QComboBox::*)(const QString &)>(
-            &QComboBox::activated),
-        [=](const QString &speaker) {
-            if(m_current) {
-                m_current->setData(speaker, Action::SpeakerData);
-                Action::updateTitle(m_current);
-            }});
-    speechLayout->addWidget(m_currentSpeaker);
+    { // Speech
+        QVBoxLayout *speechLayout = new QVBoxLayout();
+        m_currentSpeaker = new QComboBox();
+        connect(m_currentSpeaker,
+            static_cast<void (QComboBox::*)(const QString &)>(
+                &QComboBox::activated),
+            [=](const QString &speaker) {
+                if(m_current) {
+                    m_current->setData(speaker, Action::SpeakerData);
+                    Action::updateTitle(m_current);
+                }});
+        speechLayout->addWidget(m_currentSpeaker);
 
-    m_currentSpeech = new QTextEdit();
-    m_currentSpeech->setAcceptRichText(false);
-    connect(m_currentSpeech, &QTextEdit::textChanged, 
-        [=]() {
-            if(m_current) {
-                m_current->setData(m_currentSpeech->toPlainText(),
-                    Action::SpeechData);
-                Action::updateTitle(m_current);
-            }
-        });
-    speechLayout->addWidget(m_currentSpeech);
-    QWidget *speechWidget = new QWidget();
-    speechWidget->setLayout(speechLayout);
-    m_currentStack->addWidget(speechWidget);
+        m_currentSpeech = new QTextEdit();
+        m_currentSpeech->setAcceptRichText(false);
+        connect(m_currentSpeech, &QTextEdit::textChanged, 
+            [=]() {
+                if(m_current) {
+                    m_current->setData(m_currentSpeech->toPlainText(),
+                        Action::SpeechData);
+                    Action::updateTitle(m_current);
+                }
+            });
+        speechLayout->addWidget(m_currentSpeech);
+        QWidget *speechWidget = new QWidget();
+        speechWidget->setLayout(speechLayout);
+        m_currentStack->addWidget(speechWidget);
+    }
 
-    m_currentStack->addWidget(new QLabel("Emote"));
-    m_currentStack->addWidget(new QLabel("Sequence"));
-    m_currentStack->addWidget(new QLabel("Concurrent"));
-    m_currentStack->addWidget(new QLabel("Conditional"));
-    m_currentStack->addWidget(new QLabel("Jump"));
-    m_currentStack->addWidget(new QLabel("End conversation"));
+    { // Emote
+        m_currentStack->addWidget(new QLabel("Emote"));
+    }
+    { // Sequence
+        m_currentStack->addWidget(new QLabel("Sequence"));
+    }
+    { // Concurrent
+        m_currentStack->addWidget(new QLabel("Concurrent"));
+    }
+    { // Conditional
+        m_currentStack->addWidget(new QLabel("Conditional"));
+    }
+
+    { // Jump
+        QVBoxLayout *jumpLayout = new QVBoxLayout();
+        m_currentJumpTarget = new QLabel();
+        jumpLayout->addWidget(m_currentJumpTarget);
+        QPushButton *changeJumpTarget = new QPushButton(tr("Change target"));
+
+        connect(changeJumpTarget, &QPushButton::clicked,
+            [=](){
+                m_dataInterface->selectObject(
+                    std::function<bool (ConversationObject *)>(
+                    [=](ConversationObject *object) {
+                        return dynamic_cast<Node *>(object);
+                    }),
+                    std::function<void (ConversationObject *)>(
+                    [=](ConversationObject *object) {
+                        qDebug("Setting object!");
+                        m_current->setData(qVariantFromValue((void *)object),
+                            Action::JumpTargetData);
+                    }));
+            });
+        jumpLayout->addWidget(changeJumpTarget);
+        QWidget *jumpWidget = new QWidget();
+        jumpWidget->setLayout(jumpLayout);
+        m_currentStack->addWidget(jumpWidget);
+    }
+
+    // End
+    {
+        m_currentStack->addWidget(new QLabel("End conversation"));
+    }
+
+
     m_currentStack->addWidget(new QLabel("error!"));
 
     changeTo(nullptr);

@@ -98,8 +98,15 @@ bool ConversationSimulation::process(QStandardItem *action) {
         break;
     case Action::Conditional:
         break;
-    case Action::Jump:
+    case Action::Jump: {
+        Node *target =
+            (Node *)action->data(Action::JumpTargetData).value<void *>();
+        if(target) {
+            process(target);
+            return true;
+        }
         break;
+    }
     case Action::EndConversation:
         process((Node *)nullptr);
         return true;

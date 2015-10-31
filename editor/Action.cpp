@@ -3,6 +3,7 @@
 #include <QDomElement>
 
 #include "Action.h"
+#include "Node.h"
 
 void Action::updateTitle(QStandardItem *item) {
     QString title;
@@ -34,9 +35,13 @@ void Action::updateTitle(QStandardItem *item) {
     case Conditional:
         title = "[conditional]";
         break;
-    case Jump:
+    case Jump: {
         title = "[jump]";
+        Node *target = (Node *)item->data(JumpTargetData).value<void *>();
+        if(!target) title += "<no target>";
+        else title += " " + target->label();
         break;
+    }
     case EndConversation:
         title = "[end]";
         break;
@@ -55,6 +60,10 @@ void Action::serialize(QXmlStreamWriter &xml,
         action->data(Action::SpeakerData).toString());
     xml.writeAttribute("speech",
         action->data(Action::SpeechData).toString());
+    auto target = (ConversationObject *)action->data(
+        Action::JumpTargetData).value<void *>();
+    if(itemID.contains(target))
+        xml.writeAttribute("jump-target", QString().setNum(itemID[target]));
 
     for(int i = 0; i < action->rowCount(); i ++) {
         serialize(xml, itemID, action->child(i));
@@ -64,13 +73,18 @@ void Action::serialize(QXmlStreamWriter &xml,
 }
 
 QStandardItem *Action::deserialize(QDomElement &xml, 
-        const QMap<int, ConversationObject *> &objs) {
+    const QMap<int, ConversationObject *> &objs) {
 
     auto action = new QStandardItem();
 
     action->setData(xml.attribute("type").toInt(), Action::TypeData);
     action->setData(xml.attribute("speaker"), Action::SpeakerData);
     action->setData(xml.attribute("speech"), Action::SpeechData);
+    int jtid = xml.attribute("jump-target").toInt();
+    if(jtid != 0) {
+        action->setData(qVariantFromValue((void *) objs[jtid]),
+            Action::JumpTargetData);
+    }
     Action::updateTitle(action);
 
     auto nodes = xml.childNodes();

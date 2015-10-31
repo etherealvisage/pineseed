@@ -69,7 +69,9 @@ void Link::paint(QPainter *painter,
     painter->drawText(tbr.center() - QPointF(tbr.width()/2, -4), m_label);
 }
 
-void Link::edit(ConversationData *data, QFormLayout *layout) {
+void Link::edit(ConversationDataInterface *interface,
+    ConversationData *data, QFormLayout *layout) {
+
     QLineEdit *edit = new QLineEdit(m_label);
     layout->addRow(tr("Label:"), edit);
     edit->setFocus();

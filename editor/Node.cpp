@@ -62,14 +62,16 @@ void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *style,
     painter->drawText(boundingRect().center() - QPointF(width/2,0), m_label);
 }
 
-void Node::edit(ConversationData *data, QFormLayout *layout) {
+void Node::edit(ConversationDataInterface *interface,
+    ConversationData *data, QFormLayout *layout) {
+
     QLineEdit *labelEdit = new QLineEdit(m_label);
     layout->addRow(tr("Label:"), labelEdit);
     labelEdit->setFocus();
     connect(labelEdit, &QLineEdit::textChanged,
         [=](const QString &label){ m_label = label; emit changed(); });
 
-    ActionEditor *editor = new ActionEditor(data, m_actionModel);
+    ActionEditor *editor = new ActionEditor(interface, data, m_actionModel);
     layout->addRow(tr(""), editor);
 }
 

@@ -1,6 +1,8 @@
 #ifndef ConversationWindow_H
 #define ConversationWindow_H
 
+#include <functional>
+
 #include <QMdiSubWindow>
 #include <QSignalMapper>
 #include <QList>
@@ -18,13 +20,18 @@ class ConversationSimulation;
 class ConversationWindow : public QMdiSubWindow { Q_OBJECT
 private:
     enum Mode {
+        // mode 0
         SelectMode,
+        // button modes
         NewNodeMode,
         NewLinkMode,
         NewContextMode,
-        DeleteMode
+        DeleteMode,
+        // extra non-button modes
+        SelectOneMode
     };
 private:
+    ConversationDataInterface *m_dataInterface;
     ConversationData *m_data;
     QSplitter *m_split;
     QWidget *m_edit;
@@ -39,6 +46,8 @@ private:
     Mode m_mode;
 
     ConversationObject *m_selectLast;
+    std::function<bool (ConversationObject *)> m_selectOneFilter;
+    std::function<void (ConversationObject *)> m_selectOneCallback;
 public:
     ConversationWindow();
 
@@ -52,6 +61,7 @@ private slots:
     void insertContext(QPointF where);
     void makeLink(ConversationObject *object);
     void deleteObject(ConversationObject *object);
+    void selectOne(ConversationObject *object);
     void beginSimulation();
 };
 

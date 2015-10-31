@@ -15,10 +15,12 @@ class QStackedWidget;
 class QTextEdit;
 
 class ConversationData;
+class ConversationDataInterface;
 
 class ActionEditor : public QWidget { Q_OBJECT
 public:
 private:
+    ConversationDataInterface *m_dataInterface;
     ConversationData *m_data;
     QStandardItemModel *m_model;
     QTreeView *m_actionView;
@@ -26,9 +28,11 @@ private:
     QStackedWidget *m_currentStack;
     QComboBox *m_currentSpeaker;
     QTextEdit *m_currentSpeech;
+    QLabel *m_currentJumpTarget;
     QStandardItem *m_current;
 public:
-    ActionEditor(ConversationData *data, QStandardItemModel *model);
+    ActionEditor(ConversationDataInterface *interface, ConversationData *data,
+        QStandardItemModel *model);
 private slots:
     void addAction();
     void removeAction();
