@@ -48,10 +48,6 @@ public:
 protected:
     virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
 private:
-    void actionSerializeHelper(QXmlStreamWriter &xml, 
-        const QMap<ConversationObject *, int> &itemID, QStandardItem *action);
-    QStandardItem *actionDeserializeHelper(QDomElement &xml, 
-        const QMap<int, ConversationObject *> &objs);
 };
 
 #endif

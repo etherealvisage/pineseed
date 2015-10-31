@@ -8,7 +8,7 @@
 #include "moc_ConversationSimulation.cpp"
 
 #include "Link.h"
-#include "ActionEditor.h"
+#include "Action.h"
 #include "Node.h"
 
 ConversationSimulation::ConversationSimulation() {
@@ -59,35 +59,35 @@ void ConversationSimulation::process(Node *node) {
 }
 
 bool ConversationSimulation::process(QStandardItem *action) {
-    ActionEditor::ActionType type =
-        (ActionEditor::ActionType)action->data(ActionEditor::TypeData).toInt();
+    Action::ActionType type =
+        (Action::ActionType)action->data(Action::TypeData).toInt();
 
     switch(type) {
-    case ActionEditor::Empty:
+    case Action::Empty:
         break;
-    case ActionEditor::Speech: {
+    case Action::Speech: {
         QListWidgetItem *item = new QListWidgetItem();
         const QString &speaker =
-            action->data(ActionEditor::SpeakerData).toString();
+            action->data(Action::SpeakerData).toString();
         item->setText(speaker + " says: "
-            + action->data(ActionEditor::SpeechData).toString());
+            + action->data(Action::SpeechData).toString());
         quint16 hash = qHash(speaker);
         item->setBackgroundColor(qRgb(240 + ((hash>>8)&0xf),
             240 + ((hash>>4)&0xf), 240 + ((hash)&0xf)));
         m_history->addItem(item);
         break;
     }
-    case ActionEditor::Emote:
+    case Action::Emote:
         break;
-    case ActionEditor::Sequence:
+    case Action::Sequence:
         break;
-    case ActionEditor::Concurrent:
+    case Action::Concurrent:
         break;
-    case ActionEditor::Conditional:
+    case Action::Conditional:
         break;
-    case ActionEditor::Jump:
+    case Action::Jump:
         break;
-    case ActionEditor::EndConversation:
+    case Action::EndConversation:
         m_current = nullptr;
         return true;
     }

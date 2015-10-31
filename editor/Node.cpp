@@ -23,6 +23,7 @@
 
 #include "Link.h"
 #include "ActionEditor.h"
+#include "Action.h"
 
 Node::Node() {
     m_selected = false;
@@ -90,7 +91,7 @@ void Node::serialize(QXmlStreamWriter &xml,
 
     auto root = m_actionModel->invisibleRootItem();
     for(int i = 0; i < root->rowCount(); i ++)
-        actionSerializeHelper(xml, itemID, root->child(i));
+        Action::serialize(xml, itemID, root->child(i));
 
     xml.writeEndElement();
 }
@@ -115,7 +116,7 @@ void Node::deserialize(QDomElement &xml,
         auto element = node.toElement();
         if(element.tagName() != "action") continue;
         m_actionModel->invisibleRootItem()->appendRow(
-            actionDeserializeHelper(element, objs));
+            Action::deserialize(element, objs));
     }
 }
 
@@ -129,43 +130,4 @@ void Node::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 
         prepareGeometryChange();
     }
-}
-
-void Node::actionSerializeHelper(QXmlStreamWriter &xml, 
-    const QMap<ConversationObject *, int> &itemID, QStandardItem *action) {
-
-    xml.writeStartElement("action");
-
-    xml.writeAttribute("type",
-        action->data(ActionEditor::TypeData).toString());
-    xml.writeAttribute("speech",
-        action->data(ActionEditor::SpeechData).toString());
-
-    for(int i = 0; i < action->rowCount(); i ++) {
-        actionSerializeHelper(xml, itemID, action->child(i));
-    }
-
-    xml.writeEndElement();
-}
-
-QStandardItem *Node::actionDeserializeHelper(QDomElement &xml, 
-        const QMap<int, ConversationObject *> &objs) {
-
-    auto action = new QStandardItem();
-
-    action->setData(xml.attribute("type").toInt(), ActionEditor::TypeData);
-    action->setData(xml.attribute("speech"), ActionEditor::SpeechData);
-    ActionEditor::updateActionTitle(action);
-
-    auto nodes = xml.childNodes();
-    for(int i = 0; i < nodes.size(); i ++) {
-        auto node = nodes.at(i);
-        if(!node.isElement()) continue;
-        auto element = node.toElement();
-        if(element.tagName() != "action") continue;
-
-        action->appendRow(actionDeserializeHelper(element, objs));
-    }
-
-    return action;
 }

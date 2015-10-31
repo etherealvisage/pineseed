@@ -11,6 +11,8 @@
 #include "ActionEditor.h"
 #include "moc_ActionEditor.cpp"
 
+#include "Action.h"
+
 ActionEditor::ActionEditor(QStandardItemModel *model) : m_model(model) {
     QVBoxLayout *layout = new QVBoxLayout();
     setLayout(layout);
@@ -53,8 +55,8 @@ ActionEditor::ActionEditor(QStandardItemModel *model) : m_model(model) {
     connect(m_currentSpeaker, &QLineEdit::textChanged, 
         [=](const QString &speaker) {
             if(m_current) {
-                m_current->setData(speaker, SpeakerData);
-                updateActionTitle(m_current);
+                m_current->setData(speaker, Action::SpeakerData);
+                Action::updateTitle(m_current);
             }});
     speechLayout->addWidget(m_currentSpeaker);
 
@@ -63,8 +65,9 @@ ActionEditor::ActionEditor(QStandardItemModel *model) : m_model(model) {
     connect(m_currentSpeech, &QTextEdit::textChanged, 
         [=]() {
             if(m_current) {
-                m_current->setData(m_currentSpeech->toPlainText(), SpeechData);
-                updateActionTitle(m_current);
+                m_current->setData(m_currentSpeech->toPlainText(),
+                    Action::SpeechData);
+                Action::updateTitle(m_current);
             }
         });
     speechLayout->addWidget(m_currentSpeech);
@@ -92,9 +95,9 @@ void ActionEditor::addAction() {
     item->setEditable(false);
     item->setDropEnabled(false);
 
-    item->setData(TypeData, Empty);
+    item->setData(Action::TypeData, Action::Empty);
 
-    updateActionTitle(item);
+    Action::updateTitle(item);
     changeTo(item);
 }
 
@@ -116,52 +119,11 @@ void ActionEditor::currentChanged(const QModelIndex &now,
 
 void ActionEditor::changeType(int to) {
     m_currentStack->setCurrentIndex(to);
-    m_current->setData(to, TypeData);
-    updateActionTitle(m_current);
-    if(to == Sequence || to == Concurrent || to == Conditional) 
-        m_current->setDropEnabled(true);
-    else
-        m_current->setDropEnabled(false);
-}
-
-void ActionEditor::updateActionTitle(QStandardItem *item) {
-    QString title;
-    switch((ActionType)item->data(TypeData).toInt()) {
-    case Empty:
-        title = "[empty]";
-        break;
-    case Speech: {
-        QString speaker = item->data(SpeakerData).toString();
-        QString speech = item->data(SpeechData).toString();
-        int ind = speech.indexOf('\n');
-        if(ind != -1) speech.truncate(ind);
-        if(speech.length() > 30) {
-            speech.truncate(30);
-            speech += "...";
-        }
-        title = "[speech] " + speaker + ": " + speech;
-        break;
-    }
-    case Emote:
-        title = "[emote]";
-        break;
-    case Sequence:
-        title = "[sequence]";
-        break;
-    case Concurrent:
-        title = "[concurrent]";
-        break;
-    case Conditional:
-        title = "[conditional]";
-        break;
-    case Jump:
-        title = "[jump]";
-        break;
-    case EndConversation:
-        title = "[end]";
-        break;
-    }
-    item->setData(title, Qt::DisplayRole);
+    m_current->setData(to, Action::TypeData);
+    Action::updateTitle(m_current);
+    if(to == Action::Sequence || to == Action::Concurrent
+        || to == Action::Conditional) m_current->setDropEnabled(true);
+    else m_current->setDropEnabled(false);
 }
 
 void ActionEditor::changeTo(QStandardItem *item) {
@@ -171,14 +133,14 @@ void ActionEditor::changeTo(QStandardItem *item) {
         m_currentStack->setEnabled(false);
     }
     else {
+        int type = item->data(Action::TypeData).toInt();
         m_currentType->setEnabled(true);
-        m_currentType->setCurrentIndex(item->data(TypeData).toInt());
+        m_currentType->setCurrentIndex(type);
 
         m_currentStack->setEnabled(true);
-        m_currentStack->setCurrentIndex(item->data(TypeData).toInt());
+        m_currentStack->setCurrentIndex(type);
 
-        m_currentSpeaker->setText(item->data(SpeakerData).toString());
-
-        m_currentSpeech->setText(item->data(SpeechData).toString());
+        m_currentSpeaker->setText(item->data(Action::SpeakerData).toString());
+        m_currentSpeech->setText(item->data(Action::SpeechData).toString());
     }
 }

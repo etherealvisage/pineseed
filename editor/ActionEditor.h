@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+#include "Action.h"
+
 class QStandardItem;
 class QStandardItemModel;
 class QTreeView;
@@ -14,21 +16,6 @@ class QTextEdit;
 
 class ActionEditor : public QWidget { Q_OBJECT
 public:
-    enum ActionType {
-        Empty,
-        Speech,
-        Emote,
-        Sequence,
-        Concurrent,
-        Conditional,
-        Jump,
-        EndConversation
-    };
-    enum ItemData {
-        TypeData = 0x100,
-        SpeakerData,
-        SpeechData
-    };
 private:
     QStandardItemModel *m_model;
     QTreeView *m_actionView;
@@ -44,8 +31,6 @@ private slots:
     void removeAction();
     void currentChanged(const QModelIndex &now, const QModelIndex &before);
     void changeType(int to);
-public:
-    static void updateActionTitle(QStandardItem *item);
 private:
     void changeTo(QStandardItem *item);
 };
