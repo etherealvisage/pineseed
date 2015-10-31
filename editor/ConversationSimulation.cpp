@@ -33,16 +33,7 @@ void ConversationSimulation::beginFrom(Node *node) {
 }
 
 void ConversationSimulation::progress(const QString &by) {
-    auto links = m_current->links();
-    for(auto link : links) {
-        if(link->from() != m_current) continue;
-
-        if(link->label() != by) continue;
-
-        process(link->to());
-
-        return;
-    }
+    process(m_optionsMap[by]);
 }
 
 void ConversationSimulation::process(Node *node) {
@@ -61,7 +52,10 @@ void ConversationSimulation::process(Node *node) {
         if(link->from() != node) continue;
 
         m_options->addItem(link->label());
+        m_optionsMap[link->label()] = link->to();
     }
+
+    m_history->scrollToBottom();
 }
 
 bool ConversationSimulation::process(QStandardItem *action) {
@@ -71,9 +65,18 @@ bool ConversationSimulation::process(QStandardItem *action) {
     switch(type) {
     case ActionEditor::Empty:
         break;
-    case ActionEditor::Speech:
-        m_history->addItem(action->data(ActionEditor::SpeechData).toString());
+    case ActionEditor::Speech: {
+        QListWidgetItem *item = new QListWidgetItem();
+        const QString &speaker =
+            action->data(ActionEditor::SpeakerData).toString();
+        item->setText(speaker + " says: "
+            + action->data(ActionEditor::SpeechData).toString());
+        quint16 hash = qHash(speaker);
+        item->setBackgroundColor(qRgb(240 + ((hash>>8)&0xf),
+            240 + ((hash>>4)&0xf), 240 + ((hash)&0xf)));
+        m_history->addItem(item);
         break;
+    }
     case ActionEditor::Emote:
         break;
     case ActionEditor::Sequence:

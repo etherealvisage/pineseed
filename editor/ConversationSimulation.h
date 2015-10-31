@@ -1,6 +1,7 @@
 #ifndef ConversationSimulation_H
 #define ConversationSimulation_H
 
+#include <QMap>
 #include <QWidget>
 
 class QComboBox;
@@ -14,6 +15,7 @@ private:
     Node *m_current;
     QListWidget *m_history;
     QComboBox *m_options;
+    QMap<QString, Node *> m_optionsMap;
 public:
     ConversationSimulation();
 public slots:
