@@ -105,8 +105,11 @@ void ConversationWindow::save() {
         tr("Save conversation"));
     QFile file(filename);
     if(!file.open(QIODevice::Truncate | QIODevice::WriteOnly)) return;
+    QFileInfo fi(filename);
+    setWindowTitle(fi.baseName());
 
     QXmlStreamWriter xml(&file);
+    xml.setAutoFormatting(true);
     xml.writeStartDocument();
 
     auto items = m_cview->scene()->items();
@@ -131,11 +134,12 @@ void ConversationWindow::save() {
 }
 
 void ConversationWindow::load() {
-    //m_cview->scene()->clear();
     QString filename = QFileDialog::getOpenFileName(this,
         tr("Open conversation"));
     QFile file(filename);
     if(!file.open(QIODevice::ReadOnly)) return;
+    QFileInfo fi(filename);
+    setWindowTitle(fi.baseName());
     
     QDomDocument doc;
     doc.setContent(&file);
