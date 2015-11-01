@@ -56,10 +56,12 @@ void Action::serialize(QXmlStreamWriter &xml,
 
     xml.writeAttribute("type",
         action->data(Action::TypeData).toString());
-    xml.writeAttribute("speaker",
-        action->data(Action::SpeakerData).toString());
-    xml.writeAttribute("speech",
-        action->data(Action::SpeechData).toString());
+
+    auto s = action->data(Action::SpeakerData).toString();
+    if(!s.isEmpty()) xml.writeAttribute("speaker", s);
+    s = action->data(Action::SpeechData).toString();
+    if(!s.isEmpty()) xml.writeAttribute("speech", s);
+
     auto target = (ConversationObject *)action->data(
         Action::JumpTargetData).value<void *>();
     if(itemID.contains(target))
