@@ -57,11 +57,20 @@ bool Root::loadFrom(std::string name) {
         }
     }
 
+    if(!m_rootNode) {
+        Message3(Game, Error, "Couldn't load conversation \"" << name
+            << "\": no root node");
+        return false;
+    }
+
     return true;
 }
 
 void Root::loadNode(int id, const pugi::xml_node &node) {
     auto n = m_nodeMap[id];
+
+    if(!std::strcmp(node.attribute("entry").as_string(), "true"))
+        m_rootNode = n;
 
     for(auto a = node.first_child(); ; a = a.next_sibling()) {
         auto action = loadAction(a);
@@ -110,9 +119,9 @@ boost::shared_ptr<Action> Root::loadAction(const pugi::xml_node &node) {
         Message3(Game, Debug, "Empty action found!");
         return boost::shared_ptr<Action>();
     case Speech:
-        Message3(Game, Debug, "Speech action found! ["
+        /*Message3(Game, Debug, "Speech action found! ["
             << node.attribute("speaker").as_string() << "]: "
-            << node.attribute("speech").as_string());
+            << node.attribute("speech").as_string());*/
         return boost::shared_ptr<Action>();
     case Emote:
         return boost::shared_ptr<Action>();

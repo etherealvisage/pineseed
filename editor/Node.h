@@ -20,6 +20,7 @@ private:
     QVector<Link *> m_links;
     QStandardItemModel *m_actionModel;
     bool m_selected;
+    bool m_isEntry;
 public:
     Node();
     virtual ~Node();

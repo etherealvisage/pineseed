@@ -17,6 +17,7 @@
 #include <QComboBox>
 #include <QXmlStreamWriter>
 #include <QDomElement>
+#include <QCheckBox>
 
 #include "Node.h"
 #include "moc_Node.cpp"
@@ -28,6 +29,7 @@
 Node::Node() {
     m_selected = false;
     m_size = QSizeF(150, 100);
+    m_isEntry = false;
 
     setFlags(ItemIsSelectable | ItemIsMovable);
 
@@ -49,6 +51,7 @@ void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *style,
 
     QBrush b;
     if(m_selected) b.setColor(QColor::fromRgb(200, 200, 255));
+    else if(m_isEntry) b.setColor(QColor::fromRgb(255, 224, 224));
     else b.setColor(QColor::fromRgb(240, 240, 240));
     b.setStyle(Qt::SolidPattern);
     painter->setBrush(b);
@@ -71,6 +74,29 @@ void Node::edit(ConversationDataInterface *interface,
     connect(labelEdit, &QLineEdit::textChanged,
         [=](const QString &label){ m_label = label; emit changed(); });
 
+    QCheckBox *entryBox = new QCheckBox();
+    entryBox->setCheckState(m_isEntry ? Qt::Checked : Qt::Unchecked);
+    connect(entryBox, &QCheckBox::stateChanged,
+        [=](){
+            m_isEntry = entryBox->checkState() == Qt::Checked;
+            update();
+        });
+
+    // make sure we don't have more than one entry node
+    auto items = scene()->items();
+    bool entrySet = false;
+    for(auto it : items) {
+        auto n = dynamic_cast<Node *>(it);
+        if(!n) continue;
+        if(n == this) continue;
+        entrySet |= n->m_isEntry;
+        if(entrySet) break;
+    }
+
+    if(entrySet) entryBox->setEnabled(false);
+
+    layout->addRow(tr("Entry:"), entryBox);
+
     ActionEditor *editor = new ActionEditor(interface, data, m_actionModel);
     layout->addRow(tr(""), editor);
 }
@@ -90,6 +116,7 @@ void Node::serialize(QXmlStreamWriter &xml,
     xml.writeAttribute("x", QString().setNum(pos().x()));
     xml.writeAttribute("y", QString().setNum(pos().y()));
     xml.writeAttribute("label", m_label);
+    if(m_isEntry) xml.writeAttribute("entry", "true");
 
     auto root = m_actionModel->invisibleRootItem();
     for(int i = 0; i < root->rowCount(); i ++)
@@ -107,6 +134,8 @@ void Node::deserialize(QDomElement &xml,
     setPos(QPointF(xml.attribute("x").toDouble(),
         xml.attribute("y").toDouble()));
     prepareGeometryChange();
+    if(xml.attribute("entry") == "true")
+        m_isEntry = true;
 
     // if there are no children, we're done here.
     if(!xml.hasChildNodes()) return;
