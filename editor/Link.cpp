@@ -13,8 +13,10 @@
 #include "Link.h"
 #include "moc_Link.cpp"
 #include "Node.h"
+#include "ConversationData.h"
 
 Link::Link(Node *from, Node *to) : m_from(from), m_to(to), m_label("Label") {
+    m_id = -1;
     if(from) m_from->links().push_back(this);
     if(to) m_to->links().push_back(this);
 
@@ -72,6 +74,10 @@ void Link::paint(QPainter *painter,
 void Link::edit(ConversationDataInterface *interface,
     ConversationData *data, QFormLayout *layout) {
 
+    if(m_id == -1) {
+        m_id = data->getAvailableID();
+    }
+
     QLineEdit *edit = new QLineEdit(m_label);
     layout->addRow(tr("Label:"), edit);
     edit->setFocus();
@@ -83,15 +89,13 @@ bool Link::isSelection(QPointF point) {
     return labelBoundingRect().contains(point);
 }
 
-void Link::serialize(QXmlStreamWriter &xml,
-    const QMap<ConversationObject *, int> &itemID) {
-
+void Link::serialize(QXmlStreamWriter &xml) {
     xml.writeStartElement("link");
 
-    xml.writeAttribute("id", QString().setNum(itemID[this]));
+    xml.writeAttribute("id", QString().setNum(m_id));
     xml.writeAttribute("label", m_label);
-    xml.writeAttribute("from", QString().setNum(itemID[m_from]));
-    xml.writeAttribute("to", QString().setNum(itemID[m_to]));
+    xml.writeAttribute("from", QString().setNum(m_from->id()));
+    xml.writeAttribute("to", QString().setNum(m_to->id()));
 
     xml.writeEndElement();
 }
@@ -99,6 +103,7 @@ void Link::serialize(QXmlStreamWriter &xml,
 void Link::deserialize(QDomElement &xml,
     const QMap<int, ConversationObject *> &objs) {
 
+    m_id = xml.attribute("id").toInt();
     m_label = xml.attribute("label");
     m_from = dynamic_cast<Node *>(objs[xml.attribute("from").toInt()]);
     m_to = dynamic_cast<Node *>(objs[xml.attribute("to").toInt()]);

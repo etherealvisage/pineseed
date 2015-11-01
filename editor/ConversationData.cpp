@@ -10,6 +10,16 @@
 
 #include "ConversationData.h"
 
+int ConversationData::getAvailableID() {
+    int ret = -1;
+    do {
+        ret = qrand();
+    } while(m_usedIDs.contains(ret));
+
+    m_usedIDs.insert(ret);
+    return ret;
+}
+
 void ConversationData::edit(QWidget *parent) {
     QDialog *dialog = new QDialog(parent);
     QVBoxLayout *primaryLayout = new QVBoxLayout();

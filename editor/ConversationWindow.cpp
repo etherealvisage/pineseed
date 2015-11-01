@@ -119,7 +119,6 @@ ConversationWindow::ConversationWindow() {
 
             m_window->modeChange(SelectOneMode);
         }
-        
     };
 
     m_dataInterface = new InternalInterface(this);
@@ -140,19 +139,18 @@ void ConversationWindow::save() {
 
     auto items = m_cview->scene()->items();
     QMap<ConversationObject *, int> itemID;
+    QMap<int, ConversationObject *> rmap;
 
     for(auto item : items) {
         auto obj = dynamic_cast<ConversationObject *>(item);
         if(!obj) continue;
-        itemID[obj] = itemID.size()+1; // make sure ID 0 not in use
+        itemID[obj] = obj->id();
+        rmap[obj->id()] = obj;
     }
 
     xml.writeStartElement("objects");
-    for(auto item : items) {
-        auto obj = dynamic_cast<ConversationObject *>(item);
-        if(!obj) continue;
-
-        obj->serialize(xml, itemID);
+    for(auto obj : rmap) {
+        obj->serialize(xml);
     }
     xml.writeEndElement(); // objects
 
@@ -188,6 +186,8 @@ void ConversationWindow::load() {
 
         auto name = element.tagName();
         auto id = element.attribute("id").toInt();
+        // mark ID as in use...
+        m_data->usedIDs().insert(id);
 
         if(name == "node") {
             objs[id] = new Node();

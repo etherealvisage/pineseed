@@ -49,9 +49,7 @@ void Action::updateTitle(QStandardItem *item) {
     item->setData(title, Qt::DisplayRole);
 }
 
-void Action::serialize(QXmlStreamWriter &xml, 
-    const QMap<ConversationObject *, int> &itemID, QStandardItem *action) {
-
+void Action::serialize(QXmlStreamWriter &xml, QStandardItem *action) {
     xml.writeStartElement("action");
 
     xml.writeAttribute("type",
@@ -64,11 +62,11 @@ void Action::serialize(QXmlStreamWriter &xml,
 
     auto target = (ConversationObject *)action->data(
         Action::JumpTargetData).value<void *>();
-    if(itemID.contains(target))
-        xml.writeAttribute("jump-target", QString().setNum(itemID[target]));
+    if(target)
+        xml.writeAttribute("jump-target", QString().setNum(target->id()));
 
     for(int i = 0; i < action->rowCount(); i ++) {
-        serialize(xml, itemID, action->child(i));
+        serialize(xml, action->child(i));
     }
 
     xml.writeEndElement();

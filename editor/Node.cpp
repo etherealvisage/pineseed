@@ -25,8 +25,10 @@
 #include "Link.h"
 #include "ActionEditor.h"
 #include "Action.h"
+#include "ConversationData.h"
 
 Node::Node() {
+    m_id = -1;
     m_selected = false;
     m_size = QSizeF(150, 100);
     m_isEntry = false;
@@ -68,6 +70,10 @@ void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *style,
 void Node::edit(ConversationDataInterface *interface,
     ConversationData *data, QFormLayout *layout) {
 
+    if(m_id == -1) {
+        m_id = data->getAvailableID();
+    }
+
     QLineEdit *labelEdit = new QLineEdit(m_label);
     layout->addRow(tr("Label:"), labelEdit);
     labelEdit->setFocus();
@@ -105,12 +111,11 @@ bool Node::isSelection(QPointF point) {
     return boundingRect().contains(point);
 }
 
-void Node::serialize(QXmlStreamWriter &xml,
-    const QMap<ConversationObject *, int> &itemID) {
+void Node::serialize(QXmlStreamWriter &xml) {
 
     xml.writeStartElement("node");
 
-    xml.writeAttribute("id", QString().setNum(itemID[this]));
+    xml.writeAttribute("id", QString().setNum(m_id));
     xml.writeAttribute("width", QString().setNum(m_size.width()));
     xml.writeAttribute("height", QString().setNum(m_size.height()));
     xml.writeAttribute("x", QString().setNum(pos().x()));
@@ -120,7 +125,7 @@ void Node::serialize(QXmlStreamWriter &xml,
 
     auto root = m_actionModel->invisibleRootItem();
     for(int i = 0; i < root->rowCount(); i ++)
-        Action::serialize(xml, itemID, root->child(i));
+        Action::serialize(xml, root->child(i));
 
     xml.writeEndElement();
 }
@@ -128,6 +133,7 @@ void Node::serialize(QXmlStreamWriter &xml,
 void Node::deserialize(QDomElement &xml,
     const QMap<int, ConversationObject *> &objs) {
 
+    m_id = xml.attribute("id").toInt();
     m_label = xml.attribute("label");
     m_size = QSizeF(xml.attribute("width").toDouble(),
         xml.attribute("height").toDouble());

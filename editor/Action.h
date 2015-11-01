@@ -29,8 +29,7 @@ public:
 public:
     static void updateTitle(QStandardItem *item);
 
-    static void serialize(QXmlStreamWriter &xml, 
-        const QMap<ConversationObject *, int> &itemID, QStandardItem *action);
+    static void serialize(QXmlStreamWriter &xml, QStandardItem *action);
     static QStandardItem *deserialize(QDomElement &xml, 
         const QMap<int, ConversationObject *> &objs);
 };

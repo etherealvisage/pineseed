@@ -13,8 +13,8 @@ class Action;
 class Link;
 
 class Node : public ConversationObject { Q_OBJECT
-public:
 private:
+    int m_id;
     QSizeF m_size;
     QString m_label;
     QVector<Link *> m_links;
@@ -24,6 +24,8 @@ private:
 public:
     Node();
     virtual ~Node();
+
+    virtual int id() const { return m_id; }
 
     virtual void select() { m_selected = true; update(); }
     virtual void deselect() { m_selected = false; update(); }
@@ -43,8 +45,7 @@ public:
         ConversationData *data, QFormLayout *layout);
     virtual bool isSelection(QPointF point);
 
-    virtual void serialize(QXmlStreamWriter &xml,
-        const QMap<ConversationObject *, int> &itemID);
+    virtual void serialize(QXmlStreamWriter &xml);
     virtual void deserialize(QDomElement &xml,
         const QMap<int, ConversationObject *> &objs);
 protected:
