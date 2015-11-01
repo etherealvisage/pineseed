@@ -13,9 +13,9 @@ void Conversation::begin(boost::shared_ptr<Conv::Node> begin) {
 }
 
 void Conversation::takeOption(int index) {
-    if(index >= m_active->links().size()) return;
+    /*if(index >= m_active->links().size()) return;
 
-    activate(m_active->links()[index].node());
+    activate(m_active->links()[index].node());*/
 }
 
 void Conversation::activate(boost::shared_ptr<Conv::Node> node) {
@@ -23,10 +23,10 @@ void Conversation::activate(boost::shared_ptr<Conv::Node> node) {
     UI::instance()->clearOptions();
 
     Message3(Game, Debug, "Adding conversation options...");
-    for(auto &link : node->links()) {
+    /*for(auto &link : node->links()) {
         UI::instance()->addOption(link.label());
         Message3(Game, Debug, "Added option \"" << link.label() << "\"!");
-    }
+    }*/
 
     node->triggerActions();
 }

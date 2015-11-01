@@ -30,6 +30,7 @@
 
 #include "conv/Node.h"
 #include "conv/SpeechAction.h"
+#include "conv/Root.h"
 
 using namespace Pineseed;
 
@@ -117,7 +118,7 @@ void gameEntryPoint() {
 
     conversation = boost::make_shared<Game::Conversation>();
 
-    {
+    /*{
         auto convRoot = boost::make_shared<Conv::Node>();
 
         convRoot->addAction(boost::make_shared<Conv::SpeechAction>(nullptr,
@@ -135,6 +136,10 @@ void gameEntryPoint() {
             nullptr, "Good to know!"));
 
         conversation->begin(convRoot);
+    }*/
+
+    {
+        auto root = Kriti::ResourceRegistry::get<Conv::Root>("tashin");
     }
 
     auto cr = Kriti::Interface::ContextRegistry::instance();
