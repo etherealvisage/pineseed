@@ -85,8 +85,8 @@ bool ConversationSimulation::process(QStandardItem *action) {
         item->setText(speaker + " says: "
             + action->data(Action::SpeechData).toString());
         quint16 hash = qHash(speaker);
-        item->setBackgroundColor(qRgb(240 + ((hash>>8)&0xf),
-            240 + ((hash>>4)&0xf), 240 + ((hash)&0xf)));
+        item->setBackgroundColor(qRgb(224 + ((hash>>8)&0xf),
+            224 + ((hash>>4)&0xf), 224 + ((hash)&0xf)));
         m_history->addItem(item);
         break;
     }
