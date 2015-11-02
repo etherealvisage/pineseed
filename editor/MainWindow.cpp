@@ -1,5 +1,8 @@
 #include <QMenuBar>
 #include <QLabel>
+#include <QFile>
+#include <QFileDialog>
+#include <QTimer>
 
 #include "MainWindow.h"
 #include "moc_MainWindow.cpp"
@@ -19,6 +22,12 @@ MainWindow::MainWindow() {
     setCentralWidget(m_mdi);
 
     m_mdi->setViewMode(QMdiArea::TabbedView);
+
+    QTimer *autosaveTimer = new QTimer(this);
+    autosaveTimer->setSingleShot(false);
+    autosaveTimer->setInterval(60 * 1000); // once per minute
+    connect(autosaveTimer, SIGNAL(timeout()), this, SLOT(autoSave()));
+    autosaveTimer->start();
 }
 
 void MainWindow::newConversationWindow() {
@@ -33,7 +42,12 @@ void MainWindow::saveConversation() {
     auto cw = dynamic_cast<ConversationWindow *>(m_mdi->activeSubWindow());
     if(!cw) return;
 
-    cw->save();
+    QString filename = QFileDialog::getSaveFileName(this,
+        tr("Save ..."));
+    QFile file(filename);
+    if(!file.open(QIODevice::Truncate | QIODevice::WriteOnly)) return;
+
+    cw->saveTo(file);
 }
 
 void MainWindow::loadConversation() {
@@ -43,4 +57,14 @@ void MainWindow::loadConversation() {
     if(!cw) return;
 
     cw->load();
+}
+
+void MainWindow::autoSave() {
+    auto cw = dynamic_cast<ConversationWindow *>(m_mdi->activeSubWindow());
+    if(!cw) return;
+
+    QFile file("autosave.xml");
+    if(!file.open(QIODevice::Truncate | QIODevice::WriteOnly)) return;
+
+    cw->saveTo(file);
 }

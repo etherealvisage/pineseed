@@ -11,6 +11,7 @@
 #include "ConversationObject.h"
 #include "ConversationView.h"
 
+class QFile;
 class QPushButton;
 class QSplitter;
 class QXmlStreamWriter;
@@ -51,7 +52,7 @@ private:
 public:
     ConversationWindow();
 
-    void save();
+    void saveTo(QFile &file);
     void load();
 private slots:
     void modeChange(int to);

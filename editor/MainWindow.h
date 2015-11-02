@@ -14,6 +14,7 @@ private slots:
     void newConversationWindow();
     void saveConversation();
     void loadConversation();
+    void autoSave();
 };
 
 #endif

@@ -124,12 +124,14 @@ ConversationWindow::ConversationWindow() {
     m_dataInterface = new InternalInterface(this);
 }
 
-void ConversationWindow::save() {
-    QString filename = QFileDialog::getSaveFileName(this,
+void ConversationWindow::saveTo(QFile &file) {
+    /*QString filename = QFileDialog::getSaveFileName(this,
         tr("Save conversation"));
     QFile file(filename);
     if(!file.open(QIODevice::Truncate | QIODevice::WriteOnly)) return;
     QFileInfo fi(filename);
+    setWindowTitle(fi.baseName());*/
+    QFileInfo fi(file.fileName());
     setWindowTitle(fi.baseName());
 
     QXmlStreamWriter xml(&file);
