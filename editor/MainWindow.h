@@ -12,8 +12,9 @@ public:
     virtual ~MainWindow() {}
 private slots:
     void newConversationWindow();
-    void saveConversation();
-    void loadConversation();
+    void newPlatformWindow();
+    void saveCurrent();
+    void loadCurrent();
     void autoSave();
 };
 

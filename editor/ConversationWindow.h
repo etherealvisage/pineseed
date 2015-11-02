@@ -9,7 +9,8 @@
 
 #include "ConversationData.h"
 #include "ConversationObject.h"
-#include "ConversationView.h"
+#include "EditorView.h"
+#include "EditorWindow.h"
 
 class QFile;
 class QPushButton;
@@ -18,7 +19,7 @@ class QXmlStreamWriter;
 
 class ConversationSimulation;
 
-class ConversationWindow : public QMdiSubWindow { Q_OBJECT
+class ConversationWindow : public QMdiSubWindow, public EditorWindow { Q_OBJECT
 private:
     enum Mode {
         // mode 0
@@ -39,7 +40,7 @@ private:
     QWidget *m_editbar;
     QWidget *m_editarea;
     QPushButton *m_simbutton;
-    ConversationView *m_cview;
+    EditorView *m_eview;
     ConversationSimulation *m_sim;
     QSignalMapper *m_modeMapper;
     QList<QPushButton *> m_toolButtons;
@@ -57,12 +58,12 @@ public:
 private slots:
     void modeChange(int to);
 
-    void selectObject(ConversationObject *object);
+    void selectObject(EditorObject *eobject);
     void insertNode(QPointF where);
     void insertContext(QPointF where);
-    void makeLink(ConversationObject *object);
-    void deleteObject(ConversationObject *object);
-    void selectOne(ConversationObject *object);
+    void makeLink(EditorObject *object);
+    void deleteObject(EditorObject *object);
+    void selectOne(EditorObject *eobject);
     void beginSimulation();
 };
 

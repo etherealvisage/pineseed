@@ -29,8 +29,8 @@ ConversationWindow::ConversationWindow() {
     m_split = new QSplitter();
     m_edit = new QWidget();
     m_split->addWidget(m_edit);
-    m_cview = new ConversationView();
-    m_split->addWidget(m_cview);
+    m_eview = new EditorView();
+    m_split->addWidget(m_eview);
     m_sim = new ConversationSimulation();
     m_split->addWidget(m_sim);
     modeChange(SelectMode); // enter select mode by default
@@ -139,7 +139,7 @@ void ConversationWindow::saveTo(QFile &file) {
     xml.writeStartDocument();
     xml.writeStartElement("conversation");
 
-    auto items = m_cview->scene()->items();
+    auto items = m_eview->scene()->items();
     QMap<ConversationObject *, int> itemID;
     QMap<int, ConversationObject *> rmap;
 
@@ -208,15 +208,15 @@ void ConversationWindow::load() {
         auto id = element.attribute("id").toInt();
         
         objs[id]->deserialize(element, objs);
-        m_cview->scene()->addItem(objs[id]);
+        m_eview->scene()->addItem(objs[id]);
     }
 }
 
 void ConversationWindow::modeChange(int to) {
     Mode mode = (Mode)to;
 
-    m_cview->disconnect(m_cview, SIGNAL(clicked(QPointF)), this, 0);
-    m_cview->disconnect(m_cview, SIGNAL(selected(ConversationObject *)),
+    m_eview->disconnect(m_eview, SIGNAL(clicked(QPointF)), this, 0);
+    m_eview->disconnect(m_eview, SIGNAL(selected(EditorObject *)),
         this, 0);
 
     for(auto b : m_toolButtons) if(!b->isEnabled()) b->setEnabled(true);
@@ -226,37 +226,37 @@ void ConversationWindow::modeChange(int to) {
 
     switch(mode) {
     case SelectMode:
-        m_cview->enterSelectMode();
-        connect(m_cview, SIGNAL(selected(ConversationObject *)),
-            this, SLOT(selectObject(ConversationObject *)));
+        m_eview->enterSelectMode();
+        connect(m_eview, SIGNAL(selected(EditorObject *)),
+            this, SLOT(selectObject(EditorObject *)));
         break;
     case NewNodeMode:
-        m_cview->enterInsertMode();
-        connect(m_cview, SIGNAL(clicked(QPointF)),
+        m_eview->enterInsertMode();
+        connect(m_eview, SIGNAL(clicked(QPointF)),
             this, SLOT(insertNode(QPointF)));
         break;
     case NewContextMode:
-        m_cview->enterInsertMode();
+        m_eview->enterInsertMode();
         break;
     case NewLinkMode:
         if(!m_selectLast || !dynamic_cast<Node *>(m_selectLast)) {
             modeChange(SelectMode);
         }
         else {
-            m_cview->enterSelectMode();
-            connect(m_cview, SIGNAL(selected(ConversationObject *)),
-                this, SLOT(makeLink(ConversationObject *)));
+            m_eview->enterSelectMode();
+            connect(m_eview, SIGNAL(selected(EditorObject *)),
+                this, SLOT(makeLink(EditorObject *)));
         }
         break;
     case DeleteMode:
-        m_cview->enterSelectMode();
-        connect(m_cview, SIGNAL(selected(ConversationObject *)),
-            this, SLOT(deleteObject(ConversationObject *)));
+        m_eview->enterSelectMode();
+        connect(m_eview, SIGNAL(selected(EditorObject *)),
+            this, SLOT(deleteObject(EditorObject *)));
         break;
     case SelectOneMode:
-        m_cview->enterSelectMode();
-        connect(m_cview, SIGNAL(selected(ConversationObject *)),
-            this, SLOT(selectOne(ConversationObject *)));
+        m_eview->enterSelectMode();
+        connect(m_eview, SIGNAL(selected(EditorObject *)),
+            this, SLOT(selectOne(EditorObject *)));
         break;
     default:
         qFatal("Unexpected mode change value");
@@ -264,7 +264,8 @@ void ConversationWindow::modeChange(int to) {
     }
 }
 
-void ConversationWindow::selectObject(ConversationObject *object) {
+void ConversationWindow::selectObject(EditorObject *eobject) {
+    auto object = dynamic_cast<ConversationObject *>(eobject);
     while(m_editarea->layout()->count() > 0) {
         auto item = m_editarea->layout()->takeAt(0);
         if(item->widget()) item->widget()->deleteLater();
@@ -288,9 +289,9 @@ void ConversationWindow::selectObject(ConversationObject *object) {
 void ConversationWindow::insertNode(QPointF where) {
     Node *node = new Node();
     node->setPos(where - node->boundingRect().center());
-    m_cview->scene()->addItem(node);
+    m_eview->scene()->addItem(node);
 
-    connect(node, SIGNAL(changed()), m_cview->viewport(), SLOT(update()));
+    connect(node, SIGNAL(changed()), m_eview->viewport(), SLOT(update()));
     selectObject(node);
     modeChange(SelectMode);
 }
@@ -299,27 +300,28 @@ void ConversationWindow::insertContext(QPointF where) {
     qDebug("Contexts NYI!");
 }
 
-void ConversationWindow::makeLink(ConversationObject *object) {
+void ConversationWindow::makeLink(EditorObject *object) {
     Node *target = dynamic_cast<Node *>(object);
     // not allowed to have self-links for now
     if(!target || target == m_selectLast) return; 
 
     Link *link = new Link(dynamic_cast<Node *>(m_selectLast), target);
-    connect(link, SIGNAL(changed()), m_cview->viewport(), SLOT(update()));
-    m_cview->scene()->addItem(link);
+    connect(link, SIGNAL(changed()), m_eview->viewport(), SLOT(update()));
+    m_eview->scene()->addItem(link);
 
     selectObject(link);
     modeChange(SelectMode);
 }
 
-void ConversationWindow::deleteObject(ConversationObject *object) {
+void ConversationWindow::deleteObject(EditorObject *object) {
     object->deleteLater();
 
     modeChange(SelectMode);
     selectObject(nullptr);
 }
 
-void ConversationWindow::selectOne(ConversationObject *object) {
+void ConversationWindow::selectOne(EditorObject *eobject) {
+    auto object = dynamic_cast<ConversationObject *>(eobject);
     if(!m_selectOneFilter(object)) return;
 
     m_selectOneCallback(object);

@@ -1,11 +1,11 @@
-#ifndef ConversationView_H
-#define ConversationView_H
+#ifndef EditorView_H
+#define EditorView_H
 
 #include <QGraphicsView>
 
-#include "Node.h"
+class EditorObject;
 
-class ConversationView : public QGraphicsView { Q_OBJECT
+class EditorView : public QGraphicsView { Q_OBJECT
 private:
     enum {
         DragMode,
@@ -15,7 +15,7 @@ private:
 private:
     QGraphicsItem *m_origin;
 public:
-    ConversationView();
+    EditorView();
 protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
@@ -25,9 +25,9 @@ public:
     void enterInsertMode();
 signals:
     void clicked(QPointF pos);
-    void selected(ConversationObject *item);
+    void selected(EditorObject *item);
 private:
-    ConversationObject *objectAt(QPoint uViewportPos);
+    EditorObject *objectAt(QPoint uViewportPos);
 };
 
 #endif

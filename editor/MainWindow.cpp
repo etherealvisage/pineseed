@@ -8,14 +8,17 @@
 #include "moc_MainWindow.cpp"
 
 #include "ConversationWindow.h"
+#include "PlatformWindow.h"
 
 MainWindow::MainWindow() {
     this->setWindowTitle(tr("Pineseed editor"));
 
     auto file = menuBar()->addMenu(tr("&File"));
-    file->addAction(tr("&New"), this, SLOT(newConversationWindow()));
-    file->addAction(tr("&Save"), this, SLOT(saveConversation()));
-    file->addAction(tr("&Load"), this, SLOT(loadConversation()));
+    file->addAction(tr("&New conversation"), this, SLOT(newConversationWindow()));
+    file->addAction(tr("New &platform level"), this,
+        SLOT(newPlatformWindow()));
+    file->addAction(tr("&Save"), this, SLOT(saveCurrent()));
+    file->addAction(tr("&Load"), this, SLOT(loadCurrent()));
     file->addAction(tr("E&xit"), this, SLOT(close()));
 
     m_mdi = new QMdiArea();
@@ -38,19 +41,27 @@ void MainWindow::newConversationWindow() {
     cw->show();
 }
 
-void MainWindow::saveConversation() {
-    auto cw = dynamic_cast<ConversationWindow *>(m_mdi->activeSubWindow());
-    if(!cw) return;
+void MainWindow::newPlatformWindow() {
+    auto pw = new PlatformWindow();
+    m_mdi->addSubWindow(pw);
+    pw->setAttribute(Qt::WA_DeleteOnClose);
+
+    pw->show();
+}
+
+void MainWindow::saveCurrent() {
+    auto ew = dynamic_cast<EditorWindow *>(m_mdi->activeSubWindow());
+    if(!ew) return;
 
     QString filename = QFileDialog::getSaveFileName(this,
         tr("Save ..."));
     QFile file(filename);
     if(!file.open(QIODevice::Truncate | QIODevice::WriteOnly)) return;
 
-    cw->saveTo(file);
+    ew->saveTo(file);
 }
 
-void MainWindow::loadConversation() {
+void MainWindow::loadCurrent() {
     newConversationWindow();
 
     auto cw = dynamic_cast<ConversationWindow *>(m_mdi->activeSubWindow());
@@ -60,11 +71,11 @@ void MainWindow::loadConversation() {
 }
 
 void MainWindow::autoSave() {
-    auto cw = dynamic_cast<ConversationWindow *>(m_mdi->activeSubWindow());
-    if(!cw) return;
+    auto ew = dynamic_cast<EditorWindow *>(m_mdi->activeSubWindow());
+    if(!ew) return;
 
     QFile file("autosave.xml");
     if(!file.open(QIODevice::Truncate | QIODevice::WriteOnly)) return;
 
-    cw->saveTo(file);
+    ew->saveTo(file);
 }
