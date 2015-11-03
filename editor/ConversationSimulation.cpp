@@ -29,6 +29,7 @@ ConversationSimulation::ConversationSimulation() {
 void ConversationSimulation::beginFrom(Node *node) {
     m_history->clear();
     // TODO: set up initial state etc.
+    m_visited.clear();
     process(node);
 }
 
@@ -69,6 +70,7 @@ void ConversationSimulation::process(Node *node) {
     }
 
     m_history->scrollToBottom();
+    m_visited.insert(node);
 }
 
 bool ConversationSimulation::process(QStandardItem *action) {
@@ -102,12 +104,24 @@ bool ConversationSimulation::process(QStandardItem *action) {
         m_history->addItem(item);
         break;
     }
-    case Action::Sequence:
+    case Action::Sequence: {
+        for(int i = 0; i < action->rowCount(); i ++) {
+            process(action->child(i));
+        }
         break;
+    }
     case Action::Concurrent:
         break;
     case Action::Conditional:
         break;
+    case Action::FirstVisitConditional: {
+        if(!m_visited.contains(m_current)) {
+            for(int i = 0; i < action->rowCount(); i ++) {
+                process(action->child(i));
+            }
+        }
+        break;
+    }
     case Action::Jump: {
         Node *target =
             (Node *)action->data(Action::JumpTargetData).value<void *>();
@@ -122,8 +136,5 @@ bool ConversationSimulation::process(QStandardItem *action) {
         return true;
     }
 
-    for(int i = 0; i < action->rowCount(); i ++) {
-        if(process(action->child(i))) return true;
-    }
     return false;
 }

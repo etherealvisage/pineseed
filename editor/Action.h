@@ -17,6 +17,7 @@ public:
         Sequence,
         Concurrent,
         Conditional,
+        FirstVisitConditional,
         Jump,
         EndConversation
     };

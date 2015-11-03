@@ -47,6 +47,7 @@ ActionEditor::ActionEditor(ConversationDataInterface *interface,
     m_currentType->addItem(tr("Sequence"));
     m_currentType->addItem(tr("Concurrent"));
     m_currentType->addItem(tr("Conditional"));
+    m_currentType->addItem(tr("First visit conditional"));
     m_currentType->addItem(tr("Jump"));
     m_currentType->addItem(tr("End conversation"));
     layout->addWidget(m_currentType);
@@ -142,7 +143,9 @@ ActionEditor::ActionEditor(ConversationDataInterface *interface,
     { // Conditional
         m_currentStack->addWidget(new QLabel("Conditional"));
     }
-
+    { // First visit conditional
+        m_currentStack->addWidget(new QLabel("First-visit conditional"));
+    }
     { // Jump
         QVBoxLayout *jumpLayout = new QVBoxLayout();
         m_currentJumpTarget = new QLabel();
@@ -216,7 +219,10 @@ void ActionEditor::changeType(int to) {
     m_current->setData(to, Action::TypeData);
     Action::updateTitle(m_current);
     if(to == Action::Sequence || to == Action::Concurrent
-        || to == Action::Conditional) m_current->setDropEnabled(true);
+        || to == Action::Conditional || to == Action::FirstVisitConditional) {
+
+        m_current->setDropEnabled(true);
+    }
     else m_current->setDropEnabled(false);
 }
 
@@ -247,5 +253,7 @@ void ActionEditor::changeTo(QStandardItem *item) {
         m_currentEmoter->setCurrentText(
             item->data(Action::ActorData).toString());
         m_currentEmote->setText(item->data(Action::EmoteData).toString());
+
+        //m_currentJumpTarget->setText(item->data(Action::JumpTargetData));
     }
 }

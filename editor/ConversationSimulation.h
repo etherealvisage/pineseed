@@ -3,6 +3,7 @@
 
 #include <QMap>
 #include <QWidget>
+#include <QSet>
 
 class QComboBox;
 class QListWidget;
@@ -16,6 +17,7 @@ private:
     QListWidget *m_history;
     QComboBox *m_options;
     QMap<QString, Node *> m_optionsMap;
+    QSet<Node *> m_visited;
 public:
     ConversationSimulation();
 public slots:
