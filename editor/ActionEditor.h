@@ -33,6 +33,7 @@ private:
     QTextEdit *m_currentEmote;
     QLabel *m_currentJumpTarget;
     QStandardItem *m_current;
+    QTextEdit *m_currentComment;
 public:
     ActionEditor(ConversationDataInterface *interface, ConversationData *data,
         QStandardItemModel *model);

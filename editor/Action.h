@@ -25,7 +25,8 @@ public:
         ActorData,
         SpeechData,
         EmoteData,
-        JumpTargetData
+        JumpTargetData,
+        CommentData
     };
 public:
     static void updateTitle(QStandardItem *item);

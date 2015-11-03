@@ -56,6 +56,11 @@ ActionEditor::ActionEditor(ConversationDataInterface *interface,
     connect(m_currentType, SIGNAL(activated(int)),
         this, SLOT(changeType(int)));
 
+    layout->addWidget(new QLabel("Comments:"));
+    m_currentComment = new QTextEdit();
+    m_currentComment->setAcceptRichText(false);
+    layout->addWidget(m_currentComment);
+
     { // Empty
         m_currentStack->addWidget(new QLabel("Please select a type"));
     }
@@ -94,7 +99,7 @@ ActionEditor::ActionEditor(ConversationDataInterface *interface,
         m_currentStack->addWidget(speechWidget);
     }
 
-    { // Speech
+    { // Emote
         QVBoxLayout *emoteLayout = new QVBoxLayout();
         m_currentEmoter = new QComboBox();
         m_currentEmoter->setModel(m_currentSpeaker->model());
