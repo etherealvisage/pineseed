@@ -14,6 +14,7 @@ class QLineEdit;
 class QStackedWidget;
 class QTextEdit;
 class QLabel;
+class QCheckBox;
 
 class ConversationData;
 class ConversationDataInterface;
@@ -32,6 +33,7 @@ private:
     QComboBox *m_currentEmoter;
     QTextEdit *m_currentEmote;
     QLabel *m_currentJumpTarget;
+    QCheckBox *m_currentConditionalInversion;
     QStandardItem *m_current;
     QTextEdit *m_currentComment;
 public:

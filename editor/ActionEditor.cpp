@@ -7,6 +7,7 @@
 #include <QLineEdit>
 #include <QLabel>
 #include <QTextEdit>
+#include <QCheckBox>
 
 #include "ActionEditor.h"
 #include "moc_ActionEditor.cpp"
@@ -41,15 +42,6 @@ ActionEditor::ActionEditor(ConversationDataInterface *interface,
     connect(removeButton, SIGNAL(clicked(bool)), this, SLOT(removeAction()));
 
     m_currentType = new QComboBox();
-    m_currentType->addItem(tr("Empty"));
-    m_currentType->addItem(tr("Speech"));
-    m_currentType->addItem(tr("Emote"));
-    m_currentType->addItem(tr("Sequence"));
-    m_currentType->addItem(tr("Concurrent"));
-    m_currentType->addItem(tr("Conditional"));
-    m_currentType->addItem(tr("Jump"));
-    m_currentType->addItem(tr("End conversation"));
-    m_currentType->addItem(tr("First visit conditional"));
     layout->addWidget(m_currentType);
 
     m_currentStack = new QStackedWidget();
@@ -63,10 +55,12 @@ ActionEditor::ActionEditor(ConversationDataInterface *interface,
     layout->addWidget(m_currentComment);
 
     { // Empty
+        m_currentType->addItem(tr("Empty"));
         m_currentStack->addWidget(new QLabel("Please select a type"));
     }
 
     { // Speech
+        m_currentType->addItem(tr("Speech"));
         QVBoxLayout *speechLayout = new QVBoxLayout();
         m_currentSpeaker = new QComboBox();
         connect(m_currentSpeaker,
@@ -101,6 +95,7 @@ ActionEditor::ActionEditor(ConversationDataInterface *interface,
     }
 
     { // Emote
+        m_currentType->addItem(tr("Emote"));
         QVBoxLayout *emoteLayout = new QVBoxLayout();
         m_currentEmoter = new QComboBox();
         m_currentEmoter->setModel(m_currentSpeaker->model());
@@ -135,15 +130,19 @@ ActionEditor::ActionEditor(ConversationDataInterface *interface,
         m_currentStack->addWidget(emoteWidget);
     }
     { // Sequence
+        m_currentType->addItem(tr("Sequence"));
         m_currentStack->addWidget(new QLabel("Sequence"));
     }
     { // Concurrent
+        m_currentType->addItem(tr("Concurrent"));
         m_currentStack->addWidget(new QLabel("Concurrent"));
     }
     { // Conditional
+        m_currentType->addItem(tr("Conditional"));
         m_currentStack->addWidget(new QLabel("Conditional"));
     }
     { // Jump
+        m_currentType->addItem(tr("Jump"));
         QVBoxLayout *jumpLayout = new QVBoxLayout();
         m_currentJumpTarget = new QLabel();
         jumpLayout->addWidget(m_currentJumpTarget);
@@ -169,10 +168,21 @@ ActionEditor::ActionEditor(ConversationDataInterface *interface,
         m_currentStack->addWidget(jumpWidget);
     }
     { // End
+        m_currentType->addItem(tr("End conversation"));
         m_currentStack->addWidget(new QLabel("End conversation"));
     }
     { // First visit conditional
-        m_currentStack->addWidget(new QLabel("First-visit conditional"));
+        m_currentType->addItem(tr("First-visit conditional"));
+        m_currentConditionalInversion = new QCheckBox(tr("Invert?"));
+        connect(m_currentConditionalInversion, &QCheckBox::stateChanged,
+            [=](int newState){
+                if(m_current) {
+                    m_current->setData(newState == Qt::Checked,
+                        Action::ConditionalInversionData);
+                    Action::updateTitle(m_current);
+                }
+            });
+        m_currentStack->addWidget(m_currentConditionalInversion);
     }
 
     m_currentStack->addWidget(new QLabel("error!"));

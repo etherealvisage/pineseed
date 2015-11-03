@@ -66,6 +66,8 @@ void Action::serialize(QXmlStreamWriter &xml, QStandardItem *action) {
     if(!s.isEmpty()) xml.writeAttribute("emote", s);
     s = action->data(Action::CommentData).toString();
     if(!s.isEmpty()) xml.writeAttribute("comment", s);
+    auto a = action->data(Action::ConditionalInversionData);
+    if(a.isValid() && a.toBool()) xml.writeAttribute("cond-invert", "true");
 
     auto target = (ConversationObject *)action->data(
         Action::JumpTargetData).value<void *>();
@@ -93,6 +95,8 @@ QStandardItem *Action::deserialize(QDomElement &xml,
     action->setData(xml.attribute("speech"), Action::SpeechData);
     action->setData(xml.attribute("emote"), Action::EmoteData);
     action->setData(xml.attribute("comment"), Action::CommentData);
+    action->setData(xml.attribute("cond-invert") == "true",
+        Action::ConditionalInversionData);
     int jtid = xml.attribute("jump-target").toInt();
     if(jtid != 0) {
         action->setData(qVariantFromValue((void *)objs[jtid]),

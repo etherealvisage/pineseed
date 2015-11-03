@@ -116,7 +116,7 @@ bool ConversationSimulation::process(QStandardItem *action) {
         break;
     case Action::FirstVisitConditional: {
         bool invert = action->data(Action::ConditionalInversionData).toBool();
-        if(m_visited.contains(m_current) != invert) {
+        if(m_visited.contains(m_current) == invert) {
             for(int i = 0; i < action->rowCount(); i ++) {
                 process(action->child(i));
             }
