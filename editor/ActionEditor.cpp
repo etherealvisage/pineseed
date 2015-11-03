@@ -47,9 +47,9 @@ ActionEditor::ActionEditor(ConversationDataInterface *interface,
     m_currentType->addItem(tr("Sequence"));
     m_currentType->addItem(tr("Concurrent"));
     m_currentType->addItem(tr("Conditional"));
-    m_currentType->addItem(tr("First visit conditional"));
     m_currentType->addItem(tr("Jump"));
     m_currentType->addItem(tr("End conversation"));
+    m_currentType->addItem(tr("First visit conditional"));
     layout->addWidget(m_currentType);
 
     m_currentStack = new QStackedWidget();
@@ -168,14 +168,12 @@ ActionEditor::ActionEditor(ConversationDataInterface *interface,
         jumpWidget->setLayout(jumpLayout);
         m_currentStack->addWidget(jumpWidget);
     }
+    { // End
+        m_currentStack->addWidget(new QLabel("End conversation"));
+    }
     { // First visit conditional
         m_currentStack->addWidget(new QLabel("First-visit conditional"));
     }
-    // End
-    {
-        m_currentStack->addWidget(new QLabel("End conversation"));
-    }
-
 
     m_currentStack->addWidget(new QLabel("error!"));
 
