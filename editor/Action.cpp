@@ -42,9 +42,12 @@ void Action::updateTitle(QStandardItem *item) {
     case EndConversation:
         title = "[end]";
         break;
-    case FirstVisitConditional:
-        title = "[first-visit?]";
+    case FirstVisitConditional: {
+        bool invert = item->data(ConditionalInversionData).toBool();
+        if(!invert) title = "[first-visit?]";
+        else title = "[not-first-visit?]";
         break;
+    }
     }
     item->setData(title, Qt::DisplayRole);
 }

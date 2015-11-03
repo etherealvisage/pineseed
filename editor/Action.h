@@ -27,6 +27,7 @@ public:
         SpeechData,
         EmoteData,
         JumpTargetData,
+        ConditionalInversionData,
         CommentData
     };
 public:

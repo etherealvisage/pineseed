@@ -143,9 +143,6 @@ ActionEditor::ActionEditor(ConversationDataInterface *interface,
     { // Conditional
         m_currentStack->addWidget(new QLabel("Conditional"));
     }
-    { // First visit conditional
-        m_currentStack->addWidget(new QLabel("First-visit conditional"));
-    }
     { // Jump
         QVBoxLayout *jumpLayout = new QVBoxLayout();
         m_currentJumpTarget = new QLabel();
@@ -171,7 +168,9 @@ ActionEditor::ActionEditor(ConversationDataInterface *interface,
         jumpWidget->setLayout(jumpLayout);
         m_currentStack->addWidget(jumpWidget);
     }
-
+    { // First visit conditional
+        m_currentStack->addWidget(new QLabel("First-visit conditional"));
+    }
     // End
     {
         m_currentStack->addWidget(new QLabel("End conversation"));
