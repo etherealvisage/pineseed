@@ -3,24 +3,33 @@
 
 #include <QMap>
 
+class QString;
 class QStandardItem;
 class QDomElement;
 class QXmlStreamWriter;
 class ConversationObject;
 
+#define ActionList \
+    Action(Empty),                  \
+    Action(Speech),                 \
+    Action(Emote),                  \
+    Action(Sequence),               \
+    Action(Concurrent),             \
+    Action(Conditional),            \
+    Action(Jump),                   \
+    Action(EndConversation),        \
+    Action(FirstVisitConditional)
+
 class Action {
 public:
+    // make sure this is synchronized with the ActionTypeNames in Action.cpp
     enum ActionType {
-        Empty,
-        Speech,
-        Emote,
-        Sequence,
-        Concurrent,
-        Conditional,
-        Jump,
-        EndConversation,
-        FirstVisitConditional
+    #define Action(n) n
+        ActionList
+    #undef Action
+        , ActionTypes
     };
+
     enum ItemData {
         TypeData = 0x100,
         ActorData,
@@ -31,6 +40,10 @@ public:
         CommentData
     };
 public:
+    static ActionType typeFromName(const QString &name);
+    static ActionType typeFromName(const char *name);
+    static const char *nameFromType(ActionType type);
+
     static void updateTitle(QStandardItem *item);
 
     static void serialize(QXmlStreamWriter &xml, QStandardItem *action);

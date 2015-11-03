@@ -1,9 +1,35 @@
+#include <cstring>
+#include <cstddef>
+
 #include <QStandardItem>
 #include <QXmlStreamWriter>
 #include <QDomElement>
 
 #include "Action.h"
 #include "Node.h"
+
+const char *ActionTypeNames[Action::ActionTypes+1] = {
+#define Action(n) #n
+    ActionList
+#undef Action
+    , ""
+};
+
+Action::ActionType Action::typeFromName(const QString &name) {
+    return typeFromName(name.toLocal8Bit().constData());
+}
+
+Action::ActionType Action::typeFromName(const char *name) {
+    for(int i = 0; i < Action::ActionTypes; i ++) {
+        if(!std::strcmp(name, ActionTypeNames[i]))
+            return (Action::ActionType)i;
+    }
+    return Action::ActionTypes;
+}
+
+const char *Action::nameFromType(Action::ActionType type) {
+    return ActionTypeNames[type];
+}
 
 void Action::updateTitle(QStandardItem *item) {
     QString title;
@@ -48,6 +74,9 @@ void Action::updateTitle(QStandardItem *item) {
         else title = "[not-first-visit?]";
         break;
     }
+    case ActionTypes:
+        qDebug("Invalid action type!");
+        break;
     }
     item->setData(title, Qt::DisplayRole);
 }
@@ -55,8 +84,8 @@ void Action::updateTitle(QStandardItem *item) {
 void Action::serialize(QXmlStreamWriter &xml, QStandardItem *action) {
     xml.writeStartElement("action");
 
-    xml.writeAttribute("type",
-        action->data(Action::TypeData).toString());
+    xml.writeAttribute("type", nameFromType(
+        (Action::ActionType)action->data(Action::TypeData).toInt()));
 
     auto s = action->data(Action::ActorData).toString();
     if(!s.isEmpty()) xml.writeAttribute("actor", s);
@@ -86,7 +115,13 @@ QStandardItem *Action::deserialize(QDomElement &xml,
 
     auto action = new QStandardItem();
 
-    action->setData(xml.attribute("type").toInt(), Action::TypeData);
+    auto typeAttribute = xml.attribute("type");
+    bool isIntType = false;
+    // XXX: for compatability with old editors, remove after a while
+    if(typeAttribute.toInt(&isIntType))
+        action->setData(typeAttribute.toInt(), Action::TypeData);
+    else 
+        action->setData(typeFromName(typeAttribute), Action::TypeData);
     // XXX: for compatability with old editors, remove after a while
     if(xml.attribute("speaker").length() != 0)
         action->setData(xml.attribute("speaker"), Action::ActorData);
