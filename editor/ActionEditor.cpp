@@ -68,9 +68,14 @@ ActionEditor::ActionEditor(ConversationDataInterface *interface,
                 &QComboBox::activated),
             [=](const QString &speaker) {
                 if(m_current) {
-                    m_current->setData(speaker, Action::SpeakerData);
+                    m_current->setData(speaker, Action::ActorData);
                     Action::updateTitle(m_current);
                 }});
+        connect(m_currentSpeaker,
+            &QComboBox::currentTextChanged,
+            [=](const QString &actor) {
+                m_currentEmoter->setCurrentText(actor);
+            });
         speechLayout->addWidget(m_currentSpeaker);
 
         m_currentSpeech = new QTextEdit();
@@ -89,8 +94,39 @@ ActionEditor::ActionEditor(ConversationDataInterface *interface,
         m_currentStack->addWidget(speechWidget);
     }
 
-    { // Emote
-        m_currentStack->addWidget(new QLabel("Emote"));
+    { // Speech
+        QVBoxLayout *emoteLayout = new QVBoxLayout();
+        m_currentEmoter = new QComboBox();
+        m_currentEmoter->setModel(m_currentSpeaker->model());
+        connect(m_currentEmoter,
+            static_cast<void (QComboBox::*)(const QString &)>(
+                &QComboBox::activated),
+            [=](const QString &actor) {
+                if(m_current) {
+                    m_current->setData(actor, Action::ActorData);
+                    Action::updateTitle(m_current);
+                }});
+        connect(m_currentEmoter,
+            &QComboBox::currentTextChanged,
+            [=](const QString &actor) {
+                m_currentSpeaker->setCurrentText(actor);
+            });
+        emoteLayout->addWidget(m_currentEmoter);
+
+        m_currentEmote = new QTextEdit();
+        m_currentEmote->setAcceptRichText(false);
+        connect(m_currentEmote, &QTextEdit::textChanged, 
+            [=]() {
+                if(m_current) {
+                    m_current->setData(m_currentEmote->toPlainText(),
+                        Action::EmoteData);
+                    Action::updateTitle(m_current);
+                }
+            });
+        emoteLayout->addWidget(m_currentEmote);
+        QWidget *emoteWidget = new QWidget();
+        emoteWidget->setLayout(emoteLayout);
+        m_currentStack->addWidget(emoteWidget);
     }
     { // Sequence
         m_currentStack->addWidget(new QLabel("Sequence"));
@@ -200,7 +236,11 @@ void ActionEditor::changeTo(QStandardItem *item) {
         m_currentStack->setCurrentIndex(type);
 
         m_currentSpeaker->setCurrentText(
-            item->data(Action::SpeakerData).toString());
+            item->data(Action::ActorData).toString());
         m_currentSpeech->setText(item->data(Action::SpeechData).toString());
+
+        m_currentEmoter->setCurrentText(
+            item->data(Action::ActorData).toString());
+        m_currentEmote->setText(item->data(Action::EmoteData).toString());
     }
 }

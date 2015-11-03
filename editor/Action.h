@@ -22,8 +22,9 @@ public:
     };
     enum ItemData {
         TypeData = 0x100,
-        SpeakerData,
+        ActorData,
         SpeechData,
+        EmoteData,
         JumpTargetData
     };
 public:

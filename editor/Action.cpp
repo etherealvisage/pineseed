@@ -12,20 +12,17 @@ void Action::updateTitle(QStandardItem *item) {
         title = "[empty]";
         break;
     case Speech: {
-        QString speaker = item->data(SpeakerData).toString();
+        QString speaker = item->data(ActorData).toString();
         QString speech = item->data(SpeechData).toString();
-        int ind = speech.indexOf('\n');
-        if(ind != -1) speech.truncate(ind);
-        if(speech.length() > 30) {
-            speech.truncate(30);
-            speech += "...";
-        }
         title = "[speech] " + speaker + ": " + speech;
         break;
     }
-    case Emote:
-        title = "[emote]";
+    case Emote: {
+        QString actor = item->data(ActorData).toString();
+        QString emote = item->data(EmoteData).toString();
+        title = "[emote] * " + actor + " " + emote;
         break;
+    }
     case Sequence:
         title = "[sequence]";
         break;
@@ -55,10 +52,12 @@ void Action::serialize(QXmlStreamWriter &xml, QStandardItem *action) {
     xml.writeAttribute("type",
         action->data(Action::TypeData).toString());
 
-    auto s = action->data(Action::SpeakerData).toString();
-    if(!s.isEmpty()) xml.writeAttribute("speaker", s);
+    auto s = action->data(Action::ActorData).toString();
+    if(!s.isEmpty()) xml.writeAttribute("actor", s);
     s = action->data(Action::SpeechData).toString();
     if(!s.isEmpty()) xml.writeAttribute("speech", s);
+    s = action->data(Action::EmoteData).toString();
+    if(!s.isEmpty()) xml.writeAttribute("emote", s);
 
     auto target = (ConversationObject *)action->data(
         Action::JumpTargetData).value<void *>();
@@ -78,8 +77,13 @@ QStandardItem *Action::deserialize(QDomElement &xml,
     auto action = new QStandardItem();
 
     action->setData(xml.attribute("type").toInt(), Action::TypeData);
-    action->setData(xml.attribute("speaker"), Action::SpeakerData);
+    // XXX: for compatability with old editors, remove after a while
+    if(xml.attribute("speaker").length() != 0)
+        action->setData(xml.attribute("speaker"), Action::ActorData);
+    else action->setData(xml.attribute("actor"), Action::ActorData);
+
     action->setData(xml.attribute("speech"), Action::SpeechData);
+    action->setData(xml.attribute("emote"), Action::EmoteData);
     int jtid = xml.attribute("jump-target").toInt();
     if(jtid != 0) {
         action->setData(qVariantFromValue((void *)objs[jtid]),

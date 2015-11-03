@@ -13,6 +13,7 @@ class QComboBox;
 class QLineEdit;
 class QStackedWidget;
 class QTextEdit;
+class QLabel;
 
 class ConversationData;
 class ConversationDataInterface;
@@ -28,6 +29,8 @@ private:
     QStackedWidget *m_currentStack;
     QComboBox *m_currentSpeaker;
     QTextEdit *m_currentSpeech;
+    QComboBox *m_currentEmoter;
+    QTextEdit *m_currentEmote;
     QLabel *m_currentJumpTarget;
     QStandardItem *m_current;
 public:

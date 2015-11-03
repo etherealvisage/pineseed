@@ -81,7 +81,7 @@ bool ConversationSimulation::process(QStandardItem *action) {
     case Action::Speech: {
         QListWidgetItem *item = new QListWidgetItem();
         const QString &speaker =
-            action->data(Action::SpeakerData).toString();
+            action->data(Action::ActorData).toString();
         item->setText(speaker + " says: "
             + action->data(Action::SpeechData).toString());
         quint16 hash = qHash(speaker);
@@ -90,8 +90,18 @@ bool ConversationSimulation::process(QStandardItem *action) {
         m_history->addItem(item);
         break;
     }
-    case Action::Emote:
+    case Action::Emote: {
+        QListWidgetItem *item = new QListWidgetItem();
+        const QString &actor=
+            action->data(Action::ActorData).toString();
+        item->setText("* " + actor + " "
+            + action->data(Action::EmoteData).toString());
+        quint16 hash = qHash(actor);
+        item->setBackgroundColor(qRgb(224 + ((hash>>8)&0xf),
+            224 + ((hash>>4)&0xf), 224 + ((hash)&0xf)));
+        m_history->addItem(item);
         break;
+    }
     case Action::Sequence:
         break;
     case Action::Concurrent:
