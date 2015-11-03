@@ -21,17 +21,18 @@ MainWindow::MainWindow() {
     file->addAction(tr("&Load"), this, SLOT(loadCurrent()));
     file->addAction(tr("E&xit"), this, SLOT(close()));
 
-    m_conversationMenu = new QMenu(tr("&Conversation"));
-    m_conversationMenu->setEnabled(false);
-    menuBar()->addMenu(m_conversationMenu);
-    auto action = new QAction(tr("&Word count"), m_conversationMenu);
-    connect(action, &QAction::triggered, [=](){
-        auto cw =
-            dynamic_cast<ConversationWindow *>(m_mdi->currentSubWindow());
-        if(cw) cw->doWordCount();
-    });
-    m_conversationMenu->addAction(action);
-
+    {
+        m_conversationMenu = new QMenu(tr("&Conversation"));
+        m_conversationMenu->setEnabled(false);
+        menuBar()->addMenu(m_conversationMenu);
+        auto action = new QAction(tr("&Word count"), m_conversationMenu);
+        connect(action, &QAction::triggered, [=](){
+            auto cw =
+                dynamic_cast<ConversationWindow *>(m_mdi->currentSubWindow());
+            if(cw) cw->doWordCount();
+        });
+        m_conversationMenu->addAction(action);
+    }
 
     m_platformMenu = new QMenu(tr("&Platform"));
     m_platformMenu->setEnabled(false);

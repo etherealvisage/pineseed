@@ -27,16 +27,16 @@
 ConversationWindow::ConversationWindow() {
     m_data = new ConversationData();
 
-    m_split = new QSplitter();
+    auto split = new QSplitter();
     m_edit = new QWidget();
-    m_split->addWidget(m_edit);
+    split->addWidget(m_edit);
     m_eview = new EditorView();
-    m_split->addWidget(m_eview);
+    split->addWidget(m_eview);
     m_sim = new ConversationSimulation();
-    m_split->addWidget(m_sim);
+    split->addWidget(m_sim);
     modeChange(SelectMode); // enter select mode by default
 
-    setWidget(m_split);
+    setWidget(split);
 
     QVBoxLayout *editLayout = new QVBoxLayout();
 
@@ -234,7 +234,9 @@ void ConversationWindow::doWordCount() {
         if(node) node->visitActions(visitor);
     }
 
-    QMessageBox::information(this, tr("Word count"), QString("Speech and emote word count: ") + QString().setNum(wordCount));
+    QMessageBox::information(this, tr("Word count"),
+        QString("Speech and emote word count: ")
+            + QString().setNum(wordCount));
 }
 
 void ConversationWindow::modeChange(int to) {

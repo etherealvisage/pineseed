@@ -14,7 +14,6 @@
 
 class QFile;
 class QPushButton;
-class QSplitter;
 class QXmlStreamWriter;
 
 class ConversationSimulation;
@@ -35,9 +34,7 @@ private:
 private:
     ConversationDataInterface *m_dataInterface;
     ConversationData *m_data;
-    QSplitter *m_split;
     QWidget *m_edit;
-    QWidget *m_editbar;
     QWidget *m_editarea;
     QPushButton *m_simbutton;
     EditorView *m_eview;

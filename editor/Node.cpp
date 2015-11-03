@@ -2,7 +2,7 @@
 #include <QFont>
 #include <QFormLayout>
 #include <QGraphicsScene>
-#include <QGraphicsSceneContextMenuEvent>
+#include <QGraphicsSceneMouseEvent>
 #include <QGraphicsView>
 #include <QGridLayout>
 #include <QLabel>

@@ -110,8 +110,12 @@ bool ConversationSimulation::process(QStandardItem *action) {
         }
         break;
     }
-    case Action::Concurrent:
+    case Action::Concurrent: {
+        for(int i = 0; i < action->rowCount(); i ++) {
+            process(action->child(i));
+        }
         break;
+    }
     case Action::Conditional:
         break;
     case Action::FirstVisitConditional: {
