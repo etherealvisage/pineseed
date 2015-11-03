@@ -17,9 +17,9 @@ public:
         Sequence,
         Concurrent,
         Conditional,
-        FirstVisitConditional,
         Jump,
-        EndConversation
+        EndConversation,
+        FirstVisitConditional
     };
     enum ItemData {
         TypeData = 0x100,

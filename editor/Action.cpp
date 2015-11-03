@@ -32,9 +32,6 @@ void Action::updateTitle(QStandardItem *item) {
     case Conditional:
         title = "[conditional]";
         break;
-    case FirstVisitConditional:
-        title = "[first-visit?]";
-        break;
     case Jump: {
         title = "[jump]";
         Node *target = (Node *)item->data(JumpTargetData).value<void *>();
@@ -44,6 +41,9 @@ void Action::updateTitle(QStandardItem *item) {
     }
     case EndConversation:
         title = "[end]";
+        break;
+    case FirstVisitConditional:
+        title = "[first-visit?]";
         break;
     }
     item->setData(title, Qt::DisplayRole);
