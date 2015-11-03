@@ -225,9 +225,7 @@ void ActionEditor::changeType(int to) {
     m_currentStack->setCurrentIndex(to);
     m_current->setData(to, Action::TypeData);
     Action::updateTitle(m_current);
-    if(to == Action::Sequence || to == Action::Concurrent
-        || to == Action::Conditional || to == Action::FirstVisitConditional) {
-
+    if(Action::isContainer((Action::ActionType)to)) {
         m_current->setDropEnabled(true);
     }
     else m_current->setDropEnabled(false);

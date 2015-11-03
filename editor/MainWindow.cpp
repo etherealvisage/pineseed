@@ -21,8 +21,27 @@ MainWindow::MainWindow() {
     file->addAction(tr("&Load"), this, SLOT(loadCurrent()));
     file->addAction(tr("E&xit"), this, SLOT(close()));
 
+    m_conversationMenu = new QMenu(tr("&Conversation"));
+    m_conversationMenu->setEnabled(false);
+    menuBar()->addMenu(m_conversationMenu);
+    auto action = new QAction(tr("&Word count"), m_conversationMenu);
+    connect(action, &QAction::triggered, [=](){
+        auto cw =
+            dynamic_cast<ConversationWindow *>(m_mdi->currentSubWindow());
+        if(cw) cw->doWordCount();
+    });
+    m_conversationMenu->addAction(action);
+
+
+    m_platformMenu = new QMenu(tr("&Platform"));
+    m_platformMenu->setEnabled(false);
+    menuBar()->addMenu(m_platformMenu);
+
     m_mdi = new QMdiArea();
     setCentralWidget(m_mdi);
+
+    connect(m_mdi, SIGNAL(subWindowActivated(QMdiSubWindow *)),
+        this, SLOT(subwindowChange(QMdiSubWindow *)));
 
     m_mdi->setViewMode(QMdiArea::TabbedView);
 
@@ -78,4 +97,15 @@ void MainWindow::autoSave() {
     if(!file.open(QIODevice::Truncate | QIODevice::WriteOnly)) return;
 
     ew->saveTo(file);
+}
+
+void MainWindow::subwindowChange(QMdiSubWindow *window) {
+    m_conversationMenu->setEnabled(false);
+    m_platformMenu->setEnabled(false);
+    if(dynamic_cast<ConversationWindow *>(window)) {
+        m_conversationMenu->setEnabled(true);
+    }
+    else if(dynamic_cast<PlatformWindow *>(window)) {
+        m_platformMenu->setEnabled(true);
+    }
 }

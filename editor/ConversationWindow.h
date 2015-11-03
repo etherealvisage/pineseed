@@ -55,6 +55,7 @@ public:
 
     void saveTo(QFile &file);
     void load();
+    void doWordCount();
 private slots:
     void modeChange(int to);
 

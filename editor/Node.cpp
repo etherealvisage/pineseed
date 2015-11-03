@@ -157,6 +157,12 @@ void Node::deserialize(QDomElement &xml,
     }
 }
 
+void Node::visitActions(std::function<void (QStandardItem *)> visitor) {
+    auto root = m_actionModel->invisibleRootItem();
+    for(int i = 0; i < root->rowCount(); i ++)
+        Action::walkTree(visitor, root->child(i));
+}
+
 void Node::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
     if(event->buttons() & Qt::RightButton) {
         QPointF last = mapFromScene(event->lastScenePos());

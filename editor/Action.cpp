@@ -9,11 +9,27 @@
 #include "Node.h"
 
 const char *ActionTypeNames[Action::ActionTypes+1] = {
-#define Action(n) #n
+#define Action(n,c) #n
     ActionList
 #undef Action
     , ""
 };
+
+const bool ActionTypeIsContainer[Action::ActionTypes+1] = {
+#define Action(n,c) c
+    ActionList
+#undef Action
+    , false
+};
+
+bool Action::isContainer(ActionType type) {
+    return ActionTypeIsContainer[type];
+}
+
+bool Action::isContainer(QStandardItem *item) {
+    auto type = item->data(TypeData).toInt();
+    return ActionTypeIsContainer[type];
+}
 
 Action::ActionType Action::typeFromName(const QString &name) {
     return typeFromName(name.toLocal8Bit().constData());
@@ -150,4 +166,17 @@ QStandardItem *Action::deserialize(QDomElement &xml,
     }
 
     return action;
+}
+
+void Action::walkTree(std::function<void (QStandardItem *)> visitor,
+    QStandardItem *action) {
+
+    visitor(action);
+
+    auto type = (ActionType)action->data(TypeData).toInt();
+    if(isContainer(type)) {
+        for(int i = 0; i < action->rowCount(); i ++) {
+            walkTree(visitor, action->child(i));
+        }
+    }
 }

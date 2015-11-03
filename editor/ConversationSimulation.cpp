@@ -135,6 +135,10 @@ bool ConversationSimulation::process(QStandardItem *action) {
     case Action::EndConversation:
         process((Node *)nullptr);
         return true;
+    case Action::ActionTypes:
+    default:
+        qDebug("Unknown action type encountered in simulation!");
+        return false;
     }
 
     return false;

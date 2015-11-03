@@ -2,6 +2,7 @@
 #define Node_H
 
 #include <QGraphicsObject>
+#include <functional>
 
 #include "ConversationObject.h"
 
@@ -48,6 +49,8 @@ public:
     virtual void serialize(QXmlStreamWriter &xml);
     virtual void deserialize(QDomElement &xml,
         const QMap<int, ConversationObject *> &objs);
+
+    void visitActions(std::function<void (QStandardItem *)> visitor);
 protected:
     virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
 private:

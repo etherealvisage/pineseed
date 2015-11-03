@@ -13,6 +13,7 @@
 #include <QXmlStreamWriter>
 #include <QStandardItemModel>
 #include <QDomDocument>
+#include <QMessageBox>
 
 #include "ConversationWindow.h"
 #include "moc_ConversationWindow.cpp"
@@ -210,6 +211,30 @@ void ConversationWindow::load() {
         objs[id]->deserialize(element, objs);
         m_eview->scene()->addItem(objs[id]);
     }
+}
+
+void ConversationWindow::doWordCount() {
+    int wordCount = 0;
+    std::function<void (QStandardItem *)> visitor =
+        [&wordCount](QStandardItem *item){
+            QString data;
+            if(item->data(Action::TypeData).toInt() == Action::Speech) {
+                data = item->data(Action::SpeechData).toString();
+            }
+            else if(item->data(Action::TypeData).toInt() == Action::Emote) {
+                data = item->data(Action::EmoteData).toString();
+            }
+
+            wordCount += data.split(QRegExp("\\s"),
+                QString::SkipEmptyParts).length();
+        };
+
+    for(auto item : m_eview->items()) {
+        auto node = dynamic_cast<Node *>(item);
+        if(node) node->visitActions(visitor);
+    }
+
+    QMessageBox::information(this, tr("Word count"), QString("Speech and emote word count: ") + QString().setNum(wordCount));
 }
 
 void ConversationWindow::modeChange(int to) {
