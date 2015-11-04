@@ -1,4 +1,9 @@
 #include <QSplitter>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QPushButton>
+#include <QSignalMapper>
+#include <QShortcut>
 
 #include "PlatformWindow.h"
 #include "moc_PlatformWindow.cpp"
@@ -9,6 +14,39 @@
 PlatformWindow::PlatformWindow() : m_selectLast(nullptr) {
     auto split = new QSplitter();
     setWidget(split);
+
+    QWidget *editWidget = new QWidget();
+    split->addWidget(editWidget);
+    auto editLayout = new QVBoxLayout();
+    editWidget->setLayout(editLayout);
+
+    auto modeLayout = new QHBoxLayout();
+    editLayout->addLayout(modeLayout);
+    editLayout->addStretch(1);
+
+    m_modeMapper = new QSignalMapper(this);
+    connect(m_modeMapper, SIGNAL(mapped(int)), this, SLOT(modeChange(int)));
+    {
+        auto newPlatform = new QPushButton(tr("Add"));
+        modeLayout->addWidget(newPlatform);
+        m_modeMapper->setMapping(newPlatform, NewPlatformMode);
+        connect(newPlatform, SIGNAL(clicked(bool)), m_modeMapper, SLOT(map()));
+        QShortcut *newPlatformShortcut =
+            new QShortcut(QKeySequence("Alt+1"), this);
+        connect(newPlatformShortcut, SIGNAL(activated()),
+            newPlatform, SLOT(click()));
+    }
+    {
+        auto removePlatform = new QPushButton(tr("Remove"));
+        modeLayout->addWidget(removePlatform);
+        m_modeMapper->setMapping(removePlatform, DeleteMode);
+        connect(removePlatform, SIGNAL(clicked(bool)),
+            m_modeMapper, SLOT(map()));
+        QShortcut *removePlatformShortcut =
+            new QShortcut(QKeySequence("Alt+2"), this);
+        connect(removePlatformShortcut, SIGNAL(activated()),
+            removePlatform, SLOT(click()));
+    }
 
     m_eview = new EditorView();
     split->addWidget(m_eview);
@@ -47,8 +85,8 @@ void PlatformWindow::modeChange(int to) {
 
 void PlatformWindow::selectObject(EditorObject *object) {
     if(m_selectLast) m_selectLast->deselect();
-    object->select();
     m_selectLast = object;
+    if(m_selectLast) m_selectLast->select();
 }
 
 void PlatformWindow::insertPlatform(QPointF where) {

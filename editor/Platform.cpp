@@ -1,5 +1,6 @@
 #include <QPainter>
 #include <QGraphicsSceneMouseEvent>
+#include <cmath>
 
 #include "Platform.h"
 
@@ -15,7 +16,6 @@ bool Platform::isSelection(QPointF point) {
     return boundingRect().contains(point);
 }
 
-
 QRectF Platform::boundingRect() const {
     // accommodate borders
     const qreal border = 1.0;
@@ -30,14 +30,15 @@ void Platform::paint(QPainter *painter, const QStyleOptionGraphicsItem *style,
     else b.setColor(QColor::fromRgb(240, 240, 240));
     b.setStyle(Qt::SolidPattern);
     painter->setBrush(b);
-    painter->drawRect(QRectF(QPointF(0,0), m_size));
 
-    /*QFontMetricsF fm((QFont()));
+    QPointF snappedPos = pos();
+    snappedPos.setX(std::floor(snappedPos.x()/25.0)*25);
+    snappedPos.setY(std::floor(snappedPos.y()/25.0)*25);
+    QSizeF snappedSize = m_size;
+    snappedSize.setWidth(std::floor(m_size.width()/25.0)*25);
+    snappedSize.setHeight(std::floor(m_size.height()/25.0)*25);
 
-    qreal width = fm.width(m_label);
-    painter->setPen(Qt::black);
-    painter->setBrush(Qt::NoBrush);
-    painter->drawText(boundingRect().center() - QPointF(width/2,0), m_label);*/
+    painter->drawRect(QRectF(snappedPos - pos(), snappedSize));
 }
 
 void Platform::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {

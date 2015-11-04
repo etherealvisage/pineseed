@@ -5,6 +5,10 @@
 
 #include "EditorWindow.h"
 
+
+class QPushButton;
+class QSignalMapper;
+
 class EditorView;
 class EditorObject;
 
@@ -19,6 +23,8 @@ private:
     };
 private:
     EditorView *m_eview;
+    QList<QPushButton *> m_toolButtons;
+    QSignalMapper *m_modeMapper;
 
     Mode m_mode;
 
