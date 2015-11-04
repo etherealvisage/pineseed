@@ -8,6 +8,7 @@
 class QComboBox;
 class QListWidget;
 class QStandardItem;
+class QLineEdit;
 
 class Node;
 class Link;
@@ -17,6 +18,7 @@ private:
     Node *m_current;
     QListWidget *m_history;
     QComboBox *m_options;
+    QLineEdit *m_entryBox;
     QMap<QString, Link *> m_optionsMap;
     QSet<Node *> m_visited;
     QList<Node *> m_returns;

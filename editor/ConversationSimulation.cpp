@@ -2,7 +2,8 @@
 #include <QListWidget>
 #include <QVBoxLayout>
 #include <QStandardItem>
-#include <QVector>
+#include <QList>
+#include <QLineEdit>
 
 #include "ConversationSimulation.h"
 #include "moc_ConversationSimulation.cpp"
@@ -20,6 +21,16 @@ ConversationSimulation::ConversationSimulation() {
     m_options = new QComboBox();
     m_options->setEditable(false);
     layout->addWidget(m_options);
+    m_entryBox = new QLineEdit();
+    connect(m_entryBox, &QLineEdit::returnPressed,
+        [=]() {
+            auto text = m_entryBox->text();
+            if(m_optionsMap.contains(text)) {
+                progress(text);
+                m_entryBox->clear();
+            }
+        });
+    layout->addWidget(m_entryBox);
     setLayout(layout);
 
     connect(m_options, SIGNAL(activated(const QString &)),
@@ -35,6 +46,7 @@ void ConversationSimulation::beginFrom(Node *node) {
 }
 
 void ConversationSimulation::progress(const QString &by) {
+    if(by == "") return;
     auto link = m_optionsMap[by];
     if(link->isRtsLink()) m_returns.push_back(m_current);
     process(link->to());
@@ -65,6 +77,7 @@ void ConversationSimulation::process(Node *node, bool supress) {
 
     // collate options
     m_options->clear();
+    m_options->addItem("");
     m_optionsMap.clear();
     auto links = node->links();
     for(auto link : links) {
