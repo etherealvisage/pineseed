@@ -41,8 +41,12 @@ void EditorView::mousePressEvent(QMouseEvent *event) {
 void EditorView::mouseMoveEvent(QMouseEvent *event) {
     auto item = objectAt(event->pos());
     if(m_viewMode == SelectMode && item) {
-        setCursor(Qt::CrossCursor);
+        setCursor(m_cursor);
         setDragMode(NoDrag);
+    }
+    else if(event->buttons() & Qt::LeftButton) {
+        setCursor(Qt::ClosedHandCursor);
+        setDragMode(ScrollHandDrag);
     }
     else {
         setCursor(Qt::OpenHandCursor);
@@ -53,19 +57,20 @@ void EditorView::mouseMoveEvent(QMouseEvent *event) {
 
 void EditorView::enterDragMode() {
     m_viewMode = DragMode;
-    setCursor(Qt::OpenHandCursor);
+    m_cursor = Qt::OpenHandCursor;
     setDragMode(ScrollHandDrag);
 }
 
-void EditorView::enterSelectMode() {
+void EditorView::enterSelectMode(Qt::CursorShape cursor) {
     m_viewMode = SelectMode;
-    setCursor(Qt::CrossCursor);
     setDragMode(ScrollHandDrag);
+    m_cursor = cursor;
+    setCursor(cursor);
 }
 
 void EditorView::enterInsertMode() {
     m_viewMode = InsertMode;
-    setCursor(Qt::CrossCursor);
+    m_cursor = Qt::CrossCursor;
     setDragMode(ScrollHandDrag);
 }
 

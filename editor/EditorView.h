@@ -14,6 +14,7 @@ private:
     } m_viewMode;
 private:
     QGraphicsItem *m_origin;
+    Qt::CursorShape m_cursor;
 public:
     EditorView();
 protected:
@@ -21,7 +22,7 @@ protected:
     void mouseMoveEvent(QMouseEvent *event);
 public:
     void enterDragMode();
-    void enterSelectMode();
+    void enterSelectMode(Qt::CursorShape cursor = Qt::CrossCursor);
     void enterInsertMode();
 signals:
     void clicked(QPointF pos);

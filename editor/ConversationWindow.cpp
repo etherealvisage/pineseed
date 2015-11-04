@@ -276,7 +276,7 @@ void ConversationWindow::modeChange(int to) {
         }
         break;
     case DeleteMode:
-        m_eview->enterSelectMode();
+        m_eview->enterSelectMode(Qt::ForbiddenCursor);
         connect(m_eview, SIGNAL(selected(EditorObject *)),
             this, SLOT(deleteObject(EditorObject *)));
         break;
