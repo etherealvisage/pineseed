@@ -30,14 +30,19 @@ void ConversationSimulation::beginFrom(Node *node) {
     m_history->clear();
     // TODO: set up initial state etc.
     m_visited.clear();
+    m_returns.clear();
     process(node);
 }
 
 void ConversationSimulation::progress(const QString &by) {
-    process(m_optionsMap[by]);
+    auto link = m_optionsMap[by];
+    if(link->isRtsLink()) {
+        m_returns[link->to()] = m_current;
+    }
+    process(link->to());
 }
 
-void ConversationSimulation::process(Node *node) {
+void ConversationSimulation::process(Node *node, bool supress) {
     m_current = node;
     if(!node) {
         m_options->clear();
@@ -53,9 +58,11 @@ void ConversationSimulation::process(Node *node) {
     }
 
     // perform actions
-    QStandardItem *root = node->actionModel()->invisibleRootItem();
-    for(int i = 0; i < root->rowCount(); i ++) {
-        if(process(root->child(i))) return;
+    if(!supress) {
+        QStandardItem *root = node->actionModel()->invisibleRootItem();
+        for(int i = 0; i < root->rowCount(); i ++) {
+            if(process(root->child(i))) return;
+        }
     }
 
     // collate options
@@ -66,7 +73,7 @@ void ConversationSimulation::process(Node *node) {
         if(link->from() != node) continue;
 
         m_options->addItem(link->label());
-        m_optionsMap[link->label()] = link->to();
+        m_optionsMap[link->label()] = link;
     }
 
     m_history->scrollToBottom();
@@ -118,15 +125,6 @@ bool ConversationSimulation::process(QStandardItem *action) {
     }
     case Action::Conditional:
         break;
-    case Action::FirstVisitConditional: {
-        bool invert = action->data(Action::ConditionalInversionData).toBool();
-        if(m_visited.contains(m_current) == invert) {
-            for(int i = 0; i < action->rowCount(); i ++) {
-                process(action->child(i));
-            }
-        }
-        break;
-    }
     case Action::Jump: {
         Node *target =
             (Node *)action->data(Action::JumpTargetData).value<void *>();
@@ -139,6 +137,19 @@ bool ConversationSimulation::process(QStandardItem *action) {
     case Action::EndConversation:
         process((Node *)nullptr);
         return true;
+    case Action::FirstVisitConditional: {
+        bool invert = action->data(Action::ConditionalInversionData).toBool();
+        if(m_visited.contains(m_current) == invert) {
+            for(int i = 0; i < action->rowCount(); i ++) {
+                process(action->child(i));
+            }
+        }
+        break;
+    }
+    case Action::ReturnToSender: {
+        process(m_returns[m_current], true);
+        return true;
+    }
     case Action::ActionTypes:
     default:
         qDebug("Unknown action type encountered in simulation!");

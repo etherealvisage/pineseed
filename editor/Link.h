@@ -10,6 +10,7 @@ private:
     int m_id;
     Node *m_from, *m_to;
     QString m_label;
+    bool m_rtsLink;
     bool m_selected;
 public:
     Link(Node *from, Node *to);
@@ -23,6 +24,7 @@ public:
     Node *from() const { return m_from; }
     Node *to() const { return m_to; }
     const QString &label() const { return m_label; }
+    bool isRtsLink() const { return m_rtsLink; }
 
     virtual QRectF boundingRect() const;
     virtual void paint(QPainter *painter,

@@ -130,15 +130,15 @@ ActionEditor::ActionEditor(ConversationDataInterface *interface,
         m_currentStack->addWidget(emoteWidget);
     }
     { // Sequence
-        m_currentType->addItem(tr("Sequence"));
+        m_currentType->addItem(tr("Action sequence"));
         m_currentStack->addWidget(new QLabel("Sequence"));
     }
     { // Concurrent
-        m_currentType->addItem(tr("Concurrent"));
+        m_currentType->addItem(tr("Concurrent actions"));
         m_currentStack->addWidget(new QLabel("Concurrent"));
     }
     { // Conditional
-        m_currentType->addItem(tr("Conditional"));
+        m_currentType->addItem(tr("Conditional actions"));
         m_currentStack->addWidget(new QLabel("Conditional"));
     }
     { // Jump
@@ -183,6 +183,10 @@ ActionEditor::ActionEditor(ConversationDataInterface *interface,
                 }
             });
         m_currentStack->addWidget(m_currentConditionalInversion);
+    }
+    { // Return to sender
+        m_currentType->addItem(tr("Return to sender"));
+        m_currentStack->addWidget(new QLabel("Return to sender"));
     }
 
     m_currentStack->addWidget(new QLabel("error!"));

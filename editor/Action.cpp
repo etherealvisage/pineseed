@@ -90,6 +90,9 @@ void Action::updateTitle(QStandardItem *item) {
         else title = "[not-first-visit?]";
         break;
     }
+    case ReturnToSender:
+        title = "[return]";
+        break;
     case ActionTypes:
         qDebug("Invalid action type!");
         break;

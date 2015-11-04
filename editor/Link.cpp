@@ -9,6 +9,7 @@
 #include <QBrush>
 #include <QXmlStreamWriter>
 #include <QDomElement>
+#include <QCheckBox>
 
 #include "Link.h"
 #include "moc_Link.cpp"
@@ -19,6 +20,7 @@ Link::Link(Node *from, Node *to) : m_from(from), m_to(to), m_label("Label") {
     m_id = -1;
     if(from) m_from->links().push_back(this);
     if(to) m_to->links().push_back(this);
+    m_rtsLink = false;
 
     this->setZValue(-1);
     m_selected = false;
@@ -67,7 +69,8 @@ void Link::paint(QPainter *painter,
     else painter->setBrush(QBrush(Qt::lightGray, Qt::SolidPattern));
     painter->drawRect(tbr);
 
-    painter->setPen(QPen(QBrush(Qt::red), 3.0));
+    if(m_rtsLink) painter->setPen(QPen(QBrush(Qt::darkRed), 3.0));
+    else painter->setPen(QPen(QBrush(Qt::red), 3.0));
     painter->drawText(tbr.center() - QPointF(tbr.width()/2, -4), m_label);
 }
 
@@ -83,6 +86,12 @@ void Link::edit(ConversationDataInterface *interface,
     edit->setFocus();
     connect(edit, &QLineEdit::textChanged,
         [=](const QString &label){ m_label = label; emit changed(); });
+
+    auto *rts = new QCheckBox(tr("Return to Sender"));
+    rts->setChecked(m_rtsLink);
+    connect(rts, &QCheckBox::stateChanged,
+        [=](int newState){ m_rtsLink = newState == Qt::Checked; update(); });
+    layout->addRow(tr(""), rts);
 }
 
 bool Link::isSelection(QPointF point) {
@@ -96,6 +105,7 @@ void Link::serialize(QXmlStreamWriter &xml) {
     xml.writeAttribute("label", m_label);
     xml.writeAttribute("from", QString().setNum(m_from->id()));
     xml.writeAttribute("to", QString().setNum(m_to->id()));
+    if(m_rtsLink) xml.writeAttribute("rts", "true");
 
     xml.writeEndElement();
 }
@@ -107,6 +117,8 @@ void Link::deserialize(QDomElement &xml,
     m_label = xml.attribute("label");
     m_from = dynamic_cast<Node *>(objs[xml.attribute("from").toInt()]);
     m_to = dynamic_cast<Node *>(objs[xml.attribute("to").toInt()]);
+    auto rts = xml.attribute("rts");
+    if(rts == "true") m_rtsLink = true;
 
     m_from->links().push_back(this);
     m_to->links().push_back(this);

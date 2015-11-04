@@ -20,7 +20,8 @@ class ConversationObject;
     Action(Conditional, true),          \
     Action(Jump, false),                \
     Action(EndConversation, false),     \
-    Action(FirstVisitConditional, true)
+    Action(FirstVisitConditional, true),\
+    Action(ReturnToSender, false)
 
 class Action {
 public:
