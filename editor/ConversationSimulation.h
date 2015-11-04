@@ -19,7 +19,7 @@ private:
     QComboBox *m_options;
     QMap<QString, Link *> m_optionsMap;
     QSet<Node *> m_visited;
-    QMap<Node *, Node *> m_returns;
+    QList<Node *> m_returns;
 public:
     ConversationSimulation();
 public slots:

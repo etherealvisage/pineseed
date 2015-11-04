@@ -36,9 +36,7 @@ void ConversationSimulation::beginFrom(Node *node) {
 
 void ConversationSimulation::progress(const QString &by) {
     auto link = m_optionsMap[by];
-    if(link->isRtsLink()) {
-        m_returns[link->to()] = m_current;
-    }
+    if(link->isRtsLink()) m_returns.push_back(m_current);
     process(link->to());
 }
 
@@ -147,7 +145,8 @@ bool ConversationSimulation::process(QStandardItem *action) {
         break;
     }
     case Action::ReturnToSender: {
-        process(m_returns[m_current], true);
+        if(m_returns.size() == 0) break;
+        process(m_returns.takeLast(), true);
         return true;
     }
     case Action::ActionTypes:
