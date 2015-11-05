@@ -21,7 +21,8 @@ class ConversationObject;
     Action(Jump, false),                \
     Action(EndConversation, false),     \
     Action(FirstVisitConditional, true),\
-    Action(ReturnToSender, false)
+    Action(ReturnToSender, false),      \
+    Action(RandomChoice, true)
 
 class Action {
 public:

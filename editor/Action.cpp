@@ -95,6 +95,9 @@ void Action::updateTitle(QStandardItem *item) {
     case ReturnToSender:
         title = "[return]";
         break;
+    case RandomChoice:
+        title = "[random]";
+        break;
     case ActionTypes:
         qDebug("Invalid action type!");
         break;

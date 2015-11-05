@@ -188,6 +188,10 @@ ActionEditor::ActionEditor(ConversationDataInterface *interface,
         m_currentType->addItem(tr("Return to sender"));
         m_currentStack->addWidget(new QLabel("Return to sender"));
     }
+    { // Random choice
+        m_currentType->addItem(tr("Random choice"));
+        m_currentStack->addWidget(new QLabel("Random choice"));
+    }
 
     m_currentStack->addWidget(new QLabel("error!"));
 

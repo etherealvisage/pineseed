@@ -164,6 +164,11 @@ bool ConversationSimulation::process(QStandardItem *action) {
         process(m_returns.takeLast(), true);
         return true;
     }
+    case Action::RandomChoice: {
+        if(action->rowCount() == 0) return false;
+        process(action->child(qrand() % action->rowCount()));
+        return true;
+    }
     case Action::ActionTypes:
     default:
         qDebug("Unknown action type encountered in simulation!");
