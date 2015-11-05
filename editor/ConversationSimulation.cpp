@@ -4,6 +4,7 @@
 #include <QStandardItem>
 #include <QList>
 #include <QLineEdit>
+#include <QPointer>
 
 #include "ConversationSimulation.h"
 #include "moc_ConversationSimulation.cpp"
@@ -137,10 +138,11 @@ bool ConversationSimulation::process(QStandardItem *action) {
     case Action::Conditional:
         break;
     case Action::Jump: {
-        Node *target =
-            (Node *)action->data(Action::JumpTargetData).value<void *>();
-        if(target) {
-            process(target);
+        QPointer<Node> *target = (QPointer<Node> *)action->data(
+            Action::JumpTargetData).value<void *>();
+
+        if(target && target->data()) {
+            process(target->data());
             return true;
         }
         break;

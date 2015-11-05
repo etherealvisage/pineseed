@@ -4,6 +4,7 @@
 #include <QStandardItem>
 #include <QXmlStreamWriter>
 #include <QDomElement>
+#include <QPointer>
 
 #include "Action.h"
 #include "Node.h"
@@ -76,9 +77,10 @@ void Action::updateTitle(QStandardItem *item) {
         break;
     case Jump: {
         title = "[jump]";
-        Node *target = (Node *)item->data(JumpTargetData).value<void *>();
-        if(!target) title += "<no target>";
-        else title += " " + target->label();
+        QPointer<Node> *target =
+            (QPointer<Node> *)item->data(JumpTargetData).value<void *>();
+        if(!target || !target->data()) title += "<no target>";
+        else title += " " + (*target)->label();
         break;
     }
     case EndConversation:
@@ -117,10 +119,12 @@ void Action::serialize(QXmlStreamWriter &xml, QStandardItem *action) {
     auto a = action->data(Action::ConditionalInversionData);
     if(a.isValid() && a.toBool()) xml.writeAttribute("cond-invert", "true");
 
-    auto target = (ConversationObject *)action->data(
+    auto target = (QPointer<ConversationObject> *)action->data(
         Action::JumpTargetData).value<void *>();
-    if(target)
-        xml.writeAttribute("jump-target", QString().setNum(target->id()));
+    if(target && target->data()) {
+        int targetID = (*target)->id();
+        xml.writeAttribute("jump-target", QString().setNum(targetID));
+    }
 
     for(int i = 0; i < action->rowCount(); i ++) {
         serialize(xml, action->child(i));
@@ -153,7 +157,8 @@ QStandardItem *Action::deserialize(QDomElement &xml,
         Action::ConditionalInversionData);
     int jtid = xml.attribute("jump-target").toInt();
     if(jtid != 0) {
-        action->setData(qVariantFromValue((void *)objs[jtid]),
+        action->setData(
+            qVariantFromValue((void *)new QPointer<Node>((Node *)objs[jtid])),
             Action::JumpTargetData);
     }
     Action::updateTitle(action);

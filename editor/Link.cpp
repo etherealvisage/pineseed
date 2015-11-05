@@ -16,10 +16,10 @@
 #include "Node.h"
 #include "ConversationData.h"
 
-Link::Link(Node *from, Node *to) : m_from(from), m_to(to), m_label("Label") {
+Link::Link(Node *from, Node *to) : m_label("Label") {
     m_id = -1;
-    if(from) m_from->links().push_back(this);
-    if(to) m_to->links().push_back(this);
+    if(from) m_from = from, m_from->links().push_back(this);
+    if(to) m_to = to, m_to->links().push_back(this);
     m_rtsLink = false;
 
     this->setZValue(-1);
@@ -27,11 +27,22 @@ Link::Link(Node *from, Node *to) : m_from(from), m_to(to), m_label("Label") {
 }
 
 Link::~Link() {
-    m_from->links().remove(m_from->links().indexOf(this));
-    m_to->links().remove(m_to->links().indexOf(this));
+    qDebug("Link destructor!");
+    if(!m_from.isNull()) {
+        int in = m_from->links().indexOf(this);
+        qDebug("from index: %d", in);
+        if(in != -1) m_from->links().remove(in);
+    }
+    if(!m_to.isNull()) {
+        int in = m_to->links().indexOf(this);
+        qDebug("to index: %d", in);
+        if(in != -1) m_to->links().remove(in);
+    }
 }
 
 QRectF Link::boundingRect() const {
+    if(m_from.isNull() || m_to.isNull()) return QRectF();
+
     QRectF result, from = m_from->boundingRect(), to = m_to->boundingRect();
     from.moveTopLeft(m_from->pos());
     to.moveTopLeft(m_to->pos());
@@ -44,6 +55,8 @@ QRectF Link::boundingRect() const {
 
 void Link::paint(QPainter *painter,
     const QStyleOptionGraphicsItem *style, QWidget *widget) {
+
+    if(m_from.isNull() || m_to.isNull()) return;
 
     if(m_selected) painter->setPen(QPen(QBrush(Qt::green), 3.0));
     else painter->setPen(QPen(QBrush(Qt::darkGreen), 3.0));

@@ -39,7 +39,10 @@ Node::Node() {
 }
 
 Node::~Node() {
-    for(auto link : m_links) delete link;
+    while(m_links.length() > 0) {
+        m_links.back()->deleteLater();
+        m_links.pop_back();
+    }
 }
 
 QRectF Node::boundingRect() const {

@@ -34,13 +34,13 @@ public:
     };
 
     enum ItemData {
-        TypeData = 0x100,
-        ActorData,
-        SpeechData,
-        EmoteData,
-        JumpTargetData,
-        ConditionalInversionData,
-        CommentData
+        TypeData = 0x100, // int
+        ActorData, // string
+        SpeechData, // string
+        EmoteData, // string
+        JumpTargetData, // void* pointer to QPointer<Node>
+        ConditionalInversionData, // bool
+        CommentData // string
     };
 public:
     static ActionType typeFromName(const QString &name);

@@ -1,6 +1,8 @@
 #ifndef Link_H
 #define Link_H
 
+#include <QPointer>
+
 #include "ConversationObject.h"
 
 class Node;
@@ -8,7 +10,7 @@ class Node;
 class Link : public ConversationObject { Q_OBJECT
 private:
     int m_id;
-    Node *m_from, *m_to;
+    QPointer<Node> m_from, m_to;
     QString m_label;
     bool m_rtsLink;
     bool m_selected;
