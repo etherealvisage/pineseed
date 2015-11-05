@@ -23,6 +23,7 @@
 #include "ActionEditor.h" // for ItemData definitions
 #include "ConversationSimulation.h"
 #include "ConversationDataInterface.h"
+#include "Context.h"
 
 ConversationWindow::ConversationWindow() {
     m_data = new ConversationData();
@@ -264,6 +265,8 @@ void ConversationWindow::modeChange(int to) {
         break;
     case NewContextMode:
         m_eview->enterInsertMode();
+        connect(m_eview, SIGNAL(clicked(QPointF)),
+            this, SLOT(insertContext(QPointF)));
         break;
     case NewLinkMode:
         if(!m_selectLast || !dynamic_cast<Node *>(m_selectLast)) {
@@ -324,7 +327,13 @@ void ConversationWindow::insertNode(QPointF where) {
 }
 
 void ConversationWindow::insertContext(QPointF where) {
-    qDebug("Contexts NYI!");
+    Context *context = new Context();
+    context->setPos(where - context->boundingRect().center());
+    m_eview->scene()->addItem(context);
+
+    connect(context, SIGNAL(changed()), m_eview->viewport(), SLOT(update()));
+    selectObject(context);
+    modeChange(SelectMode);
 }
 
 void ConversationWindow::makeLink(EditorObject *object) {

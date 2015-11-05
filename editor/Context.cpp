@@ -13,6 +13,9 @@ Context::Context() {
     m_id = -1;
     m_selected = false;
     m_context = nullptr;
+    m_size = QSizeF(100,100);
+
+    setFlags(ItemIsSelectable | ItemIsMovable);
 }
 
 Context::~Context() {
@@ -25,13 +28,23 @@ QString Context::label() const {
 }
 
 QRectF Context::boundingRect() const {
-    return QRectF(QPointF(-m_size.width()/2, -m_size.height()/2), m_size);
+    return QRectF(QPointF(0,0), m_size);
 }
 
 void Context::paint(QPainter *painter,
     const QStyleOptionGraphicsItem *style, QWidget *widget) {
 
-    painter->drawEllipse(QRectF(pos(), m_size));
+    QBrush b;
+    if(m_context.isNull()) {
+        b.setColor(qRgb(0, 0, 0));
+        b.setStyle(Qt::SolidPattern);
+    }
+    else {
+        b = m_context->deriveBrush();
+    }
+
+    painter->setBrush(b);
+    painter->drawEllipse(QRectF(QPointF(0,0), m_size));
 }
 
 void Context::edit(ConversationDataInterface *interface,
@@ -40,7 +53,7 @@ void Context::edit(ConversationDataInterface *interface,
 }
 
 bool Context::isSelection(QPointF point) {
-    point -= pos();
+    point -= boundingRect().center() + pos();
     return std::sqrt(point.x()*point.x() + point.y()+point.y())
         <= m_size.width()/2;
 }
