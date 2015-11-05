@@ -95,6 +95,10 @@ void MainWindow::autoSave() {
     if(!ew) return;
 
     QFile file("autosave.xml");
+    QFile backup("autosave.xml.backup");
+    backup.remove();
+    file.copy("autosave.xml.backup");
+    file.setFileName("autosave.xml");
     if(!file.open(QIODevice::Truncate | QIODevice::WriteOnly)) return;
 
     ew->saveTo(file);

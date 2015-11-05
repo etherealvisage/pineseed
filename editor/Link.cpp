@@ -124,7 +124,7 @@ void Link::serialize(QXmlStreamWriter &xml) {
 }
 
 void Link::deserialize(QDomElement &xml,
-    const QMap<int, ConversationObject *> &objs) {
+    const QMap<int, ConversationObject *> &objs, ConversationData *data) {
 
     m_id = xml.attribute("id").toInt();
     m_label = xml.attribute("label");

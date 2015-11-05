@@ -22,7 +22,8 @@ public:
 
     virtual void serialize(QXmlStreamWriter &xml) = 0;
     virtual void deserialize(QDomElement &xml,
-        const QMap<int, ConversationObject *> &objs) = 0;
+        const QMap<int, ConversationObject *> &objs,
+        ConversationData *data) = 0;
 };
 
 #endif

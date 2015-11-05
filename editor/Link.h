@@ -38,7 +38,7 @@ public:
 
     virtual void serialize(QXmlStreamWriter &xml);
     virtual void deserialize(QDomElement &xml,
-        const QMap<int, ConversationObject *> &objs);
+        const QMap<int, ConversationObject *> &objs, ConversationData *data);
 private:
     QRectF labelBoundingRect() const;
 private slots:

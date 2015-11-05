@@ -208,7 +208,7 @@ void ConversationWindow::load() {
 
         auto id = element.attribute("id").toInt();
         
-        objs[id]->deserialize(element, objs);
+        objs[id]->deserialize(element, objs, m_data);
         m_eview->scene()->addItem(objs[id]);
     }
 }

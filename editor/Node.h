@@ -48,7 +48,7 @@ public:
 
     virtual void serialize(QXmlStreamWriter &xml);
     virtual void deserialize(QDomElement &xml,
-        const QMap<int, ConversationObject *> &objs);
+        const QMap<int, ConversationObject *> &objs, ConversationData *data);
 
     void visitActions(std::function<void (QStandardItem *)> visitor);
 protected:

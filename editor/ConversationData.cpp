@@ -7,8 +7,31 @@
 #include <QXmlStreamWriter>
 #include <QDomDocument>
 #include <QDomElement>
+#include <QTreeWidget>
 
 #include "ConversationData.h"
+#include "ConversationContext.h"
+
+ConversationContext *ConversationData::rootContext() {
+    if(m_rootContext == nullptr) {
+        m_rootContext = new ConversationContext(getAvailableID());
+        m_contexts[m_rootContext->id()] = m_rootContext;
+    }
+
+    return m_rootContext;
+}
+
+QPointer<ConversationContext> ConversationData::getContextByID(int id) {
+    return m_contexts[id];
+}
+
+QPointer<ConversationContext> ConversationData::selectContext(
+    QWidget *parent) {
+
+    qDebug("Context selection NYI");
+
+    return QPointer<ConversationContext>();
+}
 
 int ConversationData::getAvailableID() {
     int ret = -1;
@@ -34,7 +57,6 @@ void ConversationData::edit(QWidget *parent) {
     primaryLayout->addWidget(closeButton);
 
     dialog->setLayout(primaryLayout);
-
 
     // Character tab
     QVBoxLayout *namesLayout = new QVBoxLayout();
@@ -68,6 +90,15 @@ void ConversationData::edit(QWidget *parent) {
     QWidget *namesWidget = new QWidget();
     namesWidget->setLayout(namesLayout);
     tabs->addTab(namesWidget, QObject::tr("Character names"));
+
+    // Contexts tab
+    auto contextsLayout = new QVBoxLayout();
+    auto contextsTree = new QTreeWidget();
+
+    contextsLayout->addWidget(contextsTree);
+    auto contextsWidget = new QWidget();
+    contextsWidget->setLayout(contextsLayout);
+    tabs->addTab(contextsWidget, QObject::tr("Node contexts"));
 
     dialog->exec();
     dialog->deleteLater();

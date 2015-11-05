@@ -115,7 +115,6 @@ bool Node::isSelection(QPointF point) {
 }
 
 void Node::serialize(QXmlStreamWriter &xml) {
-
     xml.writeStartElement("node");
 
     xml.writeAttribute("id", QString().setNum(m_id));
@@ -134,7 +133,7 @@ void Node::serialize(QXmlStreamWriter &xml) {
 }
 
 void Node::deserialize(QDomElement &xml,
-    const QMap<int, ConversationObject *> &objs) {
+    const QMap<int, ConversationObject *> &objs, ConversationData *data) {
 
     m_id = xml.attribute("id").toInt();
     m_label = xml.attribute("label");
