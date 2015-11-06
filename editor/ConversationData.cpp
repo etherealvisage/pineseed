@@ -30,9 +30,37 @@ QPointer<ConversationContext> ConversationData::getContextByID(int id) {
 QPointer<ConversationContext> ConversationData::selectContext(
     QWidget *parent) {
 
-    qDebug("Context selection NYI");
+    auto dialog = new QDialog(parent);
 
-    return QPointer<ConversationContext>();
+    auto layout = new QVBoxLayout();
+    dialog->setLayout(layout);
+
+    auto view = new QTreeView();
+    layout->addWidget(view);
+    QMap<int, QStandardItem *> items;
+    auto model = makeContextModel(items, false);
+    view->setModel(model);
+
+    ConversationContext *selected = nullptr;
+
+    auto accept = new QPushButton(QObject::tr("Select"));
+    layout->addWidget(accept);
+    QObject::connect(accept, &QPushButton::clicked,
+        [=, &selected]() {
+            if(!view->selectionModel()->hasSelection()) return;
+
+            auto sel = view->selectionModel()->selectedIndexes();
+
+            auto item = model->itemFromIndex(sel.front());
+
+            selected = m_contexts[item->data(IDData).toInt()];
+
+            dialog->accept();
+        });
+
+    dialog->exec();
+
+    return QPointer<ConversationContext>(selected);
 }
 
 int ConversationData::getAvailableID() {
@@ -46,6 +74,7 @@ int ConversationData::getAvailableID() {
 }
 
 void ConversationData::edit(QWidget *parent) {
+    // TODO: modularize!
     QDialog *dialog = new QDialog(parent);
     QVBoxLayout *primaryLayout = new QVBoxLayout();
 
@@ -94,38 +123,12 @@ void ConversationData::edit(QWidget *parent) {
 
     // Contexts tab
     auto contextsLayout = new QVBoxLayout();
-    auto contextsModel = new QStandardItemModel();
+    QMap<int, QStandardItem *> contextMap;
+    auto contextsModel = makeContextModel(contextMap, true);
     auto contextsView = new QTreeView();
     contextsView->setModel(contextsModel);
     contextsView->setDragDropMode(QAbstractItemView::InternalMove);
-
-    auto rootItem = new QStandardItem();
-    QMap<int, QStandardItem *> contextItems;
-    rootItem->setText("Root context");
-    rootItem->setEditable(false);
-    rootItem->setDragEnabled(false);
-    rootItem->setDropEnabled(true);
-    rootItem->setData(rootContext()->id(), 0x100);
-    contextsModel->invisibleRootItem()->appendRow(rootItem);
-    contextItems[rootContext()->id()] = rootItem;
     contextsLayout->addWidget(contextsView);
-
-    for(auto con : m_contexts) {
-        if(contextItems.contains(con->id())) continue;
-        auto item = new QStandardItem();
-
-        item->setData(con->id(), 0x100);
-        item->setText(con->label());
-        item->setEditable(true);
-        item->setDragEnabled(true);
-        item->setDropEnabled(true);
-
-        contextItems[con->id()] = item;
-    }
-    for(auto con : m_contexts) {
-        if(!con->parent()) continue;
-        contextItems[con->parent()->id()]->appendRow(contextItems[con->id()]);
-    }
 
     auto addContext = new QPushButton(QObject::tr("&Add"));
     QObject::connect(addContext, &QPushButton::clicked, 
@@ -137,15 +140,10 @@ void ConversationData::edit(QWidget *parent) {
                 "", &ok);
             if(!ok) name = "????";
             int id = getAvailableID();
-            m_contexts[id] = new ConversationContext(id);
-            auto item = new QStandardItem();
-
-            item->setData(id, 0x100);
-            item->setText(name);
-            item->setEditable(true);
-            item->setDragEnabled(true);
-            item->setDropEnabled(true);
-            rootItem->appendRow(item);
+            auto con = m_contexts[id] = new ConversationContext(id);
+            con->setLabel(name);
+            auto item = makeContextItem(con, true);
+            contextMap[rootContext()->id()]->appendRow(item);
         });
     contextsLayout->addWidget(addContext);
     auto removeContext = new QPushButton(QObject::tr("&Delete"));
@@ -186,7 +184,7 @@ void ConversationData::edit(QWidget *parent) {
         }
     };
 
-    ContextsRearranger::rearrange(m_contexts, rootItem);
+    ContextsRearranger::rearrange(m_contexts, contextMap[rootContext()->id()]);
 
     // TODO: delete all unparented contexts
 
@@ -271,4 +269,54 @@ void ConversationData::deserialize(QDomDocument &doc) {
     }
 
     m_rootContext = m_contexts[contexts.toElement().attribute("root").toInt()];
+}
+
+QStandardItem *ConversationData::makeContextItem(ConversationContext *context,
+    bool editable) {
+
+    auto item = new QStandardItem();
+
+    item->setData(context->id(), IDData);
+    item->setText(context->label());
+    item->setEditable(editable);
+    item->setDragEnabled(editable);
+    item->setDropEnabled(editable);
+
+    return item;
+}
+
+
+QStandardItemModel *ConversationData::makeContextModel(
+    QMap<int, QStandardItem *> &items, bool editable) {
+
+    auto ret = new QStandardItemModel();
+    auto rootItem = new QStandardItem();
+    rootItem->setText("Root context");
+    rootItem->setEditable(false);
+    rootItem->setDragEnabled(false);
+    rootItem->setDropEnabled(editable);
+    rootItem->setData(rootContext()->id(), IDData);
+    ret->invisibleRootItem()->appendRow(rootItem);
+    items[rootContext()->id()] = rootItem;
+
+    for(auto con : m_contexts) {
+        if(items.contains(con->id())) continue;
+        auto item = new QStandardItem();
+
+        item->setData(con->id(), IDData);
+        item->setText(con->label());
+        item->setEditable(editable);
+        item->setDragEnabled(editable);
+        item->setDropEnabled(editable);
+
+        items[con->id()] = item;
+    }
+    for(auto con : m_contexts) {
+        if(!con->parent()) continue;
+        items[con->parent()->id()]->appendRow(items[con->id()]);
+    }
+
+    // TODO: sort the elements in the tree
+
+    return ret;
 }

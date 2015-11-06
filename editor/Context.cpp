@@ -4,6 +4,9 @@
 #include <QXmlStreamWriter>
 #include <QDomElement>
 #include <QPainter>
+#include <QFormLayout>
+#include <QLabel>
+#include <QPushButton>
 
 #include "Context.h"
 #include "ConversationContext.h"
@@ -50,11 +53,22 @@ void Context::paint(QPainter *painter,
 void Context::edit(ConversationDataInterface *interface,
     ConversationData *data, QFormLayout *layout) {
 
+    if(m_id == -1) m_id = data->getAvailableID();
+
+    auto nameLabel = new QLabel(tr(""));
+    layout->addRow(new QLabel("Current context:"), nameLabel);
+    auto chooseButton = new QPushButton(tr("Change"));
+    layout->addRow(nullptr, chooseButton);
+
+    connect(chooseButton, &QPushButton::clicked,
+        [=]() {
+            m_context = data->selectContext(chooseButton);
+        });
 }
 
 bool Context::isSelection(QPointF point) {
-    point -= boundingRect().center() + pos();
-    return std::sqrt(point.x()*point.x() + point.y()+point.y())
+    point -= boundingRect().center();
+    return std::sqrt(point.x()*point.x() + point.y()*point.y())
         <= m_size.width()/2;
 }
 

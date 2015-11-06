@@ -10,4 +10,5 @@
 /libkriti.a
 .gdb_history
 /autosave.xml
+/autosave.xml.backup
 /tmp

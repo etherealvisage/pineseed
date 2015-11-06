@@ -10,10 +10,14 @@
 class QWidget;
 class QXmlStreamWriter;
 class QDomDocument;
+class QStandardItem;
+class QStandardItemModel;
 
 class ConversationContext;
 
 class ConversationData {
+private:
+    const int IDData = 0x100;
 private:
     QList<QString> m_characterNames;
     QSet<int> m_usedIDs;
@@ -35,6 +39,11 @@ public:
 
     void serialize(QXmlStreamWriter &xml);
     void deserialize(QDomDocument &doc);
+private:
+    QStandardItem *makeContextItem(ConversationContext *context,
+        bool editable);
+    QStandardItemModel *makeContextModel(QMap<int, QStandardItem *> &items,
+        bool editable);
 };
 
 #endif
