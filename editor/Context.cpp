@@ -77,8 +77,9 @@ void Context::serialize(QXmlStreamWriter &xml) {
 
     xml.writeAttribute("id", QString().setNum(m_id));
     xml.writeAttribute("x", QString().setNum(pos().x()));
-    xml.writeAttribute("y", QString().setNum(pos().x()));
-    xml.writeAttribute("width", QString().setNum(m_size.width()/2));
+    xml.writeAttribute("y", QString().setNum(pos().y()));
+    xml.writeAttribute("width", QString().setNum(m_size.width()));
+    xml.writeAttribute("height", QString().setNum(m_size.height()));
     if(!m_context.isNull())
         xml.writeAttribute("context", QString().setNum(m_context->id()));
 
@@ -89,8 +90,8 @@ void Context::deserialize(QDomElement &xml,
     const QMap<int, ConversationObject *> &objs, ConversationData *data) {
 
     m_id = xml.attribute("id").toInt();
-    pos().setX(xml.attribute("x").toDouble());
-    pos().setY(xml.attribute("y").toDouble());
+    setPos(QPointF(xml.attribute("x").toDouble(),
+        xml.attribute("y").toDouble()));
     m_size.setWidth(xml.attribute("width").toDouble());
     m_size.setHeight(xml.attribute("height").toDouble());
     bool ok = false;

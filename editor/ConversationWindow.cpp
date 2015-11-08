@@ -199,6 +199,9 @@ void ConversationWindow::load() {
         else if(name == "link") {
             objs[id] = new Link(nullptr, nullptr);
         }
+        else if(name == "context-ref") {
+            objs[id] = new Context();
+        }
         else {
             qDebug("Unknown object type %s", name.toLocal8Bit().constData());
         }
