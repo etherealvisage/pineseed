@@ -8,6 +8,7 @@
 #include <QLabel>
 #include <QTextEdit>
 #include <QCheckBox>
+#include <QPointer>
 
 #include "ActionEditor.h"
 #include "moc_ActionEditor.cpp"
@@ -157,7 +158,8 @@ ActionEditor::ActionEditor(ConversationDataInterface *interface,
                     }),
                     std::function<void (ConversationObject *)>(
                     [=](ConversationObject *object) {
-                        m_current->setData(qVariantFromValue((void *)object),
+                        m_current->setData(qVariantFromValue(
+                                (void *)new QPointer<Node>((Node *)object)),
                             Action::JumpTargetData);
                         Action::updateTitle(m_current);
                     }));
