@@ -5,17 +5,19 @@
 
 #include "ConversationObject.h"
 
+class LinkableObject;
 class Node;
 
 class Link : public ConversationObject { Q_OBJECT
 private:
     int m_id;
-    QPointer<Node> m_from, m_to;
+    QPointer<LinkableObject> m_from;
+    QPointer<Node> m_to;
     QString m_label;
     bool m_rtsLink;
     bool m_selected;
 public:
-    Link(Node *from, Node *to);
+    Link(QPointer<LinkableObject> from, QPointer<Node> to);
     virtual ~Link();
 
     virtual int id() const { return m_id; }
@@ -23,8 +25,8 @@ public:
     virtual void select() { m_selected = true; update(); }
     virtual void deselect() { m_selected = false; update(); }
 
-    Node *from() const { return m_from; }
-    Node *to() const { return m_to; }
+    QPointer<LinkableObject> from() const { return m_from; }
+    QPointer<Node> to() const { return m_to; }
     const QString &label() const { return m_label; }
     bool isRtsLink() const { return m_rtsLink; }
 

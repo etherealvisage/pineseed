@@ -4,7 +4,7 @@
 #include <QGraphicsObject>
 #include <functional>
 
-#include "ConversationObject.h"
+#include "LinkableObject.h"
 
 class QTreeView;
 class QStandardItem;
@@ -13,12 +13,11 @@ class QStandardItemModel;
 class Action;
 class Link;
 
-class Node : public ConversationObject { Q_OBJECT
+class Node : public LinkableObject { Q_OBJECT
 private:
     int m_id;
     QSizeF m_size;
     QString m_label;
-    QVector<Link *> m_links;
     QStandardItemModel *m_actionModel;
     bool m_selected;
     bool m_isEntry;
@@ -32,9 +31,6 @@ public:
     virtual void deselect() { m_selected = false; update(); }
 
     const QString &label() const { return m_label; }
-
-    QVector<Link *> &links() { return m_links; }
-    const QVector<Link *> &links() const { return m_links; }
 
     QStandardItemModel *actionModel() const { return m_actionModel; }
 

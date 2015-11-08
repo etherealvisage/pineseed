@@ -272,7 +272,7 @@ void ConversationWindow::modeChange(int to) {
             this, SLOT(insertContext(QPointF)));
         break;
     case NewLinkMode:
-        if(!m_selectLast || !dynamic_cast<Node *>(m_selectLast)) {
+        if(!m_selectLast || !dynamic_cast<LinkableObject *>(m_selectLast)) {
             modeChange(SelectMode);
         }
         else {
@@ -344,7 +344,8 @@ void ConversationWindow::makeLink(EditorObject *object) {
     // not allowed to have self-links for now
     if(!target || target == m_selectLast) return; 
 
-    Link *link = new Link(dynamic_cast<Node *>(m_selectLast), target);
+    Link *link =
+        new Link(dynamic_cast<LinkableObject *>(m_selectLast), target);
     connect(link, SIGNAL(changed()), m_eview->viewport(), SLOT(update()));
     m_eview->scene()->addItem(link);
 

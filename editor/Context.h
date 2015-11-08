@@ -3,11 +3,11 @@
 
 #include <QPointer>
 
-#include "ConversationObject.h"
+#include "LinkableObject.h"
 
 class ConversationContext;
 
-class Context : public ConversationObject {
+class Context : public LinkableObject {
 private:
     int m_id;
     QSizeF m_size;

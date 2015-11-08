@@ -10,13 +10,16 @@
 #include <QXmlStreamWriter>
 #include <QDomElement>
 #include <QCheckBox>
+#include <QPointer>
 
 #include "Link.h"
 #include "moc_Link.cpp"
 #include "Node.h"
 #include "ConversationData.h"
 
-Link::Link(Node *from, Node *to) : m_label("Label") {
+Link::Link(QPointer<LinkableObject> from, QPointer<Node> to)
+    : m_label("Label") {
+
     m_id = -1;
     if(from) m_from = from, m_from->links().push_back(this);
     if(to) m_to = to, m_to->links().push_back(this);
@@ -27,16 +30,11 @@ Link::Link(Node *from, Node *to) : m_label("Label") {
 }
 
 Link::~Link() {
-    qDebug("Link destructor!");
     if(!m_from.isNull()) {
-        int in = m_from->links().indexOf(this);
-        qDebug("from index: %d", in);
-        if(in != -1) m_from->links().remove(in);
+        m_from->links().removeAll(this);
     }
     if(!m_to.isNull()) {
-        int in = m_to->links().indexOf(this);
-        qDebug("to index: %d", in);
-        if(in != -1) m_to->links().remove(in);
+        m_to->links().removeAll(this);
     }
 }
 
@@ -128,7 +126,8 @@ void Link::deserialize(QDomElement &xml,
 
     m_id = xml.attribute("id").toInt();
     m_label = xml.attribute("label");
-    m_from = dynamic_cast<Node *>(objs[xml.attribute("from").toInt()]);
+    m_from =
+        dynamic_cast<LinkableObject *>(objs[xml.attribute("from").toInt()]);
     m_to = dynamic_cast<Node *>(objs[xml.attribute("to").toInt()]);
     auto rts = xml.attribute("rts");
     if(rts == "true") m_rtsLink = true;
