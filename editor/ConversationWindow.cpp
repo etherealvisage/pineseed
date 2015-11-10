@@ -267,9 +267,11 @@ void ConversationWindow::modeChange(int to) {
     m_eview->disconnect(m_eview, SIGNAL(selected(EditorObject *)),
         this, 0);
 
-    for(auto b : m_toolButtons) if(!b->isEnabled()) b->setEnabled(true);
+    for(auto b : m_toolButtons) if(!b->isEnabled())
+        b->setEnabled(true), b->setStyleSheet("");
     if(mode < SelectOneMode) {
         m_toolButtons[to]->setEnabled(false);
+        m_toolButtons[to]->setStyleSheet("background-color: red");
     }
 
     switch(mode) {
