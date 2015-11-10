@@ -15,6 +15,7 @@ private:
     QPointer<Node> m_to;
     QString m_label;
     bool m_rtsLink;
+    bool m_hiddenLink;
     bool m_selected;
 public:
     Link(QPointer<LinkableObject> from, QPointer<Node> to);
@@ -29,6 +30,7 @@ public:
     QPointer<Node> to() const { return m_to; }
     const QString &label() const { return m_label; }
     bool isRtsLink() const { return m_rtsLink; }
+    bool isHiddenLink() const { return m_hiddenLink; }
 
     virtual QRectF boundingRect() const;
     virtual void paint(QPainter *painter,

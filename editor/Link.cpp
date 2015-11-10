@@ -103,6 +103,15 @@ void Link::edit(ConversationDataInterface *interface,
     connect(rts, &QCheckBox::stateChanged,
         [=](int newState){ m_rtsLink = newState == Qt::Checked; update(); });
     layout->addRow(tr(""), rts);
+
+    auto *hidden = new QCheckBox(tr("Hidden link"));
+    hidden->setChecked(m_hiddenLink);
+    connect(hidden, &QCheckBox::stateChanged,
+        [=](int newState) {
+            m_hiddenLink = newState == Qt::Checked;
+            update();
+        });
+    layout->addRow(tr(""), hidden);
 }
 
 bool Link::isSelection(QPointF point) {
@@ -117,6 +126,7 @@ void Link::serialize(QXmlStreamWriter &xml) {
     xml.writeAttribute("from", QString().setNum(m_from->id()));
     xml.writeAttribute("to", QString().setNum(m_to->id()));
     if(m_rtsLink) xml.writeAttribute("rts", "true");
+    if(m_hiddenLink) xml.writeAttribute("hidden", "true");
 
     xml.writeEndElement();
 }
@@ -131,6 +141,8 @@ void Link::deserialize(QDomElement &xml,
     m_to = dynamic_cast<Node *>(objs[xml.attribute("to").toInt()]);
     auto rts = xml.attribute("rts");
     if(rts == "true") m_rtsLink = true;
+    auto hidden = xml.attribute("hidden");
+    if(hidden == "true") m_hiddenLink = true;
 
     m_from->links().push_back(this);
     m_to->links().push_back(this);

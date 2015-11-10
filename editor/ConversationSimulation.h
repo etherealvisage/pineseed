@@ -27,6 +27,7 @@ public:
 public slots:
     void beginFrom(Node *node);
 private slots:
+    void progress(int index);
     void progress(const QString &by);
     void process(Node *node, bool supress = false);
     // returns true if m_current is changed by the action

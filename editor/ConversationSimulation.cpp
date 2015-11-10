@@ -16,7 +16,6 @@
 ConversationSimulation::ConversationSimulation() {
     QVBoxLayout *layout = new QVBoxLayout();
     m_history = new QListWidget();
-    //m_history->setWrapping(true);
     m_history->setWordWrap(true);
     layout->addWidget(m_history);
     m_options = new QComboBox();
@@ -34,8 +33,8 @@ ConversationSimulation::ConversationSimulation() {
     layout->addWidget(m_entryBox);
     setLayout(layout);
 
-    connect(m_options, SIGNAL(activated(const QString &)),
-        this, SLOT(progress(const QString &)));
+    connect(m_options, SIGNAL(activated(int)),
+        this, SLOT(progress(int)));
 }
 
 void ConversationSimulation::beginFrom(Node *node) {
@@ -44,6 +43,10 @@ void ConversationSimulation::beginFrom(Node *node) {
     m_visited.clear();
     m_returns.clear();
     process(node);
+}
+
+void ConversationSimulation::progress(int index) {
+    progress(m_options->itemData(index, Qt::UserRole).toString());
 }
 
 void ConversationSimulation::progress(const QString &by) {
@@ -84,7 +87,10 @@ void ConversationSimulation::process(Node *node, bool supress) {
     for(auto link : links) {
         if(link->from() != node) continue;
 
-        m_options->addItem(link->label());
+        if(link->isHiddenLink())
+            m_options->addItem(link->label() + " (hidden)", link->label());
+        else
+            m_options->addItem(link->label(), link->label());
         m_optionsMap[link->label()] = link;
     }
 
