@@ -14,6 +14,7 @@
 #include <QStandardItemModel>
 #include <QDomDocument>
 #include <QMessageBox>
+#include <QIcon>
 
 #include "ConversationWindow.h"
 #include "moc_ConversationWindow.cpp"
@@ -35,8 +36,6 @@ ConversationWindow::ConversationWindow() {
     split->addWidget(m_eview);
     m_sim = new ConversationSimulation();
     split->addWidget(m_sim);
-    modeChange(SelectMode); // enter select mode by default
-
     setWidget(split);
 
     QVBoxLayout *editLayout = new QVBoxLayout();
@@ -45,11 +44,17 @@ ConversationWindow::ConversationWindow() {
     connect(m_modeMapper, SIGNAL(mapped(int)), this, SLOT(modeChange(int)));
     QHBoxLayout *editbarLayout = new QHBoxLayout();
 
-    QShortcut *selectModeShortcut = new QShortcut(QKeySequence("Alt+`"), this);
-    connect(selectModeShortcut, &QShortcut::activated,
-        [=](){ modeChange(SelectMode); });
+    QPushButton *selectButton =
+        new QPushButton(QIcon(":/icons/select.png"), "");
+    connect(selectButton, SIGNAL(clicked(bool)), m_modeMapper, SLOT(map()));
+    m_modeMapper->setMapping(selectButton, SelectMode);
+    editbarLayout->addWidget(selectButton);
+    m_toolButtons.push_back(selectButton);
+    QShortcut *selectShortcut = new QShortcut(QKeySequence("Alt+0"), this);
+    connect(selectShortcut, SIGNAL(activated()), selectButton, SLOT(click()));
 
-    QPushButton *newNodeButton = new QPushButton(tr("Node"));
+    QPushButton *newNodeButton =
+        new QPushButton(QIcon(":/icons/node.png"), "");
     connect(newNodeButton, SIGNAL(clicked(bool)), m_modeMapper, SLOT(map()));
     m_modeMapper->setMapping(newNodeButton, NewNodeMode);
     editbarLayout->addWidget(newNodeButton);
@@ -58,7 +63,8 @@ ConversationWindow::ConversationWindow() {
     connect(newNodeShortcut, SIGNAL(activated()),
         newNodeButton, SLOT(click()));
 
-    QPushButton *newLinkButton = new QPushButton(tr("Link"));
+    QPushButton *newLinkButton = 
+        new QPushButton(QIcon(":/icons/link.png"), "");
     connect(newLinkButton, SIGNAL(clicked(bool)), m_modeMapper, SLOT(map()));
     m_modeMapper->setMapping(newLinkButton, NewLinkMode);
     editbarLayout->addWidget(newLinkButton);
@@ -67,7 +73,8 @@ ConversationWindow::ConversationWindow() {
     connect(newLinkShortcut, SIGNAL(activated()),
         newLinkButton, SLOT(click()));
 
-    QPushButton *newContextButton = new QPushButton(tr("Context"));
+    QPushButton *newContextButton =
+        new QPushButton(QIcon(":/icons/context.png"), "");
     connect(newContextButton, SIGNAL(clicked(bool)), m_modeMapper,
         SLOT(map()));
     m_modeMapper->setMapping(newContextButton, NewContextMode);
@@ -77,7 +84,8 @@ ConversationWindow::ConversationWindow() {
     connect(newContextShortcut, SIGNAL(activated()),
         newContextButton, SLOT(click()));
 
-    QPushButton *deleteButton = new QPushButton(tr("Delete"));
+    QPushButton *deleteButton =
+        new QPushButton(QIcon(":/icons/delete.png"), "");
     connect(deleteButton, SIGNAL(clicked(bool)), m_modeMapper, SLOT(map()));
     m_modeMapper->setMapping(deleteButton, DeleteMode);
     editbarLayout->addWidget(deleteButton);
@@ -103,6 +111,13 @@ ConversationWindow::ConversationWindow() {
     editLayout->addWidget(dataButton);
 
     m_edit->setLayout(editLayout);
+    //m_edit->setFixedSize(QSize(300, 300));
+    //m_edit->setMinimumSize(QSize(300, 200));
+    m_edit->setMinimumWidth(300);
+    m_edit->setMaximumWidth(300);
+    //m_edit->setMaximumSize(QSize(300, 200));
+    m_edit->setSizePolicy(QSizePolicy(QSizePolicy::Fixed,
+        QSizePolicy::MinimumExpanding));
 
     m_selectLast = nullptr;
 
@@ -124,6 +139,8 @@ ConversationWindow::ConversationWindow() {
     };
 
     m_dataInterface = new InternalInterface(this);
+
+    modeChange(SelectMode); // enter select mode by default
 }
 
 void ConversationWindow::saveTo(QFile &file) {
@@ -251,8 +268,8 @@ void ConversationWindow::modeChange(int to) {
         this, 0);
 
     for(auto b : m_toolButtons) if(!b->isEnabled()) b->setEnabled(true);
-    if(mode > SelectMode && mode < SelectOneMode) {
-        m_toolButtons[to-1]->setEnabled(false);
+    if(mode < SelectOneMode) {
+        m_toolButtons[to]->setEnabled(false);
     }
 
     switch(mode) {

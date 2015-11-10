@@ -103,7 +103,8 @@ void Node::edit(ConversationDataInterface *interface,
     layout->addRow(tr("Entry:"), entryBox);
 
     ActionEditor *editor = new ActionEditor(interface, data, m_actionModel);
-    layout->addRow(tr(""), editor);
+    layout->addRow(editor);
+    //layout->addRow(tr(""), editor);
 }
 
 bool Node::isSelection(QPointF point) {

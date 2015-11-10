@@ -4,12 +4,14 @@ find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Xml REQUIRED)
 
 set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 aux_source_directory(. dotSources)
 
 set(sources
     ${dotSources}
+    icons.qrc
 )
 
 add_executable(pineseed_editor ${sources})

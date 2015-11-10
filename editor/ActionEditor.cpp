@@ -50,7 +50,7 @@ ActionEditor::ActionEditor(ConversationDataInterface *interface,
     connect(m_currentType, SIGNAL(activated(int)),
         this, SLOT(changeType(int)));
 
-    layout->addWidget(new QLabel("Comments:"));
+    layout->addWidget(new QLabel("Action comments:"));
     m_currentComment = new QTextEdit();
     m_currentComment->setAcceptRichText(false);
     layout->addWidget(m_currentComment);

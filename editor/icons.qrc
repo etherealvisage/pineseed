@@ -1,0 +1,9 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file>icons/select.png</file>
+    <file>icons/node.png</file>
+    <file>icons/link.png</file>
+    <file>icons/context.png</file>
+    <file>icons/delete.png</file>
+</qresource>
+</RCC>
