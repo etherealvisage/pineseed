@@ -1,0 +1,3 @@
+[submodule "kriti"]
+	path = kriti
+	url = https://github.com/etherealvisage/kriti.git

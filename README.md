@@ -17,38 +17,38 @@ probably run on anything that the game engine,
 mobile platforms is currently planned, though it is an option that the authors
 are discussing.
 
-To build the editor, you'll need Qt 5. If you don't want to build the editor,
-comment out the line `add_subdirectory(editor)` in the root `CMakeLists.txt`.
+To build the editor, you'll need the Qt 5 development libraries. On Ubuntu,
+this is the `qt5-defaults` package.
 
 ### Setup and compilation
 
-You'll need a compiled instance of kriti, with a version of the kriti source
-tree (dist version is fine) available in the `/kriti` project subdirectory.
+Edit the file `build.config` to change if you want to build the editor or the
+game, or both. Once this has been edited, the command `make redep` will
+regenerate the buildsystem; you can also use `make codeblocks` to
+create/regenerate a Code::Blocks IDE project file in `build/`.
 
-For example, something like this should work for setting up kriti:
+If you want to build the editor, as noted you'll need Qt5. Beyond that,
+compilation should be straightforwards.
 
-    $ cd ..
-    $ git clone https://github.com/etherealvisage/kriti.git
-    $ cd kriti
-    $ make redep ; make -j [cores]
-    $ cd ../pineseed
-    $ ln -s ../kriti
+To build the game, ensure that the kriti/ git submodule has been initialized,
+and then build as normal. Note that you can also replace the submodule with a
+symbolic link to another instance of the library somewhere on the filesystem
+if you prefer.
 
-Alternatively, you could use an existing precompiled version of kriti. To grab
-the precompiled version for x86_64:
+So, assuming that you have the prerequisite libraries installed already (see
+above), the entire sequence should be something like: (for sh-derived shells,
+and modern versions of git)
 
-    $ wget http://ethv.net/projects/static/kriti-dist.tar.gz
-    $ tar xf kriti-dist.tar.gz
-    $ ln -s kriti-dist kriti
-
-To compile pineseed:
-
+    $ git clone https://github.com/etherealvisage/pineseed.git
+    $ cd pineseed
+    Edit build.config file, as appropriate.
+    If building game, then run:
+    $ git submodule init ; git submodule update
+    Either way:
     $ make redep
-    $ make -j [cores]
+    $ make -j $NCORES
 
-The command `make redep` will regenerate the buildsystem; you can also use
-`make codeblocks` to create/regenerate a Code::Blocks IDE project file in
-`build/`.
+As noted, you can also use `make codeblocks` to create a Code::Blocks project.
 
 ### Contact
 

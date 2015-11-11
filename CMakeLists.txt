@@ -1,18 +1,28 @@
 cmake_minimum_required(VERSION 2.6)
 
+cmake_policy(SET CMP0012 NEW)
+
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/kriti/cmake/)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR})
 
 project(pineseed C CXX)
 
-add_subdirectory(editor)
+include(build.config)
 
-add_definitions(-DKRITI_DATA_PATH="data/")
-add_definitions(-DKRITI_CONFIG_PATH="kriti.xml")
+if(${buildEditor})
+    add_subdirectory(editor)
+endif(${buildEditor})
 
-include(kriti/cmake/kriti-env.cmake)
+if(${buildGame})
+    add_definitions(-DKRITI_DATA_PATH="data/")
+    add_definitions(-DKRITI_CONFIG_PATH="kriti.xml")
 
-include_directories(kriti/headers)
-link_directories(${CMAKE_CURRENT_LIST_DIR}/kriti)
+    include(kriti/cmake/kriti-env.cmake)
+    if(NOT ${useDistKriti})
+        add_subdirectory(kriti/)
+    endif(NOT ${useDistKriti})
+    include_directories(kriti/headers)
+    link_directories(${CMAKE_CURRENT_LIST_DIR}/kriti)
 
-add_subdirectory(src)
+    add_subdirectory(src)
+endif(${buildGame})

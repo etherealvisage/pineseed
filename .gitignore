@@ -6,7 +6,6 @@
 /pineseed_editor
 *.swp
 /libs
-/kriti
 /libkriti.a
 .gdb_history
 /autosave.xml
