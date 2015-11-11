@@ -50,7 +50,7 @@ ConversationWindow::ConversationWindow() {
     m_modeMapper->setMapping(selectButton, SelectMode);
     editbarLayout->addWidget(selectButton);
     m_toolButtons.push_back(selectButton);
-    QShortcut *selectShortcut = new QShortcut(QKeySequence("Alt+0"), this);
+    QShortcut *selectShortcut = new QShortcut(QKeySequence("Alt+1"), this);
     connect(selectShortcut, SIGNAL(activated()), selectButton, SLOT(click()));
 
     QPushButton *newNodeButton =
@@ -59,7 +59,7 @@ ConversationWindow::ConversationWindow() {
     m_modeMapper->setMapping(newNodeButton, NewNodeMode);
     editbarLayout->addWidget(newNodeButton);
     m_toolButtons.push_back(newNodeButton);
-    QShortcut *newNodeShortcut = new QShortcut(QKeySequence("Alt+1"), this);
+    QShortcut *newNodeShortcut = new QShortcut(QKeySequence("Alt+2"), this);
     connect(newNodeShortcut, SIGNAL(activated()),
         newNodeButton, SLOT(click()));
 
@@ -69,7 +69,7 @@ ConversationWindow::ConversationWindow() {
     m_modeMapper->setMapping(newLinkButton, NewLinkMode);
     editbarLayout->addWidget(newLinkButton);
     m_toolButtons.push_back(newLinkButton);
-    QShortcut *newLinkShortcut = new QShortcut(QKeySequence("Alt+2"), this);
+    QShortcut *newLinkShortcut = new QShortcut(QKeySequence("Alt+3"), this);
     connect(newLinkShortcut, SIGNAL(activated()),
         newLinkButton, SLOT(click()));
 
@@ -80,7 +80,7 @@ ConversationWindow::ConversationWindow() {
     m_modeMapper->setMapping(newContextButton, NewContextMode);
     editbarLayout->addWidget(newContextButton);
     m_toolButtons.push_back(newContextButton);
-    QShortcut *newContextShortcut = new QShortcut(QKeySequence("Alt+3"), this);
+    QShortcut *newContextShortcut = new QShortcut(QKeySequence("Alt+4"), this);
     connect(newContextShortcut, SIGNAL(activated()),
         newContextButton, SLOT(click()));
 
@@ -90,7 +90,7 @@ ConversationWindow::ConversationWindow() {
     m_modeMapper->setMapping(deleteButton, DeleteMode);
     editbarLayout->addWidget(deleteButton);
     m_toolButtons.push_back(deleteButton);
-    QShortcut *deleteShortcut = new QShortcut(QKeySequence("Alt+4"), this);
+    QShortcut *deleteShortcut = new QShortcut(QKeySequence("Alt+5"), this);
     connect(deleteShortcut, SIGNAL(activated()), deleteButton, SLOT(click()));
 
     editLayout->addLayout(editbarLayout);

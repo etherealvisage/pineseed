@@ -15,9 +15,7 @@ class EditorObject;
 class PlatformWindow : public QMdiSubWindow, public EditorWindow { Q_OBJECT
 private:
     enum Mode {
-        // mode 0
         SelectMode,
-        // button modes
         NewPlatformMode,
         DeleteMode
     };

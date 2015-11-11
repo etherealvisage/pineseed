@@ -27,23 +27,37 @@ PlatformWindow::PlatformWindow() : m_selectLast(nullptr) {
     m_modeMapper = new QSignalMapper(this);
     connect(m_modeMapper, SIGNAL(mapped(int)), this, SLOT(modeChange(int)));
     {
+        auto selectPlatform = new QPushButton(tr("Select"));
+        m_toolButtons.push_back(selectPlatform);
+        modeLayout->addWidget(selectPlatform);
+        m_modeMapper->setMapping(selectPlatform, SelectMode);
+        connect(selectPlatform, SIGNAL(clicked(bool)), m_modeMapper,
+            SLOT(map()));
+        QShortcut *selectPlatformShortcut =
+            new QShortcut(QKeySequence("Alt+1"), this);
+        connect(selectPlatformShortcut, SIGNAL(activated()),
+            selectPlatform, SLOT(click()));
+    }
+    {
         auto newPlatform = new QPushButton(tr("Add"));
+        m_toolButtons.push_back(newPlatform);
         modeLayout->addWidget(newPlatform);
         m_modeMapper->setMapping(newPlatform, NewPlatformMode);
         connect(newPlatform, SIGNAL(clicked(bool)), m_modeMapper, SLOT(map()));
         QShortcut *newPlatformShortcut =
-            new QShortcut(QKeySequence("Alt+1"), this);
+            new QShortcut(QKeySequence("Alt+2"), this);
         connect(newPlatformShortcut, SIGNAL(activated()),
             newPlatform, SLOT(click()));
     }
     {
         auto removePlatform = new QPushButton(tr("Remove"));
+        m_toolButtons.push_back(removePlatform);
         modeLayout->addWidget(removePlatform);
         m_modeMapper->setMapping(removePlatform, DeleteMode);
         connect(removePlatform, SIGNAL(clicked(bool)),
             m_modeMapper, SLOT(map()));
         QShortcut *removePlatformShortcut =
-            new QShortcut(QKeySequence("Alt+2"), this);
+            new QShortcut(QKeySequence("Alt+3"), this);
         connect(removePlatformShortcut, SIGNAL(activated()),
             removePlatform, SLOT(click()));
     }
@@ -63,6 +77,11 @@ void PlatformWindow::modeChange(int to) {
     m_eview->disconnect(m_eview, SIGNAL(clicked(QPointF)), this, 0);
     m_eview->disconnect(m_eview, SIGNAL(selected(EditorObject *)),
         this, 0);
+
+    for(auto b : m_toolButtons) if(!b->isEnabled())
+        b->setEnabled(true), b->setStyleSheet("");
+    m_toolButtons[to]->setEnabled(false);
+    m_toolButtons[to]->setStyleSheet("background-color: red");
 
     switch((Mode)to) {
     case SelectMode:
