@@ -13,7 +13,7 @@ class QDomElement;
 class ConversationData;
 class ConversationDataInterface;
 
-class ConversationObject : public EditorObject {
+class ConversationObject : public EditorObject { Q_OBJECT
 public:
     virtual ~ConversationObject() {}
 
