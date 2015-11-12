@@ -32,6 +32,16 @@ QString Context::label() const {
     return m_context->label();
 }
 
+void Context::addLink(QPointer<Link> link) {
+    LinkableObject::addLink(link);
+    if(m_context) m_context->links().insert(link.data());
+}
+
+void Context::removeLink(Link *link) {
+    LinkableObject::removeLink(link);
+    if(m_context) m_context->links().remove(link);
+}
+
 QRectF Context::boundingRect() const {
     return QRectF(QPointF(0,0), m_size);
 }
@@ -69,7 +79,17 @@ void Context::edit(ConversationDataInterface *interface,
 
     connect(chooseButton, &QPushButton::clicked,
         [=]() {
+            if(m_context) {
+                for(auto link : links()) {
+                    m_context->links().remove(link);
+                }
+            }
             m_context = data->selectContext(chooseButton);
+            if(m_context) {
+                for(auto link : links()) {
+                    m_context->links().insert(link);
+                }
+            }
             if(m_context) nameLabel->setText(m_context->label());
             else nameLabel->setText("Not selected");
             update();

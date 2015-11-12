@@ -21,8 +21,8 @@ Link::Link(QPointer<LinkableObject> from, QPointer<Node> to)
     : m_label("Label") {
 
     m_id = -1;
-    if(from) m_from = from, m_from->links().push_back(this);
-    if(to) m_to = to, m_to->links().push_back(this);
+    if(from) m_from = from, m_from->addLink(this);
+    if(to) m_to = to, m_to->addLink(this);
     m_rtsLink = false;
 
     this->setZValue(-1);
@@ -31,10 +31,10 @@ Link::Link(QPointer<LinkableObject> from, QPointer<Node> to)
 
 Link::~Link() {
     if(!m_from.isNull()) {
-        m_from->links().removeAll(this);
+        m_from->removeLink(this);
     }
     if(!m_to.isNull()) {
-        m_to->links().removeAll(this);
+        m_to->removeLink(this);
     }
 }
 
@@ -144,8 +144,8 @@ void Link::deserialize(QDomElement &xml,
     auto hidden = xml.attribute("hidden");
     if(hidden == "true") m_hiddenLink = true;
 
-    m_from->links().push_back(this);
-    m_to->links().push_back(this);
+    m_from->addLink(this);
+    m_to->addLink(this);
 
     prepareGeometryChange();
 }

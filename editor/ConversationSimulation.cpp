@@ -12,6 +12,7 @@
 #include "Link.h"
 #include "Action.h"
 #include "Node.h"
+#include "ConversationContext.h"
 
 ConversationSimulation::ConversationSimulation() {
     QVBoxLayout *layout = new QVBoxLayout();
@@ -83,6 +84,7 @@ void ConversationSimulation::process(Node *node, bool supress) {
     m_options->clear();
     m_options->addItem("");
     m_optionsMap.clear();
+    // start from node links
     auto links = node->links();
     for(auto link : links) {
         if(link->from() != node) continue;
@@ -92,6 +94,20 @@ void ConversationSimulation::process(Node *node, bool supress) {
         else
             m_options->addItem(link->label(), link->label());
         m_optionsMap[link->label()] = link;
+    }
+    // try adding context links, if appropriate
+    QPointer<ConversationContext> context = node->context();
+    while(!context.isNull()) {
+        for(auto link : context->links()) {
+            if(m_optionsMap.contains(link->label())) continue;
+
+            if(link->isHiddenLink())
+                m_options->addItem(link->label() + " (hidden, context)", link->label());
+            else
+                m_options->addItem(link->label() + " (context)", link->label());
+            m_optionsMap[link->label()] = link;
+        }
+        context = context->parent();
     }
 
     m_history->scrollToBottom();

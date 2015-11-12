@@ -24,6 +24,9 @@ public:
 
     QString label() const;
 
+    virtual void addLink(QPointer<Link> link);
+    virtual void removeLink(Link *link);
+
     virtual QRectF boundingRect() const;
     virtual void paint(QPainter *painter,
         const QStyleOptionGraphicsItem *style, QWidget *widget);
