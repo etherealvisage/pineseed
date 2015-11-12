@@ -18,6 +18,7 @@ ConversationContext *ConversationData::rootContext() {
     if(m_rootContext == nullptr) {
         m_rootContext = new ConversationContext(getAvailableID());
         m_contexts[m_rootContext->id()] = m_rootContext;
+        m_rootContext->setLabel("Root context");
     }
 
     return m_rootContext;

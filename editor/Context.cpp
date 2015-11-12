@@ -11,6 +11,8 @@
 #include "Context.h"
 #include "ConversationContext.h"
 #include "ConversationData.h"
+#include "ConversationDataInterface.h"
+#include "Node.h"
 
 Context::Context() {
     m_id = -1;
@@ -48,6 +50,9 @@ void Context::paint(QPainter *painter,
 
     painter->setBrush(b);
     painter->drawEllipse(QRectF(QPointF(0,0), m_size));
+    painter->setBrush(Qt::red);
+    if(m_selected) painter->drawEllipse(
+        QRectF(QPointF(m_size.width()/4,m_size.height()/4), m_size/2));
 }
 
 void Context::edit(ConversationDataInterface *interface,
@@ -55,14 +60,37 @@ void Context::edit(ConversationDataInterface *interface,
 
     if(m_id == -1) m_id = data->getAvailableID();
 
-    auto nameLabel = new QLabel(tr(""));
+    auto nameLabel = new QLabel(tr("Not selected"));
     layout->addRow(new QLabel("Current context:"), nameLabel);
     auto chooseButton = new QPushButton(tr("Change"));
     layout->addRow(nullptr, chooseButton);
 
+    if(m_context) nameLabel->setText(m_context->label());
+
     connect(chooseButton, &QPushButton::clicked,
         [=]() {
             m_context = data->selectContext(chooseButton);
+            if(m_context) nameLabel->setText(m_context->label());
+            else nameLabel->setText("Not selected");
+            update();
+        });
+
+    auto paintButton = new QPushButton(tr("&Paint context"));
+    layout->addRow(paintButton);
+
+    connect(paintButton, &QPushButton::clicked,
+        [=]() {
+            if(m_context.isNull()) return;
+            interface->selectObjects(
+                std::function<bool (ConversationObject *)>(
+                    [=](ConversationObject *object) {
+                        return dynamic_cast<Node *>(object);
+                    }),
+                std::function<bool (ConversationObject *)>(
+                    [=](ConversationObject *object) {
+                        dynamic_cast<Node *>(object)->setContext(m_context);
+                        return false;
+                    }));
         });
 }
 

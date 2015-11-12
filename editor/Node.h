@@ -1,8 +1,9 @@
 #ifndef Node_H
 #define Node_H
 
-#include <QGraphicsObject>
 #include <functional>
+
+#include <QGraphicsObject>
 
 #include "LinkableObject.h"
 
@@ -12,6 +13,7 @@ class QStandardItemModel;
 
 class Action;
 class Link;
+class ConversationContext;
 
 class Node : public LinkableObject { Q_OBJECT
 private:
@@ -21,6 +23,7 @@ private:
     QStandardItemModel *m_actionModel;
     bool m_selected;
     bool m_isEntry;
+    QPointer<ConversationContext> m_context;
 public:
     Node();
     virtual ~Node();
@@ -33,6 +36,10 @@ public:
     const QString &label() const { return m_label; }
 
     QStandardItemModel *actionModel() const { return m_actionModel; }
+
+    QPointer<ConversationContext> context() const { return m_context; }
+    void setContext(QPointer<ConversationContext> context)
+        { m_context = context; }
 
     virtual QRectF boundingRect() const;
     virtual void paint(QPainter *painter,

@@ -9,9 +9,12 @@ class ConversationDataInterface {
 public:
     virtual ~ConversationDataInterface() {}
 
-    virtual void selectObject(
+    // takes a filter function which returns true if the given object should be
+    // passed onto callback, and callback should return true if the selection
+    // process is finished.
+    virtual void selectObjects(
         std::function<bool (ConversationObject *)> filter,
-        std::function<void (ConversationObject *)> callback) = 0;
+        std::function<bool (ConversationObject *)> callback) = 0;
 };
 
 #endif

@@ -45,8 +45,8 @@ private:
     Mode m_mode;
 
     ConversationObject *m_selectLast;
-    std::function<bool (ConversationObject *)> m_selectOneFilter;
-    std::function<void (ConversationObject *)> m_selectOneCallback;
+    std::function<bool (ConversationObject *)> m_selectOneFilter,
+        m_selectOneCallback;
 public:
     ConversationWindow();
 

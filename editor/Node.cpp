@@ -26,6 +26,7 @@
 #include "ActionEditor.h"
 #include "Action.h"
 #include "ConversationData.h"
+#include "ConversationContext.h"
 
 Node::Node() {
     m_id = -1;
@@ -58,12 +59,28 @@ void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *style,
     painter->setBrush(b);
     painter->drawRect(QRectF(QPointF(0,0), m_size));
 
-    QFontMetricsF fm((QFont()));
+    if(!m_context.isNull()) {
+        painter->setPen(QPen(Qt::white, 0));
+        painter->setBrush(Qt::white);
+        painter->drawRect(QRectF(QPointF(1,1+m_size.height()/2), QSizeF(m_size.width()-2, m_size.height()/2-2)));
+        painter->setBrush(m_context->deriveBrush());
+        painter->drawRect(QRectF(QPointF(1,1+m_size.height()/2), QSizeF(m_size.width()-2, m_size.height()/2-2)));
+    }
+
+    QFont f;
+    f.setBold(true);
+    QFontMetricsF fm(f);
+    painter->setFont(f);
 
     qreal width = fm.width(m_label);
-    painter->setPen(Qt::black);
     painter->setBrush(Qt::NoBrush);
-    painter->drawText(boundingRect().center() - QPointF(width/2,0), m_label);
+
+    painter->setPen(Qt::black);
+    painter->drawText(
+        boundingRect().center() - QPointF(width/2,m_size.height()/4) + QPointF(2,1), m_label);
+
+    //painter->setPen(Qt::white);
+    //painter->drawText(boundingRect().center() - QPointF(width/2,m_size.height()/4), m_label);
 }
 
 void Node::edit(ConversationDataInterface *interface,
@@ -101,6 +118,20 @@ void Node::edit(ConversationDataInterface *interface,
     if(entrySet) entryBox->setEnabled(false);
 
     layout->addRow(tr("Entry:"), entryBox);
+
+    auto nameLabel = new QLabel(tr("Not selected"));
+    layout->addRow(new QLabel("Context:"), nameLabel);
+    auto chooseButton = new QPushButton(tr("Change"));
+    layout->addRow(nullptr, chooseButton);
+
+    connect(chooseButton, &QPushButton::clicked,
+        [=]() {
+            m_context = data->selectContext(chooseButton);
+            if(m_context) nameLabel->setText(m_context->label());
+            else nameLabel->setText("Not selected");
+            update();
+        });
+
 
     ActionEditor *editor = new ActionEditor(interface, data, m_actionModel);
     layout->addRow(editor);

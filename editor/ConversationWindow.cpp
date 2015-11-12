@@ -127,9 +127,9 @@ ConversationWindow::ConversationWindow() {
     public:
         InternalInterface(ConversationWindow *window) : m_window(window) {}
 
-        virtual void selectObject(
+        virtual void selectObjects(
             std::function<bool (ConversationObject *)> filter,
-            std::function<void (ConversationObject *)> callback) {
+            std::function<bool (ConversationObject *)> callback) {
 
             m_window->m_selectOneFilter = filter;
             m_window->m_selectOneCallback = callback;
@@ -383,9 +383,7 @@ void ConversationWindow::selectOne(EditorObject *eobject) {
     auto object = dynamic_cast<ConversationObject *>(eobject);
     if(!m_selectOneFilter(object)) return;
 
-    m_selectOneCallback(object);
-    
-    modeChange(SelectMode);
+    if(m_selectOneCallback(object)) modeChange(SelectMode);
 }
 
 void ConversationWindow::beginSimulation() {

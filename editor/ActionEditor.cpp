@@ -151,17 +151,18 @@ ActionEditor::ActionEditor(ConversationDataInterface *interface,
 
         connect(changeJumpTarget, &QPushButton::clicked,
             [=](){
-                m_dataInterface->selectObject(
+                m_dataInterface->selectObjects(
                     std::function<bool (ConversationObject *)>(
                     [=](ConversationObject *object) {
                         return dynamic_cast<Node *>(object);
                     }),
-                    std::function<void (ConversationObject *)>(
+                    std::function<bool (ConversationObject *)>(
                     [=](ConversationObject *object) {
                         m_current->setData(qVariantFromValue(
                                 (void *)new QPointer<Node>((Node *)object)),
                             Action::JumpTargetData);
                         Action::updateTitle(m_current);
+                        return true;
                     }));
             });
         jumpLayout->addWidget(changeJumpTarget);
