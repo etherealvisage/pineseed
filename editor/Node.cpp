@@ -123,6 +123,7 @@ void Node::edit(ConversationDataInterface *interface,
     layout->addRow(new QLabel("Context:"), nameLabel);
     auto chooseButton = new QPushButton(tr("Change"));
     layout->addRow(nullptr, chooseButton);
+    if(m_context) nameLabel->setText(m_context->label());
 
     connect(chooseButton, &QPushButton::clicked,
         [=]() {
@@ -135,7 +136,6 @@ void Node::edit(ConversationDataInterface *interface,
 
     ActionEditor *editor = new ActionEditor(interface, data, m_actionModel);
     layout->addRow(editor);
-    //layout->addRow(tr(""), editor);
 }
 
 bool Node::isSelection(QPointF point) {
@@ -152,6 +152,8 @@ void Node::serialize(QXmlStreamWriter &xml) {
     xml.writeAttribute("y", QString().setNum(pos().y()));
     xml.writeAttribute("label", m_label);
     if(m_isEntry) xml.writeAttribute("entry", "true");
+    if(!m_context.isNull())
+        xml.writeAttribute("context", QString().setNum(m_context->id()));
 
     auto root = m_actionModel->invisibleRootItem();
     for(int i = 0; i < root->rowCount(); i ++)
@@ -172,6 +174,9 @@ void Node::deserialize(QDomElement &xml,
     prepareGeometryChange();
     if(xml.attribute("entry") == "true")
         m_isEntry = true;
+    bool ok = false;
+    int id = xml.attribute("context").toInt(&ok);
+    if(ok) m_context = data->getContextByID(id);
 
     // if there are no children, we're done here.
     if(!xml.hasChildNodes()) return;
