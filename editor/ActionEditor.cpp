@@ -28,6 +28,7 @@ ActionEditor::ActionEditor(ConversationDataInterface *interface,
     // TODO: go over each item in model and call updateTitle().
 
     m_actionView = new QTreeView();
+    m_actionView->setHeaderHidden(true);
     m_actionView->setModel(m_model);
     connect(m_actionView->selectionModel(),
         SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)),
@@ -35,12 +36,15 @@ ActionEditor::ActionEditor(ConversationDataInterface *interface,
     layout->addWidget(m_actionView);
     m_actionView->setDragDropMode(QAbstractItemView::InternalMove);
 
-    QPushButton *addButton = new QPushButton(tr("Add action"));
-    layout->addWidget(addButton);
+    auto addButton = new QPushButton(tr("Add action"));
     connect(addButton, SIGNAL(clicked(bool)), this, SLOT(addAction()));
-    QPushButton *removeButton = new QPushButton(tr("Remove action"));
-    layout->addWidget(removeButton);
+    auto removeButton = new QPushButton(tr("Remove action"));
     connect(removeButton, SIGNAL(clicked(bool)), this, SLOT(removeAction()));
+
+    auto arLayout = new QHBoxLayout();
+    arLayout->addWidget(addButton);
+    arLayout->addWidget(removeButton);
+    layout->addLayout(arLayout);
 
     m_currentType = new QComboBox();
     layout->addWidget(m_currentType);

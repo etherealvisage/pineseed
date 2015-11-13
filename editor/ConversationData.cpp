@@ -37,6 +37,7 @@ QPointer<ConversationContext> ConversationData::selectContext(
     dialog->setLayout(layout);
 
     auto view = new QTreeView();
+    view->setHeaderHidden(true);
     layout->addWidget(view);
     QMap<int, QStandardItem *> items;
     auto model = makeContextModel(items, false);
@@ -127,6 +128,7 @@ void ConversationData::edit(QWidget *parent) {
     QMap<int, QStandardItem *> contextMap;
     auto contextsModel = makeContextModel(contextMap, true);
     auto contextsView = new QTreeView();
+    contextsView->setHeaderHidden(true);
     contextsView->setModel(contextsModel);
     contextsView->setDragDropMode(QAbstractItemView::InternalMove);
     contextsLayout->addWidget(contextsView);

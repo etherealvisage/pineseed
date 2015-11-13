@@ -12,7 +12,6 @@
 #include <QPainter>
 #include <QPushButton>
 #include <QStandardItemModel>
-#include <QTreeView>
 #include <QStackedWidget>
 #include <QComboBox>
 #include <QXmlStreamWriter>
