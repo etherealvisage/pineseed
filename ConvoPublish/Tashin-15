@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conversation>
+    <objects>
+        <node id="2" width="150" height="100" x="326" y="278" label="Music">
+            <action type="Speech" actor="Shepard" speech="I swear upon my musicbox."/>
+            <action type="Speech" actor="Tashin" speech="That doesn't sound like much."/>
+            <action type="Speech" actor="Tashin" speech="Its more than you think. Trust me."/>
+            <action type="Concurrent">
+                <action type="Emote"/>
+                <action type="Speech" actor="Tashin" speech="If I must."/>
+            </action>
+            <action type="EndConversation"/>
+        </node>
+        <node id="3" width="150" height="100" x="-228" y="285" label="Lies">
+            <action type="Speech" actor="Shepard" speech="[LIE] I swear upon my grandson's name."/>
+            <action type="Speech" actor="Tashin" speech="You have a grandson?"/>
+            <action type="Speech" speech="[LIE] Just last April."/>
+            <action type="Speech" speech="I can't imagine the boys parents would appreciate you swearing on the boys fortune."/>
+            <action type="Speech" speech="[LIE] They'll cope. "/>
+            <action type="Speech" speech="[LIE] Besides, its a promie I intend to keep."/>
+            <action type="EndConversation"/>
+        </node>
+        <node id="4" width="150" height="100" x="-229" y="453" label="All the oaths">
+            <action type="Speech" actor="Shepard" speech="I swear, I will place her safety above all other concerns. "/>
+            <action type="Speech" actor="Shepard" speech="Above truth and honor. "/>
+            <action type="Speech" actor="Shepard" speech="Above the lives of others, and myself, "/>
+            <action type="Speech" actor="Shepard" speech="above even my duty as a shepered. "/>
+            <action type="Speech" actor="Shepard" speech="Above all else."/>
+            <action type="Speech" actor="Shepard" speech="She will not come to harm"/>
+            <action type="Emote"/>
+            <action type="Speech" actor="Tashin" speech="I am taken aback Shepered."/>
+            <action type="Speech" actor="Tashin" speech="I had not expected this of you"/>
+            <action type="Emote"/>
+            <action type="Speech" actor="Tashin" speech="Thank you, Shepered. I sleep easier from this day forth."/>
+            <action type="EndConversation"/>
+        </node>
+        <node id="5" width="150" height="100" x="-228" y="374" label="Advice">
+            <action type="Speech" speech="What would you ask that I swear upon? What would satsify you?"/>
+            <action type="Speech" speech="I wish you to swear upon whatever will bind you most strongly"/>
+            <action type="Jump" jump-target="24"/>
+        </node>
+        <node id="6" width="150" height="100" x="333" y="591" label="Queen">
+            <action type="Speech" actor="Shepard" speech="I swear on my Queen and country. I will keep her safe."/>
+            <action type="Speech" actor="Tashin" speech="Amusing."/>
+            <action type="Speech" actor="Tashin" speech="You swear on an abstract concept and a strangers life."/>
+            <action type="Speech" actor="Tashin" speech="It will suffice, I guess."/>
+            <action type="EndConversation"/>
+        </node>
+        <node id="7" width="150" height="100" x="329" y="488" label="Regret">
+            <action type="Speech" actor="Shepard" speech="I swear it."/>
+            <action type="Speech" actor="Shepard" speech=" I swear upon my regrets. Upon the mistakes I have made, that I never wish to repeat. She will come to no harm."/>
+            <action type="Emote"/>
+            <action type="Emote"/>
+            <action type="Speech" actor="Tashin" speech="..."/>
+            <action type="Speech" actor="Tashin" speech="Unusual Shepered."/>
+            <action type="Speech" actor="Tashin" speech="It  is more common to swear on that which we value, on that which makes us strong."/>
+            <action type="Speech" actor="Tashin" speech="Unless... of course... it is regret from which you draw strength."/>
+            <action type="Speech" actor="Tashin" speech="...."/>
+            <action type="Speech" actor="Tashin" speech="Peace be with you Shepered."/>
+            <action type="EndConversation"/>
+        </node>
+        <node id="8" width="150" height="100" x="347" y="382" label="I swear on life">
+            <action type="Speech" actor="Shepard" speech="I swear on my life, that I will keep this girl safe, and see her returned to her parents care unharmed."/>
+            <action type="Concurrent">
+                <action type="Emote"/>
+                <action type="Speech" actor="Tashin" speech="Ha!"/>
+            </action>
+            <action type="Speech" actor="Tashin" speech="Good."/>
+            <action type="Speech" actor="Tashin" speech="This is adaquete , very adaquete."/>
+            <action type="Speech" actor="Tashin" speech="Tell me, is it not funny how easily we swear away our own lives?"/>
+            <action type="Speech" actor="Tashin" speech="As if death were a price that all of us were willing to pay?"/>
+            <action type="Speech" actor="Tashin" speech="Not that I can judge- I made the same oath myself, after all."/>
+            <action type="EndConversation"/>
+        </node>
+        <node id="9" width="150" height="100" x="-43" y="272" label="I swear on Wife">
+            <action type="Speech" actor="Shepard" speech="I will keep this girl safe, as long as she remains within my care..."/>
+            <action type="Speech" actor="Shepard" speech="I swear it, upon my marriage"/>
+            <action type="Speech" actor="Shepard" speech="..."/>
+            <action type="Speech" actor="Shepard" speech="... and upon my wifes love for me."/>
+            <action type="Concurrent">
+                <action type="Speech" actor="Tashin" speech="..."/>
+                <action type="Emote" emote="Concern"/>
+            </action>
+            <action type="Speech" actor="Tashin" speech="... Acceptable."/>
+            <action type="Speech" actor="Tashin" speech="Although I am not entirely sure what to think of a man who would be his own marriage upon such an oath..."/>
+            <action type="Speech" actor="Shepard" speech="This oath will hold me to my word."/>
+            <action type="Speech" actor="Shepard" speech="Of that you can be sure."/>
+            <action type="EndConversation"/>
+        </node>
+        <node id="10" width="150" height="100" x="412" y="-322" label="Bussiness pushy">
+            <action type="Speech" actor="Shepard" speech="Tell me about this business that you needed me for."/>
+            <action type="Jump" jump-target="17"/>
+        </node>
+        <node id="11" width="150" height="100" x="413" y="-408" label="Bussiness curious">
+            <action type="Speech" actor="Shepard" speech="What business did you need to deal with?"/>
+            <action type="Jump" jump-target="17"/>
+        </node>
+        <node id="12" width="150" height="100" x="411" y="-504" label="Serious bussiness">
+            <action type="Speech" actor="Shepard" speech="Business? That sounds serious."/>
+            <action type="Emote"/>
+            <action type="Speech" actor="Tashin" speech="You mock me shepered. "/>
+            <action type="Speech" actor="Tashin" speech="I swear, I will never understand you people."/>
+            <action type="Jump" jump-target="17"/>
+        </node>
+        <node id="13" width="150" height="100" x="-122" y="-279" label="Dire implications(not sure how I feel about this)">
+            <action type="Speech" actor="Shepard" speech="You don't like her too much, I trust."/>
+            <action type="Speech" actor="Shepard" speech="She is barely half your age, after all."/>
+            <action type="Concurrent">
+                <action type="Emote"/>
+                <action type="Speech" actor="Tashin" speech="You insult me Shepered!"/>
+            </action>
+            <action type="Speech" actor="Tashin" speech="I was charged with the girls care, and take care of her I have."/>
+            <action type="Emote"/>
+            <action type="Emote"/>
+            <action type="Speech" actor="Tashin" speech="The very idea...."/>
+            <action type="Emote"/>
+            <action type="Speech" actor="Tashin" speech="Well... at least I can be sure that you are vigilant with regard to the girls safety."/>
+            <action type="Jump" jump-target="17"/>
+        </node>
+        <node id="14" width="150" height="100" x="-123" y="-540" label="Joke Sasha">
+            <action type="Speech" actor="Shepard" speech="You are not too attached to her I hope!"/>
+            <action type="Speech" actor="Shepard" speech="I can't imagine your bussiness would permit you to join us on our journey."/>
+            <action type="Concurrent">
+                <action type="Emote"/>
+                <action type="Speech" actor="Tashin" speech="Hah. No. I dear say my wife will be annoyed at my lateness already."/>
+            </action>
+            <action type="Speech" actor="Tashin" speech="Besides- the girls enthusiasm for needless trivia is... "/>
+            <action type="Speech" actor="Tashin" speech="amusing..."/>
+            <action type="Speech" actor="Tashin" speech="in the short term."/>
+            <action type="Jump" jump-target="17"/>
+        </node>
+        <node id="15" width="150" height="100" x="-121" y="-369" label="Ask about Sasha">
+            <action type="Speech" actor="Shepard" speech="What can you tell me about her?"/>
+            <action type="Emote"/>
+            <action type="Speech" actor="Tashin" speech="What is there to say?"/>
+            <action type="Speech" actor="Tashin" speech="She is young. She enjoys life, and came from a good family."/>
+            <action type="Speech" actor="Tashin" speech="She has manners, but not experience, and it is a shame that so few of her generation are like her."/>
+            <action type="Jump" jump-target="17"/>
+        </node>
+        <node id="16" width="150" height="100" x="-122" y="-439" label="thank Sasha delivery">
+            <action type="Speech" actor="Shepard" speech="Thank you for bringing her all this way- I trust that she was no trouble?"/>
+            <action type="Speech" actor="Tashin" speech="No trouble at all Shepered. The miles passed far more quickly with someone to talk to."/>
+            <action type="Speech" actor="Tashin" speech="Although... her enthusiasm for needless trivia does perhaps leave something to be desired...."/>
+            <action type="Jump" jump-target="17"/>
+        </node>
+        <node id="17" width="150" height="100" x="-284" y="-120" label="ExplainPurpose">
+            <action type="Speech" actor="Tashin" speech="Her parents made me promise to take care of her &lt;Mr/lady&gt; Shepered. I swore an oath, and can not pass her into your care until you have done that same."/>
+            <action type="Jump" jump-target="21"/>
+        </node>
+        <node id="18" width="150" height="100" x="-331" y="-536" label="Look :">
+            <action type="Speech" actor="Narrator" speech="It's Tashin Radik. His clothes was and swirl about him as he moves, and there is a calm haughty look in his eye- obviously a man used to getting his own way. He's the Merchant who brought Sasha here. By the looks of him, he wasn't born within the empire, but he acts as if he has lived here for many years."/>
+        </node>
+        <node id="19" width="150" height="100" x="413" y="-595" label="What bussiness (helpful)">
+            <action type="Speech" actor="Shepard" speech="What bussiness is it that you wished to discuss? How may I help you with it?"/>
+            <action type="Jump" jump-target="17"/>
+        </node>
+        <node id="20" width="150" height="100" x="152" y="-451" label="Start">
+            <action type="Speech" actor="Tashin" speech="Shepered, come, we have bussiness to attend to."/>
+            <action type="Emote"/>
+            <action type="Speech" actor="Tashin" speech="That Sasha is a good girl &lt;Mr/Lady&gt; Shepered. I like her."/>
+        </node>
+        <node id="21" width="150" height="100" x="165" y="20" label="PreOathHub"/>
+        <node id="22" width="150" height="100" x="400" y="-171" label="You care">
+            <action type="Speech" actor="Shepard" speech="This means a lot to you. I can see that you genuinely care for the girl."/>
+            <action type="Speech" actor="Tashin" speech="I do."/>
+            <action type="Jump" jump-target="21"/>
+        </node>
+        <node id="23" width="150" height="100" x="293" y="-168" label="You escape own oath">
+            <action type="Speech" actor="Shepard" speech="This is nothing but your way of worming out of your own oath."/>
+            <action type="Speech" actor="Tashin" speech="You insult me Shepered."/>
+            <action type="Speech" actor="Shepard" speech="Do you deny it."/>
+            <action type="Speech" actor="Tashin" speech="It is true, my own oath will not be satisfied until you have sworn one of your own... but also my heart compels me. She is a good person shepered, and does not deserve to have her life risked flippantly."/>
+            <action type="Jump" jump-target="21"/>
+        </node>
+        <node id="24" width="150" height="100" x="17" y="410" label="OathHub"/>
+        <node id="25" width="150" height="100" x="145" y="-167" label="What you swear">
+            <action type="Speech" actor="Shepard" speech="What oath did you swear?"/>
+            <action type="Emote"/>
+            <action type="Speech" actor="Tashin" speech="I swore upon my life and honour, that she would be kept safe, and preserved from harm."/>
+            <action type="Speech" actor="Shepard" speech="While she was in your care?"/>
+            <action type="Speech" actor="Tashin" speech="No. I swore that she would be kept safe long enough to return home."/>
+            <action type="Speech" actor="Shepard" speech="Ah "/>
+            <action type="Speech" actor="Shepard" speech="I see."/>
+            <action type="Jump" jump-target="21"/>
+        </node>
+        <node id="26" width="150" height="100" x="4" y="-166" label="Paper cut">
+            <action type="Speech" actor="Shepard" speech="She's a research assistant. She's going to be tucked up in a library reading books all day. "/>
+            <action type="Speech" actor="Shepard" speech="The greatest danger she'll be facing is a paper cut."/>
+            <action type="Speech" actor="Tashin" speech="You make light shepered, and while I understand full well that her job is not one that demands recklessness"/>
+            <action type="Speech" actor="Tashin" speech="you know as well as me that there are many dangers upon the road- even for those who don't go looking for them."/>
+            <action type="Jump" jump-target="21"/>
+        </node>
+        <node id="27" width="150" height="100" x="4" y="151" label="I'll do my best">
+            <action type="Speech" actor="Shepard" speech="I'll do my best Radick."/>
+            <action type="Speech" actor="Shepard" speech="I try to avoid making promises I can't keep."/>
+            <action type="Speech" actor="Tashin" speech="That will not do Shepered!"/>
+            <action type="Speech" actor="Tashin" speech="It is on my heart and honor that she is kept safe. "/>
+            <action type="Jump" jump-target="24"/>
+        </node>
+        <node id="28" width="150" height="100" x="167" y="147" label="Don't worry">
+            <action type="Speech" actor="Shepard" speech="I'll keep an eye on her- don't worry."/>
+            <action type="Speech" actor="Tashin" speech="But I do worry Shepered."/>
+            <action type="Speech" actor="Tashin" speech="and besides- I asked for an oath. Not just vauge assurances."/>
+            <action type="Jump" jump-target="24"/>
+        </node>
+        <node id="29" width="150" height="100" x="327" y="151" label="Swear">
+            <action type="Speech" actor="Shepard" speech="I'll keep her Safe Radick."/>
+            <action type="Speech" actor="Shepard" speech="I swear it."/>
+            <action type="Emote"/>
+            <action type="Speech" actor="Tashin" speech="Ahh- but what do you swear upon &lt;Mr/Lady&gt; Shepered? That is the question."/>
+            <action type="Jump"/>
+        </node>
+        <node id="30" width="150" height="100" x="-177" y="691" label="Refuse">
+            <action type="Speech" actor="Shepard" speech="No- I refuse to swear such an oath."/>
+            <action type="Emote"/>
+            <action type="Speech" actor="Tashin" speech="You surprise me Shepered. To be so callous with one so young."/>
+            <action type="Speech" actor="Tashin" speech="..."/>
+            <action type="Speech" actor="Tashin" speech="I must admit, I find myself at a loss. My conciounces demands that I keep her safe, and yet I am unable to do so without interfering with the young ladies own journey."/>
+            <action type="Speech" actor="Tashin" speech="..."/>
+            <action type="Speech" actor="Tashin" speech="in that case... listen well Shepered: You have MY oath, that should you allow the young lady to come to harm, even in the service of some greater good, there will be consequences. And you will regret them"/>
+            <action type="EndConversation"/>
+        </node>
+        <node id="31" width="150" height="100" x="-30" y="688" label="Diplomatic refusal">
+            <action type="Speech" actor="Shepard" speech="I sorry Tashin, but I really can't make such an oath."/>
+            <action type="Speech" actor="Shepard" speech="As a shepered, I have seen far to many souls bound to this world by promises that they made too lightly."/>
+            <action type="Speech" actor="Shepard" speech="and so I am cautious- I do my best to avoid oaths that I can't be sure of keeping."/>
+            <action type="Speech" actor="Shepard" speech="I'll do my best. But I can't swear an oath for you."/>
+            <action type="Speech" actor="Tashin" speech="... I understand."/>
+            <action type="Speech" actor="Tashin" speech="I don't like it, but I understand."/>
+            <action type="Speech" actor="Tashin" speech="I guess...I will have to trust in your competence... if not your courage."/>
+            <action type="Speech" actor="Tashin" speech="Peace be with you Shepered."/>
+            <action type="EndConversation"/>
+        </node>
+        <node id="32" width="150" height="100" x="101" y="688" label="Harsh refuse">
+            <action type="Speech" actor="Shepard" speech="No- I refuse to swear such an oath. "/>
+            <action type="Emote"/>
+            <action type="Speech" actor="Tashin" speech="You surprise me Shepered. To be so callous with one-"/>
+            <action type="Speech" actor="Tashin" speech="No. No more words. We're done here."/>
+            <action type="EndConversation"/>
+        </node>
+        <node id="33" width="150" height="100" x="-127" y="784" label="mocking refusal">
+            <action type="Speech" actor="Shepard" speech="I swear upon the whiskers of a cat."/>
+            <action type="Speech" actor="Tashin" speech="That doesn't sound like it means anything."/>
+            <action type="Speech" actor="Shepard" speech="It doesn't."/>
+            <action type="Speech" actor="Tashin" speech="... Coward."/>
+            <action type="Speech" actor="Tashin" speech="You surprise me Shepered. To be so callous with one so young."/>
+            <action type="Speech" actor="Tashin" speech="in that case... You have MY oath, that should you allow the young lady to come to harm, even in the service of some greater good, there will be consequences. And you will regret them."/>
+            <action type="EndConversation"/>
+        </node>
+        <link id="34" label="musicbox" from="24" to="2"/>
+        <link id="35" label="*" from="24" to="3"/>
+        <link id="36" label="!" from="24" to="4"/>
+        <link id="37" label="?" from="24" to="5"/>
+        <link id="38" label="queen" from="24" to="6"/>
+        <link id="39" label="Regret" from="24" to="7"/>
+        <link id="40" label="Life" from="24" to="8"/>
+        <link id="41" label="Ester" from="24" to="9"/>
+        <link id="42" label="sasha" from="20" to="16"/>
+        <link id="43" label="business" from="20" to="11"/>
+        <link id="44" label="?business" from="20" to="11"/>
+        <link id="45" label="!business" from="20" to="10"/>
+        <link id="46" label="*business" from="20" to="12"/>
+        <link id="47" label="!sasha" from="20" to="13"/>
+        <link id="48" label="*sasha" from="20" to="14"/>
+        <link id="49" label="?sasha" from="20" to="15"/>
+        <link id="50" label="~sasha" from="20" to="16"/>
+        <link id="51" label="~business" from="20" to="19"/>
+        <link id="52" label="~" from="21" to="22"/>
+        <link id="53" label="!" from="21" to="23"/>
+        <link id="54" label="?" from="21" to="25"/>
+        <link id="55" label="*" from="21" to="26"/>
+        <link id="56" label="maybe" from="21" to="27"/>
+        <link id="57" label="ok" from="21" to="28"/>
+        <link id="58" label="promise" from="21" to="29"/>
+        <link id="59" label="no" from="24" to="30"/>
+        <link id="60" label="~no" from="24" to="31"/>
+        <link id="61" label="!no" from="24" to="32"/>
+        <link id="62" label="*no" from="24" to="33"/>
+        <link id="1691040598" label="Matias" from="24" to="1905447453"/>
+        <node id="1905447453" width="150" height="100" x="130" y="266" label="I swear on  Husband">
+            <action type="Speech" actor="Shepard" speech="I will keep this girl safe, as long as she remains within my care."/>
+            <action type="Speech" actor="Shepard" speech="I swear it upon my marriage, "/>
+            <action type="Speech" actor="Shepard" speech="..."/>
+            <action type="Speech" actor="Shepard" speech="...and upon my husbands resting soul. "/>
+            <action type="Concurrent">
+                <action type="Speech" actor="Tashin" speech="..."/>
+            </action>
+            <action type="Emote" actor="Tashin" emote="Concern"/>
+            <action type="Speech" actor="Tashin" speech="This is..."/>
+            <action type="Speech" actor="Tashin" speech="Acceptable."/>
+            <action type="Speech" actor="Tashin" speech="Although, I must say..."/>
+            <action type="Speech" actor="Tashin" speech="I am not entirely sure what to think of a woman who would swear so readily upon the wellbeing of her own husband... "/>
+            <action type="Speech" actor="Shepard" speech="You desired an oath that would bind my will. "/>
+            <action type="Speech" actor="Shepard" speech="You have it."/>
+            <action type="Speech" actor="Tashin" speech="... I most certainly do."/>
+            <action type="EndConversation" actor="Shepard"/>
+        </node>
+    </objects>
+    <data>
+        <character-names>
+            <character name="Shepard"/>
+            <character name="Tashin"/>
+            <character name="Narrator"/>
+        </character-names>
+        <contexts root="426621967">
+            <context id="426621967" label=""/>
+        </contexts>
+    </data>
+</conversation>

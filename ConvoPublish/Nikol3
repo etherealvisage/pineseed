@@ -1,0 +1,979 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conversation>
+    <objects>
+        <node id="2" width="150" height="100" x="429" y="-752" label="Dog"/>
+        <node id="3" width="150" height="100" x="-533" y="298" label="Lookout" context="1842191568">
+            <action type="Speech" actor="Shepard" speech="The lookout?"/>
+            <action type="Speech" actor="Nikol" speech="Just follow the start of the trail up the mountains."/>
+            <action type="Speech" actor="Nikol" speech="The lookouts lovely- I go there to read sometimes, or just to unwind."/>
+        </node>
+        <node id="4" width="150" height="100" x="-596" y="452" label="Mountain Intro"/>
+        <node id="5" width="150" height="100" x="-421" y="457" label="Mountain Hub"/>
+        <node id="6" width="150" height="100" x="-601" y="112" label="Wintergate Intro" context="1842191568">
+            <action type="Speech" actor="Shepard" speech="Mind telling me a bit about the town?"/>
+            <action type="Speech" actor="Nikol" speech="Sure!"/>
+        </node>
+        <node id="7" width="150" height="100" x="-231" y="278" label="Wintergate Guests" context="1842191568"/>
+        <node id="8" width="150" height="100" x="-207" y="178" label="Wintergate History" context="1842191568">
+            <action type="Speech" actor="Shepard" speech="You know the history of this place?"/>
+            <action type="Speech" actor="Nikol" speech="Not so much."/>
+            <action type="Speech" actor="Nikol" speech="Bedrich usually fills people in on that."/>
+        </node>
+        <node id="9" width="150" height="100" x="-208" y="76" label="Wintergate Locals" context="1842191568">
+            <action type="Speech" actor="Shepard" speech="What can you tell me about the locals?"/>
+            <action type="Speech" actor="Nikol" speech="Which ones?"/>
+        </node>
+        <node id="10" width="150" height="100" x="-209" y="-21" label="Wintergate Places" context="1842191568">
+            <action type="Speech" actor="Shepard" speech="Any places worth visiting?"/>
+            <action type="Speech" actor="Nikol" speech="Well, if you're here for exploration you should talk to Eduard about the mountains."/>
+            <action type="Speech" actor="Nikol" speech="If you just want to relax... I'd try the lookout."/>
+        </node>
+        <node id="12" width="150" height="100" x="311" y="-438" label="Sasha Intro" context="572594463">
+            <action type="Jump"/>
+        </node>
+        <node id="13" width="150" height="100" x="666" y="-380" label="Sasha Opinion" context="572594463"/>
+        <node id="14" width="150" height="100" x="666" y="-471" label="Sasha Where" context="572594463"/>
+        <node id="16" width="150" height="100" x="-47" y="-737" label="Return Meeting"/>
+        <node id="17" width="150" height="100" x="-399" y="-382" label="First time Meeting">
+            <action type="Speech" actor="Nikol" speech="Hello Shepard. "/>
+            <action type="Speech" actor="Shepard" speech="Do I know you?"/>
+            <action type="Speech" actor="Nikol" speech="No- but Bedrich told me you'd be staying with us."/>
+            <action type="Speech" actor="Nikol" speech="I'm Nikol."/>
+        </node>
+        <node id="18" width="150" height="100" x="131" y="-579" label="Look &quot;:&quot;"/>
+        <node id="19" width="150" height="100" x="416" y="2682" label="GregorIntro" context="1996413166">
+            <action type="Speech" actor="Shepard" speech="Could we talk a bit abot Gregor?"/>
+            <action type="Speech" actor="Nikol" speech="San's old husband?"/>
+            <action type="Speech" actor="Nikol" speech="Ummm... I guess."/>
+        </node>
+        <node id="20" width="150" height="100" x="730" y="2756" label="GregorOpinion" context="1996413166">
+            <action type="Speech" actor="Shepard" speech="You like him?"/>
+            <action type="Speech" actor="Nikol" speech="He was okay. "/>
+        </node>
+        <node id="21" width="150" height="100" x="730" y="2692" label="GregorWhere" context="1996413166">
+            <action type="Speech" actor="Shepard" speech="Where's he buried?"/>
+            <action type="Speech" actor="Nikol" speech="You hunting Ghosts shepard?"/>
+            <action type="Speech" actor="Nikol" speech="You'd have to ask Old San about that one. Not in the Graveyard, that's for sure."/>
+        </node>
+        <node id="22" width="150" height="100" x="729" y="2624" label="GregorFamily" context="1996413166">
+            <action type="Speech" actor="Shepard" speech="He have family?"/>
+            <action type="Speech" actor="Nikol" speech="Aside from her?"/>
+            <action type="Speech" actor="Nikol" speech="Brothers and sisters maybe. No kids though."/>
+        </node>
+        <node id="23" width="150" height="100" x="725" y="2557" label="GregorJob" context="1996413166">
+            <action type="Speech" actor="Shepard" speech="What did he do?"/>
+            <action type="Speech" actor="Nikol" speech="He started the whole mountain guide thing."/>
+            <action type="Speech" actor="Nikol" speech="At least, that's what Old San says. Don't know if its true."/>
+        </node>
+        <node id="25" width="150" height="100" x="140" y="2361" label="SanIntro" context="633961862">
+            <action type="FirstVisitConditional" cond-invert="true">
+                <action type="Jump"/>
+            </action>
+            <action type="Speech" actor="Shepard" speech="Know anything about Old San?"/>
+            <action type="Speech" actor="Nikol" speech="Aside from the fact that she's old?"/>
+            <action type="Speech" actor="Shepard" speech="I was hoping for slightly more details."/>
+            <action type="Speech" actor="Nikol" speech="She picked that name for herself- so that's one thing."/>
+        </node>
+        <node id="27" width="150" height="100" x="516" y="2480" label="SanOpinion" context="633961862">
+            <action type="Speech" actor="Shepard" speech="What do you think about her?"/>
+            <action type="Speech" actor="Nikol" speech="She's a bit crazy."/>
+            <action type="Speech" actor="Nikol" speech="Old. Resentful."/>
+            <action type="Speech" actor="Nikol" speech="But I think she cares about people."/>
+            <action type="Speech" actor="Nikol" speech="Probably the reason she's so angry."/>
+        </node>
+        <node id="28" width="150" height="100" x="513" y="2400" label="SanWhere" context="633961862">
+            <action type="Speech" actor="Shepard" speech="Where can I find her?"/>
+            <action type="Speech" actor="Nikol" speech="She'll be up at the trail lodge."/>
+            <action type="Speech" actor="Nikol" speech="She'll probably try to sell you something."/>
+        </node>
+        <node id="29" width="150" height="100" x="508" y="2338" label="SanFamily" context="633961862">
+            <action type="Speech" actor="Shepard" speech="She got family?"/>
+            <action type="Speech" actor="Nikol" speech="No."/>
+            <action type="Speech" actor="Nikol" speech="I asked mum about that a few years back- I remember wondering why her children never visited her."/>
+            <action type="Speech" actor="Nikol" speech="But apparently she never had any."/>
+        </node>
+        <node id="30" width="150" height="100" x="508" y="2259" label="SanJob" context="633961862">
+            <action type="Speech" actor="Shepard" speech="What's her job?"/>
+            <action type="Speech" actor="Nikol" speech="Looks after equipment, takes bookings for Eduard."/>
+            <action type="Speech" actor="Nikol" speech="Honestly, I'm not entirely sure. Can't imagine she has enough money to live on, so presumably Bedrich and Laura look after her a little bit."/>
+        </node>
+        <node id="31" width="150" height="100" x="325" y="2112" label="Nikol Intro" context="287223281">
+            <action type="Speech" actor="Shepard" speech="Mind if I ask you about yourself?"/>
+            <action type="Speech" actor="Nikol" speech="Sure- I guess."/>
+        </node>
+        <node id="32" width="150" height="100" x="716" y="2198" label="Nikol Opinion" context="287223281">
+            <action type="Speech" actor="Shepard" speech="Anything I should know about you?"/>
+            <action type="Speech" actor="Nikol" speech="My mother once taught me how to kill a man with a wicker basket."/>
+            <action type="Speech" actor="Shepard" speech="Terrifying"/>
+            <action type="Speech" actor="Nikol" speech="Also rather impractical."/>
+        </node>
+        <node id="33" width="150" height="100" x="714" y="2136" label="Nikol Where" context="287223281">
+            <action type="Speech" actor="Shepard" speech="If I needed to find you later, where would you be?"/>
+            <action type="Speech" actor="Nikol" speech="Here, probably."/>
+        </node>
+        <node id="34" width="150" height="100" x="711" y="2074" label="NikolFamily" context="287223281">
+            <action type="Speech" actor="Shepard" speech="Who's your family?"/>
+            <action type="Speech" actor="Nikol" speech="My Dad minds the stables, mum was the Vetinarian."/>
+            <action type="Speech" actor="Nikol" speech="Keeping care of the horses is really important work in a stop over town like ours- plently of them show up pretty spent from the journey up the pass."/>
+        </node>
+        <node id="35" width="150" height="100" x="710" y="2008" label="NikolJob" context="287223281">
+            <action type="Speech" actor="Shepard" speech="What's you're job here?"/>
+            <action type="Speech" actor="Nikol" speech="I help Mr Bedrich and Laura out waiting tables."/>
+            <action type="Speech" actor="Nikol" speech="I... sometimes there are more people, but most of the time its pretty light."/>
+        </node>
+        <node id="37" width="150" height="100" x="134" y="1835" label="Mother intro." context="2124314928">
+            <action type="FirstVisitConditional" cond-invert="true">
+                <action type="Jump"/>
+            </action>
+            <action type="Speech" actor="Shepard" speech="Could you tell me about your mother?"/>
+            <action type="Speech" actor="Nikol" speech="I'd really rather not."/>
+        </node>
+        <node id="39" width="150" height="100" x="515" y="1970" label="Maria Opinion" context="2124314928">
+            <action type="FirstVisitConditional">
+                <action type="Speech" actor="Shepard" speech="What was she like? As a mother?"/>
+                <action type="Speech" actor="Nikol" speech="She... "/>
+                <action type="Speech" actor="Nikol" speech="Oh god- there's so much."/>
+            </action>
+            <action type="FirstVisitConditional" cond-invert="true">
+                <action type="Speech" actor="Shepard" speech="Any other stories you'd like to tell me about your mother?"/>
+            </action>
+            <action type="RandomChoice">
+                <action type="Sequence">
+                    <action type="Speech" actor="Nikol" speech="When I was small, she hung a glass tear in my room."/>
+                    <action type="Speech" actor="Nikol" speech="It caught the light, and shattered it into a million pieces all across the walls."/>
+                    <action type="Speech" actor="Nikol" speech="A million little rainbows that danced and spun..."/>
+                    <action type="Speech" actor="Nikol" speech="And then she sat me down, and told me where rainbows come from- that they were all there all along, all blurred togeather."/>
+                </action>
+                <action type="Sequence">
+                    <action type="Speech" actor="Nikol" speech="She used to joke about death a lot. "/>
+                    <action type="Speech" actor="Shepard" speech="Her own?"/>
+                    <action type="Speech" actor="Nikol" speech="Everyone's."/>
+                    <action type="Speech" actor="Nikol" speech="She seemed to know that people died sometimes, and thought it was silly that people got so upset about it."/>
+                </action>
+                <action type="Sequence">
+                    <action type="Speech" actor="Nikol" speech="She used to read me stories."/>
+                    <action type="Speech" actor="Nikol" speech="There was a big black book that she read from when I was small- until I learned every story word for word."/>
+                    <action type="Speech" actor="Nikol" speech="I can still remember her hissing like a snake in the candle light, with me hiding under the covers..."/>
+                </action>
+                <action type="Sequence">
+                    <action type="Speech" actor="Nikol" speech="..."/>
+                    <action type="Speech" actor="Nikol" speech="She never talked about her parents."/>
+                </action>
+            </action>
+        </node>
+        <node id="40" width="150" height="100" x="508" y="1889" label="Maria Where" context="2124314928">
+            <action type="Speech" actor="Shepard" speech="Where is she buried?"/>
+            <action type="Speech" actor="Nikol" speech="Up in the graveyard, on the way to the lookout."/>
+            <action type="Speech" actor="Nikol" speech="There's Gold Primula's around it, just like she always liked."/>
+            <action type="Speech" actor="Nikol" speech="I go there sometimes."/>
+        </node>
+        <node id="41" width="150" height="100" x="508" y="1812" label="Maria Family" context="2124314928">
+            <action type="Speech" actor="Shepard" speech="Tell me about her family."/>
+            <action type="Speech" actor="Nikol" speech="It was just Me and Dad."/>
+            <action type="Speech" actor="Nikol" speech="She didn't have any other children."/>
+        </node>
+        <node id="42" width="150" height="100" x="504" y="1736" label="Maria Job" context="2124314928">
+            <action type="Speech" actor="Shepard" speech="What did your mother do?"/>
+            <action type="Speech" actor="Nikol" speech="My mother was the Vetinarian here."/>
+            <action type="Speech" actor="Nikol" speech="She tended the horses as they were passing through."/>
+            <action type="Speech" actor="Nikol" speech="And... occassionally the people."/>
+            <action type="Speech" actor="Nikol" speech="&quot;Human bones break much the same and horse bones&quot;,  as she used to say."/>
+        </node>
+        <node id="43" width="150" height="100" x="365" y="1572" label="Ivan Intro [INCOMPLETE[" context="1098104407">
+            <action type="Jump"/>
+        </node>
+        <node id="44" width="150" height="100" x="745" y="1692" label="Ivan Opinion" context="1098104407"/>
+        <node id="45" width="150" height="100" x="745" y="1610" label="Ivan Where" context="1098104407"/>
+        <node id="46" width="150" height="100" x="743" y="1543" label="Ivan Family" context="1098104407"/>
+        <node id="47" width="150" height="100" x="735" y="1480" label="Ivan Job" context="1098104407"/>
+        <node id="49" width="150" height="100" x="244" y="1292" label="Tereza Intro" context="399623593">
+            <action type="Speech" actor="Shepard" speech="Can you tell me anything about Tereza?"/>
+            <action type="Speech" actor="Nikol" speech="Bedrich's old maam?"/>
+            <action type="Speech" actor="Nikol" speech="Not really. She waltzed off a few years back."/>
+            <action type="Speech" actor="Nikol" speech="Heard her and Old San got in a fight... and well... San's the more stubborn one."/>
+            <action type="Speech" actor="Nikol" speech="That's all I know."/>
+        </node>
+        <node id="55" width="150" height="100" x="345" y="1044" label="Mellisa Intro" context="1469009417">
+            <action type="Speech" actor="Shepard" speech="You know Melissa?"/>
+            <action type="Speech" actor="Nikol" speech="The tyke from the city?"/>
+            <action type="Speech" actor="Nikol" speech="Yeah, I've dealt with her a couple times."/>
+        </node>
+        <node id="56" width="150" height="100" x="707" y="1123" label="Mellisa Opinion" context="1469009417">
+            <action type="Speech" actor="Shepard" speech="You don't seem too impressed with the girl."/>
+            <action type="Speech" actor="Nikol" speech="She's anxious."/>
+            <action type="Speech" actor="Nikol" speech="She's anxious, and trying to prove herself and it shows."/>
+            <action type="Speech" actor="Nikol" speech="I mean- don't get me wrong- I get it- She's in a weird new place, didn't ask to be sent here, wants to establish some sort of control..."/>
+            <action type="Speech" actor="Nikol" speech="But its still annoying."/>
+        </node>
+        <node id="57" width="150" height="100" x="706" y="1055" label="Mellisa Where" context="1469009417">
+            <action type="Speech" actor="Shepard" speech="Where can I find her?"/>
+            <action type="Speech" actor="Nikol" speech="Beats me."/>
+            <action type="Speech" actor="Nikol" speech="Haven't seen her or Dusan for hours."/>
+        </node>
+        <node id="58" width="150" height="100" x="703" y="992" label="Mellisa Family" context="1469009417">
+            <action type="Speech" actor="Shepard" speech="Who's she related to?"/>
+            <action type="Speech" actor="Nikol" speech="She's Laura's niece."/>
+        </node>
+        <node id="59" width="150" height="100" x="702" y="925" label="Mellisa Job" context="1469009417">
+            <action type="Speech" actor="Shepard" speech="She have a job?"/>
+            <action type="Speech" actor="Nikol" speech="Not here."/>
+            <action type="Speech" actor="Nikol" speech="Get the feeling her parents don't work her too hard either."/>
+        </node>
+        <node id="61" width="150" height="100" x="103" y="756" label="Eduard intro" context="2045530703">
+            <action type="FirstVisitConditional">
+                <action type="Speech" actor="Shepard" speech="Know anything about Eduard?"/>
+                <action type="Speech" actor="Nikol" speech="Like what?"/>
+            </action>
+            <action type="FirstVisitConditional" cond-invert="true">
+                <action type="Speech" actor="Shepard" speech="There was something else I wanted to ask about Eduard."/>
+            </action>
+        </node>
+        <node id="63" width="150" height="100" x="462" y="902" label="Eduard Opinion" context="2045530703">
+            <action type="Speech" actor="Shepard" speech="What do you think of him."/>
+            <action type="Speech" actor="Nikol" speech="He's quiet."/>
+            <action type="Speech" actor="Nikol" speech="Mysterious."/>
+            <action type="Speech" actor="Nikol" speech="Honestly a bit scary sometimes."/>
+        </node>
+        <node id="64" width="150" height="100" x="459" y="818" label="Eduard Where" context="2045530703">
+            <action type="Speech" actor="Shepard" speech="You know where he is?"/>
+            <action type="Speech" actor="Nikol" speech="At the moment?"/>
+            <action type="Speech" actor="Nikol" speech="Either hanging around in the guide's hut, or up in the mountains somewhere."/>
+        </node>
+        <node id="65" width="150" height="100" x="460" y="751" label="Eduard Family" context="2045530703">
+            <action type="Speech" actor="Shepard" speech="Tell me about his family."/>
+            <action type="Speech" actor="Nikol" speech="He's Dusan's older brother."/>
+            <action type="Speech" actor="Nikol" speech="His parents run the wayhouse."/>
+        </node>
+        <node id="66" width="150" height="100" x="456" y="679" label="EduardJob" context="2045530703">
+            <action type="Speech" actor="Shepard" speech="What does Eduard do around here?"/>
+            <action type="Speech" actor="Nikol" speech="Guides people up the mountain mostly."/>
+            <action type="Speech" actor="Nikol" speech="When there's no one to guide, he maintains the trails."/>
+        </node>
+        <node id="67" width="150" height="100" x="269" y="548" label="Dusan Intro" context="1654575128">
+            <action type="FirstVisitConditional">
+                <action type="Speech" actor="Shepard" speech="Hey how well do you know Dusan?"/>
+                <action type="Speech" actor="Nikol" speech="Dusan? Oh yes- he's like a kid brother."/>
+                <action type="Speech" actor="Shepard" speech="Mind telling me about him?"/>
+                <action type="Speech" actor="Nikol" speech="Sure- what do you want to know?"/>
+                <action type="Speech" actor="Shepard" speech="Mind if I ask about Dusan again?"/>
+            </action>
+            <action type="FirstVisitConditional" cond-invert="true">
+                <action type="Speech" actor="Nikol" speech="Sure."/>
+            </action>
+        </node>
+        <node id="68" width="150" height="100" x="686" y="633" label="Dusan Opinion" context="1654575128">
+            <action type="Speech" actor="Shepard" speech="You like him?"/>
+            <action type="Speech" actor="Nikol" speech="Oh yeah!"/>
+            <action type="Speech" actor="Nikol" speech="Dusan's wonderful. He used to sit and listen when mum was teaching me lessons."/>
+        </node>
+        <node id="69" width="150" height="100" x="686" y="565" label="Dusan Where" context="1654575128">
+            <action type="Speech" actor="Shepard" speech="Know where I can find him?"/>
+            <action type="Speech" actor="Nikol" speech="He's been put in charge of knocking his cousin into shape."/>
+            <action type="Speech" actor="Nikol" speech="He'll probably be keeping her out of trouble, or showing her the sights."/>
+        </node>
+        <node id="70" width="150" height="100" x="684" y="498" label="Dusan Family" context="1654575128">
+            <action type="Speech" actor="Shepard" speech="Who's his family?"/>
+            <action type="Speech" actor="Nikol" speech="Well, there's Bedrich and Laura..."/>
+            <action type="Speech" actor="Nikol" speech="and his brother Eduard..."/>
+            <action type="Speech" actor="Nikol" speech="...and Agata. "/>
+            <action type="Speech" actor="Nikol" speech="She moved away, so you won't find her around the village."/>
+        </node>
+        <node id="71" width="150" height="100" x="675" y="430" label="Dusan Job" context="1654575128">
+            <action type="Speech" actor="Shepard" speech="What's Dusan's Job around here?"/>
+            <action type="Speech" actor="Nikol" speech="He's pretty helpful around the wayhouse."/>
+            <action type="Speech" actor="Nikol" speech="Helps out his mum and dad- me sometimes too."/>
+            <action type="Speech" actor="Nikol" speech="Harder worker than I was at that age."/>
+        </node>
+        <node id="73" width="150" height="100" x="69" y="311" label="Agata Intro" context="823361695">
+            <action type="FirstVisitConditional">
+                <action type="Speech" actor="Shepard" speech="Mind telling me about Agata?"/>
+                <action type="Speech" actor="Nikol" speech="Uhhh... sure."/>
+                <action type="Speech" actor="Nikol" speech="You do know she isn't here, right?"/>
+            </action>
+            <action type="FirstVisitConditional" cond-invert="true">
+                <action type="Speech" actor="Shepard" speech="Mind answering a couple extra questions about Agata?"/>
+                <action type="Speech" actor="Nikol" speech="...?"/>
+                <action type="Speech" actor="Nikol" speech="Sure?"/>
+            </action>
+        </node>
+        <node id="75" width="150" height="100" x="451" y="405" label="Agata Opinion" context="823361695">
+            <action type="Speech" actor="Shepard" speech="You get on with Agata?"/>
+            <action type="Speech" actor="Nikol" speech="Not so much."/>
+            <action type="Speech" actor="Nikol" speech="She wanted different things to me."/>
+        </node>
+        <node id="76" width="150" height="100" x="450" y="346" label="Agata Where" context="823361695">
+            <action type="Speech" actor="Shepard" speech="Where is she?"/>
+            <action type="Speech" actor="Nikol" speech="Clearwater."/>
+            <action type="Speech" actor="Nikol" speech="Always wanted to move there- said it was the big city, a place for happening people."/>
+        </node>
+        <node id="77" width="150" height="100" x="447" y="276" label="AgataFamily" context="823361695">
+            <action type="Speech" actor="Shepard" speech="Tell me about her family."/>
+            <action type="Speech" actor="Nikol" speech="She's Laura and Bedrich's daughter."/>
+            <action type="Speech" actor="Nikol" speech="I don't THINK she's got any kids of her own."/>
+            <action type="Speech" actor="Nikol" speech="I certainly haven't heard Laura or Bedrich talking about it- and he'd talk."/>
+        </node>
+        <node id="78" width="150" height="100" x="442" y="205" label="AgataJob" context="823361695">
+            <action type="Speech" actor="Shepard" speech="What's her job?"/>
+            <action type="Speech" actor="Nikol" speech="She married a glassblower or something."/>
+            <action type="Speech" actor="Nikol" speech="I don't even know if she had a job."/>
+        </node>
+        <node id="79" width="150" height="100" x="652" y="162" label="Laura Character" context="1555988392">
+            <action type="Speech" actor="Shepard" speech="Do you know her well? What can you tell me about her?"/>
+            <action type="Speech" actor="Nikol" speech="She likes to get things done."/>
+        </node>
+        <node id="80" width="150" height="100" x="652" y="96" label="Laura Where" context="1555988392">
+            <action type="Speech" actor="Shepard" speech="I was hoping to speak to her- do you know where I could find her?"/>
+            <action type="Speech" actor="Nikol" speech="She's making stew at the moment, just through that door."/>
+            <action type="Speech" actor="Nikol" speech="You... probably shouldn't interrupt her."/>
+        </node>
+        <node id="81" width="150" height="100" x="649" y="33" label="Laura Family" context="1555988392">
+            <action type="Speech" actor="Shepard" speech="What do you know about Laura's family?"/>
+            <action type="Speech" actor="Nikol" speech="Most of her siblings live far from here."/>
+            <action type="Speech" actor="Nikol" speech="Eduard and Dusan still live in town. Agata moved away."/>
+        </node>
+        <node id="82" width="150" height="100" x="650" y="-22" label="Laura Job" context="1555988392">
+            <action type="Speech" actor="Shepard" speech="What's Laura's job around here, what does she do in the town?"/>
+            <action type="Speech" actor="Nikol" speech="She pretty much runs the wayhouse."/>
+            <action type="Speech" actor="Nikol" speech="People tend to think its Bedrich that runs things, but that's just because he does the meet and greet."/>
+            <action type="Speech" actor="Nikol" speech="The meals, supplies, finances... Laura deals with all of those. "/>
+        </node>
+        <node id="84" width="150" height="100" x="263" y="72" label="Laura Intro" context="1555988392">
+            <action type="Speech" actor="Shepard" speech="What do you know about Laura?"/>
+            <action type="Speech" actor="Nikol" speech="What do you need to know?"/>
+        </node>
+        <node id="85" width="150" height="100" x="-29" y="-568" label="Bye">
+            <action type="Conditional">
+                <action type="Speech" actor="Shepard" speech="I should be going"/>
+                <action type="Speech" actor="Shepard" speech="Thank you for your help. I might be by later."/>
+                <action type="Speech" actor="Shepard" speech="I'll leave you to your bussiness."/>
+                <action type="Speech" speech="Good bye"/>
+                <action type="Speech" speech="Thank you for your time."/>
+                <action type="Speech" speech="I'd better head off."/>
+            </action>
+            <action type="Conditional">
+                <action type="Speech" actor="Other" speech="Goodbye shepard."/>
+            </action>
+        </node>
+        <node id="86" width="150" height="100" x="104" y="-199" label="Bedrich Intro" context="775956549">
+            <action type="Speech" actor="Shepard" speech="Could I ask you about Bedrich?"/>
+            <action type="Speech" actor="Nikol" speech="Ummm... I guess."/>
+            <action type="Speech" actor="Nikol" speech="He is standing just there. *points*"/>
+        </node>
+        <node id="87" width="150" height="100" x="464" y="-93" label="Bedrich Character" context="775956549">
+            <action type="Speech" actor="Shepard" speech="What's Bedrich like? "/>
+            <action type="Speech" actor="Bedrich" speech="I can hear you Shepard."/>
+            <action type="Speech" actor="Nikol" speech="..."/>
+            <action type="Speech" actor="Nikol" speech="Bedrich is fun."/>
+            <action type="Speech" actor="Nikol" speech="He's good to work with."/>
+            <action type="Speech" actor="Nikol" speech="I've known him my whole life."/>
+        </node>
+        <node id="88" width="150" height="100" x="462" y="-163" label="Bedrich Where" context="775956549">
+            <action type="Speech" actor="Shepard" speech="Do you know where I could find Bedrich?"/>
+            <action type="Speech" actor="Nikol" speech="....Just over there."/>
+        </node>
+        <node id="89" width="150" height="100" x="461" y="-224" label="Bedrich Family" context="775956549">
+            <action type="Speech" actor="Shepard" speech="Can you tell me about Bedrich's family?"/>
+            <action type="Speech" actor="Nikol" speech="Who do you want to know about?"/>
+        </node>
+        <node id="90" width="150" height="100" x="460" y="-289" label="Bedrich Job" context="775956549">
+            <action type="Speech" actor="Shepard" speech="What's Bedrich's job around here, what does he do in the town?"/>
+            <action type="Speech" actor="Nikol" speech="He generally aims to make sure everyone feels welcome."/>
+            <action type="Speech" actor="Nikol" speech="He manages beds and bookings."/>
+        </node>
+        <link id="1865900" label="~" from="2005480717" to="1188903679"/>
+        <node id="14330931" width="150" height="100" x="2132" y="181" label="Its important" context="2137716191">
+            <action type="Speech" actor="Shepard" speech="[LIE] Its a place where things happen."/>
+            <action type="Speech" actor="Shepard" speech="[LIE] Where people make amazing discoveries, where they make the world a better place."/>
+            <action type="Speech" actor="Shepard" speech="[LIE] You could too."/>
+            <action type="Speech" actor="Nikol" speech="You think?"/>
+            <action type="Speech" actor="Shepard" speech="[LIE] I'm sure of it."/>
+            <action type="Emote" actor="Nikol" emote="ACADEMY CONVINCED."/>
+        </node>
+        <node id="32640725" width="150" height="100" x="2134" y="618" label="Sometimes we take risks." context="2137716191">
+            <action type="Speech" actor="Shepard" speech="Sometimes we have to take risks."/>
+            <action type="Speech" actor="Shepard" speech="I know its hard but... there's lots of things worth doing it life that we aren't sure of."/>
+            <action type="Speech" actor="Nikol" speech="I know."/>
+            <action type="Speech" actor="Nikol" speech="But I'll be a long way from home and..."/>
+            <action type="Speech" actor="Nikol" speech="and I don't like going into things without the information."/>
+            <action type="Jump" jump-target="1158153270"/>
+        </node>
+        <context-ref id="46484192" x="273" y="-199" width="100" height="100" context="775956549"/>
+        <link id="56487437" label="back" from="1158153270" to="1860736549"/>
+        <link id="63597325" label="Where" from="702899460" to="21"/>
+        <link id="75325530" label="Ivan" from="371653907" to="1296788351"/>
+        <link id="87532204" label="Job" from="1573466245" to="71"/>
+        <node id="105585883" width="150" height="100" x="2281" y="181" label="People ask question" context="2137716191">
+            <action type="Speech" actor="Shepard" speech="[LIE] It's a place where people ask questions."/>
+            <action type="Speech" actor="Shepard" speech="[LIE] No matter what you're curious about, there you'll find the answers."/>
+            <action type="Speech" actor="Nikol" speech="What if I'm not curious about anything?"/>
+            <action type="Speech" actor="Shepard" speech="[LIE] Then... well- just wait until you've had a few lessons."/>
+            <action type="Speech" actor="Shepard" speech="[LIE] The worlds a bigger place than you think- once you see how big of a place it is, maybe you'll need to know more."/>
+            <action type="Speech" actor="Nikol" speech="Maybe..."/>
+            <action type="Emote" actor="Nikol" emote="ACADEMY HALF-CONVINCED"/>
+        </node>
+        <link id="107712156" label="back" from="631185153" to="372314962"/>
+        <context-ref id="109695398" x="1477" y="-528" width="100" height="100" context="505671508"/>
+        <node id="132692233" width="150" height="100" x="2411" y="270" label="Its fun" context="2137716191">
+            <action type="Speech" actor="Shepard" speech="[LIE] Its a lot of fun."/>
+            <action type="Speech" actor="Shepard" speech="[LIE] There's lecturers, and parties."/>
+            <action type="Speech" actor="Shepard" speech="[LIE] New people to meet, new things to do."/>
+            <action type="Speech" actor="Nikol" speech="But..."/>
+            <action type="Speech" actor="Nikol" speech="But I don't think I want those things."/>
+            <action type="Emote" actor="Nikol" emote="ACADEMY UNCONVINCED."/>
+        </node>
+        <link id="150037636" label="Where" from="905198030" to="28"/>
+        <context-ref id="150240575" x="1556" y="141" width="100" height="100" context="505671508"/>
+        <node id="165767435" width="150" height="100" x="1384" y="1397" label="What would it take feel happy leave?" context="589265238">
+            <action type="Speech" actor="Shepard" speech="What would it take for you to feel comfortable leaving him?"/>
+            <action type="Speech" actor="Nikol" speech="You're pushing Shepard."/>
+            <action type="Speech" actor="Shepard" speech="It's still a valid question."/>
+            <action type="Speech" actor="Nikol" speech="... okay."/>
+            <action type="Speech" actor="Nikol" speech="Let me think about that for a bit."/>
+        </node>
+        <link id="173285686" label="Family" from="1573466245" to="70"/>
+        <link id="196458353" label="nothing" from="1644948879" to="955604726"/>
+        <context-ref id="196929178" x="291" y="761" width="100" height="100" context="2045530703"/>
+        <link id="228451772" label="Job" from="959600891" to="78"/>
+        <link id="257581692" label="*" from="924859463" to="1336812404"/>
+        <node id="297319475" width="150" height="100" x="1430" y="-358" label="Something on your mind" context="505671508">
+            <action type="Speech" actor="Shepard" speech="You look like somethings on your mind."/>
+            <action type="Speech" actor="Shepard" speech="Would you like to talk about it?"/>
+            <action type="Speech" actor="Nikol" speech="Hmmm..."/>
+            <action type="Speech" actor="Nikol" speech="Maybe..."/>
+            <action type="Jump" jump-target="2041161455"/>
+        </node>
+        <link id="309113185" label="maybe" from="353633592" to="552759274"/>
+        <link id="324319427" label="Opinion" from="399519458" to="79"/>
+        <link id="326649101" label="?" from="1496336173" to="2076624867"/>
+        <node id="353633592" width="150" height="100" x="1186" y="-71" label="Can't help notice mum" context="505671508">
+            <action type="Speech" actor="Nikol" speech="I couldn't help but notice that it's something that mum always wanted."/>
+            <action type="Speech" actor="Nikol" speech="And a shepard happened to be visiting town at the same time."/>
+            <action type="Speech" actor="Nikol" speech="Did YOU make this happen Shepard?"/>
+        </node>
+        <node id="355103750" width="150" height="100" x="16" y="2025" label="Mothers ghost.">
+            <action type="Speech" actor="Shepard" speech="It's my bussiness to handle ghosts."/>
+            <action type="Speech" actor="Nikol" speech="And have you found one?"/>
+        </node>
+        <node id="371653907" width="150" height="100" x="1486" y="549" label="Decision Hub.">
+            <action type="Empty"/>
+        </node>
+        <node id="372314962" width="150" height="100" x="1563" y="1429" label="back to others" context="589265238">
+            <action type="Speech" actor="Shepard" speech="This is a difficult issue."/>
+            <action type="Speech" actor="Shepard" speech="Was there anything else that was bothing you?"/>
+        </node>
+        <context-ref id="399519458" x="462" y="70" width="100" height="100" context="1555988392"/>
+        <link id="426621967" label="Matias" from="1710032692" to="1045703580" hidden="true"/>
+        <link id="454539482" label="Opinion" from="983048887" to="39"/>
+        <link id="465359896" label="~" from="2127588586" to="1548545629"/>
+        <link id="473288461" label="Job" from="1292421808" to="47"/>
+        <link id="473639006" label="?" from="1970242928" to="1702389617"/>
+        <link id="519441566" label="Where" from="983048887" to="40"/>
+        <node id="519852486" width="150" height="100" x="1702" y="693" label="I lost wife [THEN WHAT]" context="589265238">
+            <action type="Speech" actor="Shepard" speech="I might."/>
+            <action type="Speech" actor="Shepard" speech="I lost my wife a few years back."/>
+            <action type="Speech" actor="Shepard" speech="I ... we were close."/>
+            <action type="Speech" actor="Shepard" speech="We were real close."/>
+            <action type="Speech" actor="Nikol" speech="I...."/>
+            <action type="Speech" actor="Nikol" speech="Oh god, I'm so sorry."/>
+            <action type="Speech" actor="Shepard" speech="It's fine."/>
+            <action type="Speech" actor="Shepard" speech="You didn't know."/>
+            <action type="Jump" jump-target="2005480717"/>
+        </node>
+        <link id="529422441" label="!" from="1496336173" to="1710032692"/>
+        <node id="552759274" width="150" height="100" x="1180" y="88" label="I might have been involved." context="505671508">
+            <action type="Speech" actor="Shepard" speech="I might have been involved."/>
+            <action type="Speech" actor="Nikol" speech="That isn't a straight answer."/>
+            <action type="Speech" actor="Shepard" speech="Straight answers aren't part of my trade."/>
+            <action type="Emote" actor="Nikol" emote=" slight trust reduce."/>
+            <action type="Jump" jump-target="683208019"/>
+        </node>
+        <link id="567710733" label="*" from="631185153" to="1573736397"/>
+        <link id="581395116" label="~" from="701319238" to="1087019941"/>
+        <link id="596932118" label="*yes" from="984411720" to="701319238" hidden="true"/>
+        <link id="603408820" label="Where" from="196929178" to="64"/>
+        <link id="604070170" label="Job" from="702899460" to="23"/>
+        <context-ref id="631185153" x="1517" y="1188" width="100" height="100" context="589265238"/>
+        <link id="634634055" label="Family" from="46484192" to="89"/>
+        <link id="636708761" label="?" from="683208019" to="1907218830"/>
+        <node id="664729556" width="150" height="100" x="985" y="637" label="Other friends" context="589265238">
+            <action type="Speech" actor="Shepard" speech="Your father has other people keeping on eye on him Nikol."/>
+            <action type="Speech" actor="Shepard" speech="Bedrich is keeping an eye on things- so is Laura."/>
+            <action type="Speech" actor="Nikol" speech="But they're not his family."/>
+            <action type="Speech" actor="Shepard" speech="But they are better equipped to take care of him than you are."/>
+            <action type="Speech" actor="Shepard" speech="They won't be afraid of drawing a line if they have to..."/>
+            <action type="Speech" actor="Shepard" speech="They knew your mother..."/>
+            <action type="Speech" actor="Nikol" speech="I guess..."/>
+        </node>
+        <node id="677479913" width="150" height="100" x="2376" y="508" label="My assistant, Sasha" context="2137716191">
+            <action type="Speech" actor="Shepard" speech="My new assistant, Sasha, she has been to the Academy."/>
+            <action type="Speech" actor="Shepard" speech="She finished fairly recently, from what I heard."/>
+            <action type="Speech" actor="Nikol" speech="She did?"/>
+            <action type="Speech" actor="Nikol" speech="But she seems so young- I thought..."/>
+            <action type="Speech" actor="Shepard" speech="I could ask her talk to you if you'd like that."/>
+            <action type="Speech" actor="Shepard" speech="She should be able to answer most of your questions."/>
+            <action type="Speech" actor="Nikol" speech="That..."/>
+            <action type="Speech" actor="Nikol" speech="That would be really good actually- I'd like to talk to her."/>
+        </node>
+        <node id="683208019" width="150" height="100" x="1186" y="218" label="My decision" context="505671508">
+            <action type="Speech" actor="Nikol" speech="This needs to be my decision Shepard."/>
+            <action type="Speech" actor="Nikol" speech="I can't make it based on what you need to do to finish your job."/>
+            <action type="Speech" actor="Nikol" speech="I can't make it based on what Dad wants, or what Mum wanted."/>
+            <action type="Speech" actor="Nikol" speech="... even if it was her dying wish...."/>
+        </node>
+        <node id="701319238" width="150" height="100" x="2181" y="349" label="Lie, yes" context="2137716191">
+            <action type="Speech" actor="Shepard" speech="[LIE] Yes."/>
+            <action type="Speech" actor="Nikol" speech="What's it like?"/>
+        </node>
+        <context-ref id="702899460" x="574" y="2676" width="100" height="100" context="1996413166"/>
+        <link id="704096693" label=":" from="924859463" to="1571000710" hidden="true"/>
+        <link id="704677169" label="!" from="924859463" to="2049674277"/>
+        <node id="719950939" width="150" height="100" x="147" y="1683" label="Never mind">
+            <action type="Speech" actor="Shepard" speech="In that case, I apologise for bringing it up."/>
+        </node>
+        <link id="734101997" label="Places" from="1746030257" to="10"/>
+        <link id="737816798" label="!" from="2127588586" to="1951619626"/>
+        <node id="772542341" width="150" height="100" x="1380" y="86" label="[lie] - not involved. [FAIL]" context="505671508">
+            <action type="Speech" actor="Shepard" speech="[LIE] I wasn't involved."/>
+            <action type="Speech" actor="Nikol" speech="Really?"/>
+            <action type="Speech" actor="Shepard" speech="[LIE] Just passing through town."/>
+            <action type="Speech" actor="Nikol" speech="I..."/>
+            <action type="Speech" actor="Nikol" speech="I don't know if I can trust you Shepard."/>
+            <action type="Speech" actor="Nikol" speech="I know its your job to satisfy ghosts, but I can't let this be someone elses decision."/>
+            <action type="Speech" actor="Nikol" speech="Not your's, not Dad's, not mother's."/>
+            <action type="Speech" actor="Nikol" speech="Not even if it were her final wish."/>
+            <action type="Emote" actor="Nikol" emote="No Advice Flag"/>
+            <action type="Emote" actor="Nikol" emote="Exit stage left."/>
+            <action type="EndConversation"/>
+        </node>
+        <link id="773553038" label="Where" from="1292421808" to="45"/>
+        <link id="777351567" label="Where" from="959600891" to="76"/>
+        <link id="804416106" label="Opinion" from="46484192" to="87"/>
+        <link id="806384087" label="Drink" from="2127588586" to="1496336173" hidden="true"/>
+        <link id="808995041" label="Sasha" from="1223389481" to="677479913" hidden="true"/>
+        <link id="818243225" label="Academy" from="371653907" to="2039565267" hidden="true"/>
+        <link id="819690795" label="?" from="25" to="1066490951" hidden="true"/>
+        <node id="846614141" width="150" height="100" x="2135" y="698" label="Why fit in." context="2137716191">
+            <action type="Speech" actor="Shepard" speech="Why are you so fussed on fitting in?"/>
+            <action type="Speech" actor="Shepard" speech="Act out- cause trouble."/>
+            <action type="Speech" actor="Nikol" speech="I don't LIKE causing trouble shepard."/>
+            <action type="Speech" actor="Nikol" speech="I like spending time with the people I care about, and being good at things."/>
+            <action type="Speech" actor="Shepard" speech="Well that's no fun."/>
+            <action type="Speech" actor="Nikol" speech="Life isn't all about fun."/>
+            <action type="Jump" jump-target="1158153270"/>
+        </node>
+        <link id="852744362" label="Family" from="2093781308" to="34"/>
+        <link id="860902723" label="Where" from="1573466245" to="69"/>
+        <context-ref id="864038208" x="526" y="1038" width="100" height="100" context="1469009417"/>
+        <link id="869942976" label="~" from="924859463" to="297319475"/>
+        <context-ref id="905198030" x="338" y="2370" width="100" height="100" context="633961862"/>
+        <link id="905809576" label="*" from="2127588586" to="1040376965"/>
+        <node id="916975991" width="150" height="100" x="247" y="2267" label="San second visit" context="633961862">
+            <action type="Speech" actor="Shepard" speech="What else do you know about Old San?"/>
+            <action type="Speech" actor="Nikol" speech="What were you hoping to find out?"/>
+        </node>
+        <link id="917918111" label="*" from="701319238" to="132692233"/>
+        <node id="924859463" width="150" height="100" x="1263" y="-562" label="Decision time intro" context="505671508">
+            <action type="Speech" actor="Narrator" speech="Nikol staring out into the distance, lost in thought."/>
+        </node>
+        <node id="936017334" width="150" height="100" x="999" y="89" label="I was involved." context="505671508">
+            <action type="Speech" actor="Shepard" speech="I was involved."/>
+            <action type="Speech" actor="Nikol" speech="So that means Mum's ghosts still around."/>
+            <action type="Speech" actor="Shepard" speech="Yes."/>
+            <action type="Speech" actor="Nikol" speech="What does she say?"/>
+            <action type="Speech" actor="Shepard" speech="Not a lot."/>
+            <action type="Speech" actor="Shepard" speech="Ghosts... are only pieces."/>
+            <action type="Speech" actor="Shepard" speech="They've only really got one idea, one aspect to them."/>
+            <action type="Speech" actor="Nikol" speech="And mum wanted me to go to the Academy?"/>
+            <action type="Speech" actor="Shepard" speech="Yes."/>
+            <action type="Jump" jump-target="683208019"/>
+        </node>
+        <node id="936145377" width="150" height="100" x="1091" y="352" label="I understand." context="505671508">
+            <action type="Speech" actor="Shepard" speech="I understand."/>
+            <action type="Speech" actor="Shepard" speech="She would have understood too."/>
+            <action type="Speech" actor="Shepard" speech="I'm here to answer questions, or just as someone to talk to."/>
+            <action type="Speech" actor="Nikol" speech="Thanks."/>
+            <action type="Emote" actor="Nikol" emote="Nikol Trust Increase."/>
+            <action type="Jump" jump-target="371653907"/>
+        </node>
+        <context-ref id="936576174" x="1049" y="784" width="100" height="100" context="589265238"/>
+        <node id="955604726" width="150" height="100" x="-272" y="1964" label="nothing [NEED CONDITIONAL]"/>
+        <node id="959122900" width="150" height="100" x="1392" y="-168" label="Do you [want academy]?" context="505671508">
+            <action type="Speech" actor="Shepard" speech="Do you?"/>
+            <action type="Speech" actor="Nikol" speech="Yes."/>
+            <action type="Emote" actor="Nikol" emote="Increase trust?"/>
+            <action type="Speech" actor="Nikol" speech="But"/>
+            <action type="Jump" jump-target="353633592"/>
+        </node>
+        <context-ref id="959600891" x="239" y="303" width="100" height="100" context="823361695"/>
+        <link id="965027506" label="?" from="924859463" to="1814042643"/>
+        <context-ref id="983048887" x="341" y="1839" width="100" height="100" context="2124314928"/>
+        <node id="984411720" width="150" height="100" x="1954" y="462" label="Have you ever been to academy?" context="2137716191">
+            <action type="Speech" actor="Nikol" speech="Have you ever been to the Royal Academy?"/>
+        </node>
+        <link id="1006686177" label="!" from="1158153270" to="1441442234"/>
+        <link id="1010622461" label="Opinion" from="2093781308" to="32"/>
+        <link id="1026566366" label="Family" from="959600891" to="77"/>
+        <link id="1031794062" label="Family" from="702899460" to="22"/>
+        <node id="1031822167" width="150" height="100" x="1392" y="229" label="IF you trust" context="505671508">
+            <action type="Speech" actor="Shepard" speech="If you trusted her, you'd do it."/>
+            <action type="Speech" actor="Nikol" speech="No."/>
+            <action type="Speech" actor="Nikol" speech="If she trusted me, she'd trust me to make my own decision."/>
+            <action type="Speech" actor="Shepard" speech="And have you?"/>
+            <action type="Emote" actor="Nikol" emote="Glares"/>
+            <action type="Emote" actor="Nikol" emote="No advice flag."/>
+            <action type="Emote" actor="Nikol" speech="Leaves." emote="Leaves"/>
+            <action type="Speech" actor="Shepard" speech="..."/>
+            <action type="Speech" actor="Shepard" speech="Damn."/>
+            <action type="EndConversation"/>
+        </node>
+        <link id="1034160761" label="~" from="37" to="719950939"/>
+        <node id="1040376965" width="150" height="100" x="1253" y="1155" label="Take him with you" context="589265238">
+            <action type="Speech" actor="Shepard" speech="Take him with you."/>
+            <action type="Speech" actor="Nikol" speech="What?"/>
+            <action type="Speech" actor="Shepard" speech="If you're worried he can't take care of himself, then take him with you."/>
+            <action type="Speech" actor="Nikol" speech="That doesn't even make sense!"/>
+            <action type="Speech" actor="Nikol" speech="What would he DO in the capital city?"/>
+            <action type="Speech" actor="Nikol" speech="His life is here Shepard."/>
+            <action type="Speech" actor="Nikol" speech="His friends are here."/>
+            <action type="Jump" jump-target="2118237497"/>
+        </node>
+        <link id="1042488120" label="Job" from="905198030" to="30"/>
+        <node id="1045703580" width="150" height="100" x="1707" y="806" label="I lost husband. [THEN WHAT]" context="589265238">
+            <action type="Speech" actor="Shepard" speech="I might."/>
+            <action type="Speech" actor="Shepard" speech="I lost my husband a few years back."/>
+            <action type="Speech" actor="Shepard" speech="Probably only a few months earlier."/>
+            <action type="Speech" actor="Nikol" speech="Oh god...."/>
+            <action type="Speech" actor="Nikol" speech="I'm... I'm so sorry- I just..."/>
+            <action type="Speech" actor="Shepard" speech="Its okay."/>
+            <action type="Speech" actor="Shepard" speech="You didn't know."/>
+            <action type="Speech" actor="Shepard" speech="I don't talk about it all that much."/>
+            <action type="Jump" jump-target="2005480717"/>
+        </node>
+        <node id="1066490951" width="150" height="100" x="212" y="2488" label="Picked name" context="633961862">
+            <action type="Speech" actor="Shepard" speech="What do you mean she picked her own name?"/>
+            <action type="Speech" actor="Nikol" speech="Well, she wasn't called &quot;Old San&quot; the day she was born."/>
+            <action type="Speech" actor="Nikol" speech="Pretty sure her parents called her Sanna."/>
+            <action type="Speech" actor="Nikol" speech="She started refering to herself as &quot;Old San&quot; back when her hair turned grey."/>
+        </node>
+        <link id="1085705920" label="Opinion" from="864038208" to="56"/>
+        <node id="1087019941" width="150" height="100" x="2411" y="366" label="Meet friends" context="2137716191">
+            <action type="Speech" actor="Shepard" speech="[LIE] I met some of my very best friends there."/>
+            <action type="Speech" actor="Shepard" speech="[LIE] And my &lt;wife/husband&gt;."/>
+            <action type="Speech" actor="Nikol" speech="Really?"/>
+            <action type="Speech" actor="Shepard" speech="...."/>
+            <action type="Speech" actor="Nikol" speech="That sounds... nice."/>
+            <action type="Speech" actor="Nikol" speech="You get to meet people passing through the Wayhouse... but they're always just passing through."/>
+            <action type="Speech" actor="Nikol" speech="None of them really want to be care about you. "/>
+            <action type="Speech" actor="Nikol" speech="They just want a nice holiday, which is fair, I guess... but not exactly nice."/>
+        </node>
+        <link id="1093748434" label="?" from="2127588586" to="1322640793"/>
+        <link id="1097516408" label="Guests" from="1746030257" to="7"/>
+        <link id="1097740959" label="Opinion" from="905198030" to="27"/>
+        <link id="1119988942" label="Job" from="2093781308" to="35"/>
+        <link id="1121007096" label="Family" from="983048887" to="41"/>
+        <link id="1122215465" label="*" from="1158153270" to="846614141"/>
+        <node id="1158153270" width="150" height="100" x="2350" y="730" label="Academy choice hub" context="2137716191"/>
+        <link id="1175189828" label="Job" from="46484192" to="90" hidden="true"/>
+        <link id="1181261689" label="History" from="1746030257" to="8" hidden="true"/>
+        <node id="1182112391" width="150" height="100" x="-6" y="-374" label="Who are you?">
+            <action type="Speech" actor="Shepard" speech="Who are you?"/>
+        </node>
+        <node id="1188903679" width="150" height="100" x="1853" y="1052" label="I needed suppory">
+            <action type="Speech" actor="Shepard" speech="It was hard."/>
+            <action type="Speech" actor="Shepard" speech="I needed help... support from my family."/>
+            <action type="Speech" actor="Shepard" speech="But in the end... I had to find me"/>
+        </node>
+        <link id="1194950749" label="!" from="1970242928" to="1441442234"/>
+        <link id="1215825599" label="~" from="683208019" to="936145377"/>
+        <context-ref id="1223389481" x="2211" y="502" width="100" height="100" context="2137716191"/>
+        <node id="1228162728" width="150" height="100" x="1600" y="992" label="Why stay?" context="589265238">
+            <action type="Speech" actor="Shepard" speech="Why?"/>
+            <action type="Speech" actor="Shepard" speech="Why stay here and waste your life trying to take care of him if you don't even know how?"/>
+            <action type="Speech" actor="Nikol" speech="Because I need him to know that I still care!"/>
+            <action type="Emote" actor="Nikol" emote="TRUST REDUCE."/>
+            <action type="Conditional">
+                <action type="Speech" actor="Nikol" speech="You know what? We're done here Shepard."/>
+                <action type="Speech" actor="Nikol" speech="I'll make up my own damn mind."/>
+                <action type="Emote" actor="Nikol" emote="No Advice flag"/>
+                <action type="EndConversation"/>
+            </action>
+        </node>
+        <link id="1235260006" label="Family" from="1292421808" to="46" hidden="true"/>
+        <link id="1247977093" label="~" from="631185153" to="1417806789"/>
+        <link id="1255022929" label="time..." from="165767435" to="1314171187" hidden="true"/>
+        <node id="1272832892" width="150" height="100" x="989" y="218" label="flip a coin" context="505671508">
+            <action type="Speech" actor="Shepard" speech="You could flip a coin."/>
+            <action type="Speech" actor="Nikol" speech="That isn't making my own decision Shepard."/>
+            <action type="Emote" actor="Nikol" emote="Slight trust Reduce."/>
+            <action type="Jump" jump-target="371653907"/>
+        </node>
+        <context-ref id="1292421808" x="557" y="1581" width="100" height="100" context="1098104407"/>
+        <node id="1296788351" width="150" height="100" x="1221" y="661" label="IvanWorryReenter" context="589265238">
+            <action type="FirstVisitConditional">
+                <action type="Jump"/>
+            </action>
+            <action type="Speech" actor="Nikol" speech="Hmmm... still thinking about Dad..."/>
+            <action type="Jump" jump-target="2118237497"/>
+        </node>
+        <link id="1303132516" label="Where" from="2093781308" to="33"/>
+        <link id="1304338023" label="opinion" from="1839479809" to="13"/>
+        <link id="1309920959" label="!" from="1573736397" to="1228162728"/>
+        <node id="1314171187" width="150" height="100" x="1310" y="1542" label="Some else+ visit." context="589265238">
+            <action type="Speech" actor="Nikol" speech="I'd need to know that someone else was looking after him."/>
+            <action type="Speech" actor="Nikol" speech="and I'd want to know I'd be able to come and visit when I needed to."/>
+        </node>
+        <link id="1320597450" label="where" from="399519458" to="80"/>
+        <node id="1322640793" width="150" height="100" x="1317" y="940" label="What you worry about" context="589265238">
+            <action type="Speech" actor="Shepard" speech="What are you worried about, in particular?"/>
+            <action type="Speech" actor="Nikol" speech="It's..."/>
+            <action type="Speech" actor="Nikol" speech="It's nothing."/>
+            <action type="Speech" actor="Nikol" speech="It's lots of little things."/>
+            <action type="Emote" actor="Nikol" emote="Slight trust reduce."/>
+            <action type="Jump" jump-target="2118237497"/>
+        </node>
+        <node id="1336812404" width="150" height="100" x="1271" y="-353" label="Planning to storm castle" context="505671508">
+            <action type="Speech" actor="Shepard" speech="Planning to storm the castle?"/>
+            <action type="Speech" actor="Nikol" speech="Ha!"/>
+            <action type="Speech" actor="Nikol" speech="Something like that."/>
+            <action type="Speech" actor="Nikol" speech="..."/>
+            <action type="Jump" jump-target="2041161455"/>
+        </node>
+        <link id="1337360875" label="?" from="631185153" to="165767435"/>
+        <link id="1339195199" label="~" from="1158153270" to="32640725"/>
+        <link id="1344286600" label="Opinion" from="1292421808" to="44"/>
+        <link id="1361234178" label="Yes" from="353633592" to="936017334"/>
+        <link id="1366913857" label="No" from="984411720" to="1970242928"/>
+        <link id="1386563984" label="family" from="399519458" to="81"/>
+        <link id="1389313138" label="~" from="1496336173" to="1946092392"/>
+        <link id="1401330879" label="*" from="1970242928" to="846614141"/>
+        <link id="1403176131" label="lookout" from="1746030257" to="3" hidden="true"/>
+        <link id="1408622808" label="Opinion" from="1573466245" to="68"/>
+        <link id="1414981446" label="Opinion" from="702899460" to="20"/>
+        <node id="1417806789" width="150" height="100" x="1669" y="1294" label="Reassure." context="589265238">
+            <action type="Speech" actor="Shepard" speech="Its good that you're thinking about this."/>
+        </node>
+        <link id="1435812594" label="Drink" from="936576174" to="1496336173"/>
+        <node id="1441442234" width="150" height="100" x="2135" y="772" label="Take a risk" context="2137716191">
+            <action type="Speech" actor="Shepard" speech="You have to take risks with these things."/>
+            <action type="Speech" actor="Shepard" speech="If you skip out on things because you're afraid, you'll never end up getting anywhere."/>
+            <action type="Speech" actor="Nikol" speech="I guess..."/>
+            <action type="Jump" jump-target="1158153270"/>
+        </node>
+        <link id="1491752019" label="Job" from="196929178" to="66"/>
+        <link id="1492973798" label="!" from="631185153" to="1951619626"/>
+        <node id="1496336173" width="150" height="100" x="1316" y="815" label="You worry drinking" context="589265238">
+            <action type="Speech" actor="Shepard" speech="Are you worried about his drinking?"/>
+            <action type="Speech" actor="Nikol" speech="..."/>
+            <action type="Speech" actor="Nikol" speech="Yes."/>
+            <action type="Speech" actor="Nikol" speech="But I don't really want to talk about that with you."/>
+        </node>
+        <node id="1548545629" width="150" height="100" x="1087" y="1139" label="Its good to worry" context="589265238">
+            <action type="Speech" actor="Shepard" speech="It's good to worry about people."/>
+            <action type="Speech" actor="Shepard" speech="It makes sense to care."/>
+            <action type="Emote" actor="Nikol" emote="Slight increase trust."/>
+            <action type="Jump" jump-target="2118237497"/>
+        </node>
+        <link id="1551202057" label="Opinion" from="196929178" to="63"/>
+        <node id="1571000710" width="150" height="100" x="961" y="-354" label="Look with her" context="505671508">
+            <action type="Speech" actor="Narrator" speech="The valley expands out below you, the earlest shades of autumn catching at the leaves."/>
+            <action type="Speech" actor="Nikol" speech="My mother used to bring me here when I was small."/>
+            <action type="Speech" actor="Nikol" speech="She'd tell me about all the places we couldn't see."/>
+            <action type="Speech" actor="Nikol" speech="Wonders and adventures just beyond the far horizon."/>
+            <action type="Speech" actor="Nikol" speech="Sometimes she'd bring a map, and show me where they were."/>
+            <action type="Emote" actor="Nikol" emote="Increase trust indicator."/>
+            <action type="Jump" jump-target="2041161455"/>
+        </node>
+        <context-ref id="1573466245" x="505" y="544" width="100" height="100" context="1654575128"/>
+        <node id="1573736397" width="150" height="100" x="1661" y="1133" label="Then why stay" context="589265238">
+            <action type="Speech" actor="Shepard" speech="If you don't know what to do, then why stay?"/>
+            <action type="Speech" actor="Nikol" speech="What?"/>
+            <action type="Speech" actor="Shepard" speech="If you don't know how to help him, then what makes you think staying will help."/>
+            <action type="Speech" actor="Nikol" speech="I have to try!"/>
+        </node>
+        <link id="1584377233" label="Family" from="196929178" to="65"/>
+        <link id="1633316224" label="Time pass" from="2041161455" to="353633592"/>
+        <node id="1644948879" width="150" height="100" x="-59" y="1850" label="Mother Reenter" context="2124314928">
+            <action type="Speech" actor="Shepard" speech="Could I ask a some more questions about your mother."/>
+            <action type="Speech" actor="Nikol" speech="What's this about Shepard?"/>
+        </node>
+        <link id="1646064863" label="Matias" from="2076624867" to="1045703580" hidden="true"/>
+        <link id="1663705393" label="ghost" from="1644948879" to="355103750"/>
+        <node id="1672339117" width="150" height="100" x="663" y="780" label="Scary?" context="2045530703">
+            <action type="Speech" actor="Shepard" speech="In what way is he scary?"/>
+            <action type="Speech" actor="Nikol" speech="Just... intense."/>
+            <action type="Speech" actor="Nikol" speech="Like there's this great dark cloud behind him, like a storm coming."/>
+            <action type="Speech" actor="Nikol" speech="I think maybe he tries to keep that away from people, but they still see it."/>
+        </node>
+        <link id="1675547640" label="?" from="63" to="1672339117" hidden="true"/>
+        <link id="1675572491" label="Family" from="905198030" to="29"/>
+        <link id="1682385735" label="where" from="1839479809" to="14" hidden="true"/>
+        <link id="1691040598" label="Ester" from="2076624867" to="519852486" hidden="true"/>
+        <node id="1702389617" width="150" height="100" x="2134" y="833" label="Anyone that might know" context="2137716191">
+            <action type="Speech" actor="Shepard" speech="Is there anyone in the village who might know?"/>
+            <action type="Speech" actor="Nikol" speech="Not really."/>
+            <action type="Speech" actor="Nikol" speech="Mother went, but she's not here now."/>
+            <action type="Speech" actor="Shepard" speech="and... ghosts don't answer that sort of question..."/>
+            <action type="Speech" actor="Nikol" speech="Tereza went, but that was a long time ago, and she's not here now."/>
+            <action type="Speech" actor="Shepard" speech="I imagine you sometimes get passers through who have been to the academy."/>
+            <action type="Speech" actor="Nikol" speech="Sometimes..."/>
+            <action type="Speech" actor="Shepard" speech="Hmmm...."/>
+            <action type="Jump" jump-target="1158153270"/>
+        </node>
+        <node id="1710032692" width="150" height="100" x="1508" y="800" label="This important." context="589265238">
+            <action type="Speech" actor="Shepard" speech="If it bothers you enough that you don't want to talk about it, that probably means you should."/>
+            <action type="Speech" actor="Nikol" speech="I know!"/>
+            <action type="Speech" actor="Nikol" speech="But... not with you- okay."/>
+            <action type="Speech" actor="Nikol" speech="You wouldn't understand."/>
+        </node>
+        <link id="1730071015" label="Where" from="864038208" to="57" hidden="true"/>
+        <link id="1744417137" label="job" from="399519458" to="82"/>
+        <context-ref id="1746030257" x="-417" y="114" width="100" height="100" context="1842191568"/>
+        <link id="1782949768" label="~" from="1970242928" to="32640725"/>
+        <node id="1814042643" width="150" height="100" x="1115" y="-354" label="What you thinking" context="505671508">
+            <action type="Speech" actor="Shepard" speech="What are you thinking about?"/>
+            <action type="Speech" actor="Nikol" speech="Oh..."/>
+            <action type="Speech" actor="Nikol" speech="Nothing."/>
+            <action type="Speech" actor="Nikol" speech="Just something Dad said to me."/>
+            <action type="Emote" actor="Nikol" emote="Slightly reduce trust indicator."/>
+            <action type="Jump" jump-target="2041161455"/>
+        </node>
+        <link id="1819186785" label="?" from="2041161455" to="959122900" hidden="true"/>
+        <link id="1819690196" label="Opinion" from="959600891" to="75"/>
+        <link id="1822916704" label="?" from="701319238" to="105585883"/>
+        <context-ref id="1839479809" x="466" y="-439" width="100" height="100" context="572594463"/>
+        <node id="1860736549" width="150" height="100" x="2555" y="664" label="MAybe talk something else" context="2137716191">
+            <action type="Speech" actor="Shepard" speech="Maybe there were other aspects of your decision you wanted to talk about."/>
+            <action type="Speech" actor="Nikol" speech="Sure."/>
+            <action type="Jump" jump-target="371653907"/>
+        </node>
+        <link id="1889699431" label="Family" from="864038208" to="58"/>
+        <link id="1895244856" label="?" from="1158153270" to="1702389617"/>
+        <link id="1905447453" label="Ester" from="1710032692" to="519852486" hidden="true"/>
+        <node id="1907218830" width="150" height="100" x="1302" y="353" label="What decision based on." context="505671508">
+            <action type="Speech" actor="Shepard" speech="What should your decision be based on?"/>
+            <action type="Speech" actor="Nikol" speech=".... I don't know."/>
+            <action type="Speech" actor="Nikol" speech="That's a hard question."/>
+            <action type="Speech" actor="Shepard" speech="Maybe that would be a good place to start."/>
+            <action type="Jump" jump-target="371653907"/>
+        </node>
+        <link id="1930820046" label="Job" from="983048887" to="42"/>
+        <node id="1935915075" width="150" height="100" x="-23" y="1691" label=""/>
+        <node id="1946092392" width="150" height="100" x="1506" y="700" label="Won't ask" context="589265238">
+            <action type="Speech" actor="Shepard" speech="Okay. "/>
+            <action type="Speech" actor="Shepard" speech="I won't ask about it."/>
+            <action type="Speech" actor="Shepard" speech="We don't need to talk about that if you aren't comfortable."/>
+            <action type="Speech" actor="Nikol" speech="Thanks."/>
+        </node>
+        <node id="1951619626" width="150" height="100" x="1301" y="1048" label="ITs not your job" context="589265238">
+            <action type="Speech" actor="Shepard" speech="It's not your job to take care of him."/>
+            <action type="Speech" actor="Nikol" speech="He's my father!"/>
+            <action type="Speech" actor="Shepard" speech="Exactly!"/>
+            <action type="Speech" actor="Shepard" speech="It's his job to take care of you."/>
+            <action type="Speech" actor="Shepard" speech="If you stay in this village for his sake.... your completly defeating the whole purpose of parenting."/>
+            <action type="Speech" actor="Nikol" speech="It doesn't work like that..."/>
+            <action type="Emote" actor="Nikol" emote="SIGNIFICANT TRUST REDUCE."/>
+            <action type="Conditional">
+                <action type="Emote" actor="Nikol" emote="Convinced WRT Ivan."/>
+                <action type="Speech" actor="Nikol" speech="... does it?"/>
+            </action>
+        </node>
+        <link id="1954627997" label="Bedrich" from="936576174" to="664729556"/>
+        <link id="1957021766" label="*no" from="353633592" to="772542341" hidden="true"/>
+        <link id="1969188749" label="Locals" from="1746030257" to="9"/>
+        <node id="1970242928" width="150" height="100" x="1946" y="711" label="What IS the academy?" context="2137716191">
+            <action type="Speech" actor="Shepard" speech="No."/>
+            <action type="Speech" actor="Shepard" speech="I can't say I have."/>
+            <action type="Speech" actor="Nikol" speech="I just... What IS the academy?"/>
+            <action type="Speech" actor="Nikol" speech="As in... it seems like this big magical far away place."/>
+            <action type="Speech" actor="Nikol" speech="Mum always used to say that it was full of the most interesting people in the world..."/>
+            <action type="Speech" actor="Nikol" speech="But.... I don't actually know what it's like."/>
+            <action type="Speech" actor="Nikol" speech="I'm worried I'll get there and realise I don't fit in."/>
+        </node>
+        <link id="1985075239" label="Job" from="864038208" to="59"/>
+        <node id="2005480717" width="150" height="100" x="1830" y="924" label="Spouse lost drinking comment. [NOW WHAT]" context="589265238">
+            <action type="Speech" actor="Nikol"/>
+        </node>
+        <link id="2027288670" label="!" from="701319238" to="14330931"/>
+        <node id="2039565267" width="150" height="100" x="1830" y="335" label="Reenter Academy context [NOT FINISHED HIGHLY CONDITIONAL]" context="2137716191">
+            <action type="FirstVisitConditional">
+                <action type="Jump" jump-target="984411720"/>
+                <action type="Speech" actor="Nikol" speech="Is just... What am I even getting myself into?"/>
+            </action>
+            <action type="RandomChoice">
+                <action type="Speech" actor="Nikol" speech="I'm still trying to figure out how I feel about the Academy."/>
+            </action>
+            <action type="Jump" jump-target="1158153270"/>
+        </node>
+        <node id="2041161455" width="150" height="100" x="1188" y="-216" label="Dad was talking to me" context="505671508">
+            <action type="Speech" actor="Nikol" speech="Dad just came in and started talking to me."/>
+            <action type="Speech" actor="Nikol" speech="He wanted to know if I was still interested in going to the Medical Academy."/>
+        </node>
+        <node id="2049674277" width="150" height="100" x="1044" y="-565" label="You making decision? [FAIL END]" context="505671508">
+            <action type="Speech" actor="Shepard" speech="Trying to make a decision."/>
+            <action type="Concurrent">
+                <action type="Emote" actor="Nikol" emote="gaurded."/>
+                <action type="Speech" actor="Nikol" speech="Yes."/>
+            </action>
+            <action type="Speech" actor="Shepard" speech="You want advice?"/>
+            <action type="Speech" actor="Nikol" speech="...."/>
+            <action type="Speech" actor="Nikol" speech="No thank you Shepard."/>
+            <action type="Speech" actor="Nikol" speech="I'm sorry, but I don't really know you, and... this is an important decision."/>
+            <action type="Emote" actor="Nikol" emote="Walks off back to Wintergate."/>
+            <action type="Emote" actor="Nikol" emote="Set No advice Flag- potentially she goes back to her room, or up to old San."/>
+            <action type="EndConversation"/>
+        </node>
+        <link id="2074427649" label="*" from="683208019" to="1272832892"/>
+        <node id="2076624867" width="150" height="100" x="1503" y="891" label="Why not want talk" context="589265238">
+            <action type="Speech" actor="Shepard" speech="Why don't you want to talk about it with me?"/>
+            <action type="Speech" actor="Nikol" speech="You don't know him."/>
+            <action type="Speech" actor="Nikol" speech="To you, he's probably just &quot;that stupid drunk&quot; or something."/>
+            <action type="Speech" actor="Shepard" speech="I never said that."/>
+            <action type="Speech" actor="Nikol" speech="But you were thinking it!"/>
+            <action type="Speech" actor="Nikol" speech="or... you could have been."/>
+            <action type="Speech" actor="Nikol" speech="Anyone not from this village won't understand what it was like for him when Mum died."/>
+        </node>
+        <context-ref id="2093781308" x="548" y="2115" width="100" height="100" context="287223281"/>
+        <link id="2104006769" label="where" from="46484192" to="88"/>
+        <link id="2115934414" label="!" from="683208019" to="1031822167"/>
+        <node id="2118237497" width="150" height="100" x="1283" y="1279" label="Don't know what to do" context="589265238">
+            <action type="Speech" actor="Nikol" speech="I just don't know what to do..."/>
+        </node>
+        <node id="2127588586" width="150" height="100" x="1086" y="920" label="Ivan Worry First" context="589265238">
+            <action type="Speech" actor="Nikol" speech="I'm worried about Dad."/>
+            <action type="Speech" actor="Nikol" speech="I'm worried that without Me or Mum around he won't take care of himself."/>
+        </node>
+    </objects>
+    <data>
+        <character-names>
+            <character name="Shepard"/>
+            <character name="Other"/>
+            <character name="Narrator"/>
+            <character name="Nikol"/>
+            <character name="Bedrich"/>
+        </character-names>
+        <contexts root="858799283">
+            <context id="133276800" label="TerezaDOUBLE" parent="858799283"/>
+            <context id="150240575" label="Decision intro" parent="505671508"/>
+            <context id="287223281" label="Nikol" parent="1935915075"/>
+            <context id="399623593" label="Tereza" parent="1935915075"/>
+            <context id="505671508" label="DecisionTime" parent="858799283"/>
+            <context id="572594463" label="Sasha" parent="1935915075"/>
+            <context id="589265238" label="WhoLookAfterDad" parent="505671508"/>
+            <context id="617849477" label="dog" parent="858799283"/>
+            <context id="633961862" label="San" parent="1935915075"/>
+            <context id="775956549" label="Bedrich" parent="1935915075"/>
+            <context id="823361695" label="Agata" parent="1935915075"/>
+            <context id="858799283" label=""/>
+            <context id="1098104407" label="Ivan" parent="1935915075"/>
+            <context id="1469009417" label="Mellisa" parent="1935915075"/>
+            <context id="1555988392" label="Laura" parent="1935915075"/>
+            <context id="1654575128" label="Dusan" parent="1935915075"/>
+            <context id="1842191568" label="Wintergate" parent="858799283"/>
+            <context id="1935915075" label="People" parent="858799283"/>
+            <context id="1996413166" label="Gregor" parent="1935915075"/>
+            <context id="2045530703" label="Eduard" parent="1935915075"/>
+            <context id="2124314928" label="Maria" parent="1935915075"/>
+            <context id="2137716191" label="WhatAcademy" parent="505671508"/>
+        </contexts>
+    </data>
+</conversation>

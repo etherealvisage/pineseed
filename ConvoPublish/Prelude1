@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conversation>
+    <objects>
+        <node id="4668282" width="150" height="100" x="-218" y="1017" label="Love">
+            <action type="Speech" actor="Narrator" speech="With Love,"/>
+            <action type="Speech" actor="Narrator" speech="Matias."/>
+        </node>
+        <link id="53778425" label="Cont" from="1309920959" to="917918111"/>
+        <node id="56487437" width="150" height="100" x="53" y="994" label="Promise">
+            <action type="Speech" actor="Narrator" speech="I promise."/>
+        </node>
+        <link id="107712156" label="Cont" from="984411720" to="1309920959"/>
+        <link id="208873731" label="Context" from="851671093" to="1047708424"/>
+        <node id="286405170" width="150" height="100" x="-63" y="1174" label="Chapter one">
+            <action type="Speech" actor="TitleText" speech="Chapter One"/>
+        </node>
+        <node id="346124509" width="150" height="100" x="50" y="547" label="Hours">
+            <action type="Speech" actor="Narrator" speech="Strolling for hours and hours..."/>
+        </node>
+        <link id="353633592" label="Cont" from="1247977093" to="846614141"/>
+        <link id="371653907" label="Cont" from="286405170" to="936576174"/>
+        <node id="529422441" width="150" height="100" x="236" y="15" label="Shepard">
+            <action type="Speech" actor="Narrator" speech="I am a Shepard."/>
+        </node>
+        <link id="603649082" label="Cont" from="1573736397" to="1710032692"/>
+        <node id="677479913" width="150" height="100" x="-215" y="406" label="Brooks">
+            <action type="Speech" actor="Narrator" speech="The brooks... the streams."/>
+            <action type="Speech" actor="Narrator" speech="Occasional mountaintop pools..."/>
+        </node>
+        <link id="772542341" label="Cont" from="893994268" to="677479913"/>
+        <link id="808995041" label="Cont" from="1361234178" to="346124509"/>
+        <link id="824098124" label="Cont" from="1339195199" to="56487437"/>
+        <node id="846614141" width="150" height="100" x="54" y="140" label="No talking">
+            <action type="Speech" actor="Narrator" speech="I know I shouldn't be talking to you like this..."/>
+        </node>
+        <node id="851671093" width="150" height="100" x="-404" y="711" label="Bad With Advice.">
+            <action type="Speech" actor="Narrator" speech="But then... I always was bad at following my own advice."/>
+        </node>
+        <link id="859140432" label="Cont" from="1782949768" to="1361234178"/>
+        <node id="893994268" width="150" height="100" x="-219" y="273" label="Place">
+            <action type="Speech" actor="Narrator" speech="You would love this place."/>
+        </node>
+        <node id="917918111" width="150" height="100" x="-217" y="146" label="Duties to attend to.">
+            <action type="Speech" actor="Narrator" speech="But not yet."/>
+            <action type="Speech" actor="Narrator" speech="I have duties to attend to."/>
+        </node>
+        <link id="936017334" label="Cont" from="846614141" to="1782949768"/>
+        <node id="936576174" width="150" height="100" x="-62" y="1324" label="Wintergate">
+            <action type="Speech" actor="TitleText" speech="Wintergate"/>
+        </node>
+        <node id="984411720" width="150" height="100" x="-203" y="-119" label="Matias introduction">
+            <action type="Speech" actor="Narrator" speech="Dear Ester."/>
+            <action type="Speech" actor="Narrator" speech="I miss you."/>
+        </node>
+        <node id="1006686177" width="150" height="100" x="56" y="690" label="talking">
+            <action type="Speech" actor="Narrator" speech="Talking."/>
+            <action type="Speech" actor="Narrator" speech="Not Talking."/>
+        </node>
+        <link id="1013227023" label="Cont" from="1047708424" to="1109609161"/>
+        <node id="1047708424" width="150" height="100" x="-404" y="853" label="soon">
+            <action type="Speech" actor="Narrator" speech="Soon I will visit."/>
+        </node>
+        <node id="1109609161" width="150" height="100" x="-224" y="850" label="soon">
+            <action type="Speech" actor="Narrator" speech="Soon."/>
+        </node>
+        <link id="1194950749" label="Matias" from="2039565267" to="984411720"/>
+        <link id="1202724756" label="Cont" from="917918111" to="893994268"/>
+        <link id="1218520712" label="Cont" from="1742238673" to="2127588586"/>
+        <node id="1247977093" width="150" height="100" x="54" y="16" label="Tuesday.">
+            <action type="Speech" actor="Narrator" speech="Today is Tuesday."/>
+            <action type="Emote" actor="Ester" emote="I'm imagining this opening text rolling as the player picks there way through the initial level, climbing over rocks, platforming across a stream."/>
+        </node>
+        <node id="1309920959" width="150" height="100" x="-213" y="22" label="Matias Not yet">
+            <action type="Speech" actor="Narrator" speech="I've promised myself that I will come home soon, that I will visit."/>
+        </node>
+        <link id="1310405538" label="Cont" from="529422441" to="1247977093"/>
+        <node id="1339195199" width="150" height="100" x="56" y="823" label="Home soon.">
+            <action type="Speech" actor="Narrator" speech="I'll come home soon, my Love."/>
+        </node>
+        <node id="1361234178" width="150" height="100" x="50" y="393" label="Walking">
+            <action type="Speech" actor="Narrator" speech="But walking with you is one of the things I miss most."/>
+        </node>
+        <link id="1389313138" label="Cont" from="4668282" to="286405170"/>
+        <link id="1441442234" label="Ester" from="2039565267" to="1573736397"/>
+        <link id="1496336173" label="Cont" from="2127588586" to="851671093"/>
+        <node id="1573736397" width="150" height="100" x="54" y="-115" label="Ester introduction">
+            <action type="Speech" actor="Narrator" speech="My Name is Ester Laska-Kysely."/>
+        </node>
+        <link id="1703036555" label="Cont" from="1710032692" to="529422441"/>
+        <node id="1710032692" width="150" height="100" x="236" y="-116" label="Born">
+            <action type="Speech" actor="Narrator" speech="I was born in the town of Cestina in the year 63-12."/>
+        </node>
+        <node id="1742238673" width="150" height="100" x="-194" y="543" label="Ice and crystal">
+            <action type="Speech" actor="Narrator" speech="Icy cold, and clear as glass."/>
+        </node>
+        <node id="1782949768" width="150" height="100" x="54" y="267" label="Present">
+            <action type="Speech" actor="Narrator" speech="Should keep my mind in the present."/>
+        </node>
+        <link id="1860736549" label="Cont" from="1006686177" to="1339195199"/>
+        <link id="1895244856" label="Cont" from="346124509" to="1006686177"/>
+        <link id="1946092392" label="Cont" from="1109609161" to="4668282"/>
+        <node id="2039565267" width="150" height="100" x="-78" y="-319" label="First Lines" entry="true">
+            <action type="Speech" actor="TitleText"/>
+            <action type="Emote" emote="I'm imaging either white text on a black background, or text against the sky, "/>
+            <action type="Speech" speech="..."/>
+            <action type="Speech" actor="TitleText" speech="This is the tale of a Shepard."/>
+            <action type="Speech" actor="Narrator" speech="What is your name?"/>
+        </node>
+        <link id="2115934414" label="Cont" from="56487437" to="286405170"/>
+        <node id="2127588586" width="150" height="100" x="-200" y="710" label="Should no letters.">
+            <action type="Speech" actor="Narrator" speech="I keep telling myself that I shouldn't be sending these letters."/>
+        </node>
+        <link id="2132301256" label="Cont" from="677479913" to="1742238673"/>
+    </objects>
+    <data>
+        <character-names>
+            <character name="TitleText"/>
+            <character name="Narrator"/>
+            <character name="Ester"/>
+            <character name="Matias"/>
+        </character-names>
+        <contexts root="1814042643">
+            <context id="1814042643" label=""/>
+        </contexts>
+    </data>
+</conversation>

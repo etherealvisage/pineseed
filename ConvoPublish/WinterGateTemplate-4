@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conversation>
+    <objects>
+        <node id="2" width="150" height="100" x="429" y="-752" label="Dog"/>
+        <node id="3" width="150" height="100" x="-533" y="298" label="Lookout" context="1842191568"/>
+        <node id="4" width="150" height="100" x="-596" y="452" label="Mountain Intro"/>
+        <node id="5" width="150" height="100" x="-421" y="457" label="Mountain Hub"/>
+        <node id="6" width="150" height="100" x="-625" y="142" label="Wintergate Intro" context="1842191568">
+            <action type="Jump"/>
+        </node>
+        <node id="7" width="150" height="100" x="-207" y="256" label="Wintergate Guests" context="1842191568"/>
+        <node id="8" width="150" height="100" x="-207" y="178" label="Wintergate History" context="1842191568"/>
+        <node id="9" width="150" height="100" x="-208" y="76" label="Wintergate Locals" context="1842191568"/>
+        <node id="10" width="150" height="100" x="-209" y="2" label="Wintergate Places" context="1842191568"/>
+        <node id="12" width="150" height="100" x="311" y="-438" label="Sasha Intro" context="572594463">
+            <action type="Jump"/>
+        </node>
+        <node id="13" width="150" height="100" x="666" y="-380" label="Sasha Opinion" context="572594463"/>
+        <node id="14" width="150" height="100" x="666" y="-471" label="Sasha Where" context="572594463"/>
+        <node id="16" width="150" height="100" x="6" y="-693" label="Return Meeting"/>
+        <node id="17" width="150" height="100" x="-253" y="-180" label="First time Meeting"/>
+        <node id="18" width="150" height="100" x="131" y="-579" label="Look &quot;:&quot;"/>
+        <node id="19" width="150" height="100" x="416" y="2682" label="GregorIntro" context="1996413166">
+            <action type="Jump"/>
+        </node>
+        <node id="20" width="150" height="100" x="730" y="2756" label="GregorOpinion" context="1996413166"/>
+        <node id="21" width="150" height="100" x="730" y="2692" label="GregorWhere" context="1996413166"/>
+        <node id="22" width="150" height="100" x="729" y="2624" label="GregorFamily" context="1996413166"/>
+        <node id="23" width="150" height="100" x="725" y="2557" label="GregorJob" context="1996413166"/>
+        <node id="25" width="150" height="100" x="120" y="2362" label="SanIntro" context="633961862">
+            <action type="Jump"/>
+        </node>
+        <node id="27" width="150" height="100" x="516" y="2480" label="SanOpinion" context="633961862"/>
+        <node id="28" width="150" height="100" x="513" y="2400" label="SanWhere" context="633961862"/>
+        <node id="29" width="150" height="100" x="508" y="2338" label="SanFamily" context="633961862"/>
+        <node id="30" width="150" height="100" x="508" y="2259" label="SanJob" context="633961862"/>
+        <node id="31" width="150" height="100" x="325" y="2112" label="Nikol Intro" context="287223281">
+            <action type="Jump"/>
+        </node>
+        <node id="32" width="150" height="100" x="716" y="2198" label="Nikol Opinion" context="287223281"/>
+        <node id="33" width="150" height="100" x="714" y="2136" label="Nikol Where" context="287223281"/>
+        <node id="34" width="150" height="100" x="711" y="2074" label="NikolFamily" context="287223281"/>
+        <node id="35" width="150" height="100" x="710" y="2008" label="NikolJob" context="287223281"/>
+        <node id="37" width="150" height="100" x="105" y="1837" label="Maria Intro" context="2124314928">
+            <action type="Jump"/>
+        </node>
+        <node id="39" width="150" height="100" x="503" y="1982" label="Maria Opinion" context="2124314928"/>
+        <node id="40" width="150" height="100" x="507" y="1889" label="Maria Where" context="2124314928"/>
+        <node id="41" width="150" height="100" x="506" y="1805" label="Maria Family" context="2124314928"/>
+        <node id="42" width="150" height="100" x="505" y="1722" label="Maria Job" context="2124314928"/>
+        <node id="43" width="150" height="100" x="368" y="1581" label="Ivan Intro" context="1098104407">
+            <action type="Jump"/>
+        </node>
+        <node id="44" width="150" height="100" x="745" y="1692" label="Ivan Opinion" context="1098104407"/>
+        <node id="45" width="150" height="100" x="745" y="1610" label="Ivan Where" context="1098104407"/>
+        <node id="46" width="150" height="100" x="743" y="1543" label="Ivan Family" context="1098104407"/>
+        <node id="47" width="150" height="100" x="735" y="1480" label="Ivan Job" context="1098104407"/>
+        <node id="49" width="150" height="100" x="80" y="1299" label="Tereza Intro" context="133276800">
+            <action type="Jump"/>
+        </node>
+        <node id="51" width="150" height="100" x="492" y="1421" label="Tereza Opinion" context="133276800"/>
+        <node id="52" width="150" height="100" x="491" y="1347" label="Tereza Where" context="133276800"/>
+        <node id="53" width="150" height="100" x="488" y="1279" label="Tereza Family" context="133276800"/>
+        <node id="54" width="150" height="100" x="485" y="1194" label="Tereza Job" context="133276800"/>
+        <node id="55" width="150" height="100" x="277" y="1036" label="Mellisa Intro" context="1469009417">
+            <action type="Jump"/>
+        </node>
+        <node id="56" width="150" height="100" x="707" y="1123" label="Mellisa Opinion" context="1469009417"/>
+        <node id="57" width="150" height="100" x="709" y="1052" label="Mellisa Where" context="1469009417"/>
+        <node id="58" width="150" height="100" x="711" y="991" label="Mellisa Family" context="1469009417"/>
+        <node id="59" width="150" height="100" x="702" y="925" label="Mellisa Job" context="1469009417"/>
+        <node id="61" width="150" height="100" x="82" y="766" label="Eduard intro" context="2045530703">
+            <action type="Jump"/>
+        </node>
+        <node id="63" width="150" height="100" x="462" y="881" label="Eduard Opinion" context="2045530703"/>
+        <node id="64" width="150" height="100" x="459" y="818" label="Eduard Where" context="2045530703"/>
+        <node id="65" width="150" height="100" x="460" y="751" label="Eduard Family" context="2045530703"/>
+        <node id="66" width="150" height="100" x="456" y="679" label="EduardJob" context="2045530703"/>
+        <node id="67" width="150" height="100" x="269" y="548" label="Dusan Intro" context="1654575128"/>
+        <node id="68" width="150" height="100" x="686" y="633" label="Dusan Opinion" context="1654575128"/>
+        <node id="69" width="150" height="100" x="686" y="565" label="Dusan Where" context="1654575128"/>
+        <node id="70" width="150" height="100" x="684" y="498" label="Dusan Family" context="1654575128"/>
+        <node id="71" width="150" height="100" x="675" y="430" label="Dusan Job" context="1654575128"/>
+        <node id="73" width="150" height="100" x="69" y="311" label="Agata Intro" context="823361695">
+            <action type="Jump"/>
+        </node>
+        <node id="75" width="150" height="100" x="451" y="405" label="Agata Opinion" context="823361695"/>
+        <node id="76" width="150" height="100" x="450" y="346" label="Agata Where" context="823361695"/>
+        <node id="77" width="150" height="100" x="447" y="276" label="AgataFamily" context="823361695"/>
+        <node id="78" width="150" height="100" x="442" y="205" label="AgataJob" context="823361695"/>
+        <node id="79" width="150" height="100" x="652" y="162" label="Laura Character" context="1555988392">
+            <action type="Speech" speech="What can you tell me about her?What's she like? "/>
+        </node>
+        <node id="80" width="150" height="100" x="652" y="96" label="Laura Where" context="1555988392">
+            <action type="Speech" speech="I was hoping to speak to her- do you know where I could find her?"/>
+        </node>
+        <node id="81" width="150" height="100" x="649" y="33" label="Laura Family" context="1555988392">
+            <action type="Speech" speech="What do you know about Laura's family"/>
+        </node>
+        <node id="82" width="150" height="100" x="650" y="-22" label="Laura Job" context="1555988392">
+            <action type="Speech" speech="What's Laura's job around here, what does he do in the town?"/>
+        </node>
+        <node id="84" width="150" height="100" x="263" y="72" label="Laura Intro" context="1555988392">
+            <action type="Jump"/>
+        </node>
+        <node id="85" width="150" height="100" x="-29" y="-568" label="Bye">
+            <action type="Conditional">
+                <action type="Speech" actor="Shepard" speech="I should be going"/>
+                <action type="Speech" actor="Shepard" speech="Thank you for your help. I might be by later."/>
+                <action type="Speech" actor="Shepard" speech="I'll leave you to your bussiness."/>
+                <action type="Speech" speech="Good bye"/>
+                <action type="Speech" speech="Thank you for your time."/>
+                <action type="Speech" speech="I'd better head off."/>
+            </action>
+            <action type="Conditional">
+                <action type="Speech" actor="Other" speech="Goodbye shepard."/>
+            </action>
+        </node>
+        <node id="86" width="150" height="100" x="34" y="-182" label="Bedrich Intro" context="775956549">
+            <action type="Jump"/>
+        </node>
+        <node id="87" width="150" height="100" x="464" y="-93" label="Bedrich Character" context="775956549">
+            <action type="Speech" actor="Shepard" speech="What's Bedrich like? Are you good friend's with him?"/>
+        </node>
+        <node id="88" width="150" height="100" x="462" y="-163" label="Bedrich Where" context="775956549">
+            <action type="Speech" actor="Shepard" speech="Do you know where I could find Bedrich?"/>
+        </node>
+        <node id="89" width="150" height="100" x="461" y="-224" label="Bedrich Family" context="775956549">
+            <action type="Speech" actor="Shepard" speech="Can you tell me about Bedrich's family?"/>
+        </node>
+        <node id="90" width="150" height="100" x="460" y="-289" label="Bedrich Job" context="775956549">
+            <action type="Speech" actor="Shepard" speech="What's Bedrich's job around here, what does he do in the town?"/>
+        </node>
+        <context-ref id="46484192" x="273" y="-199" width="100" height="100" context="775956549"/>
+        <link id="63597325" label="Where" from="702899460" to="21" hidden="true"/>
+        <link id="87532204" label="Job" from="1573466245" to="71"/>
+        <link id="150037636" label="Where" from="905198030" to="28" hidden="true"/>
+        <link id="173285686" label="Family" from="1573466245" to="70" hidden="true"/>
+        <context-ref id="196929178" x="291" y="761" width="100" height="100" context="2045530703"/>
+        <link id="228451772" label="Job" from="959600891" to="78"/>
+        <link id="286317828" label="Job" from="369095287" to="54" hidden="true"/>
+        <link id="324319427" label="Opinion" from="399519458" to="79"/>
+        <context-ref id="369095287" x="309" y="1293" width="100" height="100" context="133276800"/>
+        <context-ref id="399519458" x="462" y="70" width="100" height="100" context="1555988392"/>
+        <link id="454539482" label="Opinion" from="983048887" to="39"/>
+        <link id="473288461" label="Job" from="1292421808" to="47"/>
+        <link id="519441566" label="Where" from="983048887" to="40"/>
+        <link id="603408820" label="Where" from="196929178" to="64" hidden="true"/>
+        <link id="604070170" label="Job" from="702899460" to="23"/>
+        <link id="634634055" label="Family" from="46484192" to="89" hidden="true"/>
+        <context-ref id="702899460" x="574" y="2676" width="100" height="100" context="1996413166"/>
+        <link id="734101997" label="Places" from="1746030257" to="10"/>
+        <link id="773553038" label="Where" from="1292421808" to="45" hidden="true"/>
+        <link id="777351567" label="Where" from="959600891" to="76"/>
+        <link id="804416106" label="Opinion" from="46484192" to="87" hidden="true"/>
+        <link id="852744362" label="Family" from="2093781308" to="34"/>
+        <link id="860902723" label="Where" from="1573466245" to="69" hidden="true"/>
+        <context-ref id="864038208" x="526" y="1038" width="100" height="100" context="1469009417"/>
+        <context-ref id="905198030" x="338" y="2370" width="100" height="100" context="633961862"/>
+        <context-ref id="959600891" x="239" y="303" width="100" height="100" context="823361695"/>
+        <context-ref id="983048887" x="341" y="1839" width="100" height="100" context="2124314928"/>
+        <link id="1010622461" label="Opinion" from="2093781308" to="32" hidden="true"/>
+        <link id="1026566366" label="Family" from="959600891" to="77" hidden="true"/>
+        <link id="1031794062" label="Family" from="702899460" to="22" hidden="true"/>
+        <link id="1042488120" label="Job" from="905198030" to="30" hidden="true"/>
+        <link id="1085705920" label="Opinion" from="864038208" to="56" hidden="true"/>
+        <link id="1097516408" label="Guests" from="1746030257" to="7"/>
+        <link id="1097740959" label="Opinion" from="905198030" to="27" hidden="true"/>
+        <link id="1119988942" label="Job" from="2093781308" to="35" hidden="true"/>
+        <link id="1121007096" label="Family" from="983048887" to="41" hidden="true"/>
+        <link id="1147532502" label="Where" from="369095287" to="52" hidden="true"/>
+        <link id="1175189828" label="Job" from="46484192" to="90"/>
+        <link id="1181261689" label="History" from="1746030257" to="8"/>
+        <link id="1235260006" label="Family" from="1292421808" to="46" hidden="true"/>
+        <link id="1242819693" label="Opinion" from="369095287" to="51"/>
+        <context-ref id="1292421808" x="557" y="1581" width="100" height="100" context="1098104407"/>
+        <link id="1303132516" label="Where" from="2093781308" to="33" hidden="true"/>
+        <link id="1304338023" label="opinion" from="1839479809" to="13" hidden="true"/>
+        <link id="1320597450" label="where" from="399519458" to="80" hidden="true"/>
+        <link id="1344286600" label="Opinion" from="1292421808" to="44"/>
+        <link id="1386563984" label="family" from="399519458" to="81"/>
+        <link id="1408622808" label="Opinion" from="1573466245" to="68" hidden="true"/>
+        <link id="1414981446" label="Opinion" from="702899460" to="20" hidden="true"/>
+        <link id="1491752019" label="Job" from="196929178" to="66" hidden="true"/>
+        <link id="1551202057" label="Opinion" from="196929178" to="63"/>
+        <context-ref id="1573466245" x="505" y="544" width="100" height="100" context="1654575128"/>
+        <link id="1584377233" label="Family" from="196929178" to="65"/>
+        <link id="1675572491" label="Family" from="905198030" to="29" hidden="true"/>
+        <link id="1682385735" label="where" from="1839479809" to="14" hidden="true"/>
+        <link id="1730071015" label="Where" from="864038208" to="57" hidden="true"/>
+        <link id="1744417137" label="job" from="399519458" to="82"/>
+        <context-ref id="1746030257" x="-417" y="114" width="100" height="100" context="1842191568"/>
+        <link id="1819690196" label="Opinion" from="959600891" to="75" hidden="true"/>
+        <context-ref id="1839479809" x="466" y="-439" width="100" height="100" context="572594463"/>
+        <link id="1852676475" label="Family" from="369095287" to="53" hidden="true"/>
+        <link id="1889699431" label="Family" from="864038208" to="58"/>
+        <link id="1930820046" label="Job" from="983048887" to="42" hidden="true"/>
+        <link id="1969188749" label="Locals" from="1746030257" to="9" hidden="true"/>
+        <link id="1985075239" label="Job" from="864038208" to="59" hidden="true"/>
+        <context-ref id="2093781308" x="548" y="2115" width="100" height="100" context="287223281"/>
+        <link id="2104006769" label="where" from="46484192" to="88" hidden="true"/>
+    </objects>
+    <data>
+        <character-names>
+            <character name="Shepard"/>
+            <character name="Other"/>
+            <character name="Narrator"/>
+        </character-names>
+        <contexts root="858799283">
+            <context id="133276800" label="Tereza" parent="858799283"/>
+            <context id="287223281" label="Nikol" parent="858799283"/>
+            <context id="399623593" label="Tereza" parent="858799283"/>
+            <context id="572594463" label="Sasha" parent="858799283"/>
+            <context id="617849477" label="dog" parent="858799283"/>
+            <context id="633961862" label="San" parent="858799283"/>
+            <context id="775956549" label="Bedrich" parent="858799283"/>
+            <context id="823361695" label="Agata" parent="858799283"/>
+            <context id="858799283" label=""/>
+            <context id="1098104407" label="Ivan" parent="858799283"/>
+            <context id="1469009417" label="Mellisa" parent="858799283"/>
+            <context id="1555988392" label="Laura" parent="858799283"/>
+            <context id="1654575128" label="Dusan" parent="858799283"/>
+            <context id="1842191568" label="Wintergate" parent="858799283"/>
+            <context id="1996413166" label="Gregor" parent="858799283"/>
+            <context id="2045530703" label="Eduard" parent="858799283"/>
+            <context id="2124314928" label="Maria" parent="858799283"/>
+        </contexts>
+    </data>
+</conversation>

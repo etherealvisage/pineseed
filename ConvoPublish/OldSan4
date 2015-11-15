@@ -1,0 +1,1024 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conversation>
+    <objects>
+        <context-ref id="-1" x="1113" y="1113" width="50" height="0"/>
+        <node id="2" width="150" height="100" x="429" y="-752" label="Dog"/>
+        <node id="3" width="150" height="100" x="-533" y="298" label="Lookout"/>
+        <node id="4" width="150" height="100" x="-596" y="452" label="Mountain Intro"/>
+        <node id="5" width="150" height="100" x="-421" y="457" label="Mountain Hub"/>
+        <node id="6" width="150" height="100" x="-625" y="142" label="Wintergate Intro">
+            <action type="Jump" jump-target="11"/>
+        </node>
+        <node id="7" width="150" height="100" x="-207" y="256" label="Wintergate Guests"/>
+        <node id="8" width="150" height="100" x="-207" y="178" label="Wintergate History"/>
+        <node id="9" width="150" height="100" x="-208" y="76" label="Wintergate Locals"/>
+        <node id="10" width="150" height="100" x="-209" y="2" label="Wintergate Places"/>
+        <node id="11" width="150" height="100" x="-444" y="139" label="Wintergate Hub"/>
+        <node id="12" width="150" height="100" x="282" y="-420" label="Sasha Intro">
+            <action type="Jump" jump-target="15"/>
+        </node>
+        <node id="13" width="150" height="100" x="666" y="-380" label="Sasha Opinion"/>
+        <node id="14" width="150" height="100" x="666" y="-471" label="Sasha Where"/>
+        <node id="15" width="150" height="100" x="461" y="-420" label="Sasha Hub"/>
+        <node id="16" width="150" height="100" x="-122" y="-753" label="Return Meeting">
+            <action type="Conditional">
+                <action type="Speech" actor="OldSan" speech="You're back."/>
+                <action type="Speech" actor="OldSan" speech="Oh. You're here again."/>
+                <action type="Speech" actor="OldSan" speech="What do you want?"/>
+                <action type="Sequence">
+                    <action type="Speech" actor="OldSan" speech="Yes?"/>
+                    <action type="Speech" actor="OldSan" speech="What?"/>
+                </action>
+            </action>
+            <action type="Jump" jump-target="2041161455"/>
+        </node>
+        <node id="18" width="150" height="100" x="196" y="-675" label="Look &quot;:&quot;">
+            <action type="Speech" actor="Narrator" speech="It's some sort of old Mountain Crone."/>
+            <action type="Speech" actor="Narrator" speech="You're *fairly sure* she isn't a witch."/>
+            <action type="ReturnToSender"/>
+        </node>
+        <node id="19" width="150" height="100" x="336" y="2645" label="GregorIntro">
+            <action type="Speech" actor="Shepard" speech="Would you mind if I asked you a few questions about Gregor?"/>
+            <action type="Speech" actor="OldSan" speech="My husband? Eurgh- I already put up with that manner for fifty years- why'd we have to go talking about him now, even while he's dead?"/>
+            <action type="Jump"/>
+        </node>
+        <node id="20" width="150" height="100" x="730" y="2756" label="GregorOpinion">
+            <action type="Speech" actor="Shepard" speech="What was he like as a husband?"/>
+            <action type="Speech" actor="OldSan" speech="Ha!"/>
+            <action type="Speech" actor="OldSan" speech="Now really- what a question to ask an old lady."/>
+            <action type="Speech" actor="OldSan" speech="Summerise fifty years of marriage in just a few words."/>
+            <action type="Speech" actor="Shepard" speech="Try."/>
+            <action type="Speech" actor="OldSan" speech="He was a husband Shepard."/>
+            <action type="Speech" actor="OldSan" speech="and a good man."/>
+            <action type="Speech" actor="OldSan" speech="We had our ups and downs- our warmest moments and falling outs."/>
+            <action type="Speech" actor="OldSan" speech="and we stayed married."/>
+            <action type="Speech" actor="OldSan" speech="Take from that what you will."/>
+        </node>
+        <node id="21" width="150" height="100" x="730" y="2692" label="GregorWhere">
+            <action type="Speech" actor="Shepard" speech="Where's your husband buried?"/>
+            <action type="Speech" actor="OldSan" speech="We cremated him."/>
+            <action type="Speech" actor="OldSan" speech="Then Bedrich's boy took the ashes to the top of the mountain and spread them to the winds."/>
+        </node>
+        <node id="22" width="150" height="100" x="734" y="2538" label="GregorFamily">
+            <action type="Speech" actor="Shepard" speech="Your husband have any family."/>
+            <action type="Speech" actor="OldSan" speech="Sure. "/>
+            <action type="Speech" actor="OldSan" speech="Cousins, sisters, nephews, nieces."/>
+            <action type="Speech" actor="Shepard" speech="No children?"/>
+            <action type="Speech" actor="OldSan" speech="..."/>
+            <action type="Speech" actor="OldSan" speech="We never had any children."/>
+            <action type="Empty"/>
+        </node>
+        <node id="23" width="150" height="100" x="734" y="2613" label="GregorJob">
+            <action type="Speech" actor="Shepard" speech="What did your husband do?"/>
+            <action type="Speech" actor="OldSan" speech="He was a mountain guide. The first in these here parts."/>
+            <action type="Speech" actor="OldSan" speech="He took people up the mountains, and brought them safely back down again."/>
+            <action type="Speech" actor="Shepard" speech="Did you go with him?"/>
+            <action type="Speech" actor="OldSan" speech="When I was younger. "/>
+            <action type="Speech" actor="OldSan" speech="I hurt my leg after we were married, couldn't really go with him after that."/>
+            <action type="Speech" actor="OldSan" speech="It was... hard... being seperated... knowing he was up there."/>
+            <action type="Jump" jump-target="24"/>
+        </node>
+        <node id="24" width="150" height="100" x="515" y="2642" label="Gregor"/>
+        <node id="25" width="150" height="100" x="120" y="2362" label="SanIntro">
+            <action type="Speech" actor="Shepard" speech="Tell me about yourself"/>
+            <action type="Speech" actor="OldSan" speech="Oh how cute."/>
+            <action type="Speech" actor="OldSan" speech="The visiting Shepard is trying to soften up the senile old lady by giving her a chance to wax on about the good old days."/>
+        </node>
+        <node id="27" width="150" height="100" x="332" y="2489" label="SanOpinion"/>
+        <node id="28" width="150" height="100" x="513" y="2459" label="SanWhere">
+            <action type="Speech" actor="Shepard" speech="If I need to find you later where will you be?"/>
+            <action type="Speech" actor="OldSan" speech="Where do you think ijit?"/>
+            <action type="Speech" actor="OldSan" speech="Fixing the roof and climbing mountains?"/>
+        </node>
+        <node id="29" width="150" height="100" x="522" y="2350" label="SanFamily">
+            <action type="Speech" actor="Shepard" speech="Tell me about your family."/>
+            <action type="Speech" actor="OldSan" speech="I don't have any family."/>
+            <action type="Speech" actor="OldSan" speech="There all dead, or far away or forgotten about me."/>
+            <action type="Speech" actor="OldSan" speech="There! That please you?"/>
+        </node>
+        <node id="30" width="150" height="100" x="413" y="2238" label="SanJob">
+            <action type="Speech" actor="Shepard" speech="What's your job? What's your role around here?"/>
+            <action type="Speech" actor="OldSan" speech="I manage supplies, and climbing equipment."/>
+            <action type="Speech" actor="OldSan" speech="Obviously."/>
+            <action type="Speech" actor="Shepard" speech="You don't have any other roles?"/>
+            <action type="Speech" actor="OldSan" speech="No."/>
+        </node>
+        <node id="31" width="150" height="100" x="349" y="2093" label="Nikol Intro">
+            <action type="Speech" actor="Shepard" speech="Can you tell me about Nikol?"/>
+            <action type="Concurrent">
+                <action type="Emote" actor="OldSan" emote="shrugs."/>
+                <action type="Speech" actor="OldSan" speech="Mm."/>
+            </action>
+            <action type="Speech" actor="Shepard" speech="I'll... take that as a yes?"/>
+            <action type="Speech" actor="OldSan" speech="You would wouldn't you?"/>
+        </node>
+        <node id="32" width="150" height="100" x="716" y="2198" label="Nikol Opinion">
+            <action type="Speech" actor="Shepard" speech="You know her well? What do you think about her?"/>
+            <action type="Speech" actor="OldSan" speech="Needs to grow some spine."/>
+            <action type="Speech" actor="OldSan" speech="Spends too much time worrying about other people- putting up with their stupidity."/>
+            <action type="Speech" actor="OldSan" speech="Probably could use some wider horizons as well."/>
+        </node>
+        <node id="33" width="150" height="100" x="714" y="2136" label="Nikol Where">
+            <action type="Speech" actor="Shepard" speech="Where would she be right now?"/>
+            <action type="Speech" actor="OldSan" speech="How should I know?"/>
+        </node>
+        <node id="34" width="150" height="100" x="711" y="2074" label="NikolFamily">
+            <action type="Speech" actor="Shepard" speech="Tell me about her family."/>
+            <action type="Speech" actor="OldSan" speech="Ma's dead."/>
+            <action type="Speech" actor="OldSan" speech="Dad's still needs to get over that."/>
+            <action type="Speech" actor="OldSan" speech="No siblings."/>
+        </node>
+        <node id="35" width="150" height="100" x="710" y="2008" label="NikolJob">
+            <action type="Speech" actor="Shepard" speech="What's she do around here?"/>
+            <action type="Speech" actor="OldSan" speech="Keep an eye on her father mainly."/>
+            <action type="Speech" actor="OldSan" speech="Laura gave her a job helping out at the wayhouse, but really, its not like Laura and Bedrich need the help."/>
+        </node>
+        <node id="37" width="150" height="100" x="132" y="1837" label="Maria Intro">
+            <action type="Speech" actor="Shepard" speech="Did you know Maria?"/>
+            <action type="Speech" actor="OldSan" speech="Yes."/>
+            <action type="Speech" actor="Shepard" speech="...."/>
+            <action type="Speech" actor="OldSan" speech="...and much as I hate to admit it, I suspect that she's the type of person who actually would like me helping you."/>
+            <action type="Speech" actor="OldSan" speech="So ask away Shepard. Lets get this bussiness over with."/>
+        </node>
+        <node id="39" width="150" height="100" x="515" y="1970" label="Maria Opinion">
+            <action type="Speech" actor="Shepard" speech="What did you think of her?"/>
+            <action type="Speech" actor="OldSan" speech="Hardly a fair question."/>
+            <action type="Speech" actor="OldSan" speech="It's impolite to speak ill of the dead."/>
+            <action type="Speech" actor="Shepard" speech="and would you?"/>
+            <action type="Speech" actor="OldSan" speech="No."/>
+            <action type="Speech" actor="OldSan" speech="I had nothing but respect for that woman."/>
+        </node>
+        <node id="40" width="150" height="100" x="508" y="1889" label="Maria Where">
+            <action type="Speech" actor="Shepard" speech="Where was she buried?"/>
+            <action type="Speech" actor="OldSan" speech="You'll find her up in the graveyard Shepard."/>
+            <action type="Speech" actor="OldSan" speech="Although... if you're looking for a ghost shepard..."/>
+            <action type="Speech" actor="OldSan" speech="she always did seem most at home when she was working."/>
+        </node>
+        <node id="41" width="150" height="100" x="508" y="1812" label="Maria Family">
+            <action type="Speech" actor="Shepard" speech="Tell me about her family."/>
+            <action type="Speech" actor="OldSan" speech="Husband's Ivan."/>
+            <action type="Speech" actor="OldSan" speech="Her daughter's Nikol."/>
+            <action type="Speech" actor="OldSan" speech="Good people, looked out for one another."/>
+        </node>
+        <node id="42" width="150" height="100" x="504" y="1736" label="Maria Job">
+            <action type="Speech" actor="Shepard" speech="What was her Job?"/>
+            <action type="Speech" actor="OldSan" speech="Vetanerian. "/>
+            <action type="Speech" actor="OldSan" speech="Horses mainly. "/>
+            <action type="Speech" actor="OldSan" speech="People in a pinch."/>
+        </node>
+        <node id="43" width="150" height="100" x="349" y="1590" label="Ivan Intro">
+            <action type="Speech" actor="Shepard" speech="Can I talk to you about Ivan?"/>
+            <action type="Speech" actor="OldSan" speech="I think there's a lot of people in this village who would rather you didn't."/>
+        </node>
+        <node id="44" width="150" height="100" x="745" y="1692" label="Ivan Opinion">
+            <action type="Speech" actor="Shepard" speech="What do you think of him?"/>
+            <action type="Speech" actor="OldSan" speech="Ivan... is a man with difficulties."/>
+            <action type="Speech" actor="OldSan" speech="I wish him luck, but have little sympathy for him."/>
+            <action type="Speech" actor="OldSan" speech="We all have our tragedies to deal with."/>
+        </node>
+        <node id="45" width="150" height="100" x="745" y="1610" label="Ivan Where">
+            <action type="Speech" actor="Shepard" speech="Where can I find him?"/>
+            <action type="Speech" actor="OldSan" speech="He'll be in the stables."/>
+            <action type="Speech" actor="OldSan" speech="He doesn't really leave much these days."/>
+        </node>
+        <node id="46" width="150" height="100" x="743" y="1543" label="Ivan Family">
+            <action type="Speech" actor="Shepard" speech="Can you tell me about his family?"/>
+            <action type="Speech" actor="OldSan" speech="Wife's dead, daughter currently works as the serving girl for Bedrich and Laura."/>
+        </node>
+        <node id="47" width="150" height="100" x="735" y="1480" label="Ivan Job">
+            <action type="Speech" actor="Shepard" speech="What's his job?"/>
+            <action type="Speech" actor="OldSan" speech="Ivan takes care of the horses."/>
+            <action type="Speech" actor="OldSan" speech="Or rather... he did."/>
+            <action type="Speech" actor="OldSan" speech="Isn't as dutiful as he used to be now days."/>
+        </node>
+        <node id="49" width="150" height="100" x="80" y="1299" label="Tereza Intro">
+            <action type="Speech" actor="Shepard" speech="I was wondering if I could ask you a few questions about Tereza."/>
+            <action type="Speech" actor="OldSan" speech="Bedrich's mother?"/>
+            <action type="Speech" actor="Shepard" speech="Yes."/>
+            <action type="Speech" actor="OldSan" speech="...."/>
+            <action type="Speech" actor="OldSan" speech="Now why would you be asking about her?"/>
+            <action type="Speech" actor="OldSan" speech="... fine. You may ask your questions."/>
+            <action type="Jump"/>
+        </node>
+        <node id="50" width="150" height="100" x="262" y="1300" label="Tereza Hub"/>
+        <node id="51" width="150" height="100" x="492" y="1427" label="Tereza Opinion">
+            <action type="Speech" actor="Shepard" speech="And your thoughts on Tereza?"/>
+            <action type="Speech" actor="OldSan" speech="Ha!"/>
+            <action type="Speech" actor="OldSan" speech="You want my thoughts do you?"/>
+            <action type="Speech" actor="OldSan" speech="She was a vain and stupid woman and we never saw eye to eye."/>
+            <action type="Speech" actor="OldSan" speech="Entirely too friendly with other womens' husbands."/>
+            <action type="Speech" actor="OldSan" speech="She wasn't stupid, but niether was she as intelligent as she liked to believe."/>
+            <action type="Speech" actor="OldSan" speech="In the end she lived long enough to see her own folly."/>
+            <action type="Speech" actor="OldSan" speech="Maybe even learnt something from it."/>
+            <action type="Speech" actor="OldSan" speech="Thought... I have my doubts..."/>
+        </node>
+        <node id="52" width="150" height="100" x="494" y="1348" label="Tereza Where">
+            <action type="Speech" actor="Shepard" speech="Do you know where she lives these days?"/>
+            <action type="Speech" actor="OldSan" speech="Clearwater lake "/>
+            <action type="Speech" actor="OldSan" speech="Lives with her daughter."/>
+            <action type="Speech" actor="OldSan" speech="Zuzana."/>
+        </node>
+        <node id="53" width="150" height="100" x="490" y="1265" label="Tereza Family">
+            <action type="Speech" actor="Shepard" speech="Tell me about her family."/>
+            <action type="Speech" actor="OldSan" speech="You mean Bedrich and the rest of the brood?"/>
+            <action type="Speech" actor="OldSan" speech="Or you mean her other children, Petr or Zuzana."/>
+        </node>
+        <node id="54" width="150" height="100" x="485" y="1194" label="Tereza Job">
+            <action type="Speech" actor="Shepard" speech="What does Tereza do?"/>
+            <action type="Speech" actor="OldSan" speech="Nothing, now days."/>
+            <action type="Speech" actor="OldSan" speech="What she did back in the day..."/>
+            <action type="Speech" actor="OldSan" speech="Well, she made the Wayhouse for one thing."/>
+            <action type="Speech" actor="OldSan" speech="Invested her entire family savings in it."/>
+            <action type="Speech" actor="OldSan" speech="And her husbands."/>
+            <action type="Speech" actor="OldSan" speech="Now her son watches the place."/>
+            <action type="Jump"/>
+        </node>
+        <node id="55" width="150" height="100" x="277" y="1036" label="Mellisa Intro">
+            <action type="Speech" actor="Shepard" speech="You know anything about Mellisa?"/>
+            <action type="Speech" actor="OldSan" speech="She that girl staying with Laura and Bedrich at the moment?"/>
+            <action type="Speech" actor="Shepard" speech="Sure."/>
+            <action type="Speech" actor="OldSan" speech="She's Laura's niece or something. That's about all I've heard."/>
+            <action type="Speech" actor="Shepard" speech="Oh."/>
+            <action type="Speech" actor="Shepard" speech="Well... thanks anyway."/>
+            <action type="Jump" jump-target="2041161455"/>
+        </node>
+        <node id="61" width="150" height="100" x="13" y="770" label="Eduard intro">
+            <action type="Speech" actor="Shepard" speech="Could you tell me about Eduard?" jump-target="62"/>
+            <action type="Speech" actor="OldSan" speech="Yes."/>
+            <action type="Speech" actor="OldSan" speech="But I see no reason to do so."/>
+        </node>
+        <node id="62" width="150" height="100" x="250" y="769" label="Eduard Hub"/>
+        <node id="63" width="150" height="100" x="462" y="881" label="Eduard Opinion"/>
+        <node id="64" width="150" height="100" x="459" y="818" label="Eduard Where"/>
+        <node id="65" width="150" height="100" x="460" y="751" label="Eduard Family"/>
+        <node id="66" width="150" height="100" x="456" y="679" label="EduardJob"/>
+        <node id="67" width="150" height="100" x="261" y="553" label="Dusan Intro">
+            <action type="Speech" actor="Shepard" speech="Mind telling me about Dusan."/>
+            <action type="Speech" actor="OldSan" speech="He's young."/>
+            <action type="Emote" actor="OldSan" emote="Shrug."/>
+            <action type="Speech" actor="OldSan" speech="I can't really say I've had much to do with the boy."/>
+            <action type="Jump" jump-target="72"/>
+        </node>
+        <node id="68" width="150" height="100" x="686" y="633" label="Dusan Opinion">
+            <action type="Speech" actor="Shepard" speech="Your thoughts on Dusan?"/>
+            <action type="Speech" actor="OldSan" speech="He's not like his father."/>
+            <action type="Speech" actor="OldSan" speech="None of them are, which probably means none of them will continue on the wayhouse."/>
+            <action type="Speech" actor="OldSan" speech="Not that it's any of my concern. I'll be dead long before that becomes an issue."/>
+            <action type="Jump" jump-target="72"/>
+        </node>
+        <node id="69" width="150" height="100" x="686" y="565" label="Dusan Where">
+            <action type="Speech" actor="Shepard" speech="Where could I find him?"/>
+            <action type="Speech" actor="OldSan" speech="You're asking an old women where to find a young boy."/>
+            <action type="Speech" actor="OldSan" speech="Probably somewhere where he can run around. Out by the lookout, or perhaps near the graveyard."/>
+            <action type="Jump" jump-target="72"/>
+        </node>
+        <node id="70" width="150" height="100" x="684" y="498" label="Dusan Family">
+            <action type="Speech" actor="Shepard" speech="What do you know about his family?"/>
+            <action type="Speech" actor="OldSan" speech="He's the youngest, in a long line of busy bodies."/>
+            <action type="Speech" actor="OldSan" speech="From what I can tell, he's picking up the family tradition."/>
+            <action type="Jump" jump-target="72"/>
+        </node>
+        <node id="71" width="150" height="100" x="675" y="430" label="Dusan Job">
+            <action type="Speech" actor="Shepard" speech="Well... What's his job around this place?"/>
+            <action type="Speech" actor="OldSan" speech="He's a child shepard."/>
+            <action type="Speech" actor="OldSan" speech="His parents trust him with the responsibility of not falling off a cliff, and that's about it."/>
+            <action type="Jump" jump-target="72"/>
+        </node>
+        <node id="72" width="150" height="100" x="456" y="550" label="Dusan"/>
+        <node id="73" width="150" height="100" x="69" y="311" label="Agata Intro">
+            <action type="Speech" actor="Shepard" speech="I meant to ask a few questions about Agata."/>
+            <action type="Speech" actor="OldSan" speech="Did you now. Well, that's... surprising."/>
+            <action type="Jump" jump-target="74"/>
+        </node>
+        <node id="74" width="150" height="100" x="242" y="307" label="Agata Hub"/>
+        <node id="75" width="150" height="100" x="450" y="434" label="Agata Opinion">
+            <action type="Speech" actor="Shepard" speech="What did you think of her?"/>
+            <action type="Speech" actor="OldSan" speech="A fine enough girl for those who like her."/>
+            <action type="Speech" actor="OldSan" speech="Too much like her grandmother for my tastes."/>
+            <action type="Jump" jump-target="74"/>
+        </node>
+        <node id="76" width="150" height="100" x="450" y="358" label="Agata Where">
+            <action type="Speech" actor="Shepard" speech="Do you know where she is?"/>
+            <action type="Speech" actor="OldSan" speech="Ha!"/>
+            <action type="Speech" actor="OldSan" speech="She's down at Clearwater last I heard."/>
+            <action type="Speech" actor="OldSan" speech="Same town as her Grandmother."/>
+            <action type="Speech" actor="OldSan" speech="Hardly a surprise, really."/>
+            <action type="Empty"/>
+        </node>
+        <node id="77" width="150" height="100" x="447" y="276" label="AgataFamily">
+            <action type="Speech" actor="Shepard" speech="Can you tell me about Agata's family?"/>
+            <action type="Speech" actor="OldSan" speech="Two brothers. Two parents. Off married somewhere far away."/>
+            <action type="Speech" actor="OldSan" speech="Might have a family of her own by now, might not."/>
+            <action type="Jump" jump-target="74"/>
+        </node>
+        <node id="78" width="150" height="100" x="442" y="205" label="AgataJob">
+            <action type="Speech" actor="Shepard" speech="What does Agata do for a living?"/>
+            <action type="Speech" actor="OldSan" speech="Well I don't know. Why don't you go ask her family."/>
+            <action type="Jump" jump-target="74"/>
+        </node>
+        <node id="79" width="150" height="100" x="652" y="162" label="Laura Character">
+            <action type="Speech" actor="Shepard" speech="What's she like? "/>
+            <action type="Speech" actor="OldSan" speech="She's got a good head on her shoulders."/>
+            <action type="Speech" actor="OldSan" speech="Bedrich may be a silly man in my opinion, but he choose himself a good wife."/>
+            <action type="Jump" jump-target="83"/>
+        </node>
+        <node id="80" width="150" height="100" x="652" y="96" label="Laura Where">
+            <action type="Speech" speech="I was hoping to speak to her- do you know where I could find her?"/>
+            <action type="Speech" actor="OldSan" speech="She's probably in the wayhouse somewhere."/>
+            <action type="Speech" actor="OldSan" speech="Probably working."/>
+            <action type="Speech" actor="OldSan" speech="Best not to interrupt her if you want dinner."/>
+            <action type="Jump" jump-target="83"/>
+        </node>
+        <node id="81" width="150" height="100" x="685" y="10" label="Laura Family">
+            <action type="Speech" speech="What do you know about Laura's family"/>
+            <action type="Speech" actor="OldSan" speech="Nothing you don't alread know."/>
+            <action type="Speech" actor="OldSan" speech="She's married to Bedrich."/>
+            <action type="Speech" speech="She's given birth three times. Two boys, and a girl in the middle."/>
+            <action type="Speech" actor="OldSan" speech="Eldest trained with my husband."/>
+            <action type="Speech" actor="OldSan" speech="Youngest runs about, climbs trees. Daughter moved away to marry."/>
+        </node>
+        <node id="82" width="150" height="100" x="655" y="-66" label="Laura Job">
+            <action type="Speech" speech="What's Laura's job  here?"/>
+            <action type="Speech" actor="OldSan" speech="Feed people."/>
+            <action type="Speech" actor="OldSan" speech="Keep the house in order."/>
+            <action type="Speech" actor="OldSan" speech="Keep an eye on her husbands more extravagent flights of fancy."/>
+            <action type="Speech" actor="OldSan" speech="Her Husband ain't hard nosed enough to run a way house."/>
+            <action type="Speech" actor="OldSan" speech="Not really."/>
+            <action type="Jump" jump-target="83"/>
+        </node>
+        <node id="83" width="150" height="100" x="445" y="73" label="Laura Hub"/>
+        <node id="84" width="150" height="100" x="263" y="72" label="Laura Intro">
+            <action type="Speech" actor="Shepard" speech="What do you know about Laura?"/>
+            <action type="Speech" actor="OldSan" speech="That she wouldn't put up with this sort if idle conversation."/>
+            <action type="Jump"/>
+        </node>
+        <node id="85" width="150" height="100" x="25" y="-660" label="Bye">
+            <action type="Conditional">
+                <action type="Speech" actor="Shepard" speech="I should be going"/>
+                <action type="Speech" actor="Shepard" speech="Thank you for your help. I might be by later."/>
+                <action type="Speech" actor="Shepard" speech="I'll leave you to your bussiness."/>
+                <action type="Speech" speech="Good bye"/>
+                <action type="Speech" speech="Thank you for your time."/>
+                <action type="Speech" speech="I'd better head off."/>
+            </action>
+            <action type="Conditional">
+                <action type="Speech" actor="OldSan" speech="Mhmm."/>
+                <action type="Speech" actor="OldSan" speech="..."/>
+            </action>
+        </node>
+        <node id="86" width="150" height="100" x="34" y="-182" label="Bedrich Intro">
+            <action type="Jump" jump-target="91"/>
+            <action type="Speech" actor="Shepard" speech="Mind if I ask you a few questions about Bedrich"/>
+            <action type="Speech" actor="OldSan" speech="Yes."/>
+            <action type="Speech" actor="OldSan" speech="But you're going to ask them anyway."/>
+        </node>
+        <node id="87" width="150" height="100" x="464" y="-93" label="Bedrich Character">
+            <action type="Speech" actor="Shepard" speech="What's Bedrich like? Do you like him?"/>
+            <action type="Speech" actor="OldSan" speech="Bedrich talks."/>
+            <action type="Speech" actor="OldSan" speech="It's his job to talk, to get friendly with people, to make them feel welcome."/>
+            <action type="Speech" actor="OldSan" speech="But his prattle annoys me. "/>
+            <action type="Speech" actor="OldSan" speech="Stay here a few decades and you'll know what I mean."/>
+            <action type="Jump" jump-target="91"/>
+        </node>
+        <node id="88" width="150" height="100" x="462" y="-163" label="Bedrich Where">
+            <action type="Speech" actor="Shepard" speech="Do you know where I could find Bedrich?"/>
+            <action type="Speech" actor="OldSan" speech="In his house."/>
+            <action type="Speech" actor="OldSan" speech="Where do you think you'ld find him?"/>
+            <action type="Jump" jump-target="91"/>
+        </node>
+        <node id="89" width="150" height="100" x="675" y="-245" label="Bedrich Family">
+            <action type="Speech" actor="Shepard" speech="Can you tell me about Bedrich's family?"/>
+            <action type="Speech" actor="OldSan" speech="Not especially."/>
+            <action type="Speech" actor="OldSan" speech="His youngest runs about, his daughter moved away."/>
+            <action type="Speech" actor="OldSan" speech="His eldest trained with my husband, guides people up the mountains."/>
+        </node>
+        <node id="90" width="150" height="100" x="460" y="-289" label="Bedrich Job">
+            <action type="Speech" actor="Shepard" speech="What's Bedrich's job around here, what does he do in the town?"/>
+            <action type="Speech" actor="OldSan" speech="He manages the Wayhouse."/>
+            <action type="Speech" actor="OldSan" speech="The wayhouse YOU are presumably staying at."/>
+            <action type="Jump" jump-target="91"/>
+        </node>
+        <node id="91" width="150" height="100" x="204" y="-181" label="Bedrich Hub"/>
+        <link id="92" label="Guests" from="11" to="7"/>
+        <link id="93" label="History" from="11" to="8"/>
+        <link id="94" label="Locals" from="11" to="9"/>
+        <link id="95" label="Places" from="11" to="10"/>
+        <link id="96" label="Opinion" from="15" to="13"/>
+        <link id="97" label="Where" from="15" to="14"/>
+        <link id="98" label="Opinion" from="24" to="20"/>
+        <link id="99" label="Where" from="24" to="21"/>
+        <link id="100" label="Family" from="24" to="22"/>
+        <link id="101" label="Job" from="24" to="23"/>
+        <link id="118" label="Opinion" from="50" to="51"/>
+        <link id="119" label="Where" from="50" to="52"/>
+        <link id="120" label="Family" from="50" to="53"/>
+        <link id="121" label="Job" from="50" to="54"/>
+        <link id="126" label="Opinion" from="62" to="63"/>
+        <link id="127" label="Where" from="62" to="64"/>
+        <link id="128" label="Family" from="62" to="65"/>
+        <link id="129" label="Job" from="62" to="66"/>
+        <link id="130" label="Opinion" from="72" to="68"/>
+        <link id="131" label="Where" from="72" to="69"/>
+        <link id="132" label="Family" from="72" to="70"/>
+        <link id="133" label="Job" from="72" to="71"/>
+        <link id="134" label="Opinion" from="74" to="75"/>
+        <link id="135" label="Where" from="74" to="76"/>
+        <link id="136" label="Family" from="74" to="77"/>
+        <link id="137" label="Job" from="74" to="78"/>
+        <link id="138" label="Opinion" from="83" to="79"/>
+        <link id="139" label="Where" from="83" to="80"/>
+        <link id="140" label="Family" from="83" to="81"/>
+        <link id="141" label="Job" from="83" to="82"/>
+        <link id="142" label="Job" from="91" to="90"/>
+        <link id="143" label="Family" from="91" to="89"/>
+        <link id="144" label="Opinion" from="91" to="87"/>
+        <link id="145" label="Where" from="91" to="88"/>
+        <node id="1865900" width="150" height="100" x="709" y="1121" label="Bedrich Jump (INCOMPLETE)">
+            <action type="Jump"/>
+        </node>
+        <node id="14330931" width="150" height="100" x="1178" y="1458" label="Too close">
+            <action type="Speech" actor="Shepard" speech="Too close in what way?"/>
+            <action type="Speech" actor="OldSan" speech="You hunting my Husbands ghost Shepard?"/>
+        </node>
+        <link id="32640725" label="Maybe" from="1819186785" to="1633316224"/>
+        <node id="53778425" width="150" height="100" x="1498" y="1449" label="Too fond">
+            <action type="Speech" actor="Shepard" speech="Too fond in what way?"/>
+            <action type="Speech" actor="OldSan" speech="..."/>
+            <action type="Speech" actor="OldSan" speech="You hunting my Husband's ghost shepard?"/>
+        </node>
+        <context-ref id="99096831" x="515" y="2102" width="100" height="100" context="2132301256"/>
+        <link id="105585883" label="~" from="1644948879" to="1492973798"/>
+        <link id="109695398" label="?" from="701319238" to="14330931"/>
+        <link id="121629115" label="~" from="61" to="2051992216"/>
+        <node id="150240575" width="150" height="100" x="861" y="357" label="&quot;Hardly a surprise&quot;?">
+            <action type="Speech" actor="Shepard" speech="&quot;Hardly a surprise&quot;?"/>
+            <action type="Speech" actor="OldSan" speech="That's what I said."/>
+            <action type="Speech" actor="Shepard" speech="What did you mean by that?"/>
+            <action type="Speech" actor="OldSan" speech="I meant that they were both nosey farts."/>
+            <action type="Speech" actor="OldSan" speech="Much like YOU, it would seem."/>
+            <action type="Jump" jump-target="74"/>
+        </node>
+        <node id="153676795" width="150" height="100" x="1173" y="2108" label="No... I don't think I could">
+            <action type="Speech" actor="Shepard" speech="No."/>
+            <action type="Speech" actor="Shepard" speech="It would hurt too much, I don't think I could."/>
+            <action type="Speech" actor="OldSan" speech="Well then you en't really in love are you?"/>
+            <action type="EndConversation"/>
+        </node>
+        <node id="165767435" width="150" height="100" x="1790" y="2162" label="This seems important">
+            <action type="Speech" actor="Shepard" speech="Is it really fair for someone to never know their real father?"/>
+            <action type="Speech" actor="Shepard" speech="You shouldn't be keeping secrets like this."/>
+            <action type="Speech" actor="OldSan" speech="There real father is the man who raised them."/>
+            <action type="Speech" actor="OldSan" speech="And you shouldn't be telling an old woman what she can and can't do with her own secrets!"/>
+            <action type="Speech" actor="OldSan" speech="Now be off with you!"/>
+            <action type="Concurrent">
+                <action type="Emote" actor="OldSan" emote="herding you out of her store."/>
+                <action type="Speech" actor="OldSan" speech="Hutt! Hutt!"/>
+            </action>
+            <action type="EndConversation"/>
+        </node>
+        <node id="196458353" width="150" height="100" x="1633" y="2206" label="Oh- go on...">
+            <action type="Speech" actor="Shepard" speech="Oh go on- you've already shared so much, and we're such good friends now."/>
+            <action type="Speech" actor="Shepard" speech="Besides- you wouldn't hint at such a story if you weren't planning to tell it."/>
+            <action type="Speech" actor="OldSan" speech="Hmmm..."/>
+            <action type="Speech" actor="OldSan" speech="Amusing... but somehow I find myself unmoved..."/>
+            <action type="Speech" actor="Shepard" speech="Could you give me a hint?"/>
+            <action type="Speech" actor="OldSan" speech="Now really- be off with you, before this I tire of this little dance."/>
+            <action type="EndConversation"/>
+        </node>
+        <node id="206833911" width="150" height="100" x="-173" y="-375" label="Nope">
+            <action type="Speech" actor="Shepard" speech="No. Nothing to do with your husband."/>
+            <action type="Speech" actor="OldSan" speech="Really?"/>
+            <action type="Speech" actor="OldSan" speech="Smarter than you look."/>
+            <action type="Jump" jump-target="2041161455"/>
+        </node>
+        <node id="208770750" width="150" height="100" x="1087" y="1787" label="Let off hook">
+            <action type="Speech" actor="Shepard" speech="You shouldn't have let him off the hook so easily."/>
+            <action type="Speech" actor="OldSan" speech="And what do you know about it? Have you ever been married?"/>
+            <action type="Speech" actor="Shepard" speech="Y-"/>
+            <action type="Speech" actor="OldSan" speech="Have you ever been in love?"/>
+            <action type="Speech" actor="OldSan" speech="and I don't just mean the stupid honey moon love you young folk have, fooling around in each others beds."/>
+            <action type="Speech" actor="OldSan" speech="I mean trusting each other."/>
+            <action type="Speech" actor="OldSan" speech="Depending on one another."/>
+            <action type="Speech" actor="Shepard" speech="-"/>
+            <action type="Speech" actor="OldSan" speech="Yes... even when you let each other down."/>
+        </node>
+        <node id="208873731" width="150" height="100" x="702" y="2328" label="You decide things.">
+            <action type="Speech" actor="Shepard" speech="I heard that sometimes you decide things?"/>
+            <action type="Speech" actor="OldSan" speech="What?"/>
+            <action type="Speech" actor="Shepard" speech="Settle disputes- offer opinions."/>
+            <action type="Emote" actor="OldSan" emote="Dismissive wave."/>
+            <action type="Speech" actor="OldSan" speech="Yes yes- sometimes the stupid young folk decide to call on the &quot;wisdom of the ancients&quot;."/>
+            <action type="Speech" actor="OldSan" speech="Mainly because they're idiots."/>
+            <action type="Speech" actor="OldSan" speech="If any of them had been paying attention they'd have realised that I usually just flip a coin."/>
+        </node>
+        <link id="234801911" label="maybe" from="1905447453" to="2024651615"/>
+        <context-ref id="254599510" x="539" y="1582" width="100" height="100" context="97370123"/>
+        <link id="257581692" label="Zuzana" from="53" to="955604726"/>
+        <link id="269970067" label="*" from="893994268" to="846614141"/>
+        <context-ref id="320471424" x="324" y="1839" width="100" height="100" context="1778541711"/>
+        <link id="346124509" label="~" from="1417806789" to="737000717"/>
+        <link id="353633592" label="!" from="893994268" to="1819186785"/>
+        <link id="355103750" label="Opinion" from="53" to="51"/>
+        <node id="371653907" width="150" height="100" x="1417" y="1843" label="What reasons?">
+            <action type="Speech" actor="Shepard" speech="What were these reasons you spoke of?"/>
+            <action type="Speech" actor="OldSan" speech="More questions? I tell you all my secrets, and yet still you ask more questions?"/>
+            <action type="Speech" actor="Shepard" speech="It might be important."/>
+            <action type="Speech" actor="OldSan" speech="...."/>
+            <action type="Speech" actor="OldSan" speech="I'm barren Shepard."/>
+            <action type="Speech" actor="OldSan" speech="Gregor always planned to have children of his own... and he married me and..."/>
+            <action type="Speech" actor="OldSan" speech="I'm barren."/>
+        </node>
+        <link id="412973044" label="Family" from="99096831" to="34"/>
+        <link id="456425781" label="Children" from="22" to="811257323"/>
+        <link id="461977958" label="!" from="61" to="1700354037"/>
+        <link id="463842731" label="Job" from="254599510" to="47"/>
+        <link id="468362636" label="yes" from="53778425" to="1403176131"/>
+        <node id="473639006" width="150" height="100" x="-365" y="-639" label="First Meeting" entry="true">
+            <action type="FirstVisitConditional" cond-invert="true">
+                <action type="Jump"/>
+            </action>
+            <action type="FirstVisitConditional">
+                <action type="Speech" actor="OldSan" speech="Ah- You are the Shepard. Eduard mentioned you. You here for equipment?"/>
+            </action>
+        </node>
+        <node id="476707713" width="150" height="100" x="193" y="-312" label="Ask bedrich">
+            <action type="Speech" actor="Shepard" speech="Well... yes."/>
+            <action type="Speech" actor="OldSan" speech="If you must."/>
+            <action type="Jump" jump-target="91"/>
+        </node>
+        <link id="489035169" label="Eldest" from="89" to="899065992"/>
+        <link id="495252308" label="Daughter" from="81" to="924859463"/>
+        <node id="505671508" width="150" height="100" x="42" y="-63" label="No asking">
+            <action type="Speech" actor="Shepard" speech="No."/>
+            <action type="Speech" actor="Shepard" speech="I won't question you if you don't want it."/>
+            <action type="Speech" actor="OldSan" speech="Well there's a small mercy."/>
+            <action type="Jump" jump-target="2041161455"/>
+        </node>
+        <node id="519852486" width="150" height="100" x="936" y="1954" label="(Matias)  I was in love.">
+            <action type="Speech" actor="Shepard" speech="No... yes. I was in love."/>
+            <action type="Speech" actor="OldSan" speech="Still are?"/>
+            <action type="Speech" actor="Shepard" speech="... still am."/>
+            <action type="Speech" actor="OldSan" speech="And would you forgive her?"/>
+        </node>
+        <link id="542439653" label="*" from="1417806789" to="772542341"/>
+        <node id="561321355" width="150" height="100" x="-786" y="-440" label="Why">
+            <action type="Speech" actor="Shepard" speech="You seem annoyed."/>
+            <action type="Speech" actor="OldSan" speech="Well aren't you observant?"/>
+            <action type="Speech" actor="Shepard" speech="Why?"/>
+            <action type="Speech" actor="OldSan" speech="Because I can't stand busy bodies."/>
+            <action type="Speech" actor="Shepard" speech="So you'd prefer if I didn't do my job?"/>
+            <action type="Speech" actor="OldSan" speech="It's not your job!"/>
+            <action type="Speech" actor="OldSan" speech="Whoever said it was YOUR right to stir up things best left in the past."/>
+            <action type="Speech" actor="Shepard" speech="Sometimes I get asked to."/>
+            <action type="Speech" actor="OldSan" speech="Hmph. "/>
+            <action type="Speech" actor="OldSan" speech="Fine."/>
+            <action type="Speech" actor="OldSan" speech="Be about your bussiness."/>
+            <action type="Jump" jump-target="2041161455"/>
+        </node>
+        <link id="567710733" label="*" from="1644948879" to="196458353"/>
+        <node id="581395116" width="150" height="100" x="479" y="2795" label="Jump to affair area">
+            <action type="Jump"/>
+        </node>
+        <link id="584603084" label="Family" from="320471424" to="41"/>
+        <link id="589265238" label="Opinion" from="89" to="87"/>
+        <node id="596932118" width="150" height="100" x="727" y="1338" label="Petr">
+            <action type="Speech" actor="Shepard" speech="Anything to say about Petr"/>
+            <action type="Speech" actor="OldSan" speech="A few things."/>
+            <action type="Speech" actor="OldSan" speech="But those I think I will keep to myself."/>
+            <action type="Speech" actor="OldSan" speech="He was a good boy, young Petr."/>
+            <action type="Jump"/>
+        </node>
+        <node id="603649082" width="150" height="100" x="1436" y="2007" label="Ask Tereza reason, get yelling">
+            <action type="Speech" actor="Shepard" speech="You mentioned that Tereza also had reasons. Can you tell me about those?"/>
+            <action type="Speech" actor="OldSan" speech="I don't give a damn for Tereza or her reasons!"/>
+            <action type="Speech" actor="OldSan" speech="God's sakes &lt;man/woman&gt;- can't you leave an old woman in peace?!"/>
+            <action type="Speech" actor="OldSan" speech="Why'd you have to go digging- always digging? We're done here. Get out of my house!"/>
+            <action type="EndConversation"/>
+        </node>
+        <link id="636708761" label="Opinion" from="76" to="75"/>
+        <link id="637121027" label="Opinion" from="677479913" to="20"/>
+        <node id="648554434" width="150" height="100" x="1252" y="1988" label="Sorry">
+            <action type="Speech" actor="Shepard" speech="I'm sorry."/>
+            <action type="Speech" actor="OldSan" speech="So was I."/>
+            <action type="Speech" actor="OldSan" speech="So was he."/>
+            <action type="EndConversation"/>
+        </node>
+        <node id="653613378" width="150" height="100" x="-548" y="-372" label="I was hoping to ask you about them">
+            <action type="Speech" actor="Shepard" speech="Yes. What can you-"/>
+            <action type="Speech" actor="OldSan" speech="Pah!"/>
+            <action type="Speech" actor="Shepard" speech="...."/>
+            <action type="Jump" jump-target="893994268"/>
+        </node>
+        <link id="664526688" label="maybe" from="519852486" to="2024651615"/>
+        <link id="665886373" label="yes" from="1905447453" to="1948537373"/>
+        <link id="674954417" label="no" from="519852486" to="153676795"/>
+        <context-ref id="677479913" x="978" y="2644" width="100" height="100" context="309113185"/>
+        <link id="693749302" label="Bedrich" from="53" to="1865900"/>
+        <node id="701319238" width="150" height="100" x="1149" y="1282" label="Via Tereza context">
+            <action type="Speech" actor="Shepard" speech="I was wondering if you had any comments on Tereza's relationship to your husband."/>
+            <action type="Speech" actor="OldSan" speech="Entirely too close."/>
+        </node>
+        <node id="704096693" width="150" height="100" x="233" y="1427" label="Jump Tereza +(gregor)">
+            <action type="Jump"/>
+        </node>
+        <link id="704673361" label="Yes" from="1314171187" to="653613378"/>
+        <node id="704677169" width="150" height="100" x="1484" y="2187" label="Is it Bedrich">
+            <action type="Speech" actor="Shepard" speech="Is it Bedrich?"/>
+            <action type="Speech" actor="OldSan" speech="Out!"/>
+            <action type="EndConversation"/>
+        </node>
+        <link id="719950939" label="Eldest" from="81" to="899065992"/>
+        <link id="722241557" label="Where" from="320471424" to="40"/>
+        <link id="733366597" label="No" from="1314171187" to="206833911"/>
+        <node id="737000717" width="150" height="100" x="1286" y="1142" label="Diplomatic backtrack">
+            <action type="Speech" actor="Shepard" speech="It sounds like I am treading on a sensitive topic."/>
+            <action type="Speech" actor="OldSan" speech="Yes. You are."/>
+            <action type="Speech" actor="Shepard" speech="I'ld best leave it be then."/>
+            <action type="Speech" actor="OldSan" speech="Appreciated."/>
+            <action type="EndConversation"/>
+        </node>
+        <link id="742480296" label="Husband" from="320471424" to="1256130775"/>
+        <node id="772542341" width="150" height="100" x="1334" y="1447" label="Insensitive">
+            <action type="Speech" actor="Shepard" speech="It sounds like I'm treading on a sensitive topic."/>
+            <action type="Speech" actor="OldSan" speech="Yes. You are."/>
+            <action type="Speech" actor="Shepard" speech="In that case... what a splendid thing to question you on. Do tell me all about it."/>
+            <action type="Speech" actor="OldSan" speech="You nosey no good busy body..."/>
+            <action type="Speech" actor="OldSan" speech="..."/>
+            <action type="Speech" actor="OldSan" speech="... are you hunting my husband's ghost Shepard?"/>
+        </node>
+        <node id="811257323" width="150" height="100" x="971" y="2501" label="No children.">
+            <action type="Speech" actor="Shepard" speech="Did you want children?"/>
+            <action type="Speech" actor="OldSan" speech="I... yes..."/>
+            <action type="Speech" actor="OldSan" speech="He did."/>
+            <action type="Speech" actor="OldSan" speech="But we never had any."/>
+            <action type="Speech" actor="Shepard" speech="Why not?"/>
+            <action type="Emote" actor="OldSan" emote="Shrug."/>
+        </node>
+        <context-ref id="818243225" x="344" y="2352" width="100" height="100" context="75325530"/>
+        <link id="822604987" label="Husband" from="1314171187" to="1533076172"/>
+        <link id="832126814" label="*" from="772542341" to="1006686177"/>
+        <node id="846614141" width="150" height="100" x="-708" y="-151" label="Trick (ANGER)">
+            <action type="Speech" actor="Shepard" speech="Sounds like you enjoy being annoyed at people."/>
+            <action type="Speech" actor="OldSan" speech="Sounds like you enjoy guessing at peoples motives."/>
+            <action type="Speech" actor="Shepard" speech="Am I wrong?"/>
+            <action type="Speech" actor="OldSan" speech="Yes. And you are an idiot. Now get out of my store."/>
+            <action type="Emote" emote="SET VARIABLE ANGER"/>
+            <action type="EndConversation"/>
+        </node>
+        <link id="851671093" label="Opinion" from="818243225" to="27"/>
+        <node id="859140432" width="150" height="100" x="46" y="-536" label="SelfIntro">
+            <action type="FirstVisitConditional">
+                <action type="Speech" actor="Shepard" speech="Who are you?"/>
+                <action type="Speech" actor="OldSan" speech="I'm San."/>
+                <action type="Speech" actor="OldSan" speech="Old San."/>
+            </action>
+            <action type="FirstVisitConditional" cond-invert="true">
+                <action type="Speech" actor="Shepard" speech="Who are you?"/>
+                <action type="Speech" actor="OldSan" speech="I'm San."/>
+                <action type="Speech" actor="OldSan" speech="Old San."/>
+                <action type="Speech" actor="OldSan" speech="And you're an idiot."/>
+            </action>
+            <action type="Jump"/>
+        </node>
+        <link id="861609334" label="Job" from="99096831" to="35"/>
+        <link id="879608448" label="!" from="1644948879" to="165767435"/>
+        <node id="893994268" width="150" height="100" x="-756" y="-284" label="Pah!"/>
+        <node id="899065992" width="150" height="100" x="987" y="-19" label="Eldest Via Bedrick Fam">
+            <action type="Speech" actor="Shepard" speech="Can you tell me about the Eldest?"/>
+            <action type="Speech" actor="OldSan" speech="No."/>
+            <action type="Speech" actor="OldSan" speech="Why don't you go talk to him yourself if you're so curious."/>
+            <action type="EndConversation"/>
+        </node>
+        <link id="918140436" label="Family" from="677479913" to="22"/>
+        <node id="924859463" width="150" height="100" x="981" y="-290" label="Daughter(Via bedrick Fam)">
+            <action type="Speech" actor="Shepard" speech="What can you say about the daughter?"/>
+            <action type="Speech" actor="OldSan" speech="She's like her grandmother."/>
+            <action type="Speech" actor="Shepard" speech="How so?"/>
+            <action type="Speech" actor="OldSan" speech="Likes to think she's important."/>
+            <action type="Speech" actor="OldSan" speech="Wants to make something of herself."/>
+            <action type="Speech" actor="Shepard" speech="You disapprove?"/>
+            <action type="Speech" actor="OldSan" speech="Everyone should make something of themselves."/>
+            <action type="Speech" actor="OldSan" speech="It takes a special kind of person to think they're important for doing it."/>
+            <action type="Jump" jump-target="74"/>
+        </node>
+        <link id="936017334" label="No" from="1819186785" to="1782949768"/>
+        <link id="936145377" label="Job" from="89" to="90"/>
+        <node id="955604726" width="150" height="100" x="720" y="1230" label="Zuzana (INCOMPLETE)">
+            <action type="Speech" actor="Shepard" speech="Could you tell me some more about Zuzana?"/>
+            <action type="Speech" actor="OldSan" speech="Zuzana!?"/>
+            <action type="Speech" actor="OldSan" speech="Hmph."/>
+            <action type="Speech" actor="OldSan" speech="Like her mother. Very GREEDY child."/>
+            <action type="Speech" actor="OldSan" speech="Liked to win at things."/>
+            <action type="Speech" actor="OldSan" speech="Always wanted the best...Best job, best town, best husband."/>
+            <action type="Speech" actor="OldSan" speech="You know the type."/>
+            <action type="Jump"/>
+        </node>
+        <link id="959122900" label="~" from="893994268" to="1202724756"/>
+        <link id="964899043" label="Job" from="76" to="78"/>
+        <link id="984411720" label="Job" from="53" to="54"/>
+        <node id="1006686177" width="150" height="100" x="1114" y="1603" label="Am now">
+            <action type="Speech" actor="Shepard" speech="Well... I am now, aren't I?"/>
+            <action type="Speech" actor="OldSan" speech="Argh!"/>
+            <action type="Speech" actor="OldSan" speech="Lord, give me patience... that I might resist the urge to beat &lt;his/her&gt; face in...."/>
+            <action type="Jump"/>
+        </node>
+        <link id="1031822167" label="!" from="1417806789" to="1339195199"/>
+        <node id="1034160761" width="150" height="100" x="659" y="298" label="INCOMPLETE (DECIDING WRT agatha)"/>
+        <link id="1045703580" label="Ester" from="208770750" to="519852486"/>
+        <link id="1092130023" label="EVERYTHING ELSE?" from="208770750" to="1885564994"/>
+        <link id="1109609161" label="Decide" from="30" to="208873731"/>
+        <link id="1137681777" label="*" from="61" to="1601115611"/>
+        <link id="1146356873" label="Opinion" from="254599510" to="44"/>
+        <node id="1178115182" width="150" height="100" x="-41" y="641" label="Reason">
+            <action type="Speech" actor="Shepard" speech="Why don't you you want to talk to me about him?"/>
+            <action type="Speech" actor="OldSan" speech="I have good reason."/>
+            <action type="Speech" actor="OldSan" speech="For one thing, I don't think the boy would appreciate it."/>
+        </node>
+        <link id="1182112391" label="Daughter" from="89" to="924859463"/>
+        <link id="1186278907" label="Yes" from="86" to="476707713"/>
+        <node id="1202724756" width="150" height="100" x="-943" y="-187" label="Diplomatic">
+            <action type="Speech" actor="Shepard" speech="I'm sorry- I didn't mean to offend you, I-"/>
+            <action type="Speech" actor="OldSan" speech="Well you did."/>
+            <action type="Speech" actor="OldSan" speech="And you're wasting my time."/>
+            <action type="Speech" actor="OldSan" speech="Get out!"/>
+            <action type="EndConversation"/>
+        </node>
+        <link id="1215825599" label="Where" from="89" to="88"/>
+        <link id="1218520712" label="Where" from="818243225" to="28"/>
+        <link id="1227735875" label="Where" from="677479913" to="21"/>
+        <link id="1228162728" label="Yes" from="14330931" to="1403176131"/>
+        <link id="1255022929" label="Questions" from="473639006" to="1314171187"/>
+        <node id="1256130775" width="150" height="100" x="290" y="1978" label="Ask about husband">
+            <action type="Speech" actor="Shepard" speech="How did she interact with her husband?"/>
+            <action type="Speech" actor="OldSan" speech="They were good togeather."/>
+            <action type="Speech" actor="OldSan" speech="Respectful."/>
+            <action type="Speech" actor="OldSan" speech="He gave her the support she needed to do her job- kept the house and animals in order."/>
+            <action type="Speech" actor="OldSan" speech="She...."/>
+            <action type="Speech" actor="OldSan" speech="She looked after her husband, kept him from getting lost."/>
+            <action type="Speech" actor="OldSan" speech="He didn't take it well when she died."/>
+        </node>
+        <link id="1260217093" label="*" from="371653907" to="1644948879"/>
+        <link id="1272832892" label="~" from="2049674277" to="1403455411"/>
+        <link id="1296788351" label="!" from="701319238" to="1339195199"/>
+        <link id="1298630230" label="You" from="2041161455" to="859140432"/>
+        <link id="1305053256" label="Job" from="677479913" to="23"/>
+        <node id="1309920959" width="150" height="100" x="1458" y="1598" label="No">
+            <action type="Speech" speech="No."/>
+        </node>
+        <link id="1312955980" label="?" from="2049674277" to="371653907"/>
+        <node id="1314171187" width="150" height="100" x="-252" y="-499" label="Questions">
+            <action type="Speech" actor="Shepard" speech="Actually I was hoping to ask a few questions."/>
+            <action type="Speech" actor="OldSan" speech="Questions? Hmph."/>
+            <action type="Speech" actor="OldSan" speech="You here you about my husband?"/>
+        </node>
+        <link id="1326548709" label="!" from="2049674277" to="208770750"/>
+        <link id="1336812404" label="Petr" from="53" to="596932118"/>
+        <link id="1337360875" label="Tereza" from="24" to="581395116"/>
+        <node id="1339195199" width="150" height="100" x="1507" y="1149" label="Push too hard.">
+            <action type="Speech" actor="Shepard" speech="This sounds important. I'm going to need you to tell me what you're alluding to."/>
+            <action type="Speech" actor="OldSan" speech="You ain't going to &quot;need me&quot; to do anything, insolent pup."/>
+            <action type="Speech" actor="OldSan" speech="You're going to get out of my store, and never speak of this again."/>
+            <action type="Emote" emote="Set angry variable true."/>
+            <action type="EndConversation"/>
+        </node>
+        <link id="1361234178" label="?" from="893994268" to="561321355"/>
+        <node id="1366913857" width="150" height="100" x="1112" y="1053" label="Direct">
+            <action type="Speech" actor="Shepard" speech="I was wondering if I could ask you some more questiosn about your husbands affair."/>
+            <action type="Speech" actor="OldSan" speech="No!"/>
+            <action type="Speech" actor="OldSan" speech="Whatever made you think that you had the right to ask questions about it in the first place?"/>
+            <action type="Speech" actor="OldSan" speech="Now bugger off you meddling &lt;git/trollop&gt;."/>
+            <action type="EndConversation"/>
+        </node>
+        <node id="1401330879" width="150" height="100" x="-1191" y="-514" label="Angered San">
+            <action type="Speech" speech="Well... yes."/>
+            <action type="Speech" actor="OldSan" speech="Well you're a damn fool."/>
+            <action type="Speech" actor="OldSan" speech="Now get out of my shop."/>
+            <action type="Emote" actor="OldSan" emote="SET ANGER VARIABLE TO TRUE."/>
+            <action type="EndConversation"/>
+        </node>
+        <node id="1403176131" width="150" height="100" x="1273" y="1598" label="Yes">
+            <action type="Speech" actor="Shepard" speech="Yes."/>
+        </node>
+        <node id="1403455411" width="150" height="100" x="1248" y="1842" label="Thank you.">
+            <action type="Speech" actor="Shepard" speech="That must have been hard."/>
+            <action type="Speech" actor="OldSan" speech="Oh tosh. It's what happens."/>
+            <action type="Speech" actor="OldSan" speech="We all live our lives, make mistakes. "/>
+            <action type="Speech" actor="OldSan" speech="Gregor had his weaknesses, but he was a good husband otherwise."/>
+            <action type="Speech" actor="Shepard" speech="Thank you for telling me all that."/>
+            <action type="Speech" actor="OldSan" speech="You can thank me by never speaking of this again."/>
+            <action type="Speech" actor="Shepard" speech="As you wish."/>
+            <action type="EndConversation"/>
+        </node>
+        <node id="1417806789" width="150" height="100" x="1493" y="1289" label="Via Gregor context">
+            <action type="Speech" actor="Shepard" speech="I was wondering if could comment on what your Husband thought of Tereza."/>
+            <action type="Speech" actor="OldSan" speech="He was entirely too fond of her."/>
+        </node>
+        <link id="1431355191" label="Youngers" from="81" to="1942841066"/>
+        <link id="1441442234" label="?" from="1417806789" to="53778425"/>
+        <link id="1441846618" label="Job" from="320471424" to="42"/>
+        <link id="1458121676" label="Where" from="99096831" to="33"/>
+        <link id="1465752676" label="Equipment" from="473639006" to="1986692731"/>
+        <link id="1484739682" label="?" from="1644948879" to="704677169"/>
+        <node id="1492973798" width="150" height="100" x="1335" y="2156" label="Goodbye, thank you">
+            <action type="Speech" actor="Shepard" speech="Thank you for telling me all that."/>
+            <action type="Speech" actor="Shepard" speech="I promise to be discrete with what I have learned."/>
+            <action type="Speech" actor="OldSan" speech="and I promise to shove an ice pick through your spleen if you fail in this discretion."/>
+            <action type="Speech" actor="Shepard" speech="Duly noted."/>
+            <action type="EndConversation"/>
+        </node>
+        <node id="1533076172" width="150" height="100" x="-342" y="-372" label="Husband">
+            <action type="Speech" actor="Shepard" speech="Sure. Tell me about your husband."/>
+            <action type="Speech" actor="OldSan" speech="Pah."/>
+            <action type="Speech" actor="Shepard" speech="..."/>
+            <action type="Jump" jump-target="893994268"/>
+        </node>
+        <link id="1554861658" label="Family" from="254599510" to="46"/>
+        <link id="1588880676" label="Ivan" from="320471424" to="1256130775"/>
+        <node id="1601115611" width="150" height="100" x="103" y="905" label="Lies">
+            <action type="Speech" actor="Shepard" speech="[LIE] It's okay- he said that I should take to you,"/>
+            <action type="Emote" actor="OldSan" emote="Surprise"/>
+            <action type="Speech" actor="OldSan" speech="Did he now?"/>
+            <action type="Speech" actor="Shepard" speech="[LIE] Yes."/>
+            <action type="Speech" actor="OldSan" speech="..."/>
+            <action type="Speech" actor="OldSan" speech="That doesn't sound like Eduard."/>
+            <action type="Speech" actor="OldSan" speech="That doesn't sound like Eduard at all."/>
+            <action type="Speech" actor="OldSan" speech="I think you're lying."/>
+            <action type="Speech" actor="Shepard" speech="[LIE] I'm not."/>
+            <action type="Speech" actor="OldSan" speech="You are so!"/>
+            <action type="Speech" actor="OldSan" speech="You dirty sneak."/>
+            <action type="Speech" actor="OldSan" speech="Think you can trick me into betraying the boys trust?"/>
+            <action type="Speech" actor="OldSan" speech="So much for the honour of Shepards."/>
+            <action type="Speech" actor="OldSan" speech="How pathetic."/>
+            <action type="Emote" actor="OldSan" emote="Anger condition Set (MAXIMUM)"/>
+            <action type="EndConversation"/>
+        </node>
+        <link id="1620836711" label="No" from="14330931" to="1309920959"/>
+        <node id="1633316224" width="150" height="100" x="-1230" y="-404" label="Maybe help">
+            <action type="Speech" actor="Shepard" speech="Well... maybe."/>
+            <action type="Speech" actor="Shepard" speech="I don't know yet, I've only just arrived."/>
+            <action type="Speech" actor="OldSan" speech="Well then come back and talk to me when you know what you're talking about."/>
+            <action type="EndConversation"/>
+        </node>
+        <link id="1643812604" label="Where" from="254599510" to="45"/>
+        <node id="1644948879" width="150" height="100" x="1611" y="2005" label="How many kids">
+            <action type="Speech" actor="Shepard" speech="So..."/>
+            <action type="Speech" actor="Shepard" speech="How many children DID your husband end up having?"/>
+            <action type="Speech" actor="OldSan" speech="Ha!"/>
+            <action type="Speech" actor="OldSan" speech="At least one I should wager."/>
+            <action type="Speech" actor="OldSan" speech="Perhaps more, if there were other women he didn't tell me about."/>
+            <action type="Speech" actor="OldSan" speech="And don't you dare go asking me WHO I think his children might be."/>
+        </node>
+        <link id="1657930193" label="Opinion" from="320471424" to="39"/>
+        <link id="1663705393" label="Gregor" from="50" to="704096693"/>
+        <node id="1672339117" width="150" height="100" x="1578" y="1824" label="Quiet a story">
+            <action type="Speech" actor="Shepard" speech="That's quiet a story San. "/>
+            <action type="Speech" actor="Shepard" speech="I surprised its not the talk of the town."/>
+            <action type="Speech" actor="OldSan" speech="Who would tell. Tereza would. Gregor wouldn't. I wouldn't."/>
+            <action type="Speech" actor="Shepard" speech="You have now."/>
+            <action type="Emote" actor="OldSan" emote="Waves hand."/>
+            <action type="Speech" actor="OldSan" speech="Tereza's husband never knew. "/>
+            <action type="Speech" actor="OldSan" speech="As long as you learn how to keep your trap shut, we'll all get to live out the rest of our lives in harmony."/>
+            <action type="EndConversation"/>
+        </node>
+        <link id="1675547640" label="*" from="2049674277" to="1672339117"/>
+        <link id="1682549890" label="?" from="61" to="1178115182"/>
+        <link id="1691040598" label="Matias" from="208770750" to="1905447453"/>
+        <node id="1700354037" width="150" height="100" x="-76" y="895" label="Pushing">
+            <action type="Speech" actor="Shepard" speech="I really think that you should tell me what you can."/>
+            <action type="Speech" actor="OldSan" speech="and I think otherwise."/>
+            <action type="Conditional">
+                <action type="Speech" actor="Shepard" speech="His younger brother is concerned for his safety."/>
+                <action type="Speech" actor="OldSan" speech="...."/>
+                <action type="Speech" actor="OldSan" speech="That is as may be Shepard."/>
+                <action type="Speech" actor="OldSan" speech="But you can't seriously imagine that your interference is likely to help the situation."/>
+                <action type="Speech" actor="Shepard" speech="What if it can?"/>
+                <action type="Concurrent">
+                    <action type="Emote" actor="OldSan" emote="shakes head"/>
+                    <action type="Speech" actor="OldSan" speech="No."/>
+                </action>
+            </action>
+        </node>
+        <link id="1701072507" label="Youngest" from="89" to="1942841066"/>
+        <link id="1702389617" label="no" from="53778425" to="1309920959"/>
+        <link id="1703036555" label="?" from="371653907" to="603649082"/>
+        <link id="1742238673" label="*" from="701319238" to="772542341"/>
+        <node id="1782949768" width="150" height="100" x="-1209" y="-282" label="No help needed.">
+            <action type="Speech" actor="Shepard" speech="No."/>
+            <action type="Speech" actor="OldSan" speech="Then why are you here?"/>
+            <action type="Jump" jump-target="2041161455"/>
+        </node>
+        <link id="1783281474" label="~" from="701319238" to="737000717"/>
+        <node id="1819186785" width="150" height="100" x="-984" y="-357" label="Push">
+            <action type="Speech" actor="Shepard" speech="It doesn't sound like you're planning to be very cooperative."/>
+            <action type="Speech" actor="OldSan" speech="No."/>
+            <action type="Speech" actor="OldSan" speech="Stupid young fool walking around poking their nose in other people lives. "/>
+            <action type="Speech" actor="OldSan" speech="You think we need your help?"/>
+        </node>
+        <node id="1885564994" width="150" height="100" x="864" y="1841" label="Exit.">
+            <action type="Speech" actor="OldSan" speech="No... you know nothing child."/>
+            <action type="Speech" actor="OldSan" speech="No get out of my house, and save us both the embarresment of you being here."/>
+            <action type="EndConversation"/>
+        </node>
+        <node id="1905447453" width="150" height="100" x="1083" y="1954" label="I was in love">
+            <action type="Speech" actor="Shepard" speech="I was in love."/>
+            <action type="Speech" actor="OldSan" speech="Still are?"/>
+            <action type="Speech" actor="Shepard" speech="Still am."/>
+            <action type="Speech" actor="OldSan" speech="And would you forgive him?"/>
+        </node>
+        <link id="1907218830" label="Family" from="76" to="77"/>
+        <link id="1935915075" label="?" from="76" to="150240575"/>
+        <node id="1942841066" width="150" height="100" x="1000" y="-173" label="Youngest Via Bedrick Fam">
+            <action type="Speech" actor="Shepard" speech="What do you know about the youngest?"/>
+            <action type="Speech" actor="OldSan" speech="Not much"/>
+            <action type="Speech" actor="OldSan" speech="Never really paid attention to him myself."/>
+            <action type="Jump" jump-target="72"/>
+        </node>
+        <node id="1948537373" width="150" height="100" x="870" y="2105" label="Yes.">
+            <action type="Speech" actor="Shepard" speech="Yes."/>
+            <action type="Speech" actor="OldSan" speech="Yes?"/>
+            <action type="Speech" actor="OldSan" speech="You would?"/>
+            <action type="Speech" actor="OldSan" speech="That easy?"/>
+            <action type="Speech" actor="OldSan" speech="Pah!"/>
+            <action type="Speech" actor="OldSan" speech="You're stupid. You have no Idea how hard it is."/>
+            <action type="Speech" actor="OldSan" speech="And more to the point you have no bussiness telling me I should have been harsher with Gregor."/>
+            <action type="Speech" actor="OldSan" speech="Now Piss off! I'm done with you."/>
+            <action type="Speech" actor="OldSan" speech="Meddling fool..."/>
+            <action type="EndConversation"/>
+        </node>
+        <link id="1948778866" label="~" from="371653907" to="648554434"/>
+        <link id="1951619626" label="no" from="1905447453" to="153676795"/>
+        <link id="1957021766" label="yes" from="772542341" to="1403176131"/>
+        <link id="1970242928" label="!" from="371653907" to="2005480717"/>
+        <node id="1986692731" width="150" height="100" x="-694" y="-599" label="Equipment">
+            <action type="Speech" actor="Shepard" speech="What kind of equipment do you have?"/>
+            <action type="Speech" actor="OldSan" speech="Hmph- not here for equipment then."/>
+            <action type="Speech" actor="Shepard" speech="Can you tell me about the equipment anyway?"/>
+            <action type="Speech" actor="OldSan" speech="No."/>
+            <action type="Speech" actor="OldSan" speech="I will not accept your patronage."/>
+            <action type="Speech" actor="OldSan" speech="You need my equipment you come and order it when you need it."/>
+            <action type="EndConversation" jump-target="2041161455"/>
+        </node>
+        <node id="2005480717" width="150" height="100" x="1773" y="1974" label="Let off hook after&quot;?&quot;">
+            <action type="Speech" actor="Shepard" speech="You shouldn't have let him off the hook so easily."/>
+            <action type="Speech" actor="OldSan" speech="You say that?"/>
+            <action type="Speech" actor="OldSan" speech="Even knowing what you know now? Even knowing all I have told you?"/>
+            <action type="Speech" actor="OldSan" speech="You are an idiot."/>
+            <action type="Speech" actor="OldSan" speech="Now get out of my house."/>
+            <action type="EndConversation"/>
+        </node>
+        <node id="2024651615" width="150" height="100" x="1015" y="2128" label="don't know">
+            <action type="Speech" actor="Shepard" speech="I don't know."/>
+            <action type="Speech" actor="OldSan" speech="Niether did I."/>
+            <action type="Speech" actor="OldSan" speech="... but at least you en't stupid."/>
+            <action type="Speech" actor="OldSan" speech="At least you know how hard it is."/>
+            <action type="Speech" actor="OldSan" speech="Maybe you are in love."/>
+            <action type="EndConversation"/>
+        </node>
+        <link id="2039565267" label="Where" from="53" to="52"/>
+        <node id="2041161455" width="150" height="100" x="13" y="-387" label="Main Hub"/>
+        <node id="2049674277" width="150" height="100" x="1354" y="1680" label="Forgiveness">
+            <action type="Speech" actor="OldSan" speech="Me and my husband put that bussiness to rest years ago."/>
+            <action type="Concurrent">
+                <action type="Emote" actor="OldSan" emote="Rage."/>
+                <action type="Speech" actor="OldSan" speech="Yes. He betrayed me. He betrayed our wedding vows- slept with another woman."/>
+            </action>
+            <action type="Speech" actor="OldSan" speech="It hurt. Drove a wedge through this community like nothing else could."/>
+            <action type="Speech" actor="OldSan" speech="I forgave him. "/>
+            <action type="Speech" actor="OldSan" speech="I swallowed my pride, my hatred, and I forgave him for that."/>
+            <action type="Speech" actor="OldSan" speech="We both knew he had his reasons."/>
+            <action type="Speech" actor="OldSan" speech="As did she."/>
+            <action type="Speech" actor="OldSan" speech="Though... her's I found less palatable."/>
+            <action type="Speech" actor="OldSan" speech="That's it. That's all there is."/>
+            <action type="Speech" actor="OldSan" speech="Stories of stupid old folk from a time when they were stupid and young."/>
+        </node>
+        <node id="2051992216" width="150" height="100" x="84" y="642" label="Ask nicely.">
+            <action type="Speech" actor="Shepard" speech="I understand that you are reluctant to talk, but I would really appreciate any help you could provide."/>
+            <action type="Speech" actor="OldSan" speech="That's nice dear."/>
+            <action type="Speech" actor="OldSan" speech="But I don't imagine you expect it to change my opinion."/>
+        </node>
+        <link id="2069189246" label="Opinion" from="99096831" to="32"/>
+        <link id="2074427649" label="Job" from="818243225" to="30"/>
+        <link id="2092069441" label="yes" from="519852486" to="1948537373"/>
+        <link id="2108578504" label="No" from="772542341" to="1309920959"/>
+        <link id="2127588586" label="Family" from="818243225" to="29"/>
+        <link id="2131759629" label="Yes" from="1819186785" to="1401330879"/>
+        <link id="2137716191" label="No" from="86" to="505671508"/>
+    </objects>
+    <data>
+        <character-names>
+            <character name="Shepard"/>
+            <character name="Other"/>
+            <character name="Narrator"/>
+            <character name="OldSan"/>
+        </character-names>
+        <contexts root="2005480717">
+            <context id="75325530" label="San" parent="2005480717"/>
+            <context id="97370123" label="Ivan" parent="2005480717"/>
+            <context id="309113185" label="Gregor" parent="2005480717"/>
+            <context id="1573736397" label="Affair" parent="2005480717"/>
+            <context id="1778541711" label="Maria" parent="2005480717"/>
+            <context id="2005480717" label=""/>
+            <context id="2132301256" label="Nikol" parent="2005480717"/>
+        </contexts>
+    </data>
+</conversation>

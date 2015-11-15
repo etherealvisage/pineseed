@@ -1,0 +1,985 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conversation>
+    <objects>
+        <node id="2" width="150" height="100" x="429" y="-752" label="Dog"/>
+        <node id="3" width="150" height="100" x="-533" y="298" label="Lookout"/>
+        <node id="4" width="150" height="100" x="-596" y="452" label="Mountain Intro"/>
+        <node id="5" width="150" height="100" x="-421" y="457" label="Mountain Hub"/>
+        <node id="6" width="150" height="100" x="-625" y="142" label="Wintergate Intro">
+            <action type="Speech" actor="Shepard" speech="I was hoping to ask you a few questions about Wintergate."/>
+            <action type="Speech" actor="Dusan" speech="Sure."/>
+            <action type="Jump" jump-target="11"/>
+        </node>
+        <node id="7" width="150" height="100" x="-210" y="264" label="Wintergate Guests">
+            <action type="Speech" actor="Shepard" speech="You know anything about the guests at the moment?"/>
+            <action type="Speech" actor="Mellisa" speech="Well... you're a Shepard."/>
+            <action type="Speech" actor="Dusan" speech="Maybe you should talk to Dad or Maria."/>
+            <action type="Jump" jump-target="11"/>
+        </node>
+        <node id="8" width="150" height="100" x="-207" y="178" label="Wintergate History">
+            <action type="Speech" actor="Shepard" speech="Do you know anything about the history here?"/>
+            <action type="Speech" actor="Dusan" speech="Ummm.... not really."/>
+            <action type="Speech" actor="Dusan" speech="It was a fort once right?"/>
+            <action type="Speech" actor="Mellisa" speech="Don't your parents tell you anything?"/>
+            <action type="Emote" actor="Dusan" emote="Shrug"/>
+            <action type="Speech" actor="Dusan" speech="I don't really listen to them."/>
+            <action type="Jump" jump-target="11"/>
+        </node>
+        <node id="9" width="150" height="100" x="-80" y="86" label="Wintergate Locals">
+            <action type="Speech" actor="Shepard" speech="Who lives here?"/>
+            <action type="Speech" actor="Dusan" speech="Well there's Me and Mum and Dad and Eduard, and the Koci's, and Old San."/>
+            <action type="Speech" actor="Mellisa" speech="And me!"/>
+            <action type="Speech" actor="Dusan" speech="You don't live here- you're a guest."/>
+            <action type="Speech" actor="Mellisa" speech="Hmph."/>
+        </node>
+        <node id="10" width="150" height="100" x="-209" y="2" label="Wintergate Places">
+            <action type="Speech" actor="Shepard" speech="Are there any important places around the area?"/>
+            <action type="Speech" actor="Dusan" speech="There's the lookout."/>
+            <action type="Speech" actor="Mellisa" speech="There's mountains."/>
+            <action type="Speech" actor="Dusan" speech="There's the old storehouses."/>
+            <action type="Speech" actor="Mellisa" speech="The Storehouses?"/>
+            <action type="Speech" actor="Dusan" speech="Yeah- they're kind of spooky."/>
+            <action type="Speech" actor="Dusan" speech="Mum and Dad say I shouldn't go down there."/>
+            <action type="Speech" actor="Mellisa" speech="Ohhh..."/>
+            <action type="Jump" jump-target="11"/>
+        </node>
+        <node id="11" width="150" height="100" x="-444" y="139" label="Wintergate Hub"/>
+        <node id="12" width="150" height="100" x="282" y="-420" label="Sasha Intro">
+            <action type="Speech" actor="Shepard"/>
+            <action type="Jump"/>
+        </node>
+        <node id="13" width="150" height="100" x="666" y="-380" label="Sasha Opinion"/>
+        <node id="14" width="150" height="100" x="666" y="-471" label="Sasha Where"/>
+        <node id="15" width="150" height="100" x="461" y="-420" label="Sasha Hub"/>
+        <node id="16" width="150" height="100" x="6" y="-693" label="Return Meeting">
+            <action type="Concurrent">
+                <action type="Speech" actor="Dusan" speech="You're back!"/>
+                <action type="Speech" actor="Mellisa" speech="Hi Shepard."/>
+                <action type="Speech" actor="Mellisa" speech="Find any ghosts?"/>
+            </action>
+        </node>
+        <node id="17" width="150" height="100" x="-166" y="-347" label="First time Meeting" entry="true">
+            <action type="Speech" actor="Dusan" speech="Hey! Hey hey! Shepered!"/>
+            <action type="Speech" actor="Shepard" speech="Yes?"/>
+            <action type="Speech" actor="Dusan" speech="Eduard and Mellisa say that you can talk to ghosts! Is that true?"/>
+            <action type="Speech" actor="Mellisa" speech="Of course it's true! That's what being a Shepard MEANS Dusan."/>
+            <action type="Speech" actor="Dusan" speech="Well?  Can you can you can you?"/>
+        </node>
+        <node id="18" width="150" height="100" x="131" y="-571" label="Look &quot;:&quot;">
+            <action type="Conditional">
+                <action type="Speech" actor="Narrator" speech="Its a pair of kids. The boys slightly younger than ten, the girl slightly younger. They look like they might be related."/>
+            </action>
+            <action type="Conditional">
+                <action type="Speech" actor="Narrator" speech="It's Mellisa and Dusan, cousins. They're both about ten years old, Mellisa slightly older."/>
+            </action>
+            <action type="ReturnToSender"/>
+        </node>
+        <node id="19" width="150" height="100" x="336" y="2645" label="GregorIntro">
+            <action type="Speech" actor="Shepard" speech="What do you know about Gregor?"/>
+            <action type="Speech" actor="Dusan" speech="Apart from him being Old San's husband?"/>
+            <action type="Speech" actor="Shepard" speech="Yeah."/>
+            <action type="Speech" actor="Dusan" speech="Quiet a bit."/>
+            <action type="Jump" jump-target="24"/>
+        </node>
+        <node id="20" width="150" height="100" x="730" y="2756" label="GregorOpinion">
+            <action type="Speech" actor="Shepard" speech="What was Gregor like?"/>
+            <action type="Speech" actor="Dusan" speech="He joked a lot."/>
+            <action type="Speech" actor="Dusan" speech="Some people thought he was silly."/>
+            <action type="Speech" actor="Shepard" speech="You didn't though?"/>
+            <action type="Speech" actor="Dusan" speech="I think he was watching people."/>
+            <action type="Speech" actor="Dusan" speech="I think he laughed because he thought people were funny."/>
+            <action type="Jump" actor="Dusan" jump-target="24"/>
+        </node>
+        <node id="21" width="150" height="100" x="730" y="2692" label="GregorWhere">
+            <action type="Speech" actor="Shepard" speech="Can you tell me where he's buried?"/>
+            <action type="Speech" actor="Dusan" speech="Nah."/>
+            <action type="Speech" actor="Dusan" speech="After he died, Eduard and old San put the body on a big pile of sticks and burnt it."/>
+            <action type="Speech" actor="Mellisa" speech="Did it stink like burnt dead people?"/>
+            <action type="Speech" actor="Dusan" speech="Dunno. Wind was blowing the other way that day."/>
+            <action type="Jump" jump-target="24"/>
+        </node>
+        <node id="22" width="150" height="100" x="729" y="2624" label="GregorFamily">
+            <action type="Speech" actor="Shepard" speech="He have family?"/>
+            <action type="Speech" actor="Dusan" speech="Apart from Old San?"/>
+            <action type="Speech" actor="Dusan" speech="He had Nieces and Nephews who visted sometimes."/>
+            <action type="Speech" actor="Dusan" speech="But no kids I think."/>
+            <action type="Jump" jump-target="24"/>
+        </node>
+        <node id="23" width="150" height="100" x="725" y="2557" label="GregorJob">
+            <action type="Speech" actor="Shepard" speech="What was his job?"/>
+            <action type="Speech" actor="Dusan" speech="He used to show people around the mountains."/>
+            <action type="Speech" actor="Dusan" speech="He really liked talking to people and showing them all the big rocks and stuff."/>
+            <action type="Speech" actor="Dusan" speech="He taught my brother up on the same things... but Eduard doesn't like people so much, so its tricky."/>
+            <action type="Jump" jump-target="24"/>
+        </node>
+        <node id="24" width="150" height="100" x="515" y="2642" label="Gregor">
+            <action type=""/>
+        </node>
+        <node id="25" width="150" height="100" x="120" y="2362" label="SanIntro">
+            <action type="Speech" actor="Shepard" speech="You know old San?"/>
+            <action type="Speech" actor="Dusan" speech="Yeah."/>
+            <action type="Jump"/>
+            <action type="Speech" actor="Mellisa" speech="Wait- is that that creepy old lady up at the top of the village? "/>
+            <action type="Speech" actor="Mellisa" speech="She looks like a witch!"/>
+            <action type="Speech" actor="Dusan" speech="She's not a witch Mel."/>
+            <action type="Speech" actor="Dusan" speech="Not all old people are witches"/>
+            <action type="Speech" actor="Mellisa" speech="But she DOES look like one."/>
+            <action type="Speech" actor="Dusan" speech="..."/>
+            <action type="Speech" actor="Dusan" speech="Well.. okay, maybe a little bit."/>
+            <action type="Jump" jump-target="26"/>
+        </node>
+        <node id="26" width="150" height="100" x="289" y="2358" label="SanHub"/>
+        <node id="27" width="150" height="100" x="516" y="2480" label="SanOpinion">
+            <action type="Speech" actor="Shepard" speech="What's she like?"/>
+            <action type="Speech" actor="Dusan" speech="Old."/>
+            <action type="Speech" actor="Dusan" speech="Sometimes she like to tell me stories about the mountains."/>
+            <action type="Speech" actor="Dusan" speech="Sometimes she is grouchy."/>
+            <action type="Speech" actor="Dusan" speech="I don't think her and Grammy liked each other one enough."/>
+            <action type="Speech" actor="Mellisa" speech="Sometimes she turns people into frogs."/>
+            <action type="Jump" jump-target="26"/>
+        </node>
+        <node id="28" width="150" height="100" x="513" y="2400" label="SanWhere">
+            <action type="Speech" actor="Shepard" speech="Where is old San?"/>
+            <action type="Speech" actor="Dusan" speech="She's probably in the equipment hut up the top of the village."/>
+            <action type="Jump" jump-target="26"/>
+        </node>
+        <node id="29" width="150" height="100" x="508" y="2338" label="SanFamily">
+            <action type="Speech" actor="Shepard" speech="She have any family?"/>
+            <action type="Speech" actor="Dusan" speech="She used to be married to Old Gregor."/>
+            <action type="Speech" actor="Mellisa" speech="They're both old, see?"/>
+            <action type="Speech" actor="Dusan" speech="But then he died."/>
+            <action type="Speech" actor="Dusan" speech="No one was that sad, because he had been sick for a long time."/>
+            <action type="Speech" actor="Dusan" speech="Old San said it was about time he kicked the bucket."/>
+            <action type="Speech" actor="Shepard" speech="Ummm.... okay."/>
+            <action type="Speech" actor="Shepard" speech="I guess that makes sense then."/>
+            <action type="Jump" jump-target="26"/>
+        </node>
+        <node id="30" width="150" height="100" x="508" y="2259" label="SanJob">
+            <action type="Speech" actor="Shepard" speech="What's her job in the village."/>
+            <action type="Speech" actor="Dusan" speech="She takes care of all the equipment people need to buy for going up the mountain."/>
+            <action type="Speech" actor="Mellisa" speech="And sells magic potions!"/>
+            <action type="Speech" actor="Dusan" speech="and sometimes she DECIDES things."/>
+            <action type="Speech" actor="Shepard" speech="Decides things?"/>
+            <action type="Speech" actor="Dusan" speech="Like when Agata was arguing with Mum and Dad about going to Clearwater to get married."/>
+            <action type="Speech" actor="Dusan" speech="Everyone was arguing, and then Old San DECIDED."/>
+            <action type="Speech" actor="Mellisa" speech="Dun Dun Duuun"/>
+            <action type="Speech" actor="Dusan" speech="Just like that."/>
+            <action type="Emote" actor="Dusan" emote="Nods"/>
+            <action type="Jump" jump-target="26"/>
+        </node>
+        <node id="31" width="150" height="100" x="325" y="2112" label="Nikol Intro">
+            <action type="Speech" actor="Shepard" speech="Could you tell me some things about Nikol."/>
+            <action type="Speech" actor="Dusan" speech="Maybe."/>
+            <action type="Speech" actor="Dusan" speech="Depends what you ask."/>
+            <action type="Jump"/>
+        </node>
+        <node id="32" width="150" height="100" x="713" y="2213" label="Nikol Opinion">
+            <action type="Speech" actor="Shepard" speech="How well do you know Nikol? What do you think of her?"/>
+            <action type="Speech" actor="Dusan" speech="She's like an extra big sister."/>
+            <action type="Speech" actor="Dusan" speech="Actually... Agata is pretty old, and she moved away, so I probably know Nikol better than Agata."/>
+            <action type="Speech" actor="Dusan" speech="She's like a really nice big sister."/>
+            <action type="Jump" jump-target="36"/>
+        </node>
+        <node id="33" width="150" height="100" x="714" y="2136" label="Nikol Where">
+            <action type="Speech" speech="Do you know where Nikol is at the moment?"/>
+            <action type="Speech" actor="Dusan" speech="I think she's on the first floor of the Wayhouse, serving the other guests."/>
+            <action type="Jump" jump-target="36"/>
+        </node>
+        <node id="34" width="150" height="100" x="713" y="2071" label="NikolFamily">
+            <action type="Speech" speech="What do you know about Nikol's family?"/>
+            <action type="Speech" actor="Dusan" speech="The Koci's?"/>
+            <action type="Speech" actor="Dusan" speech="Well... her Mum died a couple years back."/>
+            <action type="Speech" actor="Dusan" speech="She tries to look after her Dad, but most of the time he just stays with the horses."/>
+        </node>
+        <node id="35" width="150" height="100" x="710" y="2008" label="NikolJob">
+            <action type="Speech" actor="Shepard" speech="What's her job around here?"/>
+            <action type="Speech" actor="Dusan" speech="She helps out Mum and Dad with the wayhouse."/>
+            <action type="Speech" actor="Dusan" speech="Usually she helps with the cooking, and serves the customers so that Mum doesn't have to talk to them."/>
+            <action type="Jump" jump-target="36"/>
+        </node>
+        <node id="36" width="150" height="100" x="507" y="2113" label="Nikol Hub"/>
+        <node id="37" width="150" height="100" x="105" y="1837" label="Maria Intro">
+            <action type="Jump" jump-target="38"/>
+            <action type="Speech" actor="Shepard" speech="Can you tell me about a person called Maria?"/>
+            <action type="Speech" actor="Dusan" speech="Oh... She's dead Shepard."/>
+            <action type="Speech" actor="Mellisa" speech="Don't you see- that's why he's asking you about her!"/>
+            <action type="Speech" actor="Dusan" speech="Oh?"/>
+            <action type="Speech" actor="Dusan" speech="...."/>
+            <action type="Speech" actor="Dusan" speech="Ooohhhhh."/>
+            <action type="Speech" actor="Dusan" speech="Oh dear."/>
+            <action type="Jump" jump-target="38"/>
+        </node>
+        <node id="38" width="150" height="100" x="287" y="1839" label="Maria Hub"/>
+        <node id="39" width="150" height="100" x="515" y="1970" label="Maria Opinion">
+            <action type="Speech" actor="Shepard" speech="How well did you know Maria? What can you tell me about her?"/>
+            <action type="Speech" actor="Dusan" speech="Oh..."/>
+            <action type="Speech" actor="Dusan" speech="Mr Koci was the school teacher sometimes."/>
+            <action type="Speech" actor="Dusan" speech="She used to teach me things because my parents were too busy, or didn't know."/>
+            <action type="Speech" actor="Dusan" speech="I've still got books in my room that Mr Koci gave me to read."/>
+            <action type="Speech" actor="Shepard" speech="How many of them have you read?"/>
+            <action type="Speech" actor="Dusan" speech="Some of them!"/>
+            <action type="Speech" actor="Dusan" speech="Some of them are hard, and I don't always understand."/>
+            <action type="Speech" actor="Dusan" speech="When I get stuck I talk to Nikol, but sometimes she doesn't know either."/>
+            <action type="Jump" jump-target="38"/>
+        </node>
+        <node id="40" width="150" height="100" x="508" y="1889" label="Maria Where">
+            <action type="Speech" actor="Shepard" speech="Do you know where she was buried?"/>
+            <action type="Speech" actor="Dusan" speech="Up in the graveyard."/>
+            <action type="Speech" actor="Mellisa" speech="Duh."/>
+            <action type="Speech" actor="Dusan" speech="Her grave is the one with the yellow flowers on it."/>
+            <action type="Jump" jump-target="38"/>
+        </node>
+        <node id="41" width="150" height="100" x="508" y="1812" label="Maria Family">
+            <action type="Speech" actor="Shepard" speech="Can you tell me about Maria's family?"/>
+            <action type="Speech" actor="Dusan" speech="The Koci's?"/>
+            <action type="Speech" actor="Dusan" speech="Well... there's Mr Koci, and there's Nikol."/>
+            <action type="Jump" actor="Dusan" jump-target="38"/>
+        </node>
+        <node id="42" width="150" height="100" x="504" y="1736" label="Maria Job">
+            <action type="Speech" actor="Shepard" speech="What was Maria's job here?"/>
+            <action type="Speech" actor="Dusan" speech="She was the Vet."/>
+            <action type="Speech" actor="Dusan" speech="She was the horse doctor, and sometimes the people doctor too."/>
+            <action type="Speech" actor="Shepard" speech="What do you do now if a horse gets hurt or sick?"/>
+            <action type="Speech" actor="Dusan" speech="We have to send them away."/>
+            <action type="Speech" actor="Dusan" speech="Or... ask someone else to send a new Vet to visit."/>
+            <action type="Speech" actor="Dusan" speech="Sometimes it works, sometimes it doesn't."/>
+            <action type="Jump" jump-target="38"/>
+        </node>
+        <node id="43" width="150" height="100" x="342" y="1558" label="Ivan Intro">
+            <action type="Speech" actor="Shepard" speech="I was wondering if you could tell me about Ivan."/>
+            <action type="Speech" actor="Dusan" speech="Mr Koci? Ummm... I guess..."/>
+            <action type="Jump"/>
+        </node>
+        <node id="44" width="150" height="100" x="745" y="1692" label="Ivan Opinion">
+            <action type="Speech" actor="Shepard" speech="What do you think of Mr Koci? What's he like?"/>
+            <action type="Speech" actor="Mellisa" speech="I think he smells funny."/>
+            <action type="Speech" actor="Dusan" speech="Don't be mean Mel."/>
+            <action type="Speech" actor="Mellisa" speech="He does!"/>
+            <action type="Speech" actor="Dusan" speech="He works with horses and hay all day- it i'nt his fault."/>
+            <action type="Speech" actor="Mellisa" speech="He smells like Barlo- the town drunk back home."/>
+            <action type="Speech" actor="Dusan" speech="...."/>
+            <action type="Jump" jump-target="48"/>
+        </node>
+        <node id="45" width="150" height="100" x="745" y="1610" label="Ivan Where">
+            <action type="Speech" actor="Shepard" speech="Where could I find Mr Koci?"/>
+            <action type="Speech" actor="Dusan" speech="He spends most of the time down in the stables."/>
+            <action type="Speech" actor="Dusan" speech="It's down by the road where you came in, and smells like horses."/>
+            <action type="Jump" jump-target="48"/>
+        </node>
+        <node id="46" width="150" height="100" x="744" y="1547" label="Ivan Family">
+            <action type="Speech" actor="Shepard" speech="What do you know about Mr Koci's family"/>
+            <action type="Speech" actor="Dusan" speech="Oh..."/>
+            <action type="Speech" actor="Dusan" speech="Well... Mr Koci is sad at the moment, because his wife died a few years back."/>
+            <action type="Speech" actor="Dusan" speech="Mrs Koci was really nice to everyone, so all of use were sad, but Mr Koci is still sad."/>
+            <action type="Speech" actor="Dusan" speech="Nikol is still sad too- but she is always busy too."/>
+        </node>
+        <node id="47" width="150" height="100" x="735" y="1480" label="Ivan Job">
+            <action type="Speech" actor="Shepard" speech="What kind of work does Mr Koci do around here?"/>
+            <action type="FirstVisitConditional">
+                <action type="Speech" actor="Dusan" speech="Lots of People come here with carts and things, and their horses are tired out."/>
+                <action type="Speech" actor="Dusan" speech="Mr Koci makes them all looked after- just like my dad looks after people."/>
+                <action type="Speech" actor="Dusan" speech="Dad says its even more important than his job, because if horses aren't looked after they might drop dead half way up the pass."/>
+                <action type="Speech" actor="Dusan" speech="and then everyone would be in trouble."/>
+            </action>
+            <action type="FirstVisitConditional">
+                <action type="Speech" actor="Dusan" speech="You forgot already?"/>
+                <action type="Speech" actor="Dusan" speech="It's like I said earlier- he looks after horses so the don't drop dead."/>
+            </action>
+        </node>
+        <node id="48" width="150" height="100" x="500" y="1591" label="Ivan Hub"/>
+        <node id="49" width="150" height="100" x="80" y="1299" label="Tereza Intro">
+            <action type="FirstVisitConditional" jump-target="50">
+                <action type="Speech" actor="Shepard" speech="Do you know someone called Tereza? Can you tell me about her?"/>
+                <action type="Speech" actor="Dusan" speech="You want to know about my Grammy?"/>
+            </action>
+        </node>
+        <node id="50" width="150" height="100" x="262" y="1300" label="Tereza Hub"/>
+        <node id="51" width="150" height="100" x="490" y="1422" label="Tereza Opinion">
+            <action type="Speech" speech="What's your Grammy like? Do you know her very well?"/>
+            <action type="Speech" actor="Dusan" speech="Grammy is very old."/>
+            <action type="Speech" actor="Mellisa" speech="Older than my Grandma?"/>
+            <action type="Speech" actor="Dusan" speech="You know the tree out by the lookout?"/>
+            <action type="Speech" actor="Mellisa" speech="Yeah?"/>
+            <action type="Speech" actor="Dusan" speech="Older than that tree."/>
+            <action type="Speech" actor="Mellisa" speech="Wow."/>
+            <action type="Emote" actor="Mellisa" emote="Confused"/>
+            <action type="Speech" actor="Mellisa" speech="Are you lying to me Dusan?"/>
+            <action type="Emote" actor="Dusan" emote="Head shake."/>
+            <action type="EndConversation" jump-target="50"/>
+            <action type="Jump" jump-target="50"/>
+        </node>
+        <node id="52" width="150" height="100" x="488" y="1305" label="Tereza Where">
+            <action type="Speech" actor="Shepard" speech="Where does your Grammy live?"/>
+            <action type="Speech" actor="Dusan" speech="She lives down in Clearwater with Aunty Zuzana."/>
+            <action type="Speech" actor="Dusan" speech="Agata lives there too!"/>
+            <action type="Jump" jump-target="50"/>
+        </node>
+        <node id="54" width="150" height="100" x="485" y="1194" label="Tereza Job">
+            <action type="Speech" actor="Shepard" speech="Does your Grammy work or have a job?"/>
+            <action type=""/>
+            <action type="Speech" actor="Dusan" speech="I don't think so."/>
+            <action type="Speech" speech="I think maybe she is too old."/>
+            <action type="Jump" jump-target="50"/>
+        </node>
+        <node id="55" width="150" height="100" x="277" y="1036" label="Mellisa Intro">
+            <action type="Jump" jump-target="60"/>
+        </node>
+        <node id="56" width="150" height="100" x="707" y="1123" label="Mellisa Opinion">
+            <action type="Speech" actor="Shepard" speech="Dusan, what's it like having your Cousin staying?"/>
+            <action type="Emote"/>
+            <action type="Speech" actor="Dusan" speech="It's okay."/>
+            <action type="Speech" actor="Dusan" speech="She isnt' so bad once you get over the smell."/>
+            <action type="Speech" actor="Mellisa" speech="HEY!"/>
+            <action type="Jump" jump-target="60"/>
+        </node>
+        <node id="57" width="150" height="100" x="709" y="1052" label="Mellisa Where">
+            <action type="Speech" actor="Shepard" speech="If I need to find you again later Mellisa, where will you be?"/>
+            <action type="Speech" actor="Mellisa" speech="I'll probably be back in my room, reading a book or writing Calligraphy."/>
+            <action type="Speech" actor="Dusan" speech="She'll probably be following me around still."/>
+            <action type="Speech" actor="Dusan" speech="Mellisa hates reading AND Calligraphy."/>
+            <action type="Speech" actor="Mellisa" speech="Do not."/>
+            <action type="Speech" actor="Mellisa" speech="I'm going to write my own books one day, and they will be the best books anyone has ever read."/>
+            <action type="Speech" actor="Dusan" speech="She won't."/>
+            <action type="Speech" actor="Mellisa" speech="You're mean."/>
+            <action type="Jump" jump-target="60"/>
+        </node>
+        <node id="58" width="150" height="100" x="711" y="991" label="Mellisa Family">
+            <action type="Speech" actor="Shepard" speech="What's you're family like Mellisa?"/>
+            <action type="Speech" actor="Mellisa" speech="Well, my Father's a baker, and my Mother's a Jeweller, and we live in the biggest, nicest house and-"/>
+            <action type="Speech" actor="Dusan" speech="She doesn't have any brothers or sisters."/>
+            <action type="Speech" actor="Mellisa" speech="Hey! Don't interupt!"/>
+            <action type="Speech" actor="Dusan" speech="It's why she's so full of herself."/>
+            <action type="Speech" actor="Mellisa" speech="Am not!"/>
+            <action type="Speech" actor="Dusan" speech="And why she's Jealous of me for having an older brother AND and older sister."/>
+            <action type="Speech" actor="Mellisa" speech="No!"/>
+            <action type="Jump" jump-target="60"/>
+        </node>
+        <node id="59" width="150" height="100" x="702" y="925" label="Mellisa Job">
+            <action type="Speech" actor="Shepard" speech="What kind of jobs do you have Mellisa?"/>
+            <action type="Speech" actor="Mellisa" speech="Ha ha!"/>
+            <action type="Speech" actor="Mellisa" speech="You're silly! I'm just a kid. Don't have a job."/>
+            <action type="Speech" actor="Dusan" speech="I have jobs."/>
+            <action type="Speech" actor="Mellisa" speech="Well *I* am on holiday, and don't have any jobs at all."/>
+            <action type="Jump" jump-target="60"/>
+        </node>
+        <node id="60" width="150" height="100" x="463" y="1039" label="Mellisa Hub">
+            <action type=""/>
+        </node>
+        <node id="61" width="150" height="100" x="50" y="777" label="Eduard intro">
+            <action type="Speech" actor="Shepard" speech="Could you tell me about Eduard?"/>
+            <action type="Speech" actor="Dusan" speech="I... I'ld really rather not."/>
+            <action type="Speech" actor="Dusan" speech="He's my brother. I don't think he likes people talking about him much."/>
+        </node>
+        <node id="62" width="150" height="100" x="250" y="769" label="Eduard Hub"/>
+        <node id="64" width="150" height="100" x="459" y="818" label="Eduard Where">
+            <action type="Speech" actor="Shepard" speech="Where can I find your brother Dusan?"/>
+            <action type="Speech" actor="Dusan" speech="Sometimes he's up in the guide hut."/>
+            <action type="Speech" actor="Dusan" speech="Most of the time though he's out walking around the mountains though."/>
+            <action type="Speech" actor="Mellisa" speech="Even when he isn't guiding anyone."/>
+            <action type="Speech" actor="Dusan" speech="Be quiete Mel- you aren't supposed to say those thing."/>
+            <action type="Speech" actor="Mellisa" speech="Well I can."/>
+            <action type="Speech" actor="Dusan" speech="Why?"/>
+            <action type="Speech" actor="Mellisa" speech="Because you're not the boss of me, so there!"/>
+            <action type="Jump" jump-target="62"/>
+        </node>
+        <node id="65" width="150" height="100" x="460" y="751" label="Eduard Family">
+            <action type="Speech" actor="Shepard" speech="Can you tell me about Eduard's family?"/>
+            <action type="Speech" actor="Mellisa" speech="Dusan is Eduard's family"/>
+            <action type="Speech" actor="Dusan" speech="And Mum and Dad and Agata"/>
+            <action type="Speech" actor="Mellisa" speech="And me to!"/>
+            <action type="Speech" actor="Dusan" speech="And Mellisa..."/>
+            <action type="Speech" actor="Dusan" speech="And Mr Gregor too I think."/>
+            <action type="Speech" actor="Mellisa" speech="Who?"/>
+            <action type="Speech" actor="Dusan" speech="Mr Gregor. I think Eduard thinks Mr Gregor was like family too."/>
+            <action type="Jump" jump-target="62"/>
+        </node>
+        <node id="66" width="150" height="100" x="456" y="679" label="EduardJob">
+            <action type="Speech" actor="Shepard" speech="Well... what kind of Job does Eduard do?"/>
+            <action type="Speech" actor="Dusan" speech="Eduard is a mountain guide."/>
+            <action type="Speech" actor="Mellisa" speech="He takes visiting people up up into the mountains."/>
+            <action type="Speech" actor="Dusan" speech="And he makes sure they come back down good and safe."/>
+            <action type="Speech" actor="Mellisa" speech="Even the ones he doesn't like."/>
+            <action type="Emote"/>
+            <action type="Jump" jump-target="62"/>
+        </node>
+        <node id="67" width="150" height="100" x="269" y="548" label="Dusan Intro"/>
+        <node id="68" width="150" height="100" x="686" y="633" label="Dusan Opinion">
+            <action type="Speech" actor="Shepard" speech="So Mellisa, what's it like staying with your cousin."/>
+            <action type="Speech" actor="Mellisa" speech="Awful"/>
+            <action type="Speech" actor="Mellisa" speech="Dusan is way less fun then all my friends back home."/>
+            <action type="Speech" actor="Mellisa" speech="And there's nothing to do out here."/>
+            <action type="Speech" actor="Mellisa" speech="And all my stuff is back at home."/>
+            <action type="Jump" jump-target="72"/>
+        </node>
+        <node id="69" width="150" height="100" x="686" y="565" label="Dusan Where">
+            <action type="Speech" actor="Shepard" speech="If I need to find you again later Dusan, where will you be?"/>
+            <action type="Emote"/>
+            <action type="Speech" actor="Dusan" speech="I dunno."/>
+            <action type="Speech" actor="Dusan" speech="Maybe I'll climb a tree, or try to get rid of uglyface here somehow or something?"/>
+            <action type="Jump" jump-target="72"/>
+        </node>
+        <node id="70" width="150" height="100" x="898" y="518" label="Dusan Family">
+            <action type="Speech" speech="Well... why don't you tell me about your Family?"/>
+            <action type="Speech" actor="Dusan" speech="Well, there's Mum, and Dad, and Agata and Eduard. Agata's moved away now, but Mum and Dad and Eduard still live here."/>
+        </node>
+        <node id="71" width="150" height="100" x="675" y="430" label="Dusan Job">
+            <action type="Speech" actor="Shepard" speech="What kind of jobs do you have up here?"/>
+            <action type="Speech" actor="Mellisa" speech="Hehe"/>
+            <action type="Speech" actor="Mellisa" speech="You're silly. Dusan is just a wee baby- Dusan doesn't have jobs."/>
+            <action type="Speech" actor="Dusan" speech="I do to!"/>
+            <action type="Speech" actor="Dusan" speech="And I'm not a wee baby!"/>
+            <action type="Speech" actor="Dusan" speech="I have to keep my room tidy, and help with cleaning, and run messages for people."/>
+            <action type="Emote"/>
+            <action type="Speech" actor="Dusan" speech="And take care of Ugly face here!"/>
+            <action type="Jump" jump-target="72"/>
+        </node>
+        <node id="72" width="150" height="100" x="456" y="550" label="Dusan"/>
+        <node id="73" width="150" height="100" x="69" y="311" label="Agata Intro">
+            <action type="Speech" actor="Shepard" speech="Can you tell me about Agata?"/>
+            <action type="Speech" actor="Dusan" speech="My sister? Why? She isn't even here."/>
+            <action type="Speech" actor="Shepard" speech="Sometimes it helps to have a full picture."/>
+            <action type="Speech" actor="Dusan" speech="If you say so."/>
+            <action type="Jump"/>
+        </node>
+        <node id="74" width="150" height="100" x="242" y="307" label="Agata Hub"/>
+        <node id="75" width="150" height="100" x="451" y="405" label="Agata Opinion">
+            <action type="Speech" actor="Shepard" speech="What's Agata like as a sister?"/>
+            <action type="Speech" actor="Dusan" speech="She was always planning to leave."/>
+            <action type="Speech" actor="Dusan" speech="She said this place was boring."/>
+            <action type="Speech" actor="Dusan" speech="One day she left."/>
+            <action type="Jump" jump-target="74"/>
+        </node>
+        <node id="76" width="150" height="100" x="450" y="346" label="Agata Where">
+            <action type="Speech" actor="Shepard" speech="Where is your sister?"/>
+            <action type="Speech" actor="Dusan" speech="She moved down to Clearwater. She lives with her boyfriend now."/>
+            <action type="Emote"/>
+            <action type="Speech" actor="Dusan" speech="Okay- they're married. With her &quot;husband&quot; then.  *Blerk*"/>
+            <action type="Speech" actor="Shepard" speech="You don't like him much?"/>
+            <action type="Speech" actor="Dusan" speech="He doesn't really notice most people. "/>
+            <action type="Speech" actor="Dusan" speech="He REALLY doesn't notice me."/>
+            <action type="Jump"/>
+        </node>
+        <node id="77" width="150" height="100" x="447" y="276" label="AgataFamily">
+            <action type="Speech" actor="Shepard" speech="What do you know about Agata's family."/>
+            <action type="Speech" actor="Dusan" speech="You mean aside from us?"/>
+            <action type="Speech" actor="Shepard" speech="Sure."/>
+            <action type="Speech" actor="Dusan" speech="Well... she's married... he was called... Jacob? "/>
+            <action type="Speech" actor="Dusan" speech="Also, Aunty Zuzana and Grammy are in Clearwater- I think Agata visits them a lot."/>
+            <action type="Speech" actor="Shepard" speech="Thanks. Good to know."/>
+            <action type="Jump" jump-target="74"/>
+        </node>
+        <node id="78" width="150" height="100" x="442" y="205" label="AgataJob">
+            <action type="Speech" actor="Shepard" speech="What kind of Job does your sister have?"/>
+            <action type="Speech" actor="Dusan" speech="... I think she's working in the marketplace or something."/>
+            <action type="Speech" actor="Shepard" speech="What kind of store does she have?"/>
+            <action type="Speech" actor="Dusan" speech="No no- I mean like she works FOR the marketplace. Telling people what to do or something."/>
+            <action type="Jump" jump-target="74"/>
+        </node>
+        <node id="79" width="150" height="100" x="652" y="162" label="Laura Character">
+            <action type="Speech" speech="What's your mum like? "/>
+            <action type="Speech" actor="Mellisa" speech="I think Dusan's mum is scary."/>
+            <action type="Speech" actor="Mellisa" speech=" A proper lady is meant to be soft and elegant."/>
+            <action type="Speech" actor="Dusan" speech="I think she's tough!"/>
+            <action type="Speech" actor="Dusan" speech="I think my mum could fight a mountain gorrila and beat it with a rock."/>
+            <action type="Speech" actor="Mellisa" speech="Do they even have mountain gorrillas?"/>
+            <action type="Speech" actor="Dusan" speech="Who cares? My mum could beat one."/>
+            <action type="Jump" jump-target="83"/>
+        </node>
+        <node id="80" width="150" height="100" x="652" y="96" label="Laura Where">
+            <action type="Speech" speech="I was hoping to speak to her- do you know where I could find her?"/>
+            <action type="Speech" actor="Dusan" speech="Oh."/>
+            <action type="Speech" actor="Dusan" speech="I don't know- that might be tricky."/>
+            <action type="Speech" actor="Dusan" speech="Mum is very busy, and some days she doesn't even talk to me."/>
+            <action type="Speech" actor="Dusan" speech="I think she's making stew for everyone in the kitchen at the moment, but she will probably only talk to someone if its VERY IMPORTANT."/>
+            <action type="Speech" actor="Narrator" speech="To talk to someone with urgency and forcefulness, use the &quot;!&quot; character- either attached to a topic word, or by itself."/>
+            <action type="Speech" actor="Narrator" speech="Be carefuly though- too much force is often considered abrasive, and so it might make some people less inclined to talk to you."/>
+            <action type="Jump" jump-target="83"/>
+        </node>
+        <node id="81" width="150" height="100" x="656" y="43" label="Laura Family">
+            <action type="Speech" speech="What do you two know about her family?"/>
+            <action type="Speech" actor="Dusan" speech="Well, she's got three brother's, and one sister-"/>
+            <action type="Speech" actor="Mellisa" speech="-that's my mum!"/>
+            <action type="Speech" actor="Dusan" speech="And... they live far away?"/>
+            <action type="Speech" actor="Mellisa" speech="And there names are Roger and Pierce and Dom and Alice (that's my Mum) and they are all really cool."/>
+            <action type="Speech" actor="Dusan" speech="I've never met them."/>
+            <action type="Jump" jump-target="83"/>
+        </node>
+        <node id="82" width="150" height="100" x="650" y="-22" label="Laura Job">
+            <action type="Speech" speech="What's her job around here, what does she do in the town?"/>
+            <action type="Speech" actor="Dusan" speech="My Mum is the boss of everything."/>
+            <action type="Speech" actor="Mellisa" speech="She's scary."/>
+            <action type="Speech" actor="Dusan" speech="She makes sure that Dad buys the right food, and that the money is counted right."/>
+            <action type="Speech" actor="Mellisa" speech="She cooks the food, and figures out who needs to do what job."/>
+            <action type="Speech" actor="Dusan" speech="Because she's the best at figuring things out."/>
+            <action type="Jump" jump-target="83"/>
+        </node>
+        <node id="83" width="150" height="100" x="445" y="73" label="Laura Hub"/>
+        <node id="84" width="150" height="100" x="263" y="72" label="Laura Intro">
+            <action type="Speech" speech="What do you two know about Laura?"/>
+            <action type="Speech" actor="Dusan" speech="That's my Mum."/>
+            <action type="Speech" actor="Mellisa" speech="And my Aunty!"/>
+            <action type="Speech" actor="Dusan" speech="What do you want to know?"/>
+            <action type="Jump" jump-target="83"/>
+        </node>
+        <node id="85" width="150" height="100" x="-29" y="-568" label="Bye">
+            <action type="Conditional">
+                <action type="Speech" actor="Shepard" speech="I should be going"/>
+                <action type="Speech" actor="Shepard" speech="Thank you for your help. I might be by later."/>
+                <action type="Speech" actor="Shepard" speech="I'll leave you to your bussiness."/>
+                <action type="Speech" actor="Shepard" speech="Good bye"/>
+                <action type="Speech" actor="Shepard" speech="Thank you for your time."/>
+                <action type="Speech" actor="Shepard" speech="I'd better head off."/>
+            </action>
+            <action type="Conditional">
+                <action type="Speech" actor="Dusan" speech="Bye bye Shepard"/>
+                <action type="Sequence">
+                    <action type="Speech" actor="Mellisa" speech="Catch you later Sheps"/>
+                    <action type="Speech" actor="Dusan" speech="Bye!"/>
+                </action>
+                <action type="Speech" actor="Dusan" speech="See you later alligator"/>
+                <action type="Speech" actor="Mellisa" speech="Bye bye Shepard. Don't get et by any ghosts."/>
+                <action type="Speech" actor="Dusan" speech="Good luck! "/>
+                <action type="Speech" actor="Mellisa" speech="Have Fun"/>
+            </action>
+        </node>
+        <node id="86" width="150" height="100" x="34" y="-182" label="Bedrich Intro">
+            <action type="Speech" actor="Shepard" speech="I was wondering if you two could tell me about Bedrich"/>
+            <action type="Speech" actor="Dusan" speech="That's my dad!"/>
+            <action type="Speech" speech="Well... great! That means you'll know lots about him."/>
+            <action type="Jump" jump-target="91"/>
+        </node>
+        <node id="87" width="150" height="100" x="464" y="-93" label="Bedrich Character">
+            <action type="Speech" actor="Shepard" speech="What's your Dad like?"/>
+            <action type="Speech" actor="Dusan" speech="... He's a dad."/>
+            <action type="Speech" actor="Dusan" speech="He does Dad things."/>
+            <action type="Speech" actor="Mellisa" speech="He's not like my Dad at all."/>
+            <action type="Speech" actor="Mellisa" speech="Your dad reads you stories and gets you to help him build things."/>
+            <action type="Speech" actor="Mellisa" speech="My dad tells me to keep my dress clean, and says it is important for me to learn my Ah-rith-mah-tic."/>
+            <action type="Jump" jump-target="91"/>
+        </node>
+        <node id="88" width="150" height="100" x="462" y="-163" label="Bedrich Where">
+            <action type="Speech" actor="Shepard" speech="Do you know where I could find your Dad?"/>
+            <action type="Speech" actor="Dusan" speech="He's usually tidying up the guest the guest rooms, or fixing something around the house."/>
+        </node>
+        <node id="89" width="150" height="100" x="461" y="-224" label="Bedrich Family">
+            <action type="Speech" actor="Shepard" speech="Can you tell me about Bedrich's family?"/>
+            <action type="Speech" actor="Dusan" speech="Like... his brother's and sisters?"/>
+            <action type="Speech" actor="Dusan" speech="Dad has a brother and sister called Aunty Zuzana and Uncle Petr.  Aunty Zuzana lives by Clearwater, and takes care of Grammy."/>
+            <action type="Jump" jump-target="91"/>
+        </node>
+        <node id="90" width="150" height="100" x="460" y="-289" label="Bedrich Job">
+            <action type="Speech" actor="Shepard" speech="What's Bedrich's job around here, what does he do in the town?"/>
+            <action type="Speech" actor="Dusan" speech="Dad keeps the house in order and makes sure everyone has a room and a nice bed."/>
+            <action type="Speech" actor="Mellisa" speech="And he cleans!"/>
+            <action type="Speech" actor="Dusan" speech="And he makes sure everyone is safe, and taken care of."/>
+            <action type="Jump" jump-target="91"/>
+        </node>
+        <node id="91" width="150" height="100" x="204" y="-181" label="Bedrich Hub"/>
+        <link id="92" label="Guests" from="11" to="7"/>
+        <link id="93" label="History" from="11" to="8"/>
+        <link id="94" label="Locals" from="11" to="9"/>
+        <link id="95" label="Places" from="11" to="10"/>
+        <link id="96" label="Opinion" from="15" to="13"/>
+        <link id="97" label="Where" from="15" to="14"/>
+        <link id="98" label="Opinion" from="24" to="20"/>
+        <link id="99" label="Where" from="24" to="21"/>
+        <link id="100" label="Family" from="24" to="22"/>
+        <link id="101" label="Job" from="24" to="23"/>
+        <link id="102" label="Opinion" from="26" to="27"/>
+        <link id="103" label="Where" from="26" to="28"/>
+        <link id="104" label="Family" from="26" to="29"/>
+        <link id="105" label="Job" from="26" to="30"/>
+        <link id="106" label="Opinion" from="36" to="32"/>
+        <link id="107" label="Where" from="36" to="33"/>
+        <link id="108" label="Family" from="36" to="34"/>
+        <link id="109" label="Job" from="36" to="35"/>
+        <link id="110" label="Opinion" from="38" to="39"/>
+        <link id="111" label="Where" from="38" to="40"/>
+        <link id="112" label="Family" from="38" to="41"/>
+        <link id="113" label="Job" from="38" to="42"/>
+        <link id="114" label="Opinion" from="48" to="44"/>
+        <link id="115" label="Where" from="48" to="45"/>
+        <link id="116" label="Family" from="48" to="46"/>
+        <link id="117" label="Job" from="48" to="47"/>
+        <link id="118" label="Opinion" from="50" to="51"/>
+        <link id="119" label="Where" from="50" to="52"/>
+        <link id="121" label="Job" from="50" to="54"/>
+        <link id="122" label="Opinion" from="60" to="56"/>
+        <link id="123" label="Where" from="60" to="57"/>
+        <link id="124" label="Family" from="60" to="58"/>
+        <link id="125" label="Job" from="60" to="59"/>
+        <link id="127" label="Where" from="62" to="64"/>
+        <link id="128" label="Family" from="62" to="65"/>
+        <link id="129" label="Job" from="62" to="66"/>
+        <link id="130" label="Opinion" from="72" to="68"/>
+        <link id="131" label="Where" from="72" to="69"/>
+        <link id="132" label="Family" from="72" to="70"/>
+        <link id="133" label="Job" from="72" to="71"/>
+        <link id="134" label="Opinion" from="74" to="75"/>
+        <link id="135" label="Where" from="74" to="76"/>
+        <link id="136" label="Family" from="74" to="77"/>
+        <link id="137" label="Job" from="74" to="78"/>
+        <link id="138" label="Opinion" from="83" to="79"/>
+        <link id="139" label="Where" from="83" to="80"/>
+        <link id="140" label="Family" from="83" to="81"/>
+        <link id="141" label="Job" from="83" to="82"/>
+        <link id="142" label="Job" from="91" to="90"/>
+        <link id="143" label="Family" from="91" to="89"/>
+        <link id="144" label="Opinion" from="91" to="87"/>
+        <link id="145" label="Where" from="91" to="88"/>
+        <link id="1865900" label="Where" from="46" to="45"/>
+        <link id="14330931" label="?" from="61" to="567710733"/>
+        <link id="53778425" label="Eduard" from="9" to="61"/>
+        <node id="105585883" width="150" height="100" x="1227" y="1004" label="Already half way...">
+            <action type="Speech" actor="Shepard" speech="Well... I've already heard half the secret."/>
+            <action type="Speech" actor="Shepard" speech="Why don't you tell me the other half, just to keep things simple?"/>
+            <action type="Speech" actor="Dusan" speech="...."/>
+            <action type="Speech" actor="Dusan" speech="I think... I think Eduard gets sad some times."/>
+            <action type="Speech" actor="Dusan" speech="And he goes up in the mountains because there are no people there."/>
+            <action type="Speech" actor="Dusan" speech="And sometimes when he's up in the mountains, he might not be careful... because he might not want to come home."/>
+            <action type="Speech" actor="Dusan" speech="And one day my big brother won't come back."/>
+        </node>
+        <link id="107712156" label="Dad" from="9" to="87"/>
+        <link id="109695398" label="!" from="2027288670" to="1492973798"/>
+        <node id="132692233" width="150" height="100" x="1475" y="835" label="(INCOMPLTE)">
+            <action type="Speech" actor="Shepard" speech="Hey- "/>
+        </node>
+        <node id="150240575" width="150" height="100" x="277" y="937" label="Mellisa Via Who">
+            <action type="Speech" speech="Mellisa, why don't you tell me more about yourself?"/>
+            <action type="Speech" speech="Sure thing &lt;Mr/Lady&gt; Shepard. What do you want to know?"/>
+            <action type="Speech" actor="Dusan" speech="Uglyface."/>
+            <action type="Jump" jump-target="60"/>
+        </node>
+        <link id="165767435" label="Nikol" from="46" to="869942976"/>
+        <node id="192537636" width="150" height="100" x="307" y="1636" label="Ivan Via Nikol">
+            <action type="Speech" actor="Shepard" speech="What else can you tell me about Nikol's dad? What's his name?"/>
+            <action type="Speech" actor="Dusan" speech="I always call him Mr Koci."/>
+            <action type="Speech" actor="Dusan" speech="Dad Calls him Ivan."/>
+            <action type="Jump" jump-target="48"/>
+        </node>
+        <link id="196458353" label="Eduard" from="70" to="596932118"/>
+        <link id="257581692" label="Mum" from="70" to="955604726"/>
+        <link id="297319475" label="Where" from="61" to="64"/>
+        <link id="355103750" label="Job" from="70" to="71"/>
+        <link id="372314962" label="Mum" from="9" to="79"/>
+        <node id="468362636" width="150" height="100" x="263" y="1482" label="Mr Koci">
+            <action type="Speech" actor="Shepard" speech="Mr Koci?"/>
+            <action type="Jump" jump-target="48"/>
+        </node>
+        <link id="475439183" label="?" from="1492973798" to="2049674277"/>
+        <node id="476707713" width="150" height="100" x="-13" y="-435" label=":Dusan">
+            <action type="Conditional">
+                <action type="Speech" actor="Narrator" speech="The Boy looks slightly younger, and seems to be watching you, cautiously. His clothes are sturdy, but also fairly rough, and look like they've been inherited from an older sibling."/>
+            </action>
+            <action type="Conditional">
+                <action type="Speech" actor="Narrator" speech="Dusan is slightly younger than his cousin, and seems to be watching you, cautiously. His clothes are sturdy, but also fairly rough, and look like they've been inherited from an older sibling."/>
+            </action>
+            <action type="ReturnToSender" jump-target="1431355191"/>
+        </node>
+        <node id="489035169" width="150" height="100" x="-236" y="-122" label="YOU are a ghost">
+            <action type="Speech" actor="Shepard" speech="[LIE]The Ghost... is you."/>
+            <action type="Speech" actor="Dusan" speech="No I'm not!"/>
+            <action type="Speech" actor="Mellisa" speech="We both know that you're tricking."/>
+            <action type="Speech" actor="Dusan" speech="It was a fun trick though!"/>
+            <action type="Speech" actor="Mellisa" speech="Yeah. True."/>
+            <action type="Speech" actor="Mellisa" speech="Most adults who come through the village just ignore us."/>
+            <action type="Speech" actor="Dusan" speech="That's because they're boring."/>
+            <action type="Jump" jump-target="1431355191"/>
+        </node>
+        <link id="495252308" label="You" from="2137716191" to="489035169"/>
+        <node id="505671508" width="150" height="100" x="-379" y="-411" label="Yes Ghosts">
+            <action type="Speech" actor="Shepard" speech="Yes. It's true. I can see ghosts."/>
+            <action type="Speech" actor="Mellisa" speech="See! See! I told you!"/>
+            <action type="Speech" actor="Dusan" speech="That's really weird. Are they scary?"/>
+        </node>
+        <node id="567710733" width="150" height="100" x="88" y="637" label="No questions??">
+            <action type="Speech" actor="Shepard" speech="What makes you say that?"/>
+            <action type="Emote"/>
+            <action type="Speech" actor="Dusan" speech="..."/>
+            <action type="Speech" actor="Dusan" speech="I dunno."/>
+            <action type="Speech" actor="Dusan" speech="Just don't think he'd like it."/>
+            <action type="Jump" jump-target="62"/>
+        </node>
+        <node id="581395116" width="150" height="100" x="162" y="1898" label="Maria Via Nikol">
+            <action type="Speech" actor="Shepard" speech="What was Nikol's mother called?"/>
+            <action type="Speech" actor="Dusan" speech="Maria."/>
+            <action type="Speech" actor="Shepard" speech="Can you tell me about her?"/>
+            <action type="Speech" actor="Dusan" speech="Why?"/>
+            <action type="Speech" actor="Mellisa" speech="Don't you see? &lt;He/She&gt;  is a Shepard. "/>
+            <action type="Speech" actor="Mellisa" speech="It's &lt;his/her&gt; Job to know about dead people."/>
+            <action type="Speech" actor="Dusan" speech="So?"/>
+            <action type="Speech" actor="Dusan" speech="... Oh."/>
+            <action type="Speech" actor="Dusan" speech="Oooohhhh..."/>
+            <action type="Speech" actor="Dusan" speech="Oh dear."/>
+            <action type="Jump" jump-target="38"/>
+        </node>
+        <node id="589265238" width="150" height="100" x="-601" y="-475" label="Not Scary Ghosts">
+            <action type="Speech" actor="Shepard" speech="Not really. Mostly they're just like people who are sad."/>
+            <action type="Speech" actor="Dusan" speech="Sad?"/>
+            <action type="Speech" actor="Mellisa" speech="Well that's no fun!"/>
+            <action type="Speech" actor="Mellisa" speech="Sad people are lame."/>
+            <action type="Speech" actor="Mellisa" speech="I'm going to live my life, and be tough, and never ever be sad!"/>
+            <action type="Speech" actor="Mellisa" speech="That way, no one will ever be able to turn me into a ghost!"/>
+            <action type="Speech" actor="Dusan" speech="... I think Eduard gets sad sometimes."/>
+            <action type="Speech" actor="Dusan" speech="Sometimes he goes out in the mountains for weeks, and doesn't talk to anyone."/>
+            <action type="Jump" jump-target="1431355191"/>
+        </node>
+        <node id="596932118" width="150" height="100" x="1026" y="656" label="Link to Brother">
+            <action type="Jump" jump-target="61"/>
+        </node>
+        <link id="631185153" label="Family" from="61" to="65"/>
+        <node id="636708761" width="150" height="100" x="279" y="447" label="Dusan Via Who">
+            <action type="Speech" actor="Shepard" speech="Dusan, why do't you tell me more about yourself."/>
+            <action type="Speech" actor="Dusan" speech="Okay"/>
+            <action type="Speech" actor="Mellisa" speech="Stinky head."/>
+            <action type="Jump" jump-target="72"/>
+        </node>
+        <link id="656707218" label="Dad" from="34" to="192537636"/>
+        <node id="693749302" width="150" height="100" x="1018" y="378" label="Link to Dad">
+            <action type="Conditional">
+                <action type="Speech" actor="Shepard" speech="Who's your Dad?"/>
+                <action type="Speech" actor="Dusan" speech="My Dad owns the wayhouse."/>
+                <action type="Speech" actor="Dusan" speech="You probably met him when you got here."/>
+            </action>
+            <action type="Conditional">
+                <action type="Speech" actor="Shepard" speech="Could you tell me some more about your dad?"/>
+            </action>
+            <action type="Jump" jump-target="91"/>
+        </node>
+        <link id="701319238" label="Wife" from="46" to="2039565267"/>
+        <link id="704096693" label="Where" from="70" to="69"/>
+        <link id="704677169" label="?" from="1309920959" to="2049674277"/>
+        <link id="719950939" label="no" from="2137716191" to="1701072507"/>
+        <node id="869942976" width="150" height="100" x="325" y="2021" label="Nikol Via Ivan Family">
+            <action type="Speech" actor="Shepard" speech="Nikol?"/>
+            <action type="Speech" actor="Dusan" speech="Yeah- that's Mr Koci's daughter."/>
+            <action type="Speech" actor="Dusan" speech="She helps out Mum and Dad with serving food and cooking and stuff."/>
+            <action type="Jump" jump-target="36"/>
+        </node>
+        <link id="879608448" label="Job" from="34" to="35"/>
+        <link id="899065992" label="Maybe" from="505671508" to="1182112391"/>
+        <node id="917918111" width="150" height="100" x="459" y="876" label="Eduard Opinion">
+            <action type="Speech" actor="Shepard" speech="What's Eduard like as a brother?"/>
+            <action type="Speech" actor="Dusan" speech="He's... a good brother."/>
+            <action type="Speech" actor="Dusan" speech="And I really don't think Eduard would like us talking about him like this."/>
+            <action type="Speech" actor="Shepard" speech="Why not?"/>
+            <action type="Speech" actor="Dusan" speech="..."/>
+            <action type="Speech" actor="Mellisa" speech="Dusan's just worried because Eduard gets sad or something sometimes and-"/>
+            <action type="Speech" actor="Dusan" speech="MEL!"/>
+            <action type="Speech" actor="Mellisa" speech="What?"/>
+            <action type="Speech" actor="Dusan" speech="You're not supposed to talk about that- you know its secret."/>
+            <action type="Jump" jump-target="2027288670"/>
+        </node>
+        <link id="924859463" label="No" from="505671508" to="589265238"/>
+        <link id="936145377" label="Yes" from="17" to="505671508"/>
+        <node id="955604726" width="150" height="100" x="1109" y="522" label="Link To Mum">
+            <action type="Conditional">
+                <action type="Speech" actor="Shepard" speech="Could you tell me more about your mother?"/>
+                <action type="Speech" actor="Dusan" speech="I guess so."/>
+            </action>
+            <action type="Conditional">
+                <action type="Speech" actor="Shepard" speech="What's your mother's name?"/>
+                <action type="Speech" actor="Mellisa" speech="Dusan's Mum is called Aunty Laura!"/>
+                <action type="Speech" actor="Dusan" speech="Hey! You interrupted! &lt;He/She&gt; was asking me the question."/>
+                <action type="Speech" actor="Mellisa" speech="Well- you should have answered faster then!"/>
+            </action>
+            <action type="Jump" jump-target="83"/>
+        </node>
+        <node id="964899043" width="150" height="100" x="325" y="-606" label="Who are you">
+            <action type="Speech" speech="Who are you? What are your names?"/>
+            <action type="Speech" actor="Mellisa" speech="I'm Mellisa."/>
+            <action type="Speech" actor="Dusan" speech="and I'm Dusan."/>
+            <action type="Speech" actor="Mellisa" speech="He's my idiot cousin, and smells like poo."/>
+            <action type="Speech" actor="Dusan" speech="And she's the queen of the goblins, and ugly stupid people."/>
+            <action type="Speech" actor="Mellisa" speech="Hey!"/>
+            <action type="Speech" actor="Dusan" speech="Nyaaa"/>
+            <action type="Emote"/>
+        </node>
+        <link id="965027506" label="job" from="46" to="47"/>
+        <link id="984411720" label=":" from="1431355191" to="18"/>
+        <link id="1034160761" label="Yes" from="2137716191" to="1942841066"/>
+        <node id="1068432038" width="150" height="100" x="-564" y="-228" label="VERY scary Trick ghost">
+            <action type="Speech" speech="[LIE] Yes. It's very scary"/>
+            <action type="Speech" actor="Dusan" speech="Is it going to eat us?"/>
+            <action type="Speech" speech="[LIE] Oh- you wish it was ONLY going to eat you up."/>
+            <action type="Concurrent">
+                <action type="Speech" actor="Mellisa" speech="What's it going to do?"/>
+                <action type="Emote"/>
+                <action type="Speech" actor="Dusan" speech="...?"/>
+            </action>
+            <action type="Speech" actor="Shepard" speech="[LIE] First... it's going to peel your skin."/>
+            <action type="Speech" actor="Mellisa" speech="Eeeee..."/>
+            <action type="Speech" actor="Shepard" speech="[LIE] Then, its going to squish your eyeballs!"/>
+            <action type="Speech" actor="Dusan" speech="Ew! Ew ew ew ew ew!"/>
+            <action type="Speech" actor="Mellisa" speech="Yuck."/>
+            <action type="Speech" actor="Shepard" speech="[LIE] Your eyeballs will make a squelching, poping noise as it squeezes them between its dirty fingernails"/>
+            <action type="Speech" actor="Dusan" speech="And then what?!"/>
+            <action type="Speech" actor="Shepard" speech="[LIE] And then it will put maggots in your eye sockets and grow maggots in your brain."/>
+            <action type="Speech" actor="Dusan" speech="EWWWww!"/>
+            <action type="Speech" actor="Mellisa" speech="Wait! Stop! "/>
+            <action type="Speech" actor="Shepard" speech="..."/>
+            <action type="Speech" actor="Mellisa" speech="This story is TOO scary. If you keep going, you might give Dusan nightmares."/>
+            <action type="Speech" actor="Dusan" speech="No you won't!"/>
+            <action type="Speech" actor="Mellisa" speech="And if you give Dusan nightmares and he wets the bed, then the whole house will be smelly, and it will be all your fault."/>
+            <action type="Speech" actor="Dusan" speech="I don't wet the bed!"/>
+            <action type="Speech" actor="Mellisa" speech="No. No more stories. That's the rule- I'm the biggest."/>
+            <action type="Jump" jump-target="1431355191"/>
+        </node>
+        <link id="1087019941" label="Opinion" from="34" to="32"/>
+        <node id="1182112391" width="150" height="100" x="-600" y="-392" label="Sometimes Scary">
+            <action type="Speech" actor="Shepard" speech="Sometimes."/>
+            <action type="Speech" actor="Shepard" speech="Most ghosts are just sort of sad and waiting for something."/>
+            <action type="Speech" actor="Dusan" speech="Ooohhh"/>
+            <action type="Speech" actor="Shepard" speech="But sometimes they are angry, or want to hurt people."/>
+            <action type="Speech" actor="Mellisa" speech="Do you fight them?"/>
+            <action type="Speech" actor="Shepard" speech="..."/>
+            <action type="Speech" actor="Shepard" speech="No."/>
+            <action type="Speech" actor="Shepard" speech="We have Exorcists for that."/>
+            <action type="Speech" actor="Shepard" speech="My job is to talk to the ghosts that need talking."/>
+            <action type="Speech" actor="Dusan" speech="Well that's no fun."/>
+            <action type="Speech" actor="Mellisa" speech="Yeah! You're ghosts are lame Shepard."/>
+            <action type="Jump" jump-target="1431355191"/>
+        </node>
+        <link id="1186278907" label=":boy" from="18" to="476707713"/>
+        <node id="1188903679" width="150" height="100" x="-530" y="-572" label="What you think?">
+            <action type="Speech" actor="Shepard" speech="Well... what do you think?"/>
+            <action type="Speech" actor="Dusan" speech="YES! Ghosts are dark and scary, and have blood dripping off their fangs and-"/>
+            <action type="Speech" actor="Mellisa" speech="That's vampires Dusan."/>
+            <action type="Speech" actor="Mellisa" speech="Ghosts are just dead people who hang around because they still need to do something."/>
+            <action type="Speech" actor="Dusan" speech="Oh."/>
+            <action type="Speech" actor="Dusan" speech="Not even a little bit scary?"/>
+            <action type="Speech" actor="Shepard" speech="Not really."/>
+            <action type="Speech" speech="Sorry kid."/>
+            <action type="Jump" jump-target="1431355191"/>
+        </node>
+        <link id="1194950749" label="Koci" from="9" to="1441442234"/>
+        <link id="1215825599" label="*Yes" from="17" to="2137716191"/>
+        <link id="1222655088" label="Job" from="61" to="66"/>
+        <link id="1223389481" label="*Yes" from="2137716191" to="1068432038"/>
+        <link id="1228162728" label="~" from="2027288670" to="1403176131"/>
+        <node id="1260217093" width="150" height="100" x="126" y="-428" label=":Mellisa">
+            <action type="Conditional">
+                <action type="Speech" actor="Narrator" speech="The Girl smiles and poses, and flits about anxiously. She seems to be putting on a show of being confident, but seems ill at ease in these surrondings- aware of her status as a guest. Her clothes are new and well made, but perhaps not as sturdy as they could be."/>
+            </action>
+            <action type="Conditional">
+                <action type="Speech" actor="Mellisa" speech="Melissa- the older of the two cousins. She smiles and poses, and flits about anxiously, but seems ill at ease in these surrondings- aware of her status as a guest. Her clothes are new and well made, but perhaps not as sturdy as they could be."/>
+            </action>
+            <action type="ReturnToSender" jump-target="1431355191"/>
+        </node>
+        <node id="1309920959" width="150" height="100" x="1226" y="1111" label="Questioning">
+            <action type="Speech" actor="Shepard" speech="So... your older brother is sad sometimes?"/>
+            <action type="Speech" actor="Dusan" speech="Yes."/>
+            <action type="Speech" actor="Shepard" speech="And you're worried."/>
+            <action type="Speech" actor="Dusan" speech="..."/>
+            <action type="Speech" actor="Dusan" speech="Yes."/>
+            <action type="Speech" actor="Shepard" speech="What are you worried about?"/>
+            <action type="Speech" actor="Dusan" speech="Sometimes... Eduard goes up in the mountains ...because there are no people there."/>
+            <action type="Speech" actor="Dusan" speech="And sometimes when Eduard goes up in the mountains, he might not be careful... because he might not want to come home."/>
+            <action type="Speech" actor="Dusan" speech="And one day my big brother won't come back."/>
+        </node>
+        <link id="1336812404" label="Dad" from="70" to="693749302"/>
+        <link id="1337360875" label="Mum" from="34" to="581395116"/>
+        <link id="1366913857" label="Brother" from="70" to="596932118"/>
+        <node id="1403176131" width="150" height="100" x="1224" y="888" label="Gentle">
+            <action type="Speech" actor="Shepard" speech="It's okay Dusan. You don't have to tell me anything if you don't want to."/>
+            <action type="Speech" actor="Shepard" speech="Mellisa- it's important that you don't go blabbing about things people ask you to keep secret."/>
+            <action type="Speech" actor="Shepard" speech="It means they won't feel safe telling you other secrets later on- even when they really need to."/>
+            <action type="Speech" actor="Mellisa" speech="Sorry &lt;Sir/Miss&gt;."/>
+            <action type="Speech" actor="Shepard" speech="Now say sorry to your cousin too."/>
+            <action type="Speech" actor="Mellisa" speech="Sorry Dusan"/>
+            <action type="Speech" actor="Dusan" speech="'s okay."/>
+            <action type="Speech" actor="Shepard" speech="I think maybe I should go now. Maybe I'll come back later."/>
+            <action type="EndConversation"/>
+        </node>
+        <node id="1431355191" width="150" height="100" x="197" y="-771" label="Central hub"/>
+        <node id="1441442234" width="150" height="100" x="-149" y="518" label="The Koci's">
+            <action type="Speech" actor="Shepard" speech="The Koci's"/>
+            <action type="Speech" actor="Dusan" speech="Yeah- Maria and Mr Koci."/>
+        </node>
+        <link id="1484739682" label="?" from="105585883" to="2049674277"/>
+        <node id="1492973798" width="150" height="100" x="1223" y="778" label="Press for secret">
+            <action type="Speech" actor="Shepard" speech="This sounds like a pretty important secret Dusan"/>
+            <action type="Speech" actor="Shepard" speech="I think I'm going to need you to tell me."/>
+            <action type="Speech" actor="Dusan" speech="...."/>
+            <action type="Speech" actor="Dusan" speech="..."/>
+            <action type="Speech" actor="Mellisa" speech="Dusan thinks that Eduard is sad, and isn't going to get better, and that he'll go out into the mountains one day and never come home."/>
+        </node>
+        <link id="1533493063" label="Where" from="34" to="33"/>
+        <link id="1571000710" label="!yes" from="2137716191" to="1068432038"/>
+        <link id="1573736397" label=":Mellisa" from="18" to="1260217093"/>
+        <link id="1620836711" label="?" from="2027288670" to="1309920959"/>
+        <link id="1644948879" label=":Dusan" from="18" to="476707713"/>
+        <link id="1663705393" label="Opinion" from="46" to="44"/>
+        <link id="1690158718" label="Maria" from="1441442234" to="37"/>
+        <node id="1701072507" width="150" height="100" x="-367" y="-121" label="Not scary">
+            <action type="Speech" speech="[LIE] Nope. It's a friendly ghost."/>
+            <action type="Speech" actor="Dusan" speech="OHhhhhh"/>
+            <action type="Speech" actor="Mellisa" speech="That's no fun."/>
+            <action type="Speech" actor="Mellisa" speech="Your ghosts are lame &lt;Mr/Lady&gt;."/>
+            <action type="Speech" actor="Dusan" speech="Yeah! Why couldn't we have a scary ghost instead?"/>
+            <action type="Jump" jump-target="1431355191"/>
+        </node>
+        <link id="1702389617" label="Mr Koci" from="1441442234" to="468362636"/>
+        <link id="1762071561" label=":girl" from="18" to="1260217093"/>
+        <link id="1795536041" label="Opinion" from="62" to="917918111"/>
+        <link id="1814042643" label="Opinion" from="70" to="68"/>
+        <link id="1822916704" label="*" from="2027288670" to="105585883"/>
+        <link id="1907218830" label="Who" from="1431355191" to="964899043"/>
+        <link id="1935915075" label="Dusan" from="964899043" to="636708761"/>
+        <node id="1942841066" width="150" height="100" x="-509" y="-120" label="Scary Trick Ghost">
+            <action type="Speech" actor="Shepard" speech="[LIE] Yes. It's very scary"/>
+            <action type="Speech" actor="Dusan" speech="Is it going to eat us?"/>
+            <action type="Speech" actor="Mellisa" speech="And chew on our bones and drink our blood?"/>
+            <action type="Speech" speech="[LIE] Yes!"/>
+            <action type="Speech" actor="Dusan" speech="Will it gnaw our spleens?"/>
+            <action type="Speech" actor="Mellisa" speech="What?"/>
+            <action type="Speech" actor="Mellisa" speech="Whoever heard of a ghost gnawing on peoples spleens?"/>
+            <action type="Speech" actor="Mellisa" speech="What is a spleen anyway?"/>
+            <action type="Speech" actor="Dusan" speech="I think its a squishy thing inside people that makes them get sick."/>
+            <action type="Speech" actor="Mellisa" speech="Well- if its squishy then you don't need to gnaw on it do you?"/>
+            <action type="Jump" jump-target="1431355191"/>
+        </node>
+        <link id="1970242928" label="?" from="505671508" to="1188903679"/>
+        <link id="2005480717" label="Mellisa" from="964899043" to="150240575"/>
+        <node id="2027288670" width="150" height="100" x="1030" y="942" label="Eduard Crux"/>
+        <node id="2039565267" width="150" height="100" x="167" y="1743" label="Maria via Ivan">
+            <action type="Speech" actor="Shepard" speech="Mr Koci's wife? What was her name?"/>
+            <action type="Speech" actor="Dusan" speech="She was called Maria. Her and Mum were best friends."/>
+            <action type="Jump" jump-target="38"/>
+        </node>
+        <node id="2049674277" width="150" height="100" x="1473" y="1062" label="Have you talked (INCOMPLETE)">
+            <action type="Speech" actor="Shepard" speech="Have you told anyone about this?"/>
+            <action type="Emote"/>
+            <action type="Speech" actor="Dusan" speech="I think Mum and Dad already know."/>
+            <action type="Speech" actor="Dusan" speech="They don't know what to do either."/>
+            <action type="Speech" actor="Dusan" speech="So... sometimes we wait."/>
+            <action type="Speech" actor="Dusan" speech="And sometimes he doesn't get back when he's supposed to."/>
+            <action type="Speech" actor="Dusan" speech="And they pretend like everything's okay."/>
+            <action type="Speech" actor="Dusan" speech="Because they don't want me to notice."/>
+            <action type="Speech" actor="Dusan" speech="But... I do.... and"/>
+            <action type="Speech" actor="Dusan" speech="and I pretend everything's okay too- because maybe if we all keep pretending maybe it will be."/>
+            <action type="Speech" actor="Dusan" speech="But it won't."/>
+            <action type="Speech" actor="Shepard"/>
+        </node>
+        <node id="2137716191" width="150" height="100" x="-372" y="-239" label="Ghosts... right now!">
+            <action type="Speech" actor="Shepard" speech="Yes! In fact..."/>
+            <action type="Speech" actor="Shepard" speech="[LIE] I can see a ghost..."/>
+            <action type="Speech" actor="Shepard" speech="[LIE] Right now!"/>
+            <action type="Concurrent">
+                <action type="Speech" actor="Dusan" speech="EEEEeee!"/>
+                <action type="Speech" actor="Mellisa" speech="EEEeeee!"/>
+                <action type="Emote"/>
+            </action>
+            <action type="Speech" actor="Mellisa" speech="Is it Scary!?"/>
+        </node>
+    </objects>
+    <data>
+        <character-names>
+            <character name="Shepard"/>
+            <character name="Other"/>
+            <character name="Narrator"/>
+            <character name="Dusan"/>
+            <character name="Mellisa"/>
+        </character-names>
+    </data>
+</conversation>

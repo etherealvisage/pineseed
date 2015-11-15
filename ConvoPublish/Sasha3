@@ -1,0 +1,962 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conversation>
+    <objects>
+        <node id="2" width="150" height="100" x="349" y="-668" label="Dog"/>
+        <node id="3" width="150" height="100" x="-533" y="298" label="Lookout">
+            <action type="FirstVisitConditional">
+                <action type="Speech" actor="Shepard" speech="Have you been up to the lookout?"/>
+                <action type="Speech" actor="Sasha" speech="There's a lookout? Oh wow- I bet the view is really amazing from up here."/>
+            </action>
+            <action type="FirstVisitConditional" cond-invert="true">
+                <action type="Speech" actor="Shepard" speech="Have you been up to the lookout?"/>
+                <action type="Speech" actor="Sasha" speech="Not yet."/>
+            </action>
+        </node>
+        <node id="4" width="150" height="100" x="-596" y="452" label="Mountain Intro"/>
+        <node id="5" width="150" height="100" x="-421" y="457" label="Mountain Hub"/>
+        <node id="6" width="150" height="100" x="-595" y="120" label="Wintergate Intro">
+            <action type="Speech" actor="Shepard" speech="How much do you know about Wintergate?"/>
+            <action type="Speech" actor="Sasha" speech="Not a lot- my almanac only has a few paragraphs on it."/>
+        </node>
+        <node id="7" width="150" height="100" x="-213" y="275" label="Wintergate Guests">
+            <action type="Speech" actor="Shepard" speech="Know anything about the guests currently staying?"/>
+            <action type="Speech" actor="Sasha" speech="Well... there's me, you, and Mr Tashin."/>
+            <action type="Speech" actor="Sasha" speech="There might be other guests, but I haven't met any of them yet."/>
+        </node>
+        <node id="8" width="150" height="100" x="-207" y="178" label="Wintergate History">
+            <action type="Speech" actor="Shepard" speech="Know anything about the history?"/>
+            <action type="Speech" actor="Sasha" speech="Oh? History? Yes! I read up on all that before I set off- it's actually really interesting."/>
+            <action type="Jump" jump-target="33215081"/>
+        </node>
+        <node id="9" width="150" height="100" x="-220" y="56" label="Wintergate Locals">
+            <action type="Speech" actor="Shepard" speech="Met any of the locals yet?"/>
+            <action type="Speech" actor="Sasha" speech="Well- Mr Bedrich showed me to my room, and there was a girl out in the drinking area... she seemed nice."/>
+        </node>
+        <node id="10" width="150" height="100" x="-338" y="-59" label="Wintergate Places">
+            <action type="Speech" actor="Shepard" speech="Do you know of any places around here?"/>
+            <action type="Speech" actor="Sasha" speech="Oh... err... wait- wait - I had something on this."/>
+            <action type="Speech" actor="Sasha" speech="Let me get my map book!"/>
+        </node>
+        <node id="12" width="150" height="100" x="311" y="-438" label="Sasha Intro">
+            <action type="Jump"/>
+        </node>
+        <node id="13" width="150" height="100" x="666" y="-380" label="Sasha Opinion"/>
+        <node id="14" width="150" height="100" x="666" y="-471" label="Sasha Where"/>
+        <node id="16" width="150" height="100" x="6" y="-693" label="Return Meeting"/>
+        <node id="17" width="150" height="100" x="-200" y="-369" label="First time Meeting"/>
+        <node id="18" width="150" height="100" x="38" y="-971" label="Look &quot;:&quot; Initial.">
+            <action type="Speech" actor="Narrator" speech="It's a young women, apparently a traveller of sorts. Looks like she's just come up from the Capitol. There's a pile of baggage beside her."/>
+            <action type="Speech" actor="Narrator" speech="She grins to herself as she glances around her surrondings, apparently taking in the sights."/>
+        </node>
+        <node id="19" width="150" height="100" x="319" y="403" label="GregorIntro">
+            <action type="Speech" actor="Shepard" speech="You know of someone called Gregor?"/>
+            <action type="Speech" actor="Sasha" speech="Yes."/>
+            <action type="Speech" actor="Sasha" speech="My uncle was called Gregor."/>
+            <action type="Speech" actor="Shepard" speech="...."/>
+            <action type="Speech" actor="Shepard" speech="I don't THINK that's who I'm talking about."/>
+            <action type="Speech" actor="Sasha" speech="Well, okay then."/>
+        </node>
+        <node id="25" width="150" height="100" x="193" y="357" label="SanIntro">
+            <action type="Speech" actor="Shepard" speech="Know anything about Old San."/>
+            <action type="Speech" actor="Sasha" speech="She has a funny name."/>
+        </node>
+        <node id="31" width="150" height="100" x="73" y="665" label="Nikol Intro">
+            <action type="Speech" actor="Shepard" speech="You know anything about Nikol?"/>
+            <action type="Speech" actor="Sasha" speech="Who?"/>
+            <action type="Speech" actor="Shepard" speech="She's the serving girl downstairs."/>
+            <action type="Speech" actor="Sasha" speech="Ohhh... No, we haven't talked yet."/>
+        </node>
+        <node id="37" width="150" height="100" x="167" y="253" label="Maria Intro">
+            <action type="Speech" actor="Shepard" speech="Anyone mentioned the name &quot;Maria&quot; to you?"/>
+            <action type="Speech" actor="Sasha" speech="Not since getting here."/>
+        </node>
+        <node id="43" width="150" height="100" x="425" y="297" label="Ivan Intro">
+            <action type="Speech" actor="Shepard" speech="Met Ivan."/>
+            <action type="Speech" actor="Sasha" speech="Can't say I have."/>
+        </node>
+        <node id="49" width="150" height="100" x="179" y="535" label="Tereza Intro">
+            <action type="Speech" actor="Shepard" speech="Have you heard of someone called Tereza."/>
+            <action type="Speech" actor="Sasha" speech="Tereza Macovec? Yeah- her name comes up a couple times in the history books."/>
+            <action type="Speech" actor="Shepard" speech="It does?"/>
+            <action type="Speech" actor="Sasha" speech="Sure."/>
+        </node>
+        <node id="51" width="150" height="100" x="515" y="748" label="Tereza Opinion" context="133276800">
+            <action type="Speech" actor="Shepard" speech="What sort of impression did you get of her?"/>
+            <action type="Speech" actor="Sasha" speech="From a history text book?"/>
+            <action type="Speech" actor="Sasha" speech="She came from a wealth family, and kept her maiden name."/>
+            <action type="Speech" actor="Sasha" speech="She built this wayhouse, which is something of an achievement, but that's all."/>
+            <action type="Speech" actor="Sasha" speech="With the amount of money she had, she could have easily done more, so I'm guessing this was more of a hobby than an actual investment."/>
+        </node>
+        <node id="52" width="150" height="100" x="551" y="656" label="Tereza Where" context="133276800">
+            <action type="Speech" actor="Shepard" speech="You know where she lives."/>
+            <action type="Speech" actor="Sasha" speech="Books say she lives here in Wintergate."/>
+            <action type="Speech" actor="Shepard" speech="... "/>
+            <action type="Speech" actor="Shepard" speech="That doesn't seem right."/>
+            <action type="Speech" actor="Sasha" speech="Then probably you need more up to date information."/>
+        </node>
+        <node id="53" width="150" height="100" x="556" y="572" label="Tereza Family" context="133276800">
+            <action type="Speech" actor="Shepard" speech="Know anything about her family?"/>
+            <action type="Speech" actor="Sasha" speech="Books didn't mention anything about it. "/>
+            <action type="Speech" actor="Sasha" speech="Census data probably has something on it if you want me to fish that out"/>
+        </node>
+        <node id="54" width="150" height="100" x="559" y="471" label="Tereza Job" context="133276800">
+            <action type="Speech" actor="Shepard" speech="What's her job."/>
+            <action type="Speech" actor="Sasha" speech="Well she WAS the owner of the Wayhouse."/>
+            <action type="Speech" actor="Sasha" speech="They may have been a few years back now."/>
+        </node>
+        <node id="55" width="150" height="100" x="147" y="145" label="Mellisa Intro">
+            <action type="Speech" actor="Shepard" speech="Have you met a kid called Mellisa."/>
+            <action type="Speech" actor="Sasha" speech="I think I saw a couple kids when I arrived here."/>
+            <action type="Speech" actor="Shepard" speech="Didn't talk to them?"/>
+            <action type="Speech" actor="Sasha" speech="Nope. Sorry."/>
+        </node>
+        <node id="61" width="150" height="100" x="179" y="28" label="Eduard intro">
+            <action type="Speech" actor="Shepard" speech="I was wondering if you could tell me about Eduard."/>
+            <action type="Speech" actor="Sasha" speech="I don't think I've met that person."/>
+        </node>
+        <node id="67" width="150" height="100" x="551" y="200" label="Dusan Intro">
+            <action type="Speech" actor="Shepard" speech="There's a boy called Dusan in this village. Have you spoken to him?"/>
+            <action type="Speech" actor="Sasha" speech="... Nope. Sorry."/>
+        </node>
+        <node id="73" width="150" height="100" x="514" y="79" label="Agata Intro">
+            <action type="Speech" actor="Shepard" speech="Have you heard of someone called Agata."/>
+            <action type="Speech" actor="Sasha" speech="One of my Roommates back at the Academy was called Agata."/>
+            <action type="Speech" actor="Shepard" speech="Probably not the one I'm thinking of."/>
+        </node>
+        <node id="84" width="150" height="100" x="343" y="-1" label="Laura Intro">
+            <action type="Speech" actor="Shepard" speech="You met Laura yet?"/>
+            <action type="Speech" actor="Sasha" speech="Who?"/>
+            <action type="Speech" actor="Shepard" speech="I guess not."/>
+        </node>
+        <node id="85" width="150" height="100" x="-83" y="-572" label="Bye">
+            <action type="RandomChoice">
+                <action type="Speech" actor="Shepard" speech="I should be going"/>
+                <action type="Speech" actor="Shepard" speech="Thanks heaps, I'll check in later."/>
+                <action type="Speech" actor="Shepard" speech="I'll leave you to your packing."/>
+                <action type="Speech" speech="Bye bye for now."/>
+                <action type="Speech" speech="Stay in touch."/>
+                <action type="Speech" speech="I'd better head off."/>
+            </action>
+            <action type="RandomChoice">
+                <action type="Speech" actor="Sasha" speech="Goodbye &lt;Shepard/Ester/Matias&gt;."/>
+                <action type="Speech" actor="Sasha" speech="See ya' Shepard."/>
+                <action type="Speech" actor="Sasha" speech="Good luck."/>
+                <action type="Speech" actor="Sasha" speech="I'll be here."/>
+                <action type="Sequence">
+                    <action type="Speech" actor="Sasha" speech="Right on!"/>
+                    <action type="Speech" actor="Sasha" speech="I'll stay here and sort through... all... this... baggage."/>
+                    <action type="Concurrent">
+                        <action type="Emote" actor="Sasha" emote="*sigh*"/>
+                        <action type="Speech" actor="Sasha" speech="*Sigh*"/>
+                    </action>
+                </action>
+            </action>
+        </node>
+        <node id="86" width="150" height="100" x="103" y="-214" label="Bedrich Intro" context="775956549">
+            <action type="Speech" actor="Shepard" speech="Met Bedrich yet?"/>
+            <action type="Speech" actor="Sasha" speech="He was the one who showed me to my room."/>
+        </node>
+        <node id="87" width="150" height="100" x="478" y="-86" label="Bedrich Character" context="775956549">
+            <action type="Speech" actor="Shepard" speech="What do you think of him?"/>
+            <action type="Speech" actor="Sasha" speech="Friendly?"/>
+            <action type="Speech" actor="Sasha" speech="Helpful?"/>
+            <action type="Speech" actor="Sasha" speech="Kind of loud?"/>
+        </node>
+        <node id="88" width="150" height="100" x="462" y="-163" label="Bedrich Where" context="775956549">
+            <action type="Speech" actor="Shepard" speech="Know where I could find him?"/>
+            <action type="Speech" actor="Sasha" speech="He came down to the road to meet us when I arrived."/>
+            <action type="Speech" actor="Sasha" speech="I kind of figured he finds you."/>
+        </node>
+        <node id="89" width="150" height="100" x="461" y="-224" label="Bedrich Family" context="775956549">
+            <action type="Speech" actor="Shepard" speech="You met his family yet?"/>
+            <action type="Speech" actor="Sasha" speech="Can't say I have."/>
+        </node>
+        <node id="90" width="150" height="100" x="460" y="-289" label="Bedrich Job" context="775956549">
+            <action type="Speech" actor="Shepard" speech="What's Bedrich's job around here?"/>
+            <action type="Speech" actor="Sasha" speech="Ummm..."/>
+            <action type="Speech" actor="Sasha" speech="Showing people to their rooms?"/>
+        </node>
+        <node id="1865900" width="150" height="100" x="344" y="-1067" label=":">
+            <action type="Speech" actor="Narrator" speech="It's Sasha."/>
+            <action type="Speech" actor="Narrator" speech="She's currently standing amidst a pile of bags, sorting through them vaugely, staring indecisively at a variety of odds and ends."/>
+        </node>
+        <link id="11815772" label="Yes" from="137423749" to="664729556"/>
+        <link id="12343369" label="?" from="289640942" to="248065305" hidden="true"/>
+        <node id="14330931" width="150" height="100" x="342" y="-1516" label=":duffle">
+            <action type="Speech" actor="Narrator" speech="The Dufflebag is full of clothes. There's cold weather gear, a dress, formal Shepard robes and a variety of travel garb."/>
+            <action type="Speech" actor="Shepard" speech="That duffle bags got to go."/>
+            <action type="Speech" actor="Sasha" speech="Yeah? "/>
+            <action type="Speech" actor="Sasha" speech="It's not as bad as the suitcase- I could probably just carry it."/>
+            <action type="Speech" actor="Shepard" speech="Nope. Carrying things for days and days is harder than you think."/>
+            <action type="Speech" actor="Shepard" speech="Plus you'll need your hands free in case we have to climb something."/>
+            <action type="Speech" actor="Sasha" speech="Arghhh... fine."/>
+        </node>
+        <link id="22551831" label="no" from="1691040598" to="92008507"/>
+        <node id="33215081" width="150" height="100" x="-976" y="37" label="Wintergate history gag 1">
+            <action type="Speech" actor="Sasha" speech="So- apparently Wintergate used to be a garrison for the old kingdom of Gwint- there's tonnes of defencese and storehouses built into the side of the mountain."/>
+            <action type="Speech" actor="Sasha" speech="It was built as a counter to Fort Kuolkox which is just down the other end of the valley"/>
+            <action type="Speech" actor="Sasha" speech="Which makes sense, since that was the Marilank end of the valley back in 84-9."/>
+        </node>
+        <link id="37833355" label="Map" from="2069189246" to="2117411416"/>
+        <node id="39188889" width="150" height="100" x="-971" y="782" label="History gag 6">
+            <action type="Speech" actor="Sasha" speech="But they won!"/>
+            <action type="Speech" actor="Sasha" speech="And that's amazing!"/>
+        </node>
+        <context-ref id="46484192" x="273" y="-199" width="100" height="100" context="775956549"/>
+        <node id="47080656" width="150" height="100" x="1245" y="-1856" label="yes map" context="1326548709">
+            <action type="Speech" actor="Shepard" speech="Sure."/>
+            <action type="Speech" actor="Sasha" speech="Okay."/>
+        </node>
+        <node id="56487437" width="150" height="100" x="485" y="-867" label="What you think?">
+            <action type="Speech" actor="Shepard" speech="What do you think we'll need?"/>
+            <action type="Speech" actor="Sasha" speech="Ummm...."/>
+            <action type="Emote" actor="Sasha" emote="Confused."/>
+            <action type="Speech" actor="Sasha" speech="All of it?"/>
+            <action type="Speech" actor="Shepard" speech="Go on now- I'm sure you're better at prioritizing than that."/>
+            <action type="Speech" actor="Sasha" speech="..."/>
+            <action type="Speech" actor="Sasha" speech="The First aid kit."/>
+            <action type="Speech" actor="Sasha" speech="People can always get hurt, and I bet you've already got rope."/>
+            <action type="Speech" speech="Good guess."/>
+        </node>
+        <link id="65642448" label="Time 2S" from="1766027332" to="39188889" hidden="true"/>
+        <node id="92008507" width="150" height="100" x="111" y="-1897" label="No dress">
+            <action type="Speech" actor="Shepard" speech="We're not exactly likely to be traversing civilisation."/>
+            <action type="Speech" actor="Shepard" speech="I'm kind of worried that it'll get lost or ruined if we take it."/>
+            <action type="Speech" actor="Sasha" speech="You think we should leave it here?"/>
+            <action type="Speech" actor="Shepard" speech="It's probably safer."/>
+        </node>
+        <node id="97370123" width="150" height="100" x="1944" y="-2007" label="Look at books">
+            <action type="Speech" actor="Narrator" speech="Sasha's personal library is currently spread across the bed."/>
+            <action type="Speech" actor="Narrator" speech="There's a file binder full of census records and family geneologies (thirteen years out of date), a hard covered history book of military and diplomatic relations between Marilank and Gwint..."/>
+            <action type="Speech" actor="Narrator" speech="There's a tatty book of maps, &quot;No Attribution: fifty stories, zero authors&quot;, and a deep red and lovingly bound diary."/>
+            <action type="Speech" actor="Narrator" speech="..."/>
+            <action type="Speech" actor="Narrator" speech="Next to the diary is a weatherworn handbook of plant and fungus identification, and some sort of academic textbook entitled &quot;Catalouge of Other Beings, and their interactions&quot;."/>
+        </node>
+        <link id="105585883" label="Case" from="596932118" to="297319475" hidden="true"/>
+        <link id="107712156" label="?" from="917918111" to="372314962"/>
+        <link id="114194338" label="No" from="876347754" to="688757058"/>
+        <node id="129225681" width="150" height="100" x="-3" y="68" label="Bedrich">
+            <action type="Speech" actor="Shepard" speech="What did you think of Mr Bedrich?"/>
+            <action type="Speech" actor="Sasha" speech="Oh- he was super friendly."/>
+            <action type="Speech" actor="Sasha" speech="Not like some of the innkeepers we've had."/>
+        </node>
+        <link id="133276800" label="~" from="1654575128" to="1783779417" hidden="true"/>
+        <node id="137423749" width="150" height="100" x="828" y="-1712" label="Nice diary" context="1326548709">
+            <action type="Speech" actor="Shepard" speech="That's a nice book he gave you."/>
+            <action type="Speech" actor="Sasha" speech="Yeah... yeah it is."/>
+            <action type="Speech" actor="Shepard" speech="Do you write in it?"/>
+            <action type="Speech" actor="Sasha" speech="Sometimes..."/>
+            <action type="Speech" actor="Sasha" speech="I should write more, but Diaries aren't really my thing."/>
+            <action type="Speech" actor="Sasha" speech="Should I bring it?"/>
+        </node>
+        <link id="153676795" label="Eduard" from="916975991" to="61"/>
+        <link id="170086281" label="Textbook" from="2069189246" to="869657646"/>
+        <link id="180868985" label="no" from="1600168978" to="1416199257"/>
+        <link id="196458353" label=":bags" from="1336812404" to="596932118" hidden="true"/>
+        <link id="204995133" label="*" from="1685599312" to="1630999840" hidden="true"/>
+        <link id="208873731" label="!" from="1227735875" to="1675547640"/>
+        <link id="233915580" label="~" from="1685599312" to="137423749" hidden="true"/>
+        <node id="234801911" width="150" height="100" x="263" y="683" label="Suggest talk to Nikol [!!Q]">
+            <action type="Speech" actor="Shepard" speech="You should."/>
+            <action type="Speech" actor="Shepard" speech="She's thinking about going to the Academy, and was hoping to talk to someone who had studied there recently."/>
+            <action type="Speech" actor="Sasha" speech="Oh!"/>
+            <action type="Speech" actor="Sasha" speech="Sure!"/>
+            <action type="Speech" actor="Sasha" speech="I can do that!"/>
+            <action type="Speech" actor="Shepard" speech="She's down by the lookout at the moment, thinking to herself."/>
+            <action type="Speech" actor="Shepard" speech="If you tell her who you are, I'm sure she'd appreciate any advice you could give."/>
+            <action type="Speech" actor="Sasha" speech="I'll go there now."/>
+            <action type="Emote" actor="Sasha" emote="Exit Stage Left"/>
+            <action type="EndConversation"/>
+        </node>
+        <link id="239505664" label="Yes" from="1600168978" to="1146356873"/>
+        <node id="248065305" width="150" height="100" x="-1292" y="380" label="why small?">
+            <action type="Speech" actor="Shepard" speech="But why?"/>
+            <action type="Speech" actor="Sasha" speech="That's the genius of it!"/>
+            <action type="Jump" jump-target="691716533"/>
+        </node>
+        <link id="257581692" label=":" from="1336812404" to="1865900"/>
+        <link id="267570080" label="History" from="2069189246" to="1600168978"/>
+        <node id="269970067" width="150" height="100" x="-971" y="939" label="History gag 7">
+            <action type="Speech" actor="Sasha" speech="Now, during the Turichean era, the garrison was maintained fairly heavily"/>
+            <action type="Speech" actor="Sasha" speech="Even after the merging of the bloodlines it was maintained for a few years..."/>
+            <action type="Speech" actor="Sasha" speech="But... well- its an internal boundary now. There's no really point having defences here."/>
+            <action type="Speech" actor="Sasha" speech="Fort Kuolkox was abandonded centuries ago- too expensive to maintain, not especially practical."/>
+            <action type="Speech" actor="Sasha" speech="Wintergate was abandonded far more recently."/>
+        </node>
+        <link id="286317828" label="Job" from="369095287" to="54"/>
+        <node id="289640942" width="150" height="100" x="-972" y="351" label="history gag 3">
+            <action type="Speech" actor="Sasha" speech="No one even knows who it was designed by, but basically its just dug into the side of the mountain, kilometers and kilometers of tunnels, storehouses, and sleeping quarters."/>
+            <action type="Speech" actor="Sasha" speech="Gwint used to sneak battalions through back entrances in the dead of night. "/>
+            <action type="Speech" actor="Sasha" speech="Or keep scores of soldiers underground for weeks at a time in order to misrepresent the power of their defences."/>
+            <action type="Speech" actor="Sasha" speech="and the entire things designed to look small from the outside..."/>
+        </node>
+        <node id="297319475" width="150" height="100" x="788" y="-1420" label=":case" context="1326548709">
+            <action type="Speech" actor="Narrator" speech="It's a big brown suitcase- probably several generations old. "/>
+            <action type="Speech" actor="Narrator" speech="The suitcase contains a variety of books- Some packed tightly, some loosely."/>
+            <action type="Speech" actor="Shepard" speech="That's a lot of reading material."/>
+            <action type="Speech" actor="Sasha" speech="Yeah- I thought that it'd be a while before I could get to a decent library."/>
+            <action type="Speech" actor="Sasha" speech="and it really sucks to be caught without anything to read, and I've still got research to do, and I thought maybe a few of the books could be useful for dealing with ghosts-"/>
+            <action type="Speech" actor="Shepard" speech="Usually we just use the archives in the places we're visiting."/>
+            <action type="Speech" actor="Sasha" speech="Well yes, but are they likely to have the complete compendium of military battles and diplomatic relations between Gwint and Marilank for the past five hundred years?"/>
+            <action type="Speech" actor="Shepard" speech="Well... no."/>
+            <action type="Emote" actor="Sasha" emote="Goes over and starts going through books."/>
+            <action type="Speech" actor="Shepard" speech="What did you bring with you?"/>
+            <action type="Emote" actor="Sasha" emote="waving each book."/>
+            <action type="Speech" actor="Sasha" speech="Some history, a book of maps, census data and family trees of the entire provence from last decade..."/>
+            <action type="Speech" actor="Sasha" speech="There's a diary Marko gave me , a book of plant identification, oh, and a couple library books I decided not to return."/>
+            <action type="Speech" actor="Sasha" speech="Ones one of my old text books from back at the academy, the other's a collection of short stories by unknown authors."/>
+        </node>
+        <node id="346124509" width="150" height="100" x="851" y="-800" label="Pole">
+            <action type="Speech" actor="Shepard" speech="You never know when we might need to poke at something that's out of reach."/>
+            <action type="Speech" actor="Sasha" speech="The extendable pole? Sure thing."/>
+            <action type="Speech" actor="Sasha" speech="We can also use it as part of a makeshift tent, or to find out how deep lakes are."/>
+        </node>
+        <link id="349808715" label="Plants" from="2069189246" to="905809576"/>
+        <node id="352165040" width="150" height="100" x="1018" y="-1859" label="No diary" context="1326548709">
+            <action type="Speech" actor="Shepard" speech="If you don't write in it, it's probably not worth bringing."/>
+            <action type="Speech" actor="Sasha" speech="True..."/>
+            <action type="Emote" actor="Sasha" emote="*Sad*"/>
+            <action type="Speech" actor="Sasha" speech="Okay."/>
+        </node>
+        <link id="353633592" label="!" from="917918111" to="1819186785"/>
+        <context-ref id="369095287" x="380" y="544" width="100" height="100" context="133276800"/>
+        <link id="371653907" label="*" from="917918111" to="936576174"/>
+        <node id="372314962" width="150" height="100" x="1063" y="977" label="What did you dream of?">
+            <action type="Speech" actor="Shepard" speech="What did you dream of?"/>
+            <action type="Speech" actor="Sasha" speech="Ha!"/>
+            <action type="Speech" actor="Sasha" speech="That... is a story for another day."/>
+            <action type="Emote" actor="Sasha" emote="Trust parameter up."/>
+        </node>
+        <node id="395286736" width="150" height="100" x="-117" y="-1640" label="No warm">
+            <action type="Speech" actor="Shepard" speech="This is pretty bulky."/>
+            <action type="Speech" actor="Shepard" speech="We aren't going to be up in the mountains, and your travel cloak should be able to handle most anything we're likely to run across."/>
+            <action type="Speech" actor="Sasha" speech="You sure?"/>
+            <action type="Speech" actor="Shepard" speech="Fairly sure."/>
+        </node>
+        <node id="414414923" width="150" height="100" x="-1251" y="161" label="Too much detail">
+            <action type="Speech" actor="Shepard" speech="Wait wait- too much detail."/>
+            <action type="Speech" actor="Sasha" speech="Oh! Sure."/>
+            <action type="Speech" actor="Sasha" speech="Basically this place is built on top of an old garrison, and the whole hillside is littered with tunnels."/>
+            <action type="Speech" actor="Sasha" speech="It might not look like much, but this place was designed to be truly impregnable."/>
+            <action type="Speech" actor="Sasha" speech="And there's at least five major battles here testifying to that."/>
+        </node>
+        <link id="426621967" label="robe" from="14330931" to="1092130023"/>
+        <link id="456425781" label="?" from="269970067" to="811257323"/>
+        <node id="461977958" width="150" height="100" x="1683" y="-1353" label="yes textbook" context="1326548709">
+            <action type="Speech" actor="Shepard" speech="It seems important to you- lets take it with."/>
+            <action type="Emote" actor="Sasha" emote="Pleased."/>
+            <action type="Speech" actor="Sasha" speech="Oh-Kay!"/>
+        </node>
+        <link id="465359896" label="Story" from="2069189246" to="2092069441"/>
+        <node id="469470591" width="150" height="100" x="797" y="556" label="Get census" context="133276800">
+            <action type="Speech" actor="Shepard" speech="Yes please."/>
+            <action type="Speech" actor="Sasha" speech="Okay."/>
+            <action type="Emote" emote="MUCH TIME PASS"/>
+            <action type="Speech" actor="Sasha" speech="Let me see... lets see."/>
+            <action type="Speech" actor="Sasha" speech="Ah! Here! Wintergate!"/>
+            <action type="Speech" actor="Sasha" speech="Tereza Macovec.  24-12 till present.  Married Pasha Drekov, but kept her maiden name. Three children, Zuzana, Petr and Bedrich. "/>
+            <action type="Speech" actor="Sasha" speech="No data beyond that unfortunately..."/>
+            <action type="Speech" actor="Sasha" speech="These binders might not be the freshest data."/>
+        </node>
+        <link id="473639006" label="~" from="917918111" to="1702389617"/>
+        <link id="489035169" label="Job" from="1215825599" to="589265238"/>
+        <link id="495252308" label="Family" from="1215825599" to="899065992"/>
+        <link id="503819378" label="Laura" from="916975991" to="84"/>
+        <link id="519852486" label="Warm" from="14330931" to="2132301256"/>
+        <link id="549164278" label="Mellisa" from="916975991" to="55"/>
+        <link id="552759274" label="!" from="39188889" to="1783281474"/>
+        <link id="561321355" label="Time 2S" from="39188889" to="269970067"/>
+        <link id="561528835" label=":" from="1654575128" to="97370123"/>
+        <node id="567710733" width="150" height="100" x="752" y="1140" label="What particular thank" context="936145377">
+            <action type="Speech" actor="Shepard" speech="Was there anything you wanted to thank Tashin for in particular?"/>
+            <action type="Speech" actor="Sasha" speech="Aside from putting up with me?"/>
+            <action type="Speech" actor="Shepard" speech="..."/>
+            <action type="Speech" actor="Shepard" speech="Yes. Aside from that."/>
+            <action type="Speech" actor="Sasha" speech="...."/>
+            <action type="Speech" actor="Sasha" speech="He made me feel like I wasn't a failure."/>
+        </node>
+        <link id="572594463" label="library" from="1654575128" to="1842191568"/>
+        <link id="582304568" label="no" from="665886373" to="352165040"/>
+        <node id="589265238" width="150" height="100" x="477" y="896" label="Tashin Job" context="936145377">
+            <action type="Speech" actor="Shepard" speech="What does Tashin do?"/>
+            <action type="Speech" actor="Sasha" speech="He's a merchant."/>
+            <action type="Speech" actor="Sasha" speech="He buys food and crafts out in the countryside and sells it in the cities, and he buys industrialware and artistry in the cities to sell out in the towns."/>
+            <action type="Speech" actor="Sasha" speech="Sometimes people make orders, and he makes sure to collect those things during his travels."/>
+        </node>
+        <link id="593654365" label="San" from="916975991" to="25"/>
+        <node id="596932118" width="150" height="100" x="168" y="-1321" label=":Bags">
+            <action type="Speech" actor="Narrator" speech="There's a suitcase, a backpack, and a dufflebag piled around the room."/>
+            <action type="Speech" actor="Narrator" speech="Only the backpack is really appropriate for travel, but the dufflebag might work in a pinch."/>
+        </node>
+        <node id="603649082" width="150" height="100" x="-753" y="1178" label="You always this chipper">
+            <action type="Speech" actor="Shepard" speech="You always this chipper?"/>
+            <action type="Speech" actor="Sasha" speech="I like knowing thing."/>
+            <action type="Emote" actor="Sasha" emote="Preen."/>
+        </node>
+        <link id="631185153" label="~" from="1942841066" to="1222655088"/>
+        <link id="634634055" label="Family" from="46484192" to="89"/>
+        <link id="637121027" label="Time 2S" from="269970067" to="1227735875"/>
+        <link id="653613378" label="Kit" from="2027288670" to="1986692731"/>
+        <link id="664526688" label="Academy" from="31" to="234801911"/>
+        <node id="664729556" width="150" height="100" x="862" y="-1859" label="Yes diary" context="1326548709">
+            <action type="Speech" actor="Shepard" speech="You're often on a new adventure."/>
+            <action type="Speech" actor="Shepard" speech="It might be nice to have a record of it later."/>
+        </node>
+        <node id="665886373" width="150" height="100" x="1063" y="-1688" label="Diary" context="1326548709">
+            <action type="Speech" actor="Shepard" speech="That's a nice Diary. Do you write in it?"/>
+            <action type="Speech" actor="Sasha" speech="... sometimes?"/>
+            <action type="Speech" actor="Sasha" speech="Not often, diaries aren't really my thing."/>
+            <action type="Speech" actor="Sasha" speech="Should I bring it?"/>
+        </node>
+        <link id="674954417" label="Yes" from="1691040598" to="1951619626"/>
+        <link id="677479913" label="Pole" from="2027288670" to="346124509"/>
+        <node id="688757058" width="150" height="100" x="1673" y="-1716" label="no census" context="1326548709">
+            <action type="Speech" actor="Shepard" speech="The town's we'll be going to usually keep their own records."/>
+            <action type="Speech" actor="Shepard" speech="It's a nice idea, but we probably won't be needing it."/>
+            <action type="Speech" actor="Sasha" speech="Really?"/>
+            <action type="Speech" actor="Sasha" speech="..."/>
+            <action type="Speech" actor="Sasha" speech="I don't know if I'm upset about wasting all that time getting it, or relieved that I won't be having to carry the damn thing around."/>
+        </node>
+        <node id="691716533" width="150" height="100" x="-973" y="499" label="History gag 4">
+            <action type="Speech" actor="Sasha" speech="You see, its a labrinth in there- they designed it that way on purpose. The soldiers stationed here had to go on daily circuits of the labrinth, or on message and retrieval relays- anything to practice their navigation."/>
+            <action type="Speech" actor="Sasha" speech="Anyway- there were a couple times, once in 87-9 and 92-9, when Marilank attacked this place before it was finished. They got trounced both times- once by the defending garrison having superior numbers, and once by the layout of the inner tunnels."/>
+        </node>
+        <link id="693509915" label="Marko" from="297319475" to="1685599312" rts="true"/>
+        <link id="719950939" label="Opinion" from="1215825599" to="1701072507"/>
+        <link id="734101997" label="Places" from="1746030257" to="10"/>
+        <link id="742480296" label="Yes" from="2092069441" to="1256130775"/>
+        <node id="746975323" width="150" height="100" x="1003" y="-1361" label="no plants" context="1326548709">
+            <action type="Speech" actor="Shepard" speech="Piece of advice Sasha- those guides are more hazardous than helpful."/>
+            <action type="Speech" actor="Shepard" speech="Gets too easy to mistake a poisonous plant for an edible one if you didn't grow up with them."/>
+            <action type="Speech" actor="Shepard" speech="I'd say we're best leaving this one behind."/>
+            <action type="Speech" actor="Sasha" speech="Okay."/>
+            <action type="Speech" actor="Sasha" speech="Don't eat unfamiliar plants- got it."/>
+        </node>
+        <link id="755288946" label="Yes" from="876347754" to="1143499476"/>
+        <link id="804416106" label="Opinion" from="46484192" to="87"/>
+        <node id="806384087" width="150" height="100" x="876" y="-1152" label="Don't need anything">
+            <action type="Speech" actor="Shepard" speech="I really don't think you'll need any of this stuff."/>
+            <action type="Speech" actor="Sasha" speech="None of it."/>
+            <action type="Speech" actor="Shepard" speech="No."/>
+            <action type="Speech" actor="Shepard" speech="We're passing through well populated lands, and can pick up anything we need on the way."/>
+            <action type="Speech" actor="Sasha" speech="So I packed all this for nothing..."/>
+            <action type="Speech" actor="Sasha" speech="'fraid so."/>
+        </node>
+        <link id="808995041" label="!" from="1766027332" to="1783281474"/>
+        <node id="811257323" width="150" height="100" x="-748" y="1007" label="This place is abandoned?">
+            <action type="Speech" actor="Shepard" speech="This place is abandoned. It doesn't LOOK abandoned."/>
+            <action type="Speech" actor="Sasha" speech="It was only abandoned for a few years."/>
+        </node>
+        <link id="822604987" label="Rope" from="2027288670" to="1533076172"/>
+        <node id="823361695" width="150" height="100" x="1596" y="-2084" label="Which you read now?">
+            <action type="Speech" actor="Shepard" speech="Which one are you reading at the moment?"/>
+            <action type="Speech" actor="Sasha" speech="All of them."/>
+            <action type="Speech" actor="Shepard" speech="...???"/>
+            <action type="Speech" actor="Sasha" speech="Yes, even the census data."/>
+            <action type="Speech" actor="Shepard" speech="Good grief."/>
+            <action type="Speech" actor="Shepard" speech="But why?"/>
+            <action type="Speech" actor="Sasha" speech="I like to be prepared."/>
+        </node>
+        <link id="824098124" label="~" from="2027288670" to="56487437"/>
+        <link id="829551123" label="Yes" from="665886373" to="664729556"/>
+        <node id="846614141" width="150" height="100" x="890" y="-924" label="Tent">
+            <action type="Speech" actor="Shepard" speech="The tents a bit bulky, but it'd be nice to have it if we're caught out in the rain."/>
+            <action type="Speech" actor="Shepard" speech="I've got a tarp, but it won't help us if we can't find anything to tie it to."/>
+            <action type="Speech" actor="Sasha" speech="You don't have a tent? Where do you normally sleep?"/>
+            <action type="Speech" actor="Shepard" speech="In a house."/>
+            <action type="Speech" actor="Sasha" speech="... oh."/>
+        </node>
+        <node id="869657646" width="150" height="100" x="1495" y="-1421" label="Textbook" context="1326548709">
+            <action type="Speech" actor="Shepard" speech="What's with the textbook?"/>
+            <action type="Speech" actor="Sasha" speech="Oh- well... I'm not at university any more, but I still like reading things."/>
+            <action type="Speech" actor="Sasha" speech="The lecturers only covered the first eighteen chapters, so I figured I could read the other thirteen now."/>
+            <action type="Speech" actor="Sasha" speech="It's a bit heavy, but I really like the way the author describes and explains things."/>
+        </node>
+        <node id="876347754" width="150" height="100" x="1481" y="-1667" label="Census" context="1326548709">
+            <action type="Speech" actor="Shepard" speech="They gave you a ringbinder of all the census records?"/>
+            <action type="Speech" actor="Sasha" speech="Well sure- this ones two issues out of date, but I figure we could still find it useful."/>
+        </node>
+        <node id="877356542" width="150" height="100" x="-83" y="-69" label="Ak about Girl">
+            <action type="Speech" actor="Shepard" speech="What did you notice about the girl?"/>
+            <action type="Speech" actor="Sasha" speech="Her hair was... darkish?"/>
+            <action type="Speech" actor="Sasha" speech="She smiled at me when I was going past."/>
+            <action type="Speech" actor="Sasha" speech="I think maybe she was busy thinking about something."/>
+        </node>
+        <node id="899065992" width="150" height="100" x="547" y="959" label="Tashin Family" context="936145377">
+            <action type="Speech" actor="Shepard" speech="He have a family?"/>
+            <action type="Speech" actor="Sasha" speech="I think so."/>
+            <action type="Speech" actor="Sasha" speech="He says that he leaves his sons and daughters to take care of his wife and grandchildren."/>
+            <action type="Speech" actor="Sasha" speech="But that they have no need of a grouchy old man in the house, so he takes himself out on the road where he'll be out of there way."/>
+        </node>
+        <node id="903460541" width="150" height="100" x="1765" y="-1977" label="pick at random">
+            <action type="Speech" actor="Shepard" speech="I'd say you should just pick at random."/>
+            <action type="Speech" actor="Sasha" speech="No."/>
+            <action type="Speech" actor="Shepard" speech="Liven things up a little!"/>
+            <action type="Speech" actor="Sasha" speech="The books I take now are all I'm going to get to read for the next six months."/>
+            <action type="Speech" actor="Sasha" speech="I am NOT leaving that to chance."/>
+        </node>
+        <node id="905809576" width="150" height="100" x="1104" y="-1488" label="plants" context="1326548709">
+            <action type="Speech" actor="Shepard" speech="What's the plan with the plant and fungus identification guide?"/>
+            <action type="Speech" actor="Sasha" speech="Well, I've never been up on the plateau before."/>
+            <action type="Speech" actor="Sasha" speech="There's all sorts of plants and animals up here I've never even seen before."/>
+            <action type="Speech" actor="Sasha" speech="I didn't want to eat the wrong ones."/>
+            <action type="Speech" actor="Shepard" speech="You could just buy food in town and carry it with you."/>
+            <action type="Speech" actor="Sasha" speech="Yes- but this way we can forage as we go and we won't have to carry nearly so much!"/>
+            <action type="Speech" actor="Shepard" speech="..."/>
+            <action type="Speech" actor="Shepard" speech="..."/>
+            <action type="Speech" actor="Sasha" speech="Never mind!"/>
+        </node>
+        <context-ref id="916975991" x="365" y="143" width="100" height="100" context="858799283"/>
+        <node id="917918111" width="150" height="100" x="978" y="1136" label="And why would you think that?">
+            <action type="Speech" actor="Shepard" speech="And why would you think that?"/>
+            <action type="Speech" actor="Sasha" speech="Well... "/>
+            <action type="Speech" actor="Sasha" speech="I didn't exactly dream of being a Shepard's library assistant."/>
+        </node>
+        <link id="936017334" label="Flare" from="2027288670" to="1782949768"/>
+        <node id="936576174" width="150" height="100" x="1199" y="1190" label="You didn't!?">
+            <action type="Speech" actor="Shepard" speech="You didn't!?!"/>
+            <action type="Speech" actor="Shepard" speech="But I thought freelance library work is what everyone aspires to!"/>
+            <action type="Speech" actor="Shepard" speech="Do you know how many ghosts I've encountered who's last regret was their failure to earn the title of Shepard's library assitant?"/>
+            <action type="Speech" actor="Sasha" speech="..."/>
+            <action type="Speech" actor="Sasha" speech="How many?"/>
+            <action type="Speech" actor="Shepard" speech="[LIE] Eighty seven."/>
+            <action type="Speech" actor="Sasha" speech="Eighty seven?"/>
+            <action type="Speech" actor="Shepard" speech="[LIE] Yes."/>
+            <action type="Speech" actor="Sasha" speech="Well... why didn't you just hire them?"/>
+            <action type="Speech" actor="Shepard" speech="[LIE] Too incoporeal. Can't pick things up."/>
+            <action type="Speech" actor="Sasha" speech="Hmmm... well, lucky for me I guess."/>
+            <action type="Speech" actor="Sasha" speech="Otherwise I'd be out of the job, what with this army of willing volounteers."/>
+            <action type="Emote" actor="Sasha" emote="Humour level increase."/>
+        </node>
+        <link id="937769147" label="no" from="137423749" to="352165040"/>
+        <link id="950431737" label="!" from="1654575128" to="1223398355"/>
+        <link id="951529044" label="No" from="2092069441" to="1588880676"/>
+        <link id="959122900" label="Tent" from="2027288670" to="846614141"/>
+        <node id="965027506" width="150" height="100" x="72" y="-592" label=": look (general"/>
+        <link id="968603547" label="Bedrich" from="9" to="129225681"/>
+        <link id="974780612" label="Bedrich" from="877356542" to="129225681"/>
+        <node id="1047708424" width="150" height="100" x="-1218" y="1130" label="Thanks">
+            <action type="Speech" actor="Shepard" speech="Thank you Sasha."/>
+            <action type="Speech" actor="Shepard" speech="That was... truly informative."/>
+            <action type="Speech" actor="Sasha" speech="That's what I'm here for!"/>
+        </node>
+        <node id="1082043708" width="150" height="100" x="1565" y="-1299" label="no textbook." context="1326548709">
+            <action type="Speech" actor="Shepard" speech="If it isn't going to help us get the job done... then it's only really weighing us down."/>
+            <action type="Speech" actor="Sasha" speech="..."/>
+            <action type="Speech" actor="Sasha" speech="I really wish we had a packhorse."/>
+        </node>
+        <node id="1092130023" width="150" height="100" x="358" y="-1789" label="Robe">
+            <action type="Speech" actor="Narrator" speech="Shepard's formal robes."/>
+            <action type="Speech" actor="Narrator" speech="Grey, non-descript, and last with just a hint of enchantment to keep dire spirits at bay."/>
+            <action type="Speech" actor="Narrator" speech="Not that you'd want to rely on it, but better than nothing."/>
+        </node>
+        <link id="1093748434" label="!" from="2027288670" to="806384087"/>
+        <link id="1097516408" label="Guests" from="1746030257" to="7"/>
+        <link id="1098104407" label="?" from="1654575128" to="823361695"/>
+        <link id="1109609161" label="!" from="269970067" to="1783281474"/>
+        <link id="1115753520" label="No" from="2027288670" to="806384087" hidden="true"/>
+        <link id="1132773132" label="Yes" from="53" to="469470591" hidden="true"/>
+        <link id="1141952896" label="Gregor" from="916975991" to="19"/>
+        <node id="1143499476" width="150" height="100" x="1559" y="-1798" label="Yes Census" context="1326548709">
+            <action type="Speech" actor="Shepard" speech="... you know, we might actually need that."/>
+            <action type="Speech" actor="Shepard" speech="most of the towns we're visiting have their own records, but out of town records might be nice."/>
+            <action type="Speech" actor="Sasha" speech="Horray! I did a good thing. Yay me."/>
+            <action type="Emote" actor="Sasha" emote="Concerned.."/>
+            <action type="Speech" actor="Sasha" speech="... now I just have to carry the damn thing. "/>
+            <action type="Speech" actor="Sasha" speech="Blarg..."/>
+        </node>
+        <node id="1146356873" width="150" height="100" x="1381" y="-1301" label="yes history" context="1326548709">
+            <action type="Speech" actor="Shepard" speech="Lets take it. Plent of ghosts got ties to the past."/>
+            <action type="Speech" actor="Shepard" speech="Plenty of them died for military reasons too."/>
+            <action type="Speech" actor="Sasha" speech="Okay!"/>
+            <action type="Speech" actor="Sasha" speech="I'll pack my magnifying window."/>
+        </node>
+        <link id="1147532502" label="Where" from="369095287" to="52"/>
+        <link id="1158153270" label="*" from="269970067" to="811257323"/>
+        <link id="1168657233" label="yes" from="2117411416" to="47080656"/>
+        <link id="1168855264" label="15SecondsPASS" from="10" to="1570160002"/>
+        <link id="1175189828" label="Job" from="46484192" to="90"/>
+        <link id="1181261689" label="History" from="1746030257" to="8"/>
+        <node id="1194950749" width="150" height="100" x="466" y="1270" label="Tashin Where Redirect" context="936145377">
+            <action type="Speech" actor="Shepard" speech="You know where Tashin is?"/>
+            <action type="Speech" actor="Sasha" speech="Downstairs maybe?"/>
+        </node>
+        <context-ref id="1215825599" x="317" y="1023" width="100" height="100" context="936145377"/>
+        <node id="1222655088" width="150" height="100" x="754" y="1032" label="I'll make sure you get chance thank" context="936145377">
+            <action type="Speech" actor="Shepard" speech="I'll make sure you get the chance."/>
+            <action type="Speech" actor="Shepard" speech="We won't leave until you do."/>
+            <action type="Emote" actor="Sasha" emote="Nods affirmation."/>
+        </node>
+        <node id="1223398355" width="150" height="100" x="1948" y="-2120" label="what is USEFUL">
+            <action type="Speech" actor="Shepard" speech="It's all extra weight Sasha."/>
+            <action type="Speech" actor="Shepard" speech="Anything that isn't USEFUL you should leave behind."/>
+            <action type="Speech" actor="Sasha" speech="Useful for sheparding?"/>
+            <action type="Speech" actor="Shepard" speech="Yes."/>
+            <action type="Speech" actor="Sasha" speech="... "/>
+            <action type="Speech" actor="Sasha" speech="Okay. I'll take the compendium and the census data."/>
+            <action type="Speech" actor="Shepard" speech="Good. Those sound useful."/>
+        </node>
+        <node id="1227735875" width="150" height="100" x="-976" y="1081" label="History Gag 8">
+            <action type="Speech" actor="Sasha" speech="The sight lay unclaimed for only a few decades- still being used as a camping stop and shelter for passers by."/>
+            <action type="Speech" actor="Sasha" speech="The Garrison itself was sealed shut, after a few travellers tried to explore it, and ended up getting lost inside."/>
+            <action type="Speech" actor="Sasha" speech="And... the wayhouse was set up afterwards."/>
+            <action type="Speech" actor="Sasha" speech="Someone thought they could make some money I guess."/>
+        </node>
+        <link id="1228162728" label="Duffle" from="596932118" to="14330931"/>
+        <link id="1242819693" label="Opinion" from="369095287" to="51"/>
+        <node id="1256130775" width="150" height="100" x="1732" y="-1592" label="Yes stories" context="1326548709">
+            <action type="Speech" actor="Shepard" speech="Your right- I might even borrow it off you some time."/>
+            <action type="Speech" actor="Shepard" speech="It's been a while since I've had something to read."/>
+            <action type="Speech" actor="Sasha" speech="In it goes."/>
+        </node>
+        <link id="1260217093" label="~" from="899065992" to="1644948879"/>
+        <link id="1304338023" label="opinion" from="1839479809" to="13"/>
+        <link id="1309920959" label=":duffle" from="1336812404" to="14330931"/>
+        <link id="1322640793" label="~" from="1227735875" to="1047708424"/>
+        <link id="1333793436" label="No" from="10" to="2142248816"/>
+        <context-ref id="1336812404" x="524" y="-1213" width="100" height="100" context="858799283"/>
+        <link id="1337189914" label="No" from="905809576" to="746975323"/>
+        <link id="1361234178" label="!" from="691716533" to="414414923"/>
+        <link id="1366913857" label="Bags" from="1865900" to="596932118"/>
+        <link id="1384202231" label="!" from="1685599312" to="1732674288"/>
+        <link id="1389313138" label="?" from="1227735875" to="1946092392"/>
+        <link id="1394036793" label="!" from="33215081" to="414414923"/>
+        <link id="1403176131" label="Pack" from="596932118" to="2027288670"/>
+        <node id="1416199257" width="150" height="100" x="1267" y="-1301" label="no history" context="1326548709">
+            <action type="Speech" actor="Shepard" speech="Most of the historical ghosts have already been cleared out."/>
+            <action type="Speech" actor="Shepard" speech="We usually encounter more recent ones."/>
+            <action type="Speech" actor="Shepard" speech="Also, ghosts tend to stay for more personal reasons, as opposed to historical ones."/>
+            <action type="Speech" actor="Sasha" speech="Really?"/>
+            <action type="Speech" actor="Sasha" speech="I did not know that."/>
+            <action type="Speech" actor="Sasha" speech="I guess it makes sense, but I'd never really thought about it that way."/>
+        </node>
+        <link id="1419790590" label="no" from="869657646" to="1082043708"/>
+        <link id="1431355191" label="Where" from="1215825599" to="1942841066"/>
+        <node id="1435812594" width="150" height="100" x="-118" y="-1506" label="Yes Warm">
+            <action type="Speech" actor="Shepard" speech="Not planning to run into any snowstorms..."/>
+            <action type="Speech" actor="Shepard" speech="But we're heading into winter, and something like this is better to have if we need it."/>
+            <action type="Speech" actor="Sasha" speech="It's bulky, but I'm sure I'll find some way to fit it in."/>
+        </node>
+        <link id="1459002560" label="Girl" from="129225681" to="877356542"/>
+        <link id="1469009417" label="*" from="1654575128" to="903460541"/>
+        <link id="1492973798" label="?" from="1942841066" to="567710733"/>
+        <link id="1505860530" label="!" from="1537442536" to="414414923"/>
+        <node id="1533076172" width="150" height="100" x="892" y="-994" label="Rope Yes.">
+            <action type="Speech" actor="Shepard" speech="Bring the rope."/>
+            <action type="Speech" actor="Sasha" speech="Yeah?"/>
+            <action type="Speech" actor="Shepard" speech="Never go adventuring without rope."/>
+        </node>
+        <node id="1537442536" width="150" height="100" x="-974" y="199" label="Wintergate history gag 2">
+            <action type="Speech" actor="Sasha" speech="You see, the thing is that Fort Koulkox was built to look imposing- a symbol of Marilank power and authority."/>
+            <action type="Speech" actor="Sasha" speech="But but but- it's not all that well designed. It was basically leaning on the power of the empire to discourage invaders from attacking."/>
+            <action type="Speech" actor="Sasha" speech="Wintergate on the other hand was built by a small nation- this pass is basically the only way to get from one kingdom to the other during winter, and even during summer the mountains are pretty rugged."/>
+        </node>
+        <link id="1548545629" label="Diary" from="2069189246" to="665886373"/>
+        <link id="1560281461" label="no" from="2117411416" to="1909415949"/>
+        <node id="1570160002" width="150" height="100" x="-639" y="-142" label="Map book">
+            <action type="Speech" actor="Sasha" speech="Wintergate Wintergate Wintergate...."/>
+            <action type="Speech" actor="Sasha" speech="Ah! Here!"/>
+            <action type="Speech" actor="Sasha" speech="So... see see see- we're on this road here between Leuinholt and Tamrin."/>
+            <action type="Speech" actor="Sasha" speech="It's on the old border between the two kingdoms see."/>
+            <action type="Speech" actor="Sasha" speech="And there- just OVER the boarder is Fort Kuolkox"/>
+            <action type="Speech" actor="Sasha" speech="And there's three or four big mountains in the area."/>
+            <action type="Speech" actor="Sasha" speech="AND there's an abandoned Copper mine a few valleys over to the north."/>
+            <action type="Speech" actor="Sasha" speech="That's called Reckerfell mine, and provided the copper for a full one third of all coins used in the 8th and 9th centuries from here till Tweladu."/>
+            <action type="Speech" actor="Shepard" speech="Thank you Sasha."/>
+            <action type="Speech" actor="Shepard" speech="That was very... informative."/>
+            <action type="Speech" actor="Sasha" speech="Oh yes! And-"/>
+            <action type="Speech" actor="Shepard" speech="... I was actually thinking more the shops and buildings around this village."/>
+            <action type="Speech" actor="Sasha" speech="..."/>
+            <action type="Speech" actor="Sasha" speech="Oh."/>
+            <action type="Speech" actor="Sasha" speech="That would make more sense then wouldn't it."/>
+        </node>
+        <link id="1572034241" label="Yes" from="2132301256" to="1435812594"/>
+        <node id="1588880676" width="150" height="100" x="1727" y="-1487" label="No stories" context="1326548709">
+            <action type="Speech" actor="Shepard" speech="It's extra weight and we don't need it."/>
+            <action type="Speech" actor="Sasha" speech="..."/>
+            <action type="Speech" actor="Sasha" speech="Yeah... I know..."/>
+        </node>
+        <node id="1600168978" width="150" height="100" x="1317" y="-1416" label="History" context="1326548709">
+            <action type="Speech" actor="Shepard" speech="So... you really brought the &quot;Complete Compendium of military battles and diplomatic relations between Gwint and Marilank for the past four hundred years&quot;"/>
+            <action type="Speech" actor="Sasha" speech="Five hundred."/>
+            <action type="Speech" actor="Sasha" speech="To be fair, I brought the compact edition."/>
+            <action type="Speech" actor="Sasha" speech="It's got just as many word, they're just written smaller, so you use a magnifying window to view them."/>
+        </node>
+        <link id="1620836711" label=":case" from="1336812404" to="297319475" hidden="true"/>
+        <node id="1630999840" width="150" height="100" x="660" y="-1695" label="Jealous" context="1326548709">
+            <action type="Speech" actor="Shepard" speech="Jealous much?"/>
+            <action type="Speech" actor="Sasha" speech="No!"/>
+            <action type="Speech" actor="Sasha" speech="..."/>
+            <action type="Speech" actor="Sasha" speech="Well... maybe a little"/>
+            <action type="Speech" actor="Sasha" speech="Not of the engineering but just..."/>
+            <action type="Speech" actor="Sasha" speech="He's off doing what he's good at. I'm..."/>
+            <action type="Speech" actor="Shepard" speech="Heading off into the provences without even a hope of finding civilisation?"/>
+            <action type="Emote" actor="Sasha" emote="laughs"/>
+            <action type="Speech" actor="Sasha" speech="Something like that."/>
+        </node>
+        <node id="1644948879" width="150" height="100" x="762" y="921" label="That's sad." context="936145377">
+            <action type="Speech" actor="Shepard" speech="That seems sad."/>
+            <action type="Speech" actor="Shepard" speech="Sad that he doesn't spend time with his family."/>
+            <action type="Speech" actor="Sasha" speech="That's what I thought."/>
+            <action type="Speech" actor="Sasha" speech="I said maybe they all miss him- maybe they all wish for him to come home."/>
+            <action type="Speech" actor="Sasha" speech="I know I would if he was my family."/>
+            <action type="Speech" actor="Sasha" speech="... but then he just waved me off. Said that it didn't matter, he was needed on the road."/>
+        </node>
+        <context-ref id="1654575128" x="1787" y="-2090" width="100" height="100" context="1326548709"/>
+        <node id="1657930193" width="150" height="100" x="101" y="1014" label="Tashin intro" context="936145377">
+            <action type="Speech" actor="Shepard" speech="I was wondering if you could tell me about Mr Tashin."/>
+            <action type="Speech" actor="Sasha" speech="Ok."/>
+        </node>
+        <link id="1674816935" label="Time2S" from="33215081" to="1537442536" hidden="true"/>
+        <node id="1675547640" width="150" height="100" x="-1080" y="1236" label="Next time summary">
+            <action type="Speech" actor="Shepard" speech="Next time, give me the summarised version."/>
+            <action type="Speech" actor="Sasha" speech="You don't like learning things?"/>
+            <action type="Speech" actor="Shepard" speech="Don't always have time."/>
+            <action type="Speech" actor="Sasha" speech="Well that's a shame."/>
+        </node>
+        <link id="1682385735" label="where" from="1839479809" to="14" hidden="true"/>
+        <node id="1682549890" width="150" height="100" x="1115" y="-1360" label="yes plants" context="1326548709">
+            <action type="Speech" actor="Shepard" speech="I didn't say anything."/>
+            <action type="Speech" actor="Shepard" speech="And you're right- being able to live off the land a bit more could be useful."/>
+            <action type="Speech" actor="Sasha" speech="Okay. Good."/>
+        </node>
+        <node id="1685599312" width="150" height="100" x="762" y="-1566" label="Marko" context="1326548709">
+            <action type="Speech" actor="Shepard" speech="Who's Marko?"/>
+            <action type="Speech" actor="Sasha" speech="My brother."/>
+            <action type="Speech" actor="Sasha" speech="He's only a few years older than me, but he's already working as an engineer for some of the big ship building companies."/>
+        </node>
+        <node id="1691040598" width="150" height="100" x="160" y="-1742" label="Dress">
+            <action type="Speech" actor="Narrator" speech="Taking a closer look at the dress, it's actually somewhat warm. Also far more appropriate for the summer months."/>
+            <action type="Speech" actor="Sasha" speech="Mjenka got this for me back in our first year at the Academy togeather."/>
+            <action type="Speech" actor="Sasha" speech="Don't know if I'll get a chance to wear it... but its nice to have with me."/>
+        </node>
+        <node id="1701072507" width="150" height="100" x="466" y="1157" label="Tashin Opinion" context="936145377">
+            <action type="Speech" actor="Shepard" speech="What do you think of him? What was he like to travel with?"/>
+            <action type="Speech" actor="Sasha" speech="He's a grumpy old softy."/>
+            <action type="Speech" actor="Sasha" speech="Hasn't got much patience for people, but he cares for them all the same."/>
+            <action type="Speech" actor="Sasha" speech="Sometimes I think he'd decide to act grumpy just to keep up apperances."/>
+        </node>
+        <node id="1702389617" width="150" height="100" x="1180" y="1033" label="Reassure fail">
+            <action type="Speech" actor="Shepard" speech="No one has control over there own destiny."/>
+            <action type="Speech" actor="Sasha" speech="Well I did."/>
+            <action type="Speech" actor="Sasha" speech="No one chooses the winds Shepard, but I didn't even bother to raise my sails."/>
+            <action type="Speech" actor="Sasha" speech="I chose to fail."/>
+            <action type="Emote" actor="Sasha"/>
+        </node>
+        <link id="1703036555" label="*" from="1227735875" to="603649082"/>
+        <link id="1703329647" label="?" from="1685599312" to="1852806092" hidden="true"/>
+        <node id="1732674288" width="150" height="100" x="927" y="-1564" label="Focus on packing" context="1326548709">
+            <action type="Speech" actor="Shepard" speech="Wait! Hang on."/>
+            <action type="Speech" actor="Shepard" speech="You can tell me about your family while we're travelling- we should focus on packing for now."/>
+            <action type="Speech" actor="Sasha" speech="Oh!"/>
+            <action type="Speech" actor="Sasha" speech="Yes! Good plan."/>
+        </node>
+        <context-ref id="1746030257" x="-417" y="114" width="100" height="100" context="1842191568"/>
+        <link id="1749314446" label="Agata" from="916975991" to="73"/>
+        <node id="1766027332" width="150" height="100" x="-975" y="646" label="History gag 5">
+            <action type="Speech" actor="Sasha" speech="By the time Marilank figured out how serious the fortifications were here, it was too late to attack- and they had wars on other borders to attended to."/>
+            <action type="Speech" actor="Sasha" speech="Over a couple centuries, the garrison depleted and the place fell into a bit of disrepair... "/>
+            <action type="Speech" actor="Sasha" speech="But was still enough to fend off a surprise attack in 54-10, and then managed to hold off a prolouged seige from 57-10 till 59-10."/>
+            <action type="Speech" actor="Sasha" speech="By the end of the seige nearly all the back entrances had been discovered and blocked off, and there was only a few days food... "/>
+        </node>
+        <node id="1782949768" width="150" height="100" x="890" y="-863" label="Flare">
+            <action type="Speech" actor="Shepard" speech="Most of the time you should be able to contact me via the radio."/>
+            <action type="Speech" actor="Sasha" speech="Which is super cool."/>
+            <action type="Speech" actor="Shepard" speech="But if anything happens if the radio gets jammed or damaged, that flare will be useful."/>
+            <action type="Speech" actor="Sasha" speech="That sounds pretty unlikely."/>
+            <action type="Speech" actor="Shepard" speech="Could also be useful if both of us are in a jam somewhere, and we need help from someone without a radio."/>
+            <action type="Speech" actor="Sasha" speech="Good point!"/>
+            <action type="Speech" actor="Sasha" speech="I'll bring it."/>
+        </node>
+        <node id="1783281474" width="150" height="100" x="-1247" y="858" label="Jump to Too much detail">
+            <action type="Jump" jump-target="414414923"/>
+        </node>
+        <node id="1783779417" width="150" height="100" x="1846" y="-2223" label="Which YOU want">
+            <action type="Speech" actor="Shepard" speech="You're going to be travelling a long way from home Sasha."/>
+            <action type="Speech" actor="Shepard" speech="If any of these books are special too you, you need to take them."/>
+            <action type="Speech" actor="Shepard" speech="Leave behind anything you don't need."/>
+            <action type="Emote" actor="Sasha" speech="...." emote="Indecision"/>
+            <action type="Speech" actor="Sasha" speech="Marko's diary."/>
+            <action type="Speech" actor="Sasha" speech="and ...the Catalouge."/>
+            <action type="Speech" actor="Sasha" speech="I think I'll be good as long as we can take those."/>
+            <action type="Speech" actor="Shepard" speech="We'll find a way to fit those in your bag."/>
+        </node>
+        <link id="1795536041" label="?" from="567710733" to="917918111"/>
+        <link id="1811416005" label="Time 2S" from="1537442536" to="289640942" hidden="true"/>
+        <node id="1819186785" width="150" height="100" x="1200" y="1111" label="You think I picked this?">
+            <action type="Speech" actor="Shepard" speech="People don't get what they want."/>
+            <action type="Speech" actor="Shepard" speech="I didn't plan to be a Shepard either."/>
+            <action type="Speech" actor="Sasha" speech="Well I-"/>
+            <action type="Speech" actor="Sasha" speech="No."/>
+            <action type="Speech" actor="Sasha" speech="I guess you didn't."/>
+            <action type="Speech" actor="Sasha" speech="I'm sorry."/>
+            <action type="Emote" actor="Sasha" emote="Cautious Parameter up. Familiar parameter down."/>
+        </node>
+        <link id="1822916704" label=":pack" from="1336812404" to="2027288670" hidden="true"/>
+        <context-ref id="1839479809" x="466" y="-439" width="100" height="100" context="572594463"/>
+        <node id="1842191568" width="150" height="100" x="1661" y="-2233" label="library">
+            <action type="Speech" actor="Shepard" speech="Wait... did you steal those library books?"/>
+            <action type="Emote" actor="Sasha" emote="dismissive gesture"/>
+            <action type="Speech" actor="Sasha" speech="They've got millions."/>
+            <action type="Speech" actor="Sasha" speech="They'll hardly even notice."/>
+        </node>
+        <link id="1850146975" label="Maria" from="916975991" to="37"/>
+        <link id="1852676475" label="Family" from="369095287" to="53" hidden="true"/>
+        <node id="1852806092" width="150" height="100" x="591" y="-1574" label="Get on" context="1326548709">
+            <action type="Speech" actor="Shepard" speech="Do you get on with your brother?"/>
+            <action type="Speech" actor="Sasha" speech="Yes."/>
+            <action type="Speech" actor="Sasha" speech="Yes- yes definitely!"/>
+            <action type="Speech" actor="Sasha" speech="We just..."/>
+            <action type="Speech" actor="Sasha" speech="Don't share many interests."/>
+        </node>
+        <link id="1860736549" label="*" from="2027288670" to="1960441958" hidden="true"/>
+        <link id="1880142461" label="yes" from="869657646" to="461977958"/>
+        <link id="1882975855" label="Time 2S" from="691716533" to="1766027332" hidden="true"/>
+        <link id="1885564994" label="Dress" from="14330931" to="1691040598"/>
+        <link id="1897661871" label="!" from="289640942" to="414414923" hidden="true"/>
+        <node id="1909415949" width="150" height="100" x="1367" y="-1848" label="no maps" context="1326548709">
+            <action type="Speech" actor="Shepard" speech="Probably not. Things are usually well marked."/>
+            <action type="Speech" actor="Sasha" speech="I'll leave it here then."/>
+        </node>
+        <node id="1942841066" width="150" height="100" x="546" y="1062" label="Tashin Where" context="936145377">
+            <action type="FirstVisitConditional" cond-invert="true">
+                <action type="Jump"/>
+            </action>
+            <action type="Speech" actor="Shepard" speech="Do you know where I can find him?"/>
+            <action type="Speech" actor="Sasha" speech="No! I've been so busy packing my repacking my bags and such that I haven't had a chance to go find him."/>
+            <action type="Speech" actor="Sasha" speech="I've been meaning to find him- so I can thank him- before we go."/>
+        </node>
+        <node id="1946092392" width="150" height="100" x="-910" y="1237" label="Where you learn this.">
+            <action type="Speech" actor="Shepard" speech="Where'd you read all this?"/>
+            <action type="Speech" actor="Sasha" speech="The &quot;Complete Compendium of military battles and diplomatic relations between Gwint and Marilank for the past four hundred years&quot;"/>
+            <action type="Speech" actor="Sasha" speech="It's one of the major entries."/>
+            <action type="Speech" actor="Sasha" speech="As you get further into Gwint the compendium has less to say."/>
+        </node>
+        <link id="1948537373" label="Dusan" from="916975991" to="67" hidden="true"/>
+        <node id="1951619626" width="150" height="100" x="-43" y="-1812" label="Yes dress">
+            <action type="Speech" actor="Shepard" speech="It looks pretty light."/>
+            <action type="Speech" actor="Shepard" speech="You should bring it."/>
+            <action type="Speech" actor="Sasha" speech="You think?"/>
+            <action type="Speech" actor="Sasha" speech="Awesome- I'll be able to wear it while I'm book hunting."/>
+        </node>
+        <link id="1954627997" label="no" from="1092130023" to="2118237497"/>
+        <link id="1955030358" label="yes" from="1092130023" to="2034294070"/>
+        <node id="1957021766" width="150" height="100" x="658" y="-857" label="Which items have you used?">
+            <action type="Speech" actor="Shepard" speech="Did you use any of these during your journey here with Mr Tashin?"/>
+            <action type="Speech" actor="Sasha" speech="Well...."/>
+            <action type="Speech" actor="Sasha" speech="Not exactly..."/>
+            <action type="Speech" actor="Shepard" speech="By which you mean?"/>
+            <action type="Speech" actor="Sasha" speech="No."/>
+            <action type="Speech" actor="Sasha" speech="But we were going through civilised lands."/>
+            <action type="Speech" actor="Sasha" speech="And we weren't going on adventures!"/>
+            <action type="Speech" actor="Shepard" speech="Sasha, we're going around visiting towns and villages in the provence of Gwint."/>
+            <action type="Speech" actor="Shepard" speech="It's arable farmland, not the Icy north!"/>
+            <action type="Speech" actor="Sasha" speech="I know, I know..."/>
+            <action type="ReturnToSender"/>
+        </node>
+        <node id="1960441958" width="150" height="100" x="548" y="-797" label="No Inflatable raft">
+            <action type="Speech" actor="Shepard" speech="Mainly I'm just disappointed that you don't have an inflatable boat."/>
+            <action type="Speech" actor="Sasha" speech="I did think about it, but Mother reminded me that Gwint isn't exactly coastal territory, so I decided to leave it behind."/>
+            <action type="ReturnToSender"/>
+        </node>
+        <link id="1969188749" label="Locals" from="1746030257" to="9" hidden="true"/>
+        <node id="1986692731" width="150" height="100" x="890" y="-1070" label="First aid Kit">
+            <action type="Speech" actor="Shepard" speech="We probably won't need any medical supplies...."/>
+            <action type="Speech" actor="Shepard" speech="But if we do, having a first aid kit handy could be really important."/>
+            <action type="Emote" actor="Sasha" emote="Nods"/>
+            <action type="Speech" actor="Sasha" speech="Got it."/>
+            <action type="Speech" actor="Sasha" speech="I'll bring it."/>
+        </node>
+        <link id="2020917137" label="!" from="10" to="2142248816" hidden="true"/>
+        <link id="2024651615" label="Ivan" from="916975991" to="43"/>
+        <link id="2026670065" label="Girl" from="9" to="877356542" hidden="true"/>
+        <node id="2027288670" width="150" height="100" x="608" y="-1049" label=":pack">
+            <action type="Speech" actor="Narrator" speech="It's a back pack- the most practical piece of luggage Sasha brought with her."/>
+            <action type="Speech" actor="Narrator" speech="The contents however..."/>
+            <action type="Speech" actor="Narrator" speech="Is perhaps less practical."/>
+            <action type="Speech" actor="Narrator" speech="There's currently a variety of equipment spread across the floor- a rope and grappling hook, a first-aid kit, a spare tent, compass, matches, a flare gun and an extendable pole."/>
+            <action type="Speech" actor="Shepard" speech="There's no way we can take all of this."/>
+            <action type="Speech" actor="Sasha" speech="I know... I know..."/>
+            <action type="Speech" actor="Sasha" speech="I thought we'd have horses, or pack donkey or... "/>
+            <action type="Speech" actor="Sasha" speech="Or something."/>
+            <action type="Speech" actor="Sasha" speech="Here- I'm keeping the matches and Compass, is there anything else in here you think we'll need?"/>
+        </node>
+        <node id="2034294070" width="150" height="100" x="295" y="-1964" label="Yes robe">
+            <action type="Speech" actor="Shepard" speech="These are pretty handy."/>
+            <action type="Speech" actor="Shepard" speech="Both for looking the part, and if we run into any poltergiests they might keep them at bay a little bit."/>
+            <action type="Speech" actor="Sasha" speech="Poltegiests: Malevolent and deliberately malicious ghosts, many of whom actively avoid rest."/>
+            <action type="Speech" actor="Shepard" speech="That's right."/>
+            <action type="Speech" actor="Sasha" speech="They're rare aren't they?"/>
+            <action type="Speech" actor="Shepard" speech="Haven't met any myself."/>
+            <action type="Speech" actor="Sasha" speech="I hope it stays that way."/>
+        </node>
+        <link id="2042551610" label="Time 2S" from="289640942" to="691716533" hidden="true"/>
+        <link id="2050902797" label="No" from="2132301256" to="395286736"/>
+        <link id="2051992216" label="Yes" from="905809576" to="1682549890"/>
+        <context-ref id="2069189246" x="1323" y="-1548" width="100" height="100" context="1326548709"/>
+        <node id="2092069441" width="150" height="100" x="1492" y="-1552" label="Stories" context="1326548709">
+            <action type="Speech" actor="Shepard" speech="&quot;No Attribution: fifty stories, zero authors&quot;"/>
+            <action type="Speech" actor="Sasha" speech="Sometimes its nice to have light reading."/>
+        </node>
+        <link id="2104006769" label="where" from="46484192" to="88" hidden="true"/>
+        <link id="2108578504" label="?" from="2027288670" to="1957021766" rts="true" hidden="true"/>
+        <link id="2109717092" label="Census" from="2069189246" to="876347754"/>
+        <node id="2117411416" width="150" height="100" x="1299" y="-1718" label="Map" context="1326548709">
+            <action type="Speech" actor="Shepard" speech="Book of maps?"/>
+            <action type="Speech" actor="Sasha" speech="Think we'll need it?"/>
+        </node>
+        <node id="2118237497" width="150" height="100" x="463" y="-1963" label="no robe">
+            <action type="Speech" actor="Shepard" speech="You shouldn't need this. "/>
+            <action type="Speech" actor="Shepard" speech="You'll be tucked in the library far away from public display, or any ghosts for that matter."/>
+            <action type="Speech" actor="Sasha" speech="Oh good."/>
+            <action type="Speech" actor="Sasha" speech="These robes are stuff and smell like mold."/>
+            <action type="Speech" actor="Sasha" speech="I'll be sure to pack them NOT with the rest of my things."/>
+        </node>
+        <node id="2132301256" width="150" height="100" x="76" y="-1580" label="Warm clothes">
+            <action type="Speech" actor="Narrator" speech="Its a big fur lined coat. Suitable for walking around on mountain tops and in snowstorms."/>
+            <action type="Speech" actor="Narrator" speech="You're not exactly planning to be up in the mountains come winter, but it could be useful."/>
+        </node>
+        <node id="2142248816" width="150" height="100" x="-358" y="-206" label="Stop map book">
+            <action type="Speech" actor="Shepard" speech="Don't worry about it."/>
+            <action type="Speech" actor="Sasha" speech="oh?"/>
+            <action type="Speech" actor="Shepard" speech="I can just ask the locals- it'll be easier."/>
+            <action type="Speech" actor="Sasha" speech="Oh..."/>
+            <action type="Speech" actor="Sasha" speech="Okay..."/>
+            <action type="Emote" actor="Sasha" emote="Sad"/>
+            <action type="EndConversation"/>
+        </node>
+    </objects>
+    <data>
+        <character-names>
+            <character name="Shepard"/>
+            <character name="Other"/>
+            <character name="Narrator"/>
+            <character name="Sasha"/>
+        </character-names>
+        <contexts root="858799283">
+            <context id="133276800" label="Tereza" parent="858799283"/>
+            <context id="208770750" label="Bags" parent="858799283"/>
+            <context id="287223281" label="Nikol" parent="858799283"/>
+            <context id="399623593" label="Tereza" parent="858799283"/>
+            <context id="412973044" label="ClothesChoice" parent="208770750"/>
+            <context id="572594463" label="Sasha" parent="858799283"/>
+            <context id="617849477" label="dog" parent="858799283"/>
+            <context id="633961862" label="San" parent="858799283"/>
+            <context id="775956549" label="Bedrich" parent="858799283"/>
+            <context id="823361695" label="Agata" parent="858799283"/>
+            <context id="858799283" label=""/>
+            <context id="936145377" label="Tashin" parent="858799283"/>
+            <context id="984411720" label="Sasha examine in room" parent="858799283"/>
+            <context id="1098104407" label="Ivan" parent="858799283"/>
+            <context id="1326548709" label="Book Choice" parent="208770750"/>
+            <context id="1458121676" label="ItemChoice" parent="208770750"/>
+            <context id="1469009417" label="Mellisa" parent="858799283"/>
+            <context id="1555988392" label="Laura" parent="858799283"/>
+            <context id="1654575128" label="Dusan" parent="858799283"/>
+            <context id="1842191568" label="Wintergate" parent="858799283"/>
+            <context id="1996413166" label="Gregor" parent="858799283"/>
+            <context id="2045530703" label="Eduard" parent="858799283"/>
+            <context id="2124314928" label="Maria" parent="858799283"/>
+        </contexts>
+    </data>
+</conversation>
