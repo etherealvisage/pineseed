@@ -7,7 +7,6 @@
 
 #include "LinkableObject.h"
 
-class QTreeView;
 class QStandardItem;
 class QStandardItemModel;
 

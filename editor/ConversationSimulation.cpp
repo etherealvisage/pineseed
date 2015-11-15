@@ -90,9 +90,9 @@ void ConversationSimulation::process(Node *node, bool supress) {
         if(link->from() != node) continue;
 
         if(link->isHiddenLink())
-            m_options->addItem(link->label() + " (hidden)", link->label());
+            m_options->addItem(link->label() + " (hidden)", link->label().toLower());
         else
-            m_options->addItem(link->label(), link->label());
+            m_options->addItem(link->label(), link->label().toLower());
         m_optionsMap[link->label()] = link;
     }
     // try adding context links, if appropriate
@@ -102,9 +102,9 @@ void ConversationSimulation::process(Node *node, bool supress) {
             if(m_optionsMap.contains(link->label())) continue;
 
             if(link->isHiddenLink())
-                m_options->addItem(link->label() + " (hidden, context)", link->label());
+                m_options->addItem(link->label() + " (hidden, context)", link->label().toLower());
             else
-                m_options->addItem(link->label() + " (context)", link->label());
+                m_options->addItem(link->label() + " (context)", link->label().toLower());
             m_optionsMap[link->label()] = link;
         }
         context = context->parent();
