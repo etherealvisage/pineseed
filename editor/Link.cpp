@@ -24,6 +24,7 @@ Link::Link(QPointer<LinkableObject> from, QPointer<Node> to)
     if(from) m_from = from, m_from->addLink(this);
     if(to) m_to = to, m_to->addLink(this);
     m_rtsLink = false;
+    m_hiddenLink = false;
 
     this->setZValue(-1);
     m_selected = false;
@@ -143,6 +144,7 @@ void Link::deserialize(QDomElement &xml,
     if(rts == "true") m_rtsLink = true;
     auto hidden = xml.attribute("hidden");
     if(hidden == "true") m_hiddenLink = true;
+    else m_hiddenLink = false;
 
     m_from->addLink(this);
     m_to->addLink(this);
