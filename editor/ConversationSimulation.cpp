@@ -52,7 +52,7 @@ void ConversationSimulation::progress(int index) {
 
 void ConversationSimulation::progress(const QString &by) {
     if(by == "") return;
-    auto link = m_optionsMap[by];
+    auto link = m_optionsMap[by.toLower()];
     if(link->isRtsLink()) m_returns.push_back(m_current);
     process(link->to());
 }
@@ -94,7 +94,7 @@ void ConversationSimulation::process(Node *node, bool supress) {
                 link->label().toLower());
         }
         else m_options->addItem(link->label(), link->label().toLower());
-        m_optionsMap[link->label()] = link;
+        m_optionsMap[link->label().toLower()] = link;
     }
     // try adding context links, if appropriate
     QPointer<ConversationContext> context = node->context();
@@ -108,7 +108,7 @@ void ConversationSimulation::process(Node *node, bool supress) {
             else
                 m_options->addItem(link->label() + " (context)",
                     link->label().toLower());
-            m_optionsMap[link->label()] = link;
+            m_optionsMap[link->label().toLower()] = link;
         }
         context = context->parent();
     }

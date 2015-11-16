@@ -77,9 +77,6 @@ void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *style,
     painter->setPen(Qt::black);
     painter->drawText(
         boundingRect().center() - QPointF(width/2,m_size.height()/4) + QPointF(2,1), m_label);
-
-    //painter->setPen(Qt::white);
-    //painter->drawText(boundingRect().center() - QPointF(width/2,m_size.height()/4), m_label);
 }
 
 void Node::edit(ConversationDataInterface *interface,
