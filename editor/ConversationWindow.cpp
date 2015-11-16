@@ -35,6 +35,12 @@ ConversationWindow::ConversationWindow() {
     m_eview = new EditorView();
     split->addWidget(m_eview);
     m_sim = new ConversationSimulation();
+    connect(m_sim, &ConversationSimulation::select,
+        [=](Node *node) {
+            modeChange(SelectMode);
+            m_eview->centerOn(node);
+            selectObject(node);
+        });
     split->addWidget(m_sim);
     setWidget(split);
 

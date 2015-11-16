@@ -18,7 +18,14 @@ ConversationSimulation::ConversationSimulation() {
     QVBoxLayout *layout = new QVBoxLayout();
     m_history = new QListWidget();
     m_history->setWordWrap(true);
+    connect(m_history, &QListWidget::itemDoubleClicked,
+        [=](QListWidgetItem *item) {
+            auto nodePointer = (QPointer<Node> *)item->data(NodePointerData).value<void *>();
+            if(nodePointer->isNull()) return;
+            emit select(nodePointer->data());
+        });
     layout->addWidget(m_history);
+
     m_options = new QComboBox();
     m_options->setEditable(false);
     layout->addWidget(m_options);
@@ -126,6 +133,9 @@ bool ConversationSimulation::process(QStandardItem *action) {
         break;
     case Action::Speech: {
         QListWidgetItem *item = new QListWidgetItem();
+        auto nodePointer = new QPointer<Node>(m_current);
+        item->setData(NodePointerData, qVariantFromValue((void *)nodePointer));
+
         const QString &speaker =
             action->data(Action::ActorData).toString();
         item->setText(speaker + " says: "
@@ -138,7 +148,10 @@ bool ConversationSimulation::process(QStandardItem *action) {
     }
     case Action::Emote: {
         QListWidgetItem *item = new QListWidgetItem();
-        const QString &actor=
+        auto nodePointer = new QPointer<Node>(m_current);
+        item->setData(NodePointerData, qVariantFromValue((void *)nodePointer));
+
+        const QString &actor =
             action->data(Action::ActorData).toString();
         item->setText("* " + actor + " "
             + action->data(Action::EmoteData).toString());

@@ -15,6 +15,10 @@ class Link;
 
 class ConversationSimulation : public QWidget { Q_OBJECT
 private:
+    enum HistoryData {
+        NodePointerData = Qt::UserRole
+    };
+private:
     Node *m_current;
     QListWidget *m_history;
     QComboBox *m_options;
@@ -32,6 +36,8 @@ private slots:
     void process(Node *node, bool supress = false);
     // returns true if m_current is changed by the action
     bool process(QStandardItem *action);
+signals:
+    void select(Node *node);
 };
 
 #endif
