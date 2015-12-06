@@ -18,7 +18,8 @@ MainWindow::MainWindow() {
     file->addAction(tr("New &platform level"), this,
         SLOT(newPlatformWindow()));
     file->addAction(tr("&Save"), this, SLOT(saveCurrent()));
-    file->addAction(tr("&Load"), this, SLOT(loadCurrent()));
+    file->addAction(tr("&Load conversation"), this, SLOT(loadConversation()));
+    file->addAction(tr("Load pla&tform"), this, SLOT(loadPlatform()));
     file->addAction(tr("E&xit"), this, SLOT(close()));
 
     {
@@ -81,13 +82,22 @@ void MainWindow::saveCurrent() {
     ew->saveTo(file);
 }
 
-void MainWindow::loadCurrent() {
+void MainWindow::loadConversation() {
     newConversationWindow();
 
     auto cw = dynamic_cast<ConversationWindow *>(m_mdi->activeSubWindow());
     if(!cw) return;
 
     cw->load();
+}
+
+void MainWindow::loadPlatform() {
+    newPlatformWindow();
+
+    auto pw = dynamic_cast<PlatformWindow *>(m_mdi->activeSubWindow());
+    if(!pw) return;
+
+    pw->load();
 }
 
 void MainWindow::autoSave() {

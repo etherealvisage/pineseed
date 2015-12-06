@@ -50,8 +50,8 @@ private:
 public:
     ConversationWindow();
 
-    void saveTo(QFile &file);
-    void load();
+    virtual void saveTo(QFile &file);
+    virtual void load();
     void doWordCount();
 private slots:
     void modeChange(int to);

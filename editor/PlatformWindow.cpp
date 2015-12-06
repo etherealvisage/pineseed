@@ -9,6 +9,8 @@
 #include <QGraphicsItem>
 #include <QList>
 #include <QFormLayout>
+#include <QFileDialog>
+#include <QDomDocument>
 
 #include "PlatformWindow.h"
 #include "moc_PlatformWindow.cpp"
@@ -77,8 +79,6 @@ PlatformWindow::PlatformWindow() : m_selectLast(nullptr) {
     m_eview = new EditorView();
     split->addWidget(m_eview);
     modeChange(SelectMode);
-
-    m_eview->scene()->addItem(new Platform(QRectF(0, 0, 100, 100)));
 }
 
 void PlatformWindow::saveTo(QFile &file) {
@@ -88,7 +88,7 @@ void PlatformWindow::saveTo(QFile &file) {
     QXmlStreamWriter xml(&file);
     xml.setAutoFormatting(true);
     xml.writeStartDocument();
-    xml.writeStartElement("conversation");
+    xml.writeStartElement("platform");
 
     auto items = m_eview->scene()->items();
     QMap<PlatformObject *, int> itemID;
@@ -111,6 +111,53 @@ void PlatformWindow::saveTo(QFile &file) {
 
     xml.writeEndElement(); // </conversation>
     xml.writeEndDocument();
+}
+
+void PlatformWindow::load() {
+    QString filename = QFileDialog::getOpenFileName(this,
+        tr("Open platform"));
+    QFile file(filename);
+    if(!file.open(QIODevice::ReadOnly)) return;
+    QFileInfo fi(filename);
+    setWindowTitle(fi.baseName());
+    
+    QDomDocument doc;
+    doc.setContent(&file);
+    m_data->deserialize(doc);
+
+    auto objectss = doc.elementsByTagName("objects");
+    if(objectss.size() != 1) {
+        qDebug("Expecting exactly one <objects>");
+        return;
+    }
+    auto objects = objectss.at(0);
+
+    QMap<int, PlatformObject *> objs;
+    auto nodes = objects.childNodes();
+    for(int i = 0; i < nodes.length(); i ++) {
+        auto element = nodes.at(i).toElement();
+
+        auto name = element.tagName();
+        auto id = element.attribute("id").toInt();
+        // mark ID as in use...
+        m_data->usedIDs().insert(id);
+
+        if(name == "platform") {
+            objs[id] = new Platform();
+        }
+        else {
+            qDebug("Unknown object type %s", name.toLocal8Bit().constData());
+        }
+    }
+
+    for(int i = 0; i < nodes.length(); i ++) {
+        auto element = nodes.at(i).toElement();
+
+        auto id = element.attribute("id").toInt();
+        
+        objs[id]->deserialize(element, objs, m_data);
+        m_eview->scene()->addItem(objs[id]);
+    }
 }
 
 void PlatformWindow::modeChange(int to) {

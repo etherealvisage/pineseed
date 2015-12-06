@@ -11,6 +11,7 @@ private:
     bool m_selected;
     int m_id;
 public:
+    Platform();
     Platform(const QRectF &rect);
 
     virtual int id() const { return m_id; }

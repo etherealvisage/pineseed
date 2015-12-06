@@ -7,6 +7,7 @@ class EditorWindow {
 public:
     virtual ~EditorWindow() {}
     virtual void saveTo(QFile &file) = 0;
+    virtual void load() = 0;
 };
 
 #endif

@@ -18,7 +18,8 @@ private slots:
     void newConversationWindow();
     void newPlatformWindow();
     void saveCurrent();
-    void loadCurrent();
+    void loadConversation();
+    void loadPlatform();
     void autoSave();
     void subwindowChange(QMdiSubWindow *window);
 };

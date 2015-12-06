@@ -17,3 +17,7 @@ int PlatformData::getAvailableID() {
 void PlatformData::serialize(QXmlStreamWriter &xml) {
     
 }
+
+void PlatformData::deserialize(QDomDocument &doc) {
+
+}

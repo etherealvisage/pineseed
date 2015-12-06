@@ -5,16 +5,20 @@
 #include <QXmlStreamWriter>
 #include <QFormLayout>
 #include <QLabel>
+#include <QDomElement>
 
 #include "Platform.h"
 #include "PlatformData.h"
 
-Platform::Platform(const QRectF &rect) {
-    m_size = rect.size();
-    setPos(rect.topLeft());
+Platform::Platform() {
     setFlags(ItemIsSelectable | ItemIsMovable);
     m_id = -1;
     m_selected = false;
+}
+
+Platform::Platform(const QRectF &rect) : Platform() {
+    m_size = rect.size();
+    setPos(rect.topLeft());
 }
 
 bool Platform::isSelection(QPointF point) {
@@ -90,6 +94,11 @@ void Platform::serialize(QXmlStreamWriter &xml) {
 void Platform::deserialize(QDomElement &xml,
     const QMap<int, PlatformObject *> &objs, PlatformData *data) {
 
+    m_id = xml.attribute("id").toInt();
+    setPos(QPointF(xml.attribute("x").toDouble(),
+        xml.attribute("y").toDouble()));
+    m_size.setWidth(xml.attribute("width").toDouble());
+    m_size.setHeight(xml.attribute("height").toDouble());
 }
 
 double Platform::snap(double v) {

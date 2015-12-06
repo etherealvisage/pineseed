@@ -33,6 +33,7 @@ public:
     PlatformWindow();
 
     virtual void saveTo(QFile &file);
+    virtual void load();
 private slots:
     void modeChange(int to);
 
