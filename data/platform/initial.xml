@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<platform>
+    <objects>
+        <platform id="476707713" x="-200" y="75" width="100" height="50"/>
+        <platform id="505671508" x="-100" y="-25" width="100" height="100"/>
+        <platform id="1186278907" x="-300" y="-25" width="100" height="100"/>
+        <platform id="2137716191" x="-275" y="150" width="250" height="50"/>
+    </objects>
+</platform>

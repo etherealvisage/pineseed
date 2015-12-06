@@ -32,6 +32,8 @@
 #include "conv/SpeechAction.h"
 #include "conv/Root.h"
 
+#include "level/Root.h"
+
 using namespace Pineseed;
 
 boost::shared_ptr<Kriti::Render::Stage> stage;
@@ -138,8 +140,11 @@ void gameEntryPoint() {
         conversation->begin(convRoot);
     }*/
 
-    {
+    /*{
         auto root = Kriti::ResourceRegistry::get<Conv::Root>("tashin");
+    }*/
+    {
+        auto root = Kriti::ResourceRegistry::get<Level::Root>("initial");
     }
 
     auto cr = Kriti::Interface::ContextRegistry::instance();
