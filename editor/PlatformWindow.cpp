@@ -4,14 +4,22 @@
 #include <QPushButton>
 #include <QSignalMapper>
 #include <QShortcut>
+#include <QFileInfo>
+#include <QXmlStreamWriter>
+#include <QGraphicsItem>
+#include <QList>
+#include <QFormLayout>
 
 #include "PlatformWindow.h"
 #include "moc_PlatformWindow.cpp"
 
 #include "Platform.h"
 #include "EditorView.h"
+#include "PlatformData.h"
 
 PlatformWindow::PlatformWindow() : m_selectLast(nullptr) {
+    m_data = new PlatformData();
+
     auto split = new QSplitter();
     setWidget(split);
 
@@ -23,6 +31,10 @@ PlatformWindow::PlatformWindow() : m_selectLast(nullptr) {
     auto modeLayout = new QHBoxLayout();
     editLayout->addLayout(modeLayout);
     editLayout->addStretch(1);
+
+    m_editarea = new QWidget();
+    editLayout->addWidget(m_editarea);
+    m_editarea->setLayout(new QFormLayout());
 
     m_modeMapper = new QSignalMapper(this);
     connect(m_modeMapper, SIGNAL(mapped(int)), this, SLOT(modeChange(int)));
@@ -70,7 +82,35 @@ PlatformWindow::PlatformWindow() : m_selectLast(nullptr) {
 }
 
 void PlatformWindow::saveTo(QFile &file) {
-    
+    QFileInfo fi(file.fileName());
+    setWindowTitle(fi.baseName());
+
+    QXmlStreamWriter xml(&file);
+    xml.setAutoFormatting(true);
+    xml.writeStartDocument();
+    xml.writeStartElement("conversation");
+
+    auto items = m_eview->scene()->items();
+    QMap<PlatformObject *, int> itemID;
+    QMap<int, PlatformObject *> rmap;
+
+    for(auto item : items) {
+        auto obj = dynamic_cast<PlatformObject *>(item);
+        if(!obj) continue;
+        itemID[obj] = obj->id();
+        rmap[obj->id()] = obj;
+    }
+
+    xml.writeStartElement("objects");
+    for(auto obj : rmap) {
+        obj->serialize(xml);
+    }
+    xml.writeEndElement(); // objects
+
+    m_data->serialize(xml);
+
+    xml.writeEndElement(); // </conversation>
+    xml.writeEndDocument();
 }
 
 void PlatformWindow::modeChange(int to) {
@@ -102,7 +142,21 @@ void PlatformWindow::modeChange(int to) {
     }
 }
 
-void PlatformWindow::selectObject(EditorObject *object) {
+void PlatformWindow::selectObject(EditorObject *eobject) {
+    auto object = dynamic_cast<PlatformObject *>(eobject);
+    while(m_editarea->layout()->count() > 0) {
+        auto item = m_editarea->layout()->takeAt(0);
+        if(item->widget()) item->widget()->deleteLater();
+        if(item->layout()) delete item->layout();
+
+        delete item;
+    }
+
+    if(object) {
+        object->edit(m_data,
+            dynamic_cast<QFormLayout *>(m_editarea->layout()));
+    }
+
     if(m_selectLast) m_selectLast->deselect();
     m_selectLast = object;
     if(m_selectLast) m_selectLast->select();

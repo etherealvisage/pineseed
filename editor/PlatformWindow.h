@@ -5,12 +5,12 @@
 
 #include "EditorWindow.h"
 
-
 class QPushButton;
 class QSignalMapper;
 
 class EditorView;
 class EditorObject;
+class PlatformData;
 
 class PlatformWindow : public QMdiSubWindow, public EditorWindow { Q_OBJECT
 private:
@@ -20,7 +20,9 @@ private:
         DeleteMode
     };
 private:
+    PlatformData *m_data;
     EditorView *m_eview;
+    QWidget *m_editarea;
     QList<QPushButton *> m_toolButtons;
     QSignalMapper *m_modeMapper;
 

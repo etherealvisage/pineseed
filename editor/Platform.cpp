@@ -1,8 +1,13 @@
-#include <QPainter>
-#include <QGraphicsSceneMouseEvent>
 #include <cmath>
 
+#include <QPainter>
+#include <QGraphicsSceneMouseEvent>
+#include <QXmlStreamWriter>
+#include <QFormLayout>
+#include <QLabel>
+
 #include "Platform.h"
+#include "PlatformData.h"
 
 Platform::Platform(const QRectF &rect) {
     m_size = rect.size();
@@ -32,11 +37,11 @@ void Platform::paint(QPainter *painter, const QStyleOptionGraphicsItem *style,
     painter->setBrush(b);
 
     QPointF snappedPos = pos();
-    snappedPos.setX(std::floor(snappedPos.x()/25.0)*25);
-    snappedPos.setY(std::floor(snappedPos.y()/25.0)*25);
+    snappedPos.setX(snap(snappedPos.x()));
+    snappedPos.setY(snap(snappedPos.y()));
     QSizeF snappedSize = m_size;
-    snappedSize.setWidth(std::floor(m_size.width()/25.0)*25);
-    snappedSize.setHeight(std::floor(m_size.height()/25.0)*25);
+    snappedSize.setWidth(snap(m_size.width()));
+    snappedSize.setHeight(snap(m_size.height()));
 
     painter->drawRect(QRectF(snappedPos - pos(), snappedSize));
 }
@@ -62,4 +67,31 @@ void Platform::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
         m_size.setHeight(m_size.height() + delta.y());
         prepareGeometryChange();
     }
+}
+
+void Platform::edit(PlatformData *data, QFormLayout *layout) {
+    if(m_id == -1) m_id = data->getAvailableID();
+
+    layout->addRow(new QLabel(tr("Platform")));
+}
+
+void Platform::serialize(QXmlStreamWriter &xml) {
+    xml.writeStartElement("platform");
+
+    xml.writeAttribute("id", QString().setNum(m_id));
+    xml.writeAttribute("x", QString().setNum(snap(pos().x())));
+    xml.writeAttribute("y", QString().setNum(snap(pos().y())));
+    xml.writeAttribute("width", QString().setNum(snap(m_size.width())));
+    xml.writeAttribute("height", QString().setNum(snap(m_size.height())));
+
+    xml.writeEndElement(); // </platform>
+}
+
+void Platform::deserialize(QDomElement &xml,
+    const QMap<int, PlatformObject *> &objs, PlatformData *data) {
+
+}
+
+double Platform::snap(double v) {
+    return std::floor(v/25.0)*25.0;
 }

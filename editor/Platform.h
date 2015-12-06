@@ -3,9 +3,9 @@
 
 #include <QSizeF>
 
-#include "EditorObject.h"
+#include "PlatformObject.h"
 
-class Platform : public EditorObject {
+class Platform : public PlatformObject {
 private:
     QSizeF m_size;
     bool m_selected;
@@ -23,8 +23,16 @@ public:
     virtual QRectF boundingRect() const;
     virtual void paint(QPainter *painter,
         const QStyleOptionGraphicsItem *style, QWidget *widget);
+
+    virtual void edit(PlatformData *data, QFormLayout *layout);
+
+    virtual void serialize(QXmlStreamWriter &xml);
+    virtual void deserialize(QDomElement &xml,
+        const QMap<int, PlatformObject *> &objs, PlatformData *data);
 protected:
     virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
+private:
+    double snap(double v);
 };
 
 #endif
