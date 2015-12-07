@@ -32,6 +32,7 @@
 #include "conv/SpeechAction.h"
 #include "conv/Root.h"
 
+#include "level/Grid.h"
 #include "level/Root.h"
 
 using namespace Pineseed;
@@ -144,7 +145,7 @@ void gameEntryPoint() {
         auto root = Kriti::ResourceRegistry::get<Conv::Root>("tashin");
     }*/
     {
-        auto root = Kriti::ResourceRegistry::get<Level::Root>("initial");
+        auto root = Kriti::ResourceRegistry::get<Level::Grid>("initial");
     }
 
     auto cr = Kriti::Interface::ContextRegistry::instance();

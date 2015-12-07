@@ -7,6 +7,8 @@
 
 #include "kriti/Resource.h"
 
+#include "Grid.h"
+
 namespace pugi {
 class xml_node;
 } // namespace pugi
@@ -18,9 +20,11 @@ class Platform;
 
 class Root : public Kriti::Resource {
 private:
-    std::map<int, boost::shared_ptr<Platform>> m_platformMap;
+    boost::shared_ptr<Grid> m_grid;
 public:
     virtual bool loadFrom(std::string name);
+
+    boost::shared_ptr<Grid> grid() const { return m_grid; }
 private:
     void loadPlatform(int id, const pugi::xml_node &node);
 };
