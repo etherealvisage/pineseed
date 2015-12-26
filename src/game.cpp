@@ -35,9 +35,12 @@
 #include "level/Grid.h"
 #include "level/Root.h"
 
+#include "scene/Camera.h"
+#include "scene/Geometry.h"
+
 using namespace Pineseed;
 
-boost::shared_ptr<Kriti::Render::Stage> stage;
+boost::shared_ptr<Kriti::Render::Stage> rootStage, guiStage, sceneStage;
 boost::shared_ptr<Kriti::Render::Pipeline> pipeline;
 boost::shared_ptr<Kriti::Render::Renderable> tri, text;
 boost::shared_ptr<Kriti::Scene::Camera> camera;
@@ -70,18 +73,6 @@ void pop(SDL_Keycode key) {
     else if(key == SDLK_SPACE) {
         ui->addJournalText("Another entry!");
     }
-    else if(key == SDLK_1) {
-        conversation->takeOption(0);
-    }
-    else if(key == SDLK_2) {
-        conversation->takeOption(1);
-    }
-    else if(key == SDLK_3) {
-        conversation->takeOption(2);
-    }
-    else if(key == SDLK_4) {
-        conversation->takeOption(3);
-    }
 }
 
 void gameEntryPoint() {
@@ -89,16 +80,21 @@ void gameEntryPoint() {
 
     Message3(Game, Debug, "Game entry point reached.");
 
-    stage = boost::make_shared<Kriti::Render::Stage>(1, 800, 600, "");
+    rootStage = boost::make_shared<Kriti::Render::Stage>(4, 1280, 720, "");
+    guiStage = boost::make_shared<Kriti::Render::Stage>(4, 1280, 720, "");
+    sceneStage = boost::make_shared<Kriti::Render::Stage>(4, 1280, 720, "");
 
     pipeline = boost::make_shared<Kriti::Render::Pipeline>();
-    pipeline->setLastStage(stage);
+    pipeline->setLastStage(rootStage);
 
+    auto aratio = Kriti::Interface::Video::instance()->aspectRatio();
     camera = boost::make_shared<Kriti::Scene::Camera>();
     camera->setProjection(Kriti::Math::ViewGenerator().orthogonal(
-        0.0, Kriti::Interface::Video::instance()->aspectRatio(), 1.0, 0.0,
+        0.0, aratio, 1.0, 0.0,
         -10.0, 10.0));
-    stage->addUniformHook(camera);
+    guiStage->addUniformHook(camera);
+    rootStage->addUniformHook(camera);
+    sceneStage->addUniformHook(camera);
 
     font = Kriti::ResourceRegistry::get<Kriti::GUI::Font>("Ubuntu-B.ttf");
 
@@ -115,37 +111,45 @@ void gameEntryPoint() {
     outlineRegistry = boost::make_shared<Kriti::GUI::OutlineRegistry>();
     mouseInteractor = boost::make_shared<Kriti::GUI::MouseInteractor>();
     mouseCursor = boost::make_shared<Kriti::GUI::MouseCursor>();
-    stage->renderables()->add(mouseCursor->renderable());
+    guiStage->renderables()->add(mouseCursor->renderable());
 
-    stage->renderables()->add(ui->renderables());
+    guiStage->renderables()->add(ui->renderables());
 
-    conversation = boost::make_shared<Game::Conversation>();
-
-    /*{
-        auto convRoot = boost::make_shared<Conv::Node>();
-
-        convRoot->addAction(boost::make_shared<Conv::SpeechAction>(nullptr,
-            "Which conversation to test?"));
-
-        auto convOneRoot = boost::make_shared<Conv::Node>();
-        convRoot->addLink(Conv::Node::Link(convOneRoot, "Conversation #1"));
-        convOneRoot->addAction(boost::make_shared<Conv::SpeechAction>(nullptr,
-            "Hello there, stranger."));
-
-        auto convOneRootResponse = boost::make_shared<Conv::Node>();
-        convOneRoot->addLink(Conv::Node::Link(convOneRootResponse,
-            "Hi there. My name's not known yet."));
-        convOneRootResponse->addAction(boost::make_shared<Conv::SpeechAction>(
-            nullptr, "Good to know!"));
-
-        conversation->begin(convRoot);
-    }*/
-
-    /*{
-        auto root = Kriti::ResourceRegistry::get<Conv::Root>("tashin");
-    }*/
     {
-        auto root = Kriti::ResourceRegistry::get<Level::Grid>("initial");
+        auto initial = Kriti::ResourceRegistry::get<Level::Grid>("initial");
+        auto geometry = boost::make_shared<Scene::Geometry>();
+        geometry->addGrid(initial);
+
+        sceneStage->renderables()->add(geometry->container());
+    }
+
+    {
+        /*auto sceneQuad = Kriti::Render::RenderableFactory().fromQuad(
+            Kriti::Math::Vector(0.0, 0.0), Kriti::Math::Vector(0.0, 1.0),
+            Kriti::Math::Vector(aratio/2, 1.0), Kriti::Math::Vector(aratio/2, 0.0),
+            "simple");
+
+        sceneStage->renderables()->add(sceneQuad);*/
+    }
+
+    {
+        rootStage->addPrevious(guiStage);
+        rootStage->addPrevious(sceneStage);
+
+        auto overlayQuad = Kriti::Render::RenderableFactory().fromQuad(
+            Kriti::Math::Vector(0.0, 0.0), Kriti::Math::Vector(0.0, 1.0),
+            Kriti::Math::Vector(aratio, 1.0), Kriti::Math::Vector(aratio, 0.0),
+            "overlay");
+        auto overlayMaterial =
+            Kriti::ResourceRegistry::get<Kriti::Render::Material>("overlay");
+        rootStage->renderables()->add(overlayQuad);
+
+        rootStage->addMapping(sceneStage,
+            Kriti::Render::Framebuffer::ColourBuffer0,
+            overlayMaterial, "baseStage");
+        rootStage->addMapping(guiStage,
+            Kriti::Render::Framebuffer::ColourBuffer0,
+            overlayMaterial, "overlayStage");
     }
 
     auto cr = Kriti::Interface::ContextRegistry::instance();

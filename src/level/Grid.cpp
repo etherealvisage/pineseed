@@ -33,7 +33,7 @@ bool Grid::loadFrom(std::string name) {
     // Second pass to parse objects.
     for(auto c = objects.first_child(); c ; c = c.next_sibling()) {
         int id = c.attribute("id").as_int();
-        if(!std::strcmp(c.name(), "node")) {
+        if(!std::strcmp(c.name(), "platform")) {
             loadPlatform(id, c);
         }
         else {

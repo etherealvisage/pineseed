@@ -14,6 +14,11 @@
         <fragment-shader>simple</fragment-shader>
     </material>
 
+    <material name="overlay">
+        <vertex-shader>simple</vertex-shader>
+        <fragment-shader>overlay</fragment-shader>
+    </material>
+
     <material name="gui_text">
         <vertex-shader>simple</vertex-shader>
         <fragment-shader>gui_text</fragment-shader>

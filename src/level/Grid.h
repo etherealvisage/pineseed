@@ -26,6 +26,8 @@ public:
 
     /*void addPlatform(boost::shared_ptr<Platform> platform)
         { m_platforms.push_back(platform); }*/
+    const std::vector<boost::shared_ptr<Platform>> &platforms() const
+        { return m_platforms; }
 private:
     void loadPlatform(int id, const pugi::xml_node &node);
 };

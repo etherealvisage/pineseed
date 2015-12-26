@@ -1,0 +1,8 @@
+namespace Pineseed {
+namespace Level {
+
+class Grid;
+
+}  // namespace Level
+}  // namespace Pineseed
+
