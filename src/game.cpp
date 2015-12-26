@@ -94,7 +94,6 @@ void gameEntryPoint() {
         -10.0, 10.0));
     guiStage->addUniformHook(camera);
     rootStage->addUniformHook(camera);
-    sceneStage->addUniformHook(camera);
 
     font = Kriti::ResourceRegistry::get<Kriti::GUI::Font>("Ubuntu-B.ttf");
 
@@ -119,6 +118,8 @@ void gameEntryPoint() {
         auto initial = Kriti::ResourceRegistry::get<Level::Grid>("initial");
         auto geometry = boost::make_shared<Scene::Geometry>();
         geometry->addGrid(initial);
+        auto camera = boost::make_shared<Scene::Camera>();
+        sceneStage->addUniformHook(camera->hook());
 
         sceneStage->renderables()->add(geometry->container());
     }
@@ -133,8 +134,8 @@ void gameEntryPoint() {
     }
 
     {
-        rootStage->addPrevious(guiStage);
         rootStage->addPrevious(sceneStage);
+        rootStage->addPrevious(guiStage);
 
         auto overlayQuad = Kriti::Render::RenderableFactory().fromQuad(
             Kriti::Math::Vector(0.0, 0.0), Kriti::Math::Vector(0.0, 1.0),

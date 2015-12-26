@@ -47,7 +47,7 @@ void UI::update(boost::shared_ptr<Kriti::GUI::OutlineRegistry> registry) {
 }
 
 void UI::addJournalText(std::string text) {
-    auto font = ResourceRegistry::get<GUI::Font>("Ubuntu-B.ttf");
+    auto font = ResourceRegistry::get<GUI::Font>("Ubuntu-R.ttf");
     auto label = boost::make_shared<GUI::Label>(Math::Vector(0,.1),
         Math::Vector(1,0), font->getInstance(12), text);
 
@@ -56,7 +56,7 @@ void UI::addJournalText(std::string text) {
 }
 
 void UI::addOption(std::string text) {
-    auto font = ResourceRegistry::get<GUI::Font>("Ubuntu-B.ttf");
+    auto font = ResourceRegistry::get<GUI::Font>("Ubuntu-R.ttf");
     auto label = boost::make_shared<GUI::Label>(Math::Vector(0,.1),
         Math::Vector(1,0), font->getInstance(12),
         Kriti::StreamAsString() << "#" << m_optionLabels.size()+1 << ": " << text,

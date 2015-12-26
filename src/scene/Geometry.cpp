@@ -28,7 +28,6 @@ void Geometry::addGrid(boost::shared_ptr<Level::Grid> grid) {
         auto renderable = Kriti::Render::RenderableFactory().fromQuad(
             s, s+h, s+h+w, s+w, "simple");
         result->addRenderSequence(renderable->renderSequence(0));
-        //m_container->add(renderable);
     }
     m_renderables[grid] = result;
     m_container->add(result);

@@ -42,14 +42,6 @@
     </material>
 </materials>
 
-<fonts>
-    <font name="ubuntu">
-        <material>ubuntu</material>
-        <description>ubuntu</description>
-        <texture width="512" height="512" />
-    </font>
-</fonts>
-
 <guis>
 </guis>
 
