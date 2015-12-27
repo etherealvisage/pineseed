@@ -11,14 +11,17 @@ namespace Scene {
 
 Camera::Camera() {
     m_camera = boost::make_shared<Kriti::Scene::Camera>();
+    // TODO: check R value to make sure aspect ratio is correct!
     m_camera->setProjection(
         Kriti::Math::ViewGenerator().orthogonal(
-            0.0, 1.0, 0.0, 1.0,
+            -0.5, 1.00, -0.5, 0.5,
             -10.0, 10.0));
 }
 
-void Camera::updateCamera(const Level::Pos &pos) {
-    m_camera->position() = pos;
+void Camera::updateCamera() {
+    m_camera->setTarget(m_tracking->position(), Kriti::Math::Quaternion());
+    //m_camera->position() = m_tracking->position();
+    m_camera->step(0.0f);
 }
 
 }  // namespace Scene

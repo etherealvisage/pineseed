@@ -55,10 +55,20 @@ boost::shared_ptr<Kriti::GUI::ScrollArea> scroll;
 boost::shared_ptr<Game::UI> ui;
 boost::shared_ptr<Game::Conversation> conversation;
 
+boost::shared_ptr<Scene::Camera> sceneCamera;
+
+boost::shared_ptr<Level::Mobile> playerMobile;
+
+Level::Pos playerMoveOffset;
+
 void frame_handler() {
     mouseInteractor->updateMouseActivation(outlineRegistry);
 
     ui->update(outlineRegistry);
+
+    playerMobile->updatePosition(playerMobile->position() + playerMoveOffset);
+    playerMoveOffset /= 1.1;
+    sceneCamera->updateCamera();
 
     pipeline->render();
     Kriti::Interface::Video::instance()->swapBuffers();
@@ -72,6 +82,18 @@ void pop(SDL_Keycode key) {
     }
     else if(key == SDLK_SPACE) {
         ui->addJournalText("Another entry!");
+    }
+    else if(key == SDLK_UP) {
+        playerMoveOffset -= Level::Pos(0.0, 0.005);
+    }
+    else if(key == SDLK_DOWN) {
+        playerMoveOffset += Level::Pos(0.0, 0.005);
+    }
+    else if(key == SDLK_LEFT) {
+        playerMoveOffset -= Level::Pos(0.005, 0.0);
+    }
+    else if(key == SDLK_RIGHT) {
+        playerMoveOffset += Level::Pos(0.005, 0.0);
     }
 }
 
@@ -114,23 +136,16 @@ void gameEntryPoint() {
 
     guiStage->renderables()->add(ui->renderables());
 
+    playerMobile = boost::make_shared<Level::Mobile>();
     {
         auto initial = Kriti::ResourceRegistry::get<Level::Grid>("initial");
         auto geometry = boost::make_shared<Scene::Geometry>();
         geometry->addGrid(initial);
-        auto camera = boost::make_shared<Scene::Camera>();
-        sceneStage->addUniformHook(camera->hook());
+        sceneCamera = boost::make_shared<Scene::Camera>();
+        sceneCamera->setTrackingMobile(playerMobile);
+        sceneStage->addUniformHook(sceneCamera->hook());
 
         sceneStage->renderables()->add(geometry->container());
-    }
-
-    {
-        /*auto sceneQuad = Kriti::Render::RenderableFactory().fromQuad(
-            Kriti::Math::Vector(0.0, 0.0), Kriti::Math::Vector(0.0, 1.0),
-            Kriti::Math::Vector(aratio/2, 1.0), Kriti::Math::Vector(aratio/2, 0.0),
-            "simple");
-
-        sceneStage->renderables()->add(sceneQuad);*/
     }
 
     {

@@ -4,7 +4,7 @@ namespace Pineseed {
 namespace Game {
 
 Character::Character() {
-    m_speechBubble;
+    
 }
 
 }  // namespace Game
