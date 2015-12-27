@@ -80,9 +80,9 @@ void gameEntryPoint() {
 
     Message3(Game, Debug, "Game entry point reached.");
 
-    rootStage = boost::make_shared<Kriti::Render::Stage>(4, 1280, 720, "");
-    guiStage = boost::make_shared<Kriti::Render::Stage>(4, 1280, 720, "");
-    sceneStage = boost::make_shared<Kriti::Render::Stage>(4, 1280, 720, "");
+    rootStage = boost::make_shared<Kriti::Render::Stage>("root");
+    guiStage = boost::make_shared<Kriti::Render::Stage>("gui");
+    sceneStage = boost::make_shared<Kriti::Render::Stage>("scene");
 
     pipeline = boost::make_shared<Kriti::Render::Pipeline>();
     pipeline->setLastStage(rootStage);

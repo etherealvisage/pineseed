@@ -36,8 +36,8 @@ UI::UI() {
 }
 
 void UI::update(boost::shared_ptr<Kriti::GUI::OutlineRegistry> registry) {
-    Math::Vector pos(0.8, 0.0);
-    Math::Vector size(0.4, 1.0);
+    Math::Vector pos(1.2, 0.0);
+    Math::Vector size(16/9.0 - 1.2, 1.0);
     m_scroll->scrollSize() = m_scrollPanel->minSize();
     m_scroll->scrollSize().setX(size.x());
     m_scroll->update(registry, pos, size, Math::Vector(1,1));
@@ -47,7 +47,7 @@ void UI::update(boost::shared_ptr<Kriti::GUI::OutlineRegistry> registry) {
 }
 
 void UI::addJournalText(std::string text) {
-    auto font = ResourceRegistry::get<GUI::Font>("Ubuntu-R.ttf");
+    auto font = ResourceRegistry::get<GUI::Font>("Ubuntu-B.ttf");
     auto label = boost::make_shared<GUI::Label>(Math::Vector(0,.1),
         Math::Vector(1,0), font->getInstance(12), text);
 
