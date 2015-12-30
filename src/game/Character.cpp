@@ -7,5 +7,9 @@ Character::Character() {
     
 }
 
+void Character::update() {
+    
+}
+
 }  // namespace Game
 }  // namespace Pineseed

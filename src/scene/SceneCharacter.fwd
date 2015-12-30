@@ -1,0 +1,8 @@
+namespace Pineseed {
+namespace Scene {
+
+class SceneCharacter;
+
+}  // namespace Scene
+}  // namespace Pineseed
+

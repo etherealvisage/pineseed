@@ -37,6 +37,7 @@
 
 #include "scene/Camera.h"
 #include "scene/Geometry.h"
+#include "scene/SceneCharacter.h"
 
 using namespace Pineseed;
 
@@ -56,19 +57,25 @@ boost::shared_ptr<Game::UI> ui;
 boost::shared_ptr<Game::Conversation> conversation;
 
 boost::shared_ptr<Scene::Camera> sceneCamera;
+boost::shared_ptr<Scene::SceneCharacter> playerCharacter;
 
-boost::shared_ptr<Level::Mobile> playerMobile;
-
-Level::Pos playerMoveOffset;
+Kriti::TimeValue lastFrame;
 
 void frame_handler() {
+    auto curtime = Kriti::TimeValue::current();
+    if(!lastFrame.set()) {
+        lastFrame = curtime;
+    }
+    auto timeDelta = (curtime - lastFrame);
+    lastFrame = curtime;
+
     mouseInteractor->updateMouseActivation(outlineRegistry);
 
     ui->update(outlineRegistry);
 
-    playerMobile->updatePosition(playerMobile->position() + playerMoveOffset);
-    playerMoveOffset /= 1.1;
-    sceneCamera->updateCamera();
+    sceneCamera->setTarget(playerCharacter->location(),
+        sceneCamera->targetOrientation());
+    sceneCamera->step(timeDelta);
 
     pipeline->render();
     Kriti::Interface::Video::instance()->swapBuffers();
@@ -84,16 +91,30 @@ void pop(SDL_Keycode key) {
         ui->addJournalText("Another entry!");
     }
     else if(key == SDLK_UP) {
-        playerMoveOffset -= Level::Pos(0.0, 0.005);
+        playerCharacter->setLocation(
+            playerCharacter->location() + Kriti::Math::Vector(0.0, -0.15));
     }
     else if(key == SDLK_DOWN) {
-        playerMoveOffset += Level::Pos(0.0, 0.005);
+        playerCharacter->setLocation(
+            playerCharacter->location() + Kriti::Math::Vector(0.0, 0.15));
     }
     else if(key == SDLK_LEFT) {
-        playerMoveOffset -= Level::Pos(0.005, 0.0);
+        playerCharacter->setLocation(
+            playerCharacter->location() + Kriti::Math::Vector(-0.15, 0.0));
     }
     else if(key == SDLK_RIGHT) {
-        playerMoveOffset += Level::Pos(0.005, 0.0);
+        playerCharacter->setLocation(
+            playerCharacter->location() + Kriti::Math::Vector(0.15, 0.0));
+    }
+    else if(key == SDLK_q) {
+        sceneCamera->setTarget(
+            sceneCamera->targetPosition(),
+            sceneCamera->targetOrientation() * Kriti::Math::Quaternion(Kriti::Math::Vector(0.0, 0.0, 1.0), M_PI/8));
+    }
+    else if(key == SDLK_e) {
+        sceneCamera->setTarget(
+            sceneCamera->targetPosition(),
+            sceneCamera->targetOrientation() * Kriti::Math::Quaternion(Kriti::Math::Vector(0.0, 0.0, 1.0), -M_PI/8));
     }
 }
 
@@ -136,16 +157,24 @@ void gameEntryPoint() {
 
     guiStage->renderables()->add(ui->renderables());
 
-    playerMobile = boost::make_shared<Level::Mobile>();
     {
         auto initial = Kriti::ResourceRegistry::get<Level::Grid>("initial");
         auto geometry = boost::make_shared<Scene::Geometry>();
-        geometry->addGrid(initial);
+        geometry->addGrid(initial, Level::Pos(0.0, 0.3));
         sceneCamera = boost::make_shared<Scene::Camera>();
-        sceneCamera->setTrackingMobile(playerMobile);
-        sceneStage->addUniformHook(sceneCamera->hook());
+        sceneCamera->setInterpModes(Scene::Camera::ExponentialPosition,
+            Scene::Camera::ExponentialOrientation);
+        sceneCamera->setPositionInterpFactor(0.1);
+        sceneCamera->setOrientationInterpFactor(0.1);
+        sceneStage->addUniformHook(sceneCamera);
 
         sceneStage->renderables()->add(geometry->container());
+    }
+
+    {
+        playerCharacter = boost::make_shared<Scene::SceneCharacter>();
+
+        sceneStage->renderables()->add(playerCharacter->renderable());
     }
 
     {
