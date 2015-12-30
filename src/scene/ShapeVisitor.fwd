@@ -1,0 +1,8 @@
+namespace Pineseed {
+namespace Scene {
+
+class ShapeVisitor;
+
+}  // namespace Scene
+}  // namespace Pineseed
+

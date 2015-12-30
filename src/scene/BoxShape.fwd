@@ -1,0 +1,8 @@
+namespace Pineseed {
+namespace Scene {
+
+class BoxShape;
+
+}  // namespace Scene
+}  // namespace Pineseed
+
